@@ -19,9 +19,9 @@ The project is about developping an app that will use facial recognition securel
     - Victor Lasocki, ___, victorlasocki
     - Yassine Turki, yassine-turki, turkiyassine2, trello leader
 
-    ## Teams
+## Teams
 
-    ### Machine Learning Implementation and Facial Recognition
+### Machine Learning Implementation and Facial Recognition
 
     - Alexandru Serban
     - Bach Khoa Do
@@ -32,19 +32,19 @@ The project is about developping an app that will use facial recognition securel
     - Santorin Yu
     - Simon Sebastian Mihai
 
-    ### Image and password encryption
+### Image and password encryption
 
     - Mija Pilkaite
     - Sophie-Claire Antoun
     - Yassine Turki
     - Jasmine Watissee
     
-    ### Setting up database with MongoDB
+### Setting up database with MongoDB
     
     - Mija Pilkaite
     - Sophie-Claire Antoun
 
-    ### User interface
+### User interface
     
     - Paula Gonzalez Alvarez
     - Victor Lasocki
