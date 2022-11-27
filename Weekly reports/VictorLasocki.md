@@ -1,8 +1,8 @@
-# Weekly Project Reports
+# Weekly Project Report
 
 #### Victor Lasocki
 
-### Week1
+### Week 1
 
 **What I did this week:**
 - Spent quite some time trying to get CMake and OpenCV downloaded and running on my computer (still not completely done) 
