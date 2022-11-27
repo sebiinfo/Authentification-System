@@ -12,5 +12,4 @@ different pages and functions to see what could be done for our project
 **Aim for next week:**
 - Finish setting up OpenCV
 - Using what I have learned we will be able to do in QT, to complete the plan of what we want the final interface to look like made by Paula
-- Look into more complex elements of the UI
-- Research possibilities of expanding the desktop app to a mobile app on iOS and Android devices
+- Look into more complex elements of the UI and implementing placeholder functions and classes
