@@ -7,7 +7,7 @@ The project is about developping an app that will use facial recognition securel
     - Paula Gonzalez Alvarez, gonzalezpaula, paula_gonzalez
     - Alexandru Serban, alexserban2002, alexandruserban19
     - Bach Khoa Do, DoBachKhoa, bachkhoado1
-    - Bogdan Budura, ___, bogdanbudura
+    - Bogdan Budura, ___, bogdanbudura, compilation leader
     - Cezara Petrui, cezarapetrui19, cezarapetrui
     - Francisco Moreira Machado Neto, fcomoreira1, franciscomoreiramachadoneto, project leader
     - Jasmine Watissee, jasminewatissee, jasminewatissee1
@@ -32,14 +32,14 @@ The project is about developping an app that will use facial recognition securel
     - Santorin Yu
     - Simon Sebastian Mihai
 
-### Image and password encryption
+### Password encryption and Image Encoding
 
     - Mija Pilkaite
     - Sophie-Claire Antoun
     - Yassine Turki
     - Jasmine Watissee
     
-### Setting up database with MongoDB
+### Setting up database
     
     - Mija Pilkaite
     - Sophie-Claire Antoun
