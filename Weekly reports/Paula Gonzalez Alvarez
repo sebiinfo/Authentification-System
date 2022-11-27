@@ -1,0 +1,9 @@
+Paula Gonzalez Alvarez:
+Week #1 (21/11/2022 - 27/11/2022)
+- Spent at least 6 hours trying to download OpenCV on Windows which was very complicated because you need to use CMake to connect OpenCV to QT but CMake is programmed
+  to connect OpenCV to QT5 but we need to use it with QT6 so I tried to modify the CMake variables and libraries and I managed to get through most of the steps but it
+  is still not working. Hopefully, I will finish by next week.
+- Did research and took notes on OpenCV modules that will be helpful for our facial recognition project.
+- Learned about user interface by looking at the QT libraries for C++ and starting a widget-based desktop application with some basic buttons.
+- Created a sketch on my computer of how the app could work. It showed every function needed and how the screen would look with the buttons and paths leading to the 
+  other screens. 
