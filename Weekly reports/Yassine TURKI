@@ -1,0 +1,18 @@
+Yassine Turki:
+
+Tasks acheived / ongoing for this week:
+
+- Read about the implementation of facial recognition using OpenCV, along with its different types (Eigenfaces and Fisherfaces). We are still deciding on which implementation we would like to work on, as there are both pros and cons for each implementation.
+
+- 2 steps missing from installing OpenCV and start implementing code 
+
+- Read about password encryption (in order to safely store and recover a password in case the system fails) , and notably the Password-Based Key Derivation Function.
+
+- Solved issues regarding trello
+
+
+Next week:
+
+- Install and use OpenCV
+- Finish the password file (class (created) + encryption)
+- Make sure the Trello is always updated
