@@ -9,14 +9,14 @@ The project is about developping an app that will use facial recognition securel
     - Bach Khoa Do, ___, bachkhoado1
     - Bogdan Budura, ___, bogdanbudura
     - Cezara Petrui, cezarapetrui19, cezarapetrui
-    - Francisco Moreira Machado Neto, ___, franciscomoreiramachadoneto, project leader
+    - Francisco Moreira Machado Neto, fcomoreira1, franciscomoreiramachadoneto, project leader
     - Jasmine Watissee, jasminewatissee, jasminewatissee1
-    - Mija Pilkaite, ___, mijapilkaite
-    - Romain Poggi, ___, romainpoggi
+    - Mija Pilkaite, mija-pilkaite, mijapilkaite
+    - Romain Poggi, rompoggi, romainpoggi
     - Santorin Yu, SantorinYu01, santorinyu
     - Simon Sebastian Mihai, sebiinfo, simonsebastianmihai, github leader
-    - Sophie-Claire Antoun, ___, sophieclaireantoun
-    - Victor Lasocki, ___, victorlasocki
+    - Sophie-Claire Antoun, sophieantoun, sophieclaireantoun
+    - Victor Lasocki, victor-lasocki, victorlasocki
     - Yassine Turki, yassine-turki, turkiyassine2, trello leader
 
 ## Teams
