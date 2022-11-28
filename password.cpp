@@ -13,15 +13,9 @@ static const char alphanum[] =
 
 int stringLength = sizeof(alphanum) - 1;
 
-char genRandom()  // Random string generator function.
+char random_character()  // Random string generator function.
 {
-
     return alphanum[rand() % stringLength];
-}
-
-
-char random_character(){
-    return 'a' + rand()%26;
 }
 
 Password::Password() {
@@ -54,7 +48,10 @@ std::string Password::generate_random() {
 std::string Password::generate_salt(){
     return 32*genRandom();
 }
+
+
 std::string Password::encrypt(std::string s) {}
+
 
 void Password::change_password() {
     std::cout << "Are you sure you want to change your password ? (Y/N)" << std::endl;
