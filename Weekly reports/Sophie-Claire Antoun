@@ -1,1 +1,15 @@
+Installation of Cmake and OpenCV (couldn't check if it works yet), installation of libomongoC (MongoDB C Driver), 
+and setting up of my mongoDB compass for a new project (had some issues with the compatibility of the cluster with my compass,
+since we created the cluster with Mija's new account (I had already used my free cluster), and it was not compatible on my mac.)
+
+All packages were successfully installed, except for one. ( <bsoncxx/builder/stream/document.hpp> ) 
+I hope to solve this issue next week, with the help of professors, because I spent hours on it, and couldn't find a solution. 
+
+I also wrote some codes on input and output of password (masking of letters into * when pressed on keyboard, check if it is the same as the password in the data),
+but it was based off arrays, containing passwords and not data from mongodb.
+
+The next step, once the C driver is installed, is to link it to the database, and make it compatible with Jasmine's code for the password Class. 
+As Mija mentioned, if the c driver is too complicated to install, it is not worth it to lose even more time on this, and we will switch to a local database (SQL Lite  normally), implement our codes and work on the user interface, and switch to mongoDB later depending on convenience and time. 
+
+Once the password is set up, we will then move on to Image encryption and data processing. 
 
