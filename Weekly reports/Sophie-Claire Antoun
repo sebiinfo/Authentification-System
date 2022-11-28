@@ -12,4 +12,3 @@ The next step, once the C driver is installed, is to link it to the database, an
 As Mija mentioned, if the c driver is too complicated to install, it is not worth it to lose even more time on this, and we will switch to a local database (SQL Lite  normally), implement our codes and work on the user interface, and switch to mongoDB later depending on convenience and time. 
 
 Once the password is set up, we will then move on to Image encryption and data processing. 
-
