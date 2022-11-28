@@ -47,10 +47,20 @@ std::string Password::generate_random() {
 
 std::string Password::generate_salt(){
     return 32*genRandom();
+    // MAKE SURE SALT IS UNIQUE
 }
 
 
-std::string Password::encrypt(std::string s) {}
+std::string Password::encrypt() {
+    std::str s= generate_salt();
+    std::hash <std::string> hash;
+    std::string candidatePass= password+s;
+    std::string h;
+    for (int i=0;i<10;i++){
+        h=hash(candidatePass);
+    }
+    return h;
+}
 
 
 void Password::change_password() {
@@ -85,3 +95,13 @@ void Password::reset() {
     hashed.clear();
 }
 
+bool Password::compare_password(){
+    std::string username;
+    std::cout<<"Enter Username";
+    std::cin>>username;
+    std::string enteredpass;
+    std::cout<<"Enter Password";
+    std::cin>>enteredpass;
+    Password pass = Password(enteredpass);
+    std::string nenteredpass= pass.encrypt();
+}

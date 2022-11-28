@@ -14,10 +14,14 @@ public:
 
     bool operator==(Password &other);
 
-    std::string generate_random();
+    std::string generate_random_password();
     std::string generate_salt();
-    std::string encrypt(std::string salt);
+    std::string encrypt();
+    if username.salt==NULL:
+       salt=generatesalt
+     else:
     void change_password();
+    bool compare_password();
     std::string get_hash() {return hashed;};
     //void show_password();
     void reset();
