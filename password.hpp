@@ -15,7 +15,8 @@ public:
     bool operator==(Password &other);
 
     std::string generate_random();
-    void encrypt();
+    std::string generate_salt();
+    std::string encrypt(std::string salt);
     void change_password();
     std::string get_hash() {return hashed;};
     //void show_password();
@@ -24,6 +25,7 @@ public:
 private:
     std::string password;
     std::string hashed;
+    std::string salt;
 };
 
 

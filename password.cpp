@@ -1,5 +1,24 @@
 #include <iostream>
 #include "password.hpp"
+#include <string>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+static const char alphanum[] =
+"0123456789"
+"!@#$%^&*"
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"abcdefghijklmnopqrstuvwxyz";
+
+int stringLength = sizeof(alphanum) - 1;
+
+char genRandom()  // Random string generator function.
+{
+
+    return alphanum[rand() % stringLength];
+}
+
 
 char random_character(){
     return 'a' + rand()%26;
@@ -32,7 +51,10 @@ std::string Password::generate_random() {
     return s;
 }
 
-void Password::encrypt() {}
+std::string Password::generate_salt(){
+    return 32*genRandom();
+}
+std::string Password::encrypt(std::string s) {}
 
 void Password::change_password() {
     std::cout << "Are you sure you want to change your password ? (Y/N)" << std::endl;
