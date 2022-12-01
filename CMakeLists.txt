@@ -15,6 +15,7 @@ add_subdirectory(libs/opencv)
 
 if(${Qt6_FOUND})
   add_subdirectory(libs/qt)
+  qt_standard_project_setup()
 endif()
 
 include_directories(${OpenCV_INCLUDE_DIRS})
