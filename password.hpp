@@ -2,6 +2,8 @@
 #define PASSWORD_HPP
 
 #include <iostream>
+#include <string>
+using namespace std;
 
 char random_character();
 
@@ -14,23 +16,37 @@ public:
 
     bool operator==(Password &other);
 
-    std::string generate_random_password();
-    std::string generate_salt();
-    std::string encrypt();
-    if username.salt==NULL:
-       salt=generatesalt
-     else:
+    string generate_random_password();
+    string generate_salt();
+    string encrypt();
     void change_password();
     bool compare_password();
-    std::string get_hash() {return hashed;};
+    string get_hash() {return hashed;};
     //void show_password();
     void reset();
 
 private:
-    std::string password;
-    std::string hashed;
-    std::string salt;
+    string password;
+    string hashed;
+    string salt;
 };
 
+class Username{
+public:
+    Username();
+    Username(string input);
+    change_username(string input);
+private:
+    string user;
+};
+
+class Profile{
+public:
+    Profile();
+    Profile(string U, string p);
+private:
+    Username user;
+    Password pwd;
+};
 
 #endif // PASSWORD_HPP

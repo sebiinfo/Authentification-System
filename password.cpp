@@ -1,7 +1,7 @@
 #include <iostream>
 #include "password.hpp"
 #include <string>
-#include <cstdlib>
+#include <clib>
 #include <ctime>
 using namespace std;
 
@@ -18,44 +18,47 @@ char random_character()  // Random string generator function.
     return alphanum[rand() % stringLength];
 }
 
+// Class Password
+
+// Create a random password
 Password::Password() {
-    std::cout << "Creating a password ..." << std::endl;
+    cout << "Creating a password ..." << endl;
     password = generate_random();
-    std::cout << "Your new password is: " << password << std::endl;
+    cout << "Your new password is: " << password << endl;
     encrypt();
 }
 
-Password::Password(std::string pwd) {
+Password::Password(string pwd) {
     password = pwd;
     encrypt();
 }
 
-Password::~Password() {}
+Password~Password() {}
 
 bool Password::operator==(Password &other) {
     other.encrypt();
     return get_hash() == other.get_hash();
 }
 
-std::string Password::generate_random() {
-    std::string s;
+string Password::generate_random() {
+    string s;
     for(int i=0; i <= 12; i++) {
         s.push_back(random_character());
     }
     return s;
 }
 
-std::string Password::generate_salt(){
+string Password::generate_salt(){
     return 32*genRandom();
     // MAKE SURE SALT IS UNIQUE
 }
 
 
-std::string Password::encrypt() {
-    std::str s= generate_salt();
-    std::hash <std::string> hash;
-    std::string candidatePass= password+s;
-    std::string h;
+string Password::encrypt() {
+    str s= generate_salt();
+    hash <string> hash;
+    string candidatePass= password+s;
+    string h;
     for (int i=0;i<10;i++){
         h=hash(candidatePass);
     }
@@ -64,30 +67,30 @@ std::string Password::encrypt() {
 
 
 void Password::change_password() {
-    std::cout << "Are you sure you want to change your password ? (Y/N)" << std::endl;
+    cout << "Are you sure you want to change your password ? (Y/N)" << endl;
     char answer;
-    std::cin >> answer;
+    cin >> answer;
     if (answer == *"Y"){
-        std::cout << "Choose a new password: " << std::endl;
-        std::string pwd;
-        std::cin >> pwd;
-        std::cout << "Confirm your password: " << std::endl;
-        std::string pwd2;
-        std::cin >> pwd2;
+        cout << "Choose a new password: " << endl;
+        string pwd;
+        cin >> pwd;
+        cout << "Confirm your password: " << endl;
+        string pwd2;
+        cin >> pwd2;
         if (pwd == pwd2) {
             password = pwd;
             encrypt();
         }
-        std::cout << "Password changed !" << std::endl;
+        cout << "Password changed !" << endl;
     } else {
-        std::cout << "Exiting ..." << std::endl;
+        cout << "Exiting ..." << endl;
         exit(0);
     }
 }
 
 //void Password::show_password() {
-//    std::cout << "Your password is:" << std::endl;
-//    std::cout << password << std::endl;
+//    cout << "Your password is:" << endl;
+//    cout << password << endl;
 //}
 
 void Password::reset() {
@@ -96,12 +99,14 @@ void Password::reset() {
 }
 
 bool Password::compare_password(){
-    std::string username;
-    std::cout<<"Enter Username";
-    std::cin>>username;
-    std::string enteredpass;
-    std::cout<<"Enter Password";
-    std::cin>>enteredpass;
+    string username;
+    cout<<"Enter Username";
+    cin>>username;
+    string enteredpass;
+    cout<<"Enter Password";
+    cin>>enteredpass;
     Password pass = Password(enteredpass);
-    std::string nenteredpass= pass.encrypt();
+    string nenteredpass= pass.encrypt();
 }
+
+
