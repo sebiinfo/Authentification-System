@@ -11,6 +11,7 @@ hash<string>str_hash;
 class Password {
 public:
     Password();
+    Password(string pwd);
     ~Password();
     bool operator==(Password &other);
     string generate_random_password();
@@ -44,7 +45,6 @@ public:
     bool operator ==(Profile &other);
     string get_username();
     string get_password_hash();
-    bool success(Profile p);
 private:
     Username user;
     Password pwd;

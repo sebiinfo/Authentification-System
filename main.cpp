@@ -5,7 +5,6 @@
 using namespace std;
 
 int main() {
-    P=Profile();
+    Profile P=Profile();
     return 0;
-
 }

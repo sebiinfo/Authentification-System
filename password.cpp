@@ -29,6 +29,11 @@ Password::Password() {
     change_password();
 }
 
+Password::Password(string pwd) {
+    password = pwd;
+    encrypt();
+}
+
 
 Password::~Password() {
     password.clear();
@@ -133,17 +138,13 @@ Profile::Profile(){
     pwd=Password();
 }
 string Profile::get_username() {
-    return username.get;
+    return user.get_user();
 }
 string Profile::get_password_hash() {
     return pwd.get_hash();
 }
 bool Profile:: operator==(Profile &other){
     return (get_username() == other.get_username() && get_password_hash()== other.get_password_hash());
-}
-
-bool Profile::success(Profile p){
-    return Profile==p;
 }
 
 
