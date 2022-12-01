@@ -1,0 +1,7 @@
+Alexandru Serban
+
+This week:
+- I spent time trying to download OpenCV but I was not able to do it. I'll finsih installing it next week.
+- I focused more on the theoretical part, doing research about the face detection algorithm. 
+- I did more research on the OpenCV library in order to get accustomed to the existing classes that I am going to use for the project, such as CascadeClassifier and VideoCapture.
+- In the next week, I will discuss further the ideas for developing the algorithm. 
