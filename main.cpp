@@ -1,8 +1,11 @@
 #include <iostream>
+#include "password.hpp"
+#include "password.cpp"
 
 using namespace std;
 
 int main() {
-    cout << "Hello World!" << endl;
+    P=Profile();
     return 0;
+
 }

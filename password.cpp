@@ -1,7 +1,6 @@
 #include <iostream>
 #include "password.hpp"
 #include <string>
-#include <clib>
 #include <ctime>
 using namespace std;
 
@@ -49,14 +48,16 @@ string Password::generate_random() {
     return s;
 }
 
-string Password::generate_salt(){
-    salt=32*genRandom();
-    // MAKE SURE SALT IS UNIQUE
+void Password::generate_salt() {
+    for (int i = 0; i < 32; i++) {
+        salt += generate_random();
+        // MAKE SURE SALT IS UNIQUE
+    }
 }
 string Password::get_salt() {return salt;};
 
 void Password::encrypt() {
-    if (salt!=NULL){
+    if (!salt.empty()){
             string candidatePass= password+salt;
             string h;
             for (int i=0;i<10;i++){
@@ -96,23 +97,23 @@ string Password:: get_hash(){
 // Class Username
 
 Username::Username() {
-    string confirm=NULL;
-    while (confirm != *"Y") {
+    string confirm="0";
+    while (confirm!="Y") {
         string input;
-        cout << "Create your username:"
-        input = cin >> input;
-        cout << "Your username is: "
+        cout << "Create your username:";
+        cin >> input;
+        cout << "Your username is: ";
         cout << input << endl;
-        cout << "Do you confirm? (Y/N)"
-        if (confirm == *"Y") {
+        cout << "Do you confirm? (Y/N)";
+        if (confirm == "Y") {
             user = input;
             break;
-        } else if (confirm == *"N") {
+        } else if (confirm == "N") {
             continue;
         }
         else {
-            while (confirm != *"Y" && confirm != *"N") {
-                cout << "Do you confirm? (Y/N)"
+            while (confirm != "Y" && confirm != "N") {
+                cout << "Do you confirm? (Y/N)";
             }
         }
     }
@@ -129,10 +130,10 @@ string Username::get_user(){
 
 Profile::Profile(){
     user=Username();
-    pwd=Password()
+    pwd=Password();
 }
 string Profile::get_username() {
-    return username.get
+    return username.get;
 }
 string Profile::get_password_hash() {
     return pwd.get_hash();

@@ -15,9 +15,10 @@ public:
     bool operator==(Password &other);
     string generate_random_password();
     string get_hash();
-    string generate_salt();
+    void generate_salt();
     string get_salt();
-    string encrypt();
+    string generate_random();
+    void encrypt();
     void change_password();
 
 private:
