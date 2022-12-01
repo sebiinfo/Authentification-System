@@ -6,15 +6,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-add_subdirectory(libs/qt)
-add_subdirectory(libs/opencv)
 
 find_package(OpenCV REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 OPTIONAL_COMPONENTS Core)
+
+
+add_subdirectory(libs/opencv)
+
+if(${Qt6_FOUND})
+  add_subdirectory(libs/qt)
+endif()
 
 include_directories(${OpenCV_INCLUDE_DIRS})
-qt_standard_project_setup()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core
-        INTERFACE QtExternalLibrary
+target_link_libraries(${PROJECT_NAME} 
+        PRIVATE "$<$<BOOL:${Qt6_FOUND}>:Qt6::Core>"
+        INTERFACE "$<$<${Qt6_FOUND}:libs/qt>:QtExternalLibrary>" 
         INTERFACE OpenCVExternalLibrary)
