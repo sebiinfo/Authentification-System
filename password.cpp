@@ -133,7 +133,7 @@ Profile::Profile(){
     pwd=Password();
 }
 string Profile::get_username() {
-    return username.get;
+    return user.get_user();
 }
 string Profile::get_password_hash() {
     return pwd.get_hash();
@@ -143,7 +143,7 @@ bool Profile:: operator==(Profile &other){
 }
 
 bool Profile::success(Profile p){
-    return Profile==p;
+    return (user==p.user && pwd==p.pwd);
 }
 
 
