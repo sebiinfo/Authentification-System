@@ -22,18 +22,19 @@ char random_character()  // Random string generator function.
 
 // Create a random password
 Password::Password() {
+    generate_salt();
     cout << "Creating a password ..." << endl;
     password = generate_random();
     cout << "Your new password is: " << password << endl;
     encrypt();
+    change_password();
 }
 
-Password::Password(string pwd) {
-    password = pwd;
-    encrypt();
-}
 
-Password~Password() {}
+Password::~Password() {
+    password.clear();
+    hashed.clear();
+}
 
 bool Password::operator==(Password &other) {
     other.encrypt();
@@ -49,25 +50,25 @@ string Password::generate_random() {
 }
 
 string Password::generate_salt(){
-    return 32*genRandom();
+    salt=32*genRandom();
     // MAKE SURE SALT IS UNIQUE
 }
+string Password::get_salt() {return salt;};
 
-
-string Password::encrypt() {
-    str s= generate_salt();
-    hash <string> hash;
-    string candidatePass= password+s;
-    string h;
-    for (int i=0;i<10;i++){
-        h=hash(candidatePass);
+void Password::encrypt() {
+    if (salt!=NULL){
+            string candidatePass= password+salt;
+            string h;
+            for (int i=0;i<10;i++){
+                h = str_hash(candidatePass);
+            }
+            hashed=h;
     }
-    return h;
 }
 
 
 void Password::change_password() {
-    cout << "Are you sure you want to change your password ? (Y/N)" << endl;
+    cout << "Would you like to change your password ? (Y/N)" << endl;
     char answer;
     cin >> answer;
     if (answer == *"Y"){
@@ -88,25 +89,60 @@ void Password::change_password() {
     }
 }
 
-//void Password::show_password() {
-//    cout << "Your password is:" << endl;
-//    cout << password << endl;
-//}
-
-void Password::reset() {
-    password.clear();
-    hashed.clear();
+string Password:: get_hash(){
+    return hashed;
 }
 
-bool Password::compare_password(){
-    string username;
-    cout<<"Enter Username";
-    cin>>username;
-    string enteredpass;
-    cout<<"Enter Password";
-    cin>>enteredpass;
-    Password pass = Password(enteredpass);
-    string nenteredpass= pass.encrypt();
+// Class Username
+
+Username::Username() {
+    string confirm=NULL;
+    while (confirm != *"Y") {
+        string input;
+        cout << "Create your username:"
+        input = cin >> input;
+        cout << "Your username is: "
+        cout << input << endl;
+        cout << "Do you confirm? (Y/N)"
+        if (confirm == *"Y") {
+            user = input;
+            break;
+        } else if (confirm == *"N") {
+            continue;
+        }
+        else {
+            while (confirm != *"Y" && confirm != *"N") {
+                cout << "Do you confirm? (Y/N)"
+            }
+        }
+    }
+}
+bool Username:: operator == (Username &other){
+    return get_user()==other.get_user();
+}
+string Username::get_user(){
+    return user;
+}
+
+
+// Class Profile
+
+Profile::Profile(){
+    user=Username();
+    pwd=Password()
+}
+string Profile::get_username() {
+    return username.get
+}
+string Profile::get_password_hash() {
+    return pwd.get_hash();
+}
+bool Profile:: operator==(Profile &other){
+    return (get_username() == other.get_username() && get_password_hash()== other.get_password_hash());
+}
+
+bool Profile::success(Profile p){
+    return Profile==p;
 }
 
 

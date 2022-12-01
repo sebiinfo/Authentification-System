@@ -6,24 +6,19 @@
 using namespace std;
 
 char random_character();
-
+hash<string>str_hash;
 
 class Password {
 public:
     Password();
-    Password(std::string pwd);
     ~Password();
-
     bool operator==(Password &other);
-
     string generate_random_password();
+    string get_hash();
     string generate_salt();
+    string get_salt();
     string encrypt();
     void change_password();
-    bool compare_password();
-    string get_hash() {return hashed;};
-    //void show_password();
-    void reset();
 
 private:
     string password;
@@ -34,8 +29,9 @@ private:
 class Username{
 public:
     Username();
-    Username(string input);
-    change_username(string input);
+    void change_username(string input);
+    string get_user();
+    bool operator ==(Username &other);
 private:
     string user;
 };
@@ -44,6 +40,10 @@ class Profile{
 public:
     Profile();
     Profile(string U, string p);
+    bool operator ==(Profile &other);
+    string get_username();
+    string get_password_hash();
+    bool success(Profile p);
 private:
     Username user;
     Password pwd;
