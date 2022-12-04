@@ -56,3 +56,6 @@ compile_commands.json
 *_qmlcache.qrc
 
 .idea/
+.build/
+./sources/TestCameraCapture/bogdan/build
+./sources/TestCameraCapture/sebi/build
