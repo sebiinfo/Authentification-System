@@ -12,15 +12,15 @@ static const char alphanum[] =
 
 int stringLength = sizeof(alphanum) - 1;
 
-char random_character()  // Random string generator function.
-{
+char random_character(){
+    // Random string generator function.
     return alphanum[rand() % stringLength];
 }
 
 // Class Password
 
-// Create a random password
 Password::Password() {
+    // Create a random password
     generate_salt();
     cout << "Creating a password ..." << endl;
     password = generate_random();
@@ -59,10 +59,9 @@ void Password::generate_salt() {
         // MAKE SURE SALT IS UNIQUE
     }
 }
-string Password::get_salt() {return salt;};
 
 void Password::encrypt() {
-    if (!salt.empty()){
+    if (! salt.empty()){
             string candidatePass= password+salt;
             string h;
             for (int i=0;i<10;i++){
@@ -75,9 +74,9 @@ void Password::encrypt() {
 
 void Password::change_password() {
     cout << "Would you like to change your password ? (Y/N)" << endl;
-    char answer;
+    string answer;
     cin >> answer;
-    if (answer == *"Y"){
+    if (answer == "Y"){
         cout << "Choose a new password: " << endl;
         string pwd;
         cin >> pwd;
@@ -90,13 +89,8 @@ void Password::change_password() {
         }
         cout << "Password changed !" << endl;
     } else {
-        cout << "Exiting ..." << endl;
-        exit(0);
+        cout << "The password won't be changed" << endl;
     }
-}
-
-string Password:: get_hash(){
-    return hashed;
 }
 
 // Class Username
@@ -110,6 +104,7 @@ Username::Username() {
         cout << "Your username is: ";
         cout << input << endl;
         cout << "Do you confirm? (Y/N)";
+        cin >> confirm;
         if (confirm == "Y") {
             user = input;
             break;
@@ -126,23 +121,42 @@ Username::Username() {
 bool Username:: operator == (Username &other){
     return get_user()==other.get_user();
 }
-string Username::get_user(){
-    return user;
+
+void Username::change_username(string input){
+    cout << "Would you like to change your username ? (Y/N)" << endl;
+    string answer;
+    cin >> answer;
+    if (answer == "Y"){
+        cout << "Choose a new username: " << endl;
+        string pwd;
+        cin >> pwd;
+        cout << "Confirm your username: " << endl;
+        string pwd2;
+        cin >> pwd2;
+        if (pwd == pwd2) {
+            password = pwd;
+            encrypt();
+        }
+        cout << "Username changed !" << endl;
+    } else {
+        cout << "The username won't be changed" << endl;
+    }
 }
 
 
 // Class Profile
 
 Profile::Profile(){
+    // Create a profile
     user=Username();
     pwd=Password();
 }
-string Profile::get_username() {
-    return user.get_user();
+
+Profile::Profile(string U, string p) {
+    user = Username(U);
+    pwd = Password(p);
 }
-string Profile::get_password_hash() {
-    return pwd.get_hash();
-}
+
 bool Profile:: operator==(Profile &other){
     return (get_username() == other.get_username() && get_password_hash()== other.get_password_hash());
 }

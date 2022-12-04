@@ -10,7 +10,7 @@ using namespace std;
 void tests(){
     std::vector< std::string > list;
     std::fstream file;
-    file.open("words.txt",std::ios::in); //open a file to perform read operation using file object
+    file.open("words_for_testing.txt",std::ios::in); //open a file to perform read operation using file object
        if (file.is_open()){   //checking whether the file is open
           std::string tp;
           while(getline(file, tp)){ //read data from file object and put it into string.
