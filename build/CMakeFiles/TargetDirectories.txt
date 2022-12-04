@@ -1,0 +1,6 @@
+/home/johnnyventuras/Desktop/Authentification-System/build/CMakeFiles/Authentication-System.dir
+/home/johnnyventuras/Desktop/Authentification-System/build/CMakeFiles/edit_cache.dir
+/home/johnnyventuras/Desktop/Authentification-System/build/CMakeFiles/rebuild_cache.dir
+/home/johnnyventuras/Desktop/Authentification-System/build/libs/opencv/CMakeFiles/OpenCVExternalLibrary.dir
+/home/johnnyventuras/Desktop/Authentification-System/build/libs/opencv/CMakeFiles/edit_cache.dir
+/home/johnnyventuras/Desktop/Authentification-System/build/libs/opencv/CMakeFiles/rebuild_cache.dir
