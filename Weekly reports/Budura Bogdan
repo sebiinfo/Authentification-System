@@ -1,4 +1,10 @@
 This Week:
-I have installed OpenCV on my system and tested a few functions to get accustomed with the library. 
-I started reading about different facial detection algorithms that we will soon start to implement.
-Read a lot of CMake documentation and started work on the cmake for this project.
+	-I have installed OpenCV on my system and tested a few functions to get accustomed with the library. 
+	-I started reading about different facial detection algorithms that we will soon start to implement.
+	-Read a lot of CMake documentation and started work on the cmake for this project.
+
+Second Week:
+	-I have written the cmake files for the project in cooperation with Sebi Simon.
+	-Managed to test the code and finally installed all the necessary dependencies for opencv. 
+	-Managed to fix the problem with harcascades path issue as well as the missing gtk libraries required for opencv.
+	-Did research on the Classification Algorithm which we will start to implement with this week.
