@@ -7,4 +7,4 @@ Second Week:
 	-I have written the cmake files for the project in cooperation with Sebi Simon.
 	-Managed to test the code and finally installed all the necessary dependencies for opencv. 
 	-Managed to fix the problem with harcascades path issue as well as the missing gtk libraries required for opencv.
-	-Did research on the Classification Algorithm which we will start to implement with this week.
+	-Did research on the Classification Algorithm with Sebi Simon which we will start to implement with this week.
