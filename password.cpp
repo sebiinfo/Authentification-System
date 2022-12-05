@@ -139,7 +139,7 @@ bool Username:: operator == (Username &other){
     return get_user()==other.get_user();
 }
 
-void Username::change_username(string input){
+void Username::change_username(){
     cout << "Would you like to change your username ? (Y/N)" << endl;
     string answer;
     cin >> answer;
@@ -152,7 +152,6 @@ void Username::change_username(string input){
         cin >> us2;
         if (us == us2) {
             user = us;
-            encrypt();
         }
         cout << "Username changed !" << endl;
     } else {
@@ -169,10 +168,7 @@ Profile::Profile(){
     pwd=Password();
 }
 
-Profile::Profile(string U, string p) {
-    user = Username(U);
-    pwd = Password(p);
-}
+
 
 bool Profile:: operator==(Profile &other){
     return (get_username() == other.get_username() && get_password_hash()== other.get_password_hash());
