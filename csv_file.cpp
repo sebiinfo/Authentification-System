@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <csv.hpp>
+//DATABASE CLASS
 
 namespace std{
 
@@ -13,7 +14,7 @@ int test2(){
 
 
 //registration, adding data to csv file
-bool writeDataToFile(string file_name, string one, string two, string three){
+bool Database::writeDataToFile(string file_name, string one, string two, string three){
     std::ofstream file;
     file.open(file_name, ios_base::app);
     file << one << ',' << two << ',' << three << endl;
@@ -23,7 +24,7 @@ bool writeDataToFile(string file_name, string one, string two, string three){
 }
 
 //looking for a username in a csv file and returning all data about it
-vector<string> readRecordFromFile(string file_name, string search_term){
+vector<string> Database::readRecordFromFile(string file_name, string search_term){
     vector<string> record;
     ifstream file;
     file.open(file_name);
@@ -50,7 +51,7 @@ vector<string> readRecordFromFile(string file_name, string search_term){
 }
 
 //check if the username is in the database and its password matches
-bool checkPasswordandUsername(string file_name, string username, string password)
+bool Database::checkPasswordandUsername(string file_name, string username, string password)
 {
     vector<string> record;
     ifstream file;
