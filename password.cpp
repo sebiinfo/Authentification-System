@@ -179,3 +179,22 @@ bool Profile:: operator==(Profile &other){
 }
 
 
+
+class New {
+    build_profile(user, pwd1, pwd2)
+    compare password(user, pwd1)
+
+    encrypt()
+    hash_it()
+    random_character()
+    generate_salt()
+    generate_random()
+
+    change_password(user, old, new, new2)
+
+    private:
+    string user
+    string hash
+    string salt
+    long long Random
+}
