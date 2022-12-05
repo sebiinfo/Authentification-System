@@ -36,11 +36,8 @@ private:
 class Username{
 public:
     Username();
-
-    void change_username(string input);
-
+    void change_username();
     bool operator ==(Username &other);
-
     string get_user() {return user;}
 
 private:
@@ -50,8 +47,6 @@ private:
 class Profile : public Username, public Password {
 public:
     Profile();
-    Profile(string U, string p);
-
     bool operator ==(Profile &other);
 
     string get_username() {return user.get_user();}
