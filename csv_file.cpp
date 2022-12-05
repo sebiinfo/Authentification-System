@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <csv.hpp>
+#include "csv_file.hpp"
 // DATABASE CLASS
 
 namespace std
@@ -15,7 +15,7 @@ namespace std
     }
 
     // registration, adding data to csv file
-    bool writeDataToFile(string file_name, string one, string two, string three)
+    bool Database ::writeDataToFile(string file_name, string username, string name, string last_name, string password, string email)
     {
         std::ofstream file;
         file.open(file_name, ios_base::app);
@@ -26,7 +26,7 @@ namespace std
     }
 
     // looking for a username in a csv file and returning all data about it
-    vector<string> readRecordFromFile(string file_name, string username_search)
+    vector<string> Database ::readRecordFromFile(string file_name, string username_search)
     {
         vector<string> record;
         ifstream file;
@@ -60,7 +60,7 @@ namespace std
     }
 
     // check if the username is in the database and its password matches
-    bool checkPasswordandUsername(string file_name, string username, string password)
+    bool Database::checkPasswordandUsername(string file_name, string username, string password)
     {
         vector<string> record;
         ifstream file;
@@ -82,5 +82,9 @@ namespace std
     }
 
     // changing email, password and username
+
+    bool change_email(string file_name, string username, string password, string email)
+    {
+    }
 
 } // std closed
