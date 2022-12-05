@@ -38,7 +38,9 @@ Santorin Yu:
 
 
 jasmine watissee:
-    i did nothing :))
+- This week, I worked on the encryption on the password together with Yassine. We finished it.
+- I also created a function to test the encryption (make sure the hashes are unique). The function is implemented but we haven't tested it yet. We have some problems when running the code.
+- Next week, I will test the encryption thanks to the test function I created and I will work together with other groups to link my code with them.
 
 Romain Poggi:
  Week2:
