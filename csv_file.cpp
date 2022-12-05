@@ -26,7 +26,7 @@ namespace std
     }
 
     // looking for a username in a csv file and returning all data about it
-    vector<string> readRecordFromFile(string file_name, string search_term)
+    vector<string> readRecordFromFile(string file_name, string username_search)
     {
         vector<string> record;
         ifstream file;
