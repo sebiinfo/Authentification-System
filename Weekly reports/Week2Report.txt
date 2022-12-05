@@ -59,3 +59,9 @@ Do Bach Khoa:
     I looked into classical and more modern Facial recognition algorithms and methodologies, such as FisherFaces, Facenet and DeepFace, together with some other members of the team.
     Task for next week: I hope to put together with other members a baseline (based on classical methodologies) and obtain solid performance on certain (easier) datasets.
 
+Mija Pilkaite:
+    I spent the majority of the week setting up my MongoDB driver, which unfortunately just does not want to work. I looked for other solutions, which right now is a virtual machine with Linux, but my computer doesn't have a lot of memory. 
+    Because of the struggles, I decided to store the information into a csv file to have some kind of information storage. 
+    I wrote functions to add data and to find a username. Tomorrow I am checking whether the username is in the database and if its password matches. 
+    MongoDB is postponed until the break when I find either a computer with different OS or figure out the memory issue and how to connect the package from vm to my qt. 
+
