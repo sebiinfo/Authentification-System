@@ -59,6 +59,19 @@ void Password::generate_salt() {
         // MAKE SURE SALT IS UNIQUE
     }
 }
+int Password::hash_it(string CandidatePass, int Q){
+        int l1 = CandidatePass.length();
+        long long hp = 0, val = 1;
+
+        srand(time(0));
+        long long random = rand()%(Q-1) + 1; // generating random value x
+
+        for(int i=0; i<l1 ;i++){
+            hp = (random*hp)%Q; // calculating hash of Password
+
+        return hp;
+        }};
+        
 string Password::get_salt() {return salt;};
 
 void Password::encrypt() {

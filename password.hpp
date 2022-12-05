@@ -4,15 +4,17 @@
 #include <iostream>
 #include <string>
 using namespace std;
+int Q = 1000000007;
 
 char random_character();
-hash<string>str_hash;
+
 
 class Password {
 public:
     Password();
     Password(string pwd);
     ~Password();
+    int hash_it(string CandidatePass, int Q );
     bool operator==(Password &other);
     string generate_random_password();
     string get_hash();
@@ -21,7 +23,6 @@ public:
     string generate_random();
     void encrypt();
     void change_password();
-
 private:
     string password;
     string hashed;
