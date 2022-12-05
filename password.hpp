@@ -25,6 +25,7 @@ public:
     void change_password();
 private:
     string password;
+    long long random;
     string hashed;
     string salt;
 };
