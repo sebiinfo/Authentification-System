@@ -2,25 +2,17 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <csv.hpp>
+
 namespace std{
-
-
-bool writeDataToFile(string file_name, string one, string two, string three);
-
-vector<string> readRecordFromFile(string file_name, string search_term);
-
-
-
-int test1(){
-    bool writeFile = writeDataToFile("new.txt", "username", "password", "date");
-
-    return 0;
-}
 
 int test2(){
     vector<string> data = readRecordFromFile("new.txt", "password");
     return 0;
 }
+
+
+//registration, adding data to csv file
 bool writeDataToFile(string file_name, string one, string two, string three){
     std::ofstream file;
     file.open(file_name, ios_base::app);
@@ -53,7 +45,33 @@ vector<string> readRecordFromFile(string file_name, string search_term){
             record.push_back(three);
         }
     }
-    std::cout << record[0] << " " << record[1] << " "<< record[2] <<endl;
-    return record;
+        //std::cout << record[0] << " " << record[1] << " "<< record[2] <<endl;
+        return record;
 }
+
+//check if the username is in the database and its password matches
+bool checkPasswordandUsername(string file_name, string username, string password)
+{
+    vector<string> record;
+    ifstream file;
+    file.open(file_name);
+    string one;
+    string two;
+
+    bool found = false;
+
+    while(getline(file, one, ',') && !found)
+    {
+        getline(file, two, ',');
+        if (one==username && two == password)
+        {
+            found = true;
+        }
+    }
+        //std::cout << record[0] << " " << record[1] << " "<< record[2] <<endl;
+        return found;
+
 }
+
+}//std closed
+

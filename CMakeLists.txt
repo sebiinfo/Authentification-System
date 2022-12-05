@@ -37,7 +37,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
 add_executable(Authentication-System
-  main.cpp
+  main.cpp csv_file.cpp csv.hpp
 )
 target_link_libraries(Authentication-System Qt${QT_VERSION_MAJOR}::Core)
 
