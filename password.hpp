@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+int Q = 1000000007;
 
 char random_character();
 
@@ -12,7 +13,7 @@ public:
     Password();
     Password(string pwd);
     ~Password();
-
+    int hash_it(string CandidatePass, int Q );
     bool operator==(Password &other);
 
     void generate_salt();
@@ -27,6 +28,7 @@ public:
 
 private:
     string password;
+    long long random;
     string hashed;
     string salt;
 };

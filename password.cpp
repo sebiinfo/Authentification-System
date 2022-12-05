@@ -3,7 +3,6 @@
 #include <string>
 #include <ctime>
 using namespace std;
-
 static const char alphanum[] =
 "0123456789"
 "!@#$%^&*"
@@ -59,13 +58,31 @@ void Password::generate_salt() {
         // MAKE SURE SALT IS UNIQUE
     }
 }
+string Password::hash_it(string CandidatePass){
+        int l1 = CandidatePass.length();
+        long long hp = 0;
+
+        srand(time(0));
+        if (random==0) {
+            random = rand() % (Q - 1) + 1; // generating random value x
+        }
+        for(int i=0; i<l1 ;i++) {
+            hp = (random * hp) % Q; // calculating hash of Password
+            hp += CandidatePass[i];
+            hp %= Q;
+        }
+            string h=to_string(hp);
+
+        return h;
+        };
+
 
 void Password::encrypt() {
     if (! salt.empty()){
             string candidatePass= password+salt;
             string h;
             for (int i=0;i<10;i++){
-                h = str_hash(candidatePass);
+                h = hash_it(candidatePass);
             }
             hashed=h;
     }

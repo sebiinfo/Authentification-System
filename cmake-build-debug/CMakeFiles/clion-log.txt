@@ -1,1 +1,31 @@
-CMakeLists.txt not found in C:\Users\USER\OneDrive\Bureau\Yassine\CS\CSE201\Project\Authentification-System\Authentification-System Select CMakeLists.txt
+"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2022.2.4/bin/ninja/win/ninja.exe" -G Ninja -S C:\Users\USER\OneDrive\Bureau\Yassine\CS\CSE201\Project\Authentification-System\Authentification-System -B C:\Users\USER\OneDrive\Bureau\Yassine\CS\CSE201\Project\Authentification-System\Authentification-System\cmake-build-debug
+-- The C compiler identification is GNU 11.2.0
+-- The CXX compiler identification is GNU 11.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Qt/Tools/mingw1120_64/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Qt/Tools/mingw1120_64/bin/c++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE  
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Found OpenCV: C:/opencv-build (found version "4.6.0") 
+-- OpenCV library status:
+--     config: C:/opencv-build
+--     version: 4.6.0
+--     libraries: opencv_calib3d;opencv_core;opencv_dnn;opencv_features2d;opencv_flann;opencv_gapi;opencv_highgui;opencv_imgcodecs;opencv_imgproc;opencv_ml;opencv_objdetect;opencv_photo;opencv_stitching;opencv_video;opencv_videoio
+--     include path: C:/opencv-build;C:/opencv/include;C:/opencv/modules/core/include;C:/opencv/modules/flann/include;C:/opencv/modules/imgproc/include;C:/opencv/modules/ml/include;C:/opencv/modules/photo/include;C:/opencv/modules/dnn/include;C:/opencv/modules/features2d/include;C:/opencv/modules/imgcodecs/include;C:/opencv/modules/videoio/include;C:/opencv/modules/calib3d/include;C:/opencv/modules/highgui/include;C:/opencv/modules/objdetect/include;C:/opencv/modules/stitching/include;C:/opencv/modules/ts/include;C:/opencv/modules/video/include;C:/opencv/modules/gapi/include
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/USER/OneDrive/Bureau/Yassine/CS/CSE201/Project/Authentification-System/Authentification-System/cmake-build-debug
