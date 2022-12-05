@@ -72,4 +72,13 @@ Mija Pilkaite:
     Because of the struggles, I decided to store the information into a csv file to have some kind of information storage. 
     I wrote functions to add data and to find a username. Tomorrow I am checking whether the username is in the database and if its password matches. 
     MongoDB is postponed until the break when I find either a computer with different OS or figure out the memory issue and how to connect the package from vm to my qt. 
+    
+Victor Lasocki
+	This week: 
+	- Finished setting up OpenCV on my computer
+	- Tried linking the test interface with temporary classes, faced quite a few issues so not final yet
+	Next week: 
+	- Implement 'create profile' page using classes created by the password team and using what I learned from the issues I faced last week 
+	- Look into adding more complex UI elements to the QT Design Studio (main one being the camera feed)
+
 
