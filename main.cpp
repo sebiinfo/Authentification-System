@@ -15,7 +15,7 @@
 
 int main()
 {
-   bool writeFile = std::writeDataToFile("new.txt", "username1", "password1", "date1");
+   bool writeFile = std::writeDataToFile("new.txt", "John", "Smith", "jsmith", "giraffe1", "john.smith@yahoo.com");
 
    std::vector<std::string> data = readRecordFromFile("new.txt", "password");
 

@@ -13,43 +13,51 @@ int test2(){
 
 
 //registration, adding data to csv file
-bool writeDataToFile(string file_name, string one, string two, string three){
+//need to write automatically pushing it to git and each time the file is accessed automatically retrieving it from git
+bool writeDataToFile(string file_name, string username, string name, string last_name, string password, string email){
     std::ofstream file;
     file.open(file_name, ios_base::app);
-    file << one << ',' << two << ',' << three << endl;
+    file << username << ',' << name << ',' << last_name << ','<< email << ',' << password<< endl;
     file.close();
 
     return true;
 }
 
 //looking for a username in a csv file and returning all data about it
-vector<string> readRecordFromFile(string file_name, string search_term){
+vector<string> readRecordFromFile(string file_name, string username_search){
     vector<string> record;
     ifstream file;
     file.open(file_name);
 
     bool found = false;
-    string one;
-    string two;
-    string three;
+    string username;
+    string name;
+    string last_name;
+    string password;
+    string email;
 
-    while(getline(file, one, ',') && !found)
+    while(getline(file, username, ',') && !found)
     {
-        getline(file, two, ',');
-        getline(file, three, '\n');
-        if (one==search_term)
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, ',');
+        if (username==username_search)
         {
             found = true;
-            record.push_back(one);
-            record.push_back(two);
-            record.push_back(three);
+            record.push_back(username);
+            record.push_back(name);
+            record.push_back(last_name);
+            record.push_back(password);
+            record.push_back(email);
+
         }
     }
-        //std::cout << record[0] << " " << record[1] << " "<< record[2] <<endl;
+        std::cout << record[0] << " " << record[1] << " "<< record[2] << " " << record[3] << " " << record[4] <<endl;
         return record;
 }
 
-//check if the username is in the database and its password matches
+//check if the username is in the database and its password matches, returns true if username is in there and password matches the specific username
 bool checkPasswordandUsername(string file_name, string username, string password)
 {
     vector<string> record;
@@ -68,10 +76,14 @@ bool checkPasswordandUsername(string file_name, string username, string password
             found = true;
         }
     }
-        //std::cout << record[0] << " " << record[1] << " "<< record[2] <<endl;
         return found;
 
 }
+
+//changing email, password and username
+
+
+
 
 }//std closed
 
