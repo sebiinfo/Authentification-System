@@ -1,20 +1,7 @@
-cmake_minimum_required(VERSION 3.20)
-project(Authentication-System)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-add_executable(${PROJECT_NAME} main.cpp)
-
-add_subdirectory(libs/qt)
-add_subdirectory(libs/opencv)
-
-find_package(OpenCV REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-
-include_directories(${OpenCV_INCLUDE_DIRS})
-qt_standard_project_setup()
-
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core
-        INTERFACE QtExternalLibrary
-        INTERFACE OpenCVExternalLibrary)
+cmake_minimum_required(VERSION 3.10)
+project( DisplayImage )
+find_package( OpenCV REQUIRED )
+list(APPEND MY_INCLUDES  ${OpenCV_INCLUDE_DIRS} "/usr/local/share/opencv4/haarcascades")
+include_directories(MY_INCLUDES)
+add_executable( DisplayImage test.cpp )
+target_link_libraries( DisplayImage ${OpenCV_LIBS} )

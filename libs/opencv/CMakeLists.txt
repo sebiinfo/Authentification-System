@@ -9,6 +9,7 @@ message(STATUS "    config: ${OpenCV_DIR}")
 message(STATUS "    version: ${OpenCV_VERSION}")
 message(STATUS "    libraries: ${OpenCV_LIBS}")
 message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+message(STATUS "    install path: ${OpenCV_INSTALL_PATH}")
 
 target_link_libraries(OpenCVExternalLibrary INTERFACE
         ${OpenCV_LIBS}
