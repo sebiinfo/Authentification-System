@@ -8,7 +8,8 @@
 using namespace std;
 
 int main() {
-    bool test = false;
+    bool test = false; // Put to true if you want to test the hashing function
+
     if (test) { // Test doesn't work (it crashes directly) why ?
         cout << "Starting test ..." << endl;
         tests();
