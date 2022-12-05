@@ -31,9 +31,11 @@ Sophie-Claire Antoun:
 
 
 Santorin Yu:
-    i finally uploaded opencv using the ide clion (instead of qt), which will fluidify the access of different builds (notably debugging) for the project. on opencv, i familiarized myself with the haar cascade object detection.
-    i also started to plan with two of our members how to implement our multi-class classifier algorithm. the idea is to identify the category of the given dataset depending on certain aspects of the detected face. then, the classification algorithm will classify the input vector into different classes.
-    hence, next week i will be focusing on the implementation of those classes by splitting the data structures.
+   - I finally uploaded OpenCV using the IDE Clion (instead of QT), which will fluidify the access of different builds (notably debugging) for the project. 
+   - On OpenCV, I familiarized myself with the Haar Cascade object detection.
+   - I also started to plan with two of our members how to implement our multi-class classifier algorithm. The idea is to identify the category of the given dataset        depending on certain aspects of the detected face. Then, the classification algorithm will classify the input vector into different classes.
+   - Hence, next week I will be focusing on the implementation of those classes by splitting the data structures.
+
 
 jasmine watissee:
     i did nothing :))
