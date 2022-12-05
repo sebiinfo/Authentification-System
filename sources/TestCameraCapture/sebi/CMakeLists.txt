@@ -4,16 +4,17 @@ project(Authentication-System)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(${PROJECT_NAME} main.cpp sources/Classification/vector_id.hpp)
+add_executable(${PROJECT_NAME} "test.cpp")
 
 
 find_package(OpenCV REQUIRED)
 find_package(Qt6 OPTIONAL_COMPONENTS Core)
 
 
-add_subdirectory(libs/opencv)
+message(STATUS "MY_VAR=${CMAKE_SOURCE_DIR}")
+add_subdirectory("../../../libs/opencv" "./build") 
 if(${Qt6_FOUND})
-  add_subdirectory(libs/qt)
+  add_subdirectory("../../../libs/qt" "./build")
   qt_standard_project_setup()
 endif()
 
