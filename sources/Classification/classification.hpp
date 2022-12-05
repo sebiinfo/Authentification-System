@@ -8,19 +8,12 @@
 #endif //AUTHENTICATION_SYSTEM_CLASSIFICATION_HPP
 
 #include <iostream>
-#include <vector>
+#include <opencv2/core/mat.hpp>
+#include "vector_id.hpp"
 
-struct datavect{
-    int coordinate,id;
-};
-
-class Data{
+class Classification{
 public:
-    std::vector<std::vector<double>> get_data() {return dataset;}
-
-private:
-    int dimension, nr_vect;
-    std::vector<std::vector<double>> dataset;
-
+    int knn (cv::Mat query, int dimension, vector_id data ){
+        //should return the id of the k nearest neighbours
+    };
 };
-double dist_vect(double l[]){};
