@@ -21,14 +21,14 @@ public:
     
     string get_hash() {return hashed;}
     string get_salt() {return salt;}
-    long long get_random() {return Random;}
+    long long get_random() {return random;}
     string get_username() {return user;}
 
 private:
     string user;
     string hashed;
     string salt;
-    long long Random;
+    long long random;
 };
 
 // class Password {

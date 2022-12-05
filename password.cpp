@@ -1,8 +1,11 @@
 #include <iostream>
 #include "password.hpp"
 #include <string>
+#include <vector>
 #include <ctime>
+
 using namespace std;
+
 static const char alphanum[] =
 "0123456789"
 "!@#$%^&*"
@@ -21,7 +24,7 @@ std::vector<std::string> Profile::build_profile(string user, string pwd1, string
     if (pwd1 == pwd2){
         user = user;
         vect.push_back(user);
-        string h = encrypt(new1);
+        string h = encrypt(pwd1);
         hashed = h;
         vect.push_back(hashed);
     }
@@ -33,9 +36,9 @@ bool Profile::compare_password(string user, string pwd1, string pwd2){
     // pwd2 is the hashed password in the database associated to user
     string h = encrypt(pwd1);
     if (pwd1 == pwd2) {
-        return True;
+        return true;
     }
-    return False;
+    return false;
 }
 
 std::vector<string> Profile::change_password(string user, string old, string new1, string new2){
@@ -53,18 +56,12 @@ std::vector<string> Profile::change_password(string user, string old, string new
 
 string Profile::encrypt(string password){
     if (salt.empty()){
-            generate_salt();
-            string candidatePass= password+salt;
-            string h;
-            for (int i=0;i<10;i++){
-                h = hash_it(candidatePass);
-            }
-    } else {
-        string candidatePass= password+salt;
-            string h;
-            for (int i=0;i<10;i++){
-                h = hash_it(candidatePass);
-            }
+        generate_salt();
+    }
+    string candidatePass= password+salt;
+    string h;
+    for (int i=0;i<10;i++){
+        h = hash_it(candidatePass);
     }
     return h;
 }
@@ -74,7 +71,7 @@ string Profile::hash_it(string CandidatePass){
         long long hp = 0;
 
         srand(time(0));
-        if (random==0) {
+        if (random == 0) {
             random = rand() % (Q - 1) + 1; // generating random value x
         }
         for(int i=0; i<l1 ;i++) {
