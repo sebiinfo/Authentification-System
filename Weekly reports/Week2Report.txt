@@ -4,8 +4,8 @@ Francisco Moreira Machado:
     Focused on testing and making basic modification to sample OpenCV code (taken from the official tutorials) to better understand the functionalities of the library.
 
 Yassine Turki:
-    I finished implementing the Password, Username and Profile class with Jasmine Watissee. We created our own hashing function and used a Password-Based Key Derivation Function ( by creating a salt, ensuring it is unique, appending the salt to the password and hash it multiple times).
-
+    I finished implementing the Password, Username and Profile class with Jasmine Watissee. We created our own hashing function and used a Password-Based Key Derivation Function ( by creating a salt, ensuring it is unique, appending the salt to the password and hash it multiple times). 
+    I finished installing OpenCV on Windows.
     We will focus on debugging at the lecture, and then help the ML team to start getting as much as possible independent from openCV and maximize efficiency of the authentication.
 
 Sebi Simon:
@@ -31,9 +31,11 @@ Sophie-Claire Antoun:
 
 
 Santorin Yu:
-    i finally uploaded opencv using the ide clion (instead of qt), which will fluidify the access of different builds (notably debugging) for the project. on opencv, i familiarized myself with the haar cascade object detection.
-    i also started to plan with two of our members how to implement our multi-class classifier algorithm. the idea is to identify the category of the given dataset depending on certain aspects of the detected face. then, the classification algorithm will classify the input vector into different classes.
-    hence, next week i will be focusing on the implementation of those classes by splitting the data structures.
+   - I finally uploaded OpenCV using the IDE Clion (instead of QT), which will fluidify the access of different builds (notably debugging) for the project. 
+   - On OpenCV, I familiarized myself with the Haar Cascade object detection.
+   - I also started to plan with two of our members how to implement our multi-class classifier algorithm. The idea is to identify the category of the given dataset        depending on certain aspects of the detected face. Then, the classification algorithm will classify the input vector into different classes.
+   - Hence, next week I will be focusing on the implementation of those classes by splitting the data structures.
+
 
 jasmine watissee:
     i did nothing :))
@@ -44,7 +46,11 @@ Romain Poggi:
 
 Paula Gonzalez Alvarez:
 Week 2
-    Finally finished setting up OpenCV on windows
+    - Finally finished setting up OpenCV on windows (which took at least 6 hours)
+    - Explored QT design studio and created a login page there and tried to see how compatible it is with github and with other people's programs
+    - Created a first template for the camera for the UI that still gives some errors which I am trying to fix (with softwares for photos and videos)
+    - Thought about how to adapt everything together, like the things on QT creator, with the things on DS, with functions other already implemented (it's very
+      complicated so I'll have to do some research and spend more time on this next week)
 
 Cezara Petrui:
     I put in a lot of effort to install OpenCV and after many hours, I eventually manage to install it on my machine (on Windows). I collaborated with my colleagues Alexandru Serban and Francisco Moreira to analyze the Fisherfaces algorithm, understand the input and the output that the algorithm should give (together with the rest of the team that focuses on the machine learning implementation). More specifically, I looked into the performance of different particularities of the algorithm, into the already built-in library of opencv for Fisherfaces, as well as into how to make use of Local Binary Patterns Histograms. 
