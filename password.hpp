@@ -13,7 +13,7 @@ public:
     Password();
     Password(string pwd);
     ~Password();
-    int hash_it(string CandidatePass, int Q );
+    string hash_it(string CandidatePass );
     bool operator==(Password &other);
 
     void generate_salt();
