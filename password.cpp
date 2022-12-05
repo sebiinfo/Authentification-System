@@ -145,13 +145,13 @@ void Username::change_username(string input){
     cin >> answer;
     if (answer == "Y"){
         cout << "Choose a new username: " << endl;
-        string pwd;
-        cin >> pwd;
+        string us;
+        cin >> us;
         cout << "Confirm your username: " << endl;
-        string pwd2;
-        cin >> pwd2;
-        if (pwd == pwd2) {
-            password = pwd;
+        string us2;
+        cin >> us2;
+        if (us == us2) {
+            user = us;
             encrypt();
         }
         cout << "Username changed !" << endl;

@@ -47,7 +47,7 @@ private:
     string user;
 };
 
-class Profile{
+class Profile : public Username public Password {
 public:
     Profile();
     Profile(string U, string p);
