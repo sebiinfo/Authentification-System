@@ -10,6 +10,7 @@ char random_character();
 
 class Profile {
 public:
+    Profile();
     std::vector<std::string> build_profile(string user, string pwd1, string pwd2);
     bool compare_password(string user, string pwd1, string pwd2);
     std::vector<string> change_password(string user, string old, string new1, string new2);
@@ -18,7 +19,8 @@ public:
     string hash_it(string CandidatePass);
     void generate_salt();
     string generate_random();
-    
+    void set_random(long long r);
+    void set_salt(string s);
     string get_hash() {return hashed;}
     string get_salt() {return salt;}
     long long get_random() {return random;}

@@ -14,13 +14,19 @@ static const char alphanum[] =
 
 int stringLength = sizeof(alphanum) - 1;
 
+Profile::Profile(){
+    random=0;
+    salt="";
+    hashed="";
+}
+
 char random_character(){
     // Random string generator function.
     return alphanum[rand() % stringLength];
 }
 
-std::vector<std::string> Profile::build_profile(string user, string pwd1, string pwd2){
-    std::vector<string> vect;
+vector<string> Profile::build_profile(string user, string pwd1, string pwd2){
+    vector<string> vect;
     if (pwd1 == pwd2){
         user = user;
         vect.push_back(user);
@@ -59,9 +65,10 @@ string Profile::encrypt(string password){
         generate_salt();
     }
     string candidatePass= password+salt;
-    string h;
+    string h=hash_it(candidatePass);
     for (int i=0;i<10;i++){
-        h = hash_it(candidatePass);
+        h=hash_it(h);
+        cout<<"hash n°"<<i<<" is: "<<h<<endl;
     }
     return h;
 }
@@ -90,7 +97,12 @@ void Profile::generate_salt(){
         // MAKE SURE SALT IS UNIQUE
     }
 }
-
+void Profile::set_random(long long r) {
+    random=r;
+}
+void Profile::set_salt(string s) {
+    salt=s;
+}
 string Profile::generate_random(){
     string s;
     for(int i=0; i <= 12; i++) {
