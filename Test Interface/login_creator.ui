@@ -1,0 +1,631 @@
+import QtQuick
+import QtQuick.Controls 6.4
+
+Window {
+    width: Constants.width
+    height: 1080
+    visible: true
+    Rectangle {
+        id: rectangle
+        width: 1920
+        height: 1080
+        color: "#2f2f2f"
+
+        TextField {
+            id: username
+            x: 934
+            y: 494
+            width: 350
+            height: 38
+            font.family: "Times New Roman"
+            font.pointSize: 21
+            placeholderText: qsTr("Username")
+        }
+
+        Label {
+            id: label1
+            x: 645
+            y: 494
+            color: "#ffffff"
+            text: qsTr("Username:")
+            font.pointSize: 21
+            font.family: "Times New Roman"
+        }
+
+        Label {
+            id: label3
+            x: 499
+            y: 250
+            width: 922
+            height: 58
+            color: "#ffffff"
+            text: qsTr("Welcome to your Authentification System! ")
+            font.pointSize: 40
+            font.family: "Times New Roman"
+        }
+
+        Label {
+            id: label4
+            x: 693
+            y: 354
+            color: "#ffffff"
+            text: qsTr("To continue please log in below:")
+            rotation: 0.164
+            font.pointSize: 31
+            font.family: "Times New Roman"
+        }
+
+        Button {
+            id: create
+            x: 1549
+            y: 67
+            width: 280
+            height: 49
+            opacity: 0.9
+            text: qsTr("Create an account")
+            font.pointSize: 20
+            font.family: "Times New Roman"
+
+            Connections {
+                target: create
+                onClicked: rectangle.state = "Create account"
+            }
+        }
+
+        TextField {
+            id: password
+            x: 934
+            y: 562
+            width: 350
+            height: 40
+            font.family: "Times New Roman"
+            font.pointSize: 21
+            placeholderText: qsTr("Password")
+        }
+
+        Button {
+            id: login
+            x: 1004
+            y: 694
+            width: 280
+            height: 48
+            opacity: 0.9
+            text: qsTr("Login")
+            font.pointSize: 20
+            font.family: "Times New Roman"
+        }
+
+        Label {
+            id: label6
+            x: 693
+            y: 562
+            color: "#ffffff"
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label7
+            x: 1615
+            y: 540
+            visible: false
+            color: "#ffffff"
+            text: qsTr("Password:")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        TextField {
+            id: name
+            x: 1497
+            y: 521
+            width: 371
+            height: 38
+            visible: false
+            placeholderText: qsTr("Text Field")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label8
+            x: 1776
+            y: 527
+            visible: false
+            color: "#ffffff"
+            text: qsTr("Username:")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label9
+            x: 689
+            y: 562
+            color: "#ffffff"
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        TextField {
+            id: last_name
+            x: 1549
+            y: 555
+            width: 371
+            height: 40
+            visible: false
+            placeholderText: qsTr("Text Field")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label10
+            x: 1744
+            y: 540
+            visible: false
+            color: "#ffffff"
+            text: qsTr("Password:")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label11
+            x: 694
+            y: 562
+            color: "#ffffff"
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        TextField {
+            id: confirm_password
+            x: 1517
+            y: 512
+            width: 371
+            height: 40
+            visible: false
+            placeholderText: qsTr("Text Field")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label12
+            x: 1776
+            y: 540
+            visible: false
+            color: "#ffffff"
+            text: qsTr("Password:")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label13
+            x: 703
+            y: 562
+            color: "#ffffff"
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        TextField {
+            id: email
+            x: 1541
+            y: 521
+            width: 371
+            height: 40
+            visible: false
+            placeholderText: qsTr("Text Field")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label14
+            x: 1540
+            y: 599
+            visible: false
+            color: "#ffffff"
+            text: qsTr("Password:")
+            font.family: "Times New Roman"
+            font.pointSize: 21
+        }
+
+        Label {
+            id: label
+            x: 645
+            y: 562
+            color: "#ffffff"
+            text: qsTr("Password:")
+            font.family: "Times New Roman"
+            font.pointSize: 20
+        }
+
+        Button {
+            id: forgot
+            x: 645
+            y: 694
+            width: 280
+            height: 48
+            text: qsTr("Forgot Password")
+            font.family: "Times New Roman"
+            font.pointSize: 20
+
+            Connections {
+                target: forgot
+                onClicked: rectangle.state = "forgot_password"
+            }
+        }
+
+        Item {
+            id: __materialLibrary__
+        }
+
+        Button {
+            id: back
+            x: 1506
+            y: 1008
+            width: 280
+            height: 48
+            opacity: 0.9
+            visible: false
+            text: qsTr("Login")
+            font.pointSize: 20
+            font.family: "Times New Roman"
+
+            Connections {
+                target: back
+                onClicked: rectangle.state = ""
+            }
+        }
+
+        states: [
+            State {
+                name: "forgot_password"
+                when: forgot.checked
+
+                PropertyChanges {
+                    target: label4
+                    x: 338
+                    y: 354
+                    text: qsTr("To receive an email to retrieve your password fill out the information below")
+                }
+
+                PropertyChanges {
+                    target: label1
+                    x: 645
+                    y: 494
+                    width: 131
+                    height: 32
+                    text: qsTr("Username:")
+                }
+
+                PropertyChanges {
+                    target: rectangle
+                    color: "#2f2f2f"
+                }
+
+                PropertyChanges {
+                    target: login
+                    x: 1004
+                    y: 694
+                    width: 280
+                    height: 48
+                    text: qsTr("Login")
+                }
+
+                PropertyChanges {
+                    target: label3
+                    x: 499
+                    y: 250
+                    text: qsTr("Welcome to your Authentification System! ")
+                }
+
+                PropertyChanges {
+                    target: last_name
+                    x: 1541
+                    y: 649
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: label10
+                    x: 1592
+                    y: 730
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: label8
+                    x: 213
+                    y: 497
+                    visible: false
+                    text: qsTr("Username:")
+                }
+
+                PropertyChanges {
+                    target: name
+                    x: 1660
+                    y: 502
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: create
+                    width: 280
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: email
+                    x: 934
+                    y: 562
+                    width: 350
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: label7
+                    x: 1654
+                    y: 718
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: label14
+                    x: 1725
+                    y: 730
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: label
+                    x: 645
+                    y: 566
+                    width: 72
+                    height: 32
+                    text: qsTr("Email:")
+                }
+
+                PropertyChanges {
+                    target: forgot
+                    x: 1583
+                    y: 610
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: password
+                    x: 1441
+                    y: 664
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: back
+                    x: 645
+                    y: 694
+                    width: 280
+                    visible: true
+                    text: qsTr("Return")
+                }
+
+                PropertyChanges {
+                    target: label6
+                    x: 693
+                    y: 570
+                }
+
+                PropertyChanges {
+                    target: username
+                    x: 934
+                    y: 490
+                    width: 350
+                    height: 40
+                }
+
+                PropertyChanges {
+                    target: label9
+                    x: 689
+                    y: 566
+                }
+
+                PropertyChanges {
+                    target: label11
+                    x: 694
+                    y: 571
+                }
+
+                PropertyChanges {
+                    target: label13
+                    x: 703
+                    y: 578
+                }
+            },
+            State {
+                name: "Create account"
+
+                PropertyChanges {
+                    target: label4
+                    x: 1509
+                    y: 618
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: name
+                    x: 934
+                    y: 345
+                    width: 350
+                    height: 40
+                    visible: true
+                    placeholderText: qsTr("Name")
+                }
+
+                PropertyChanges {
+                    target: label8
+                    x: 645
+                    y: 349
+                    visible: true
+                    text: qsTr("Name:")
+                }
+
+                PropertyChanges {
+                    target: label9
+                    x: 773
+                    y: 421
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: last_name
+                    x: 934
+                    y: 415
+                    width: 350
+                    visible: true
+                    placeholderText: qsTr("Last Name")
+                }
+
+                PropertyChanges {
+                    target: label10
+                    x: 645
+                    y: 419
+                    visible: true
+                    text: qsTr("Last name:")
+                }
+
+                PropertyChanges {
+                    target: username
+                    x: 934
+                    y: 485
+                    width: 350
+                    height: 40
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: label1
+                    x: 645
+                    y: 489
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: password
+                    x: 934
+                    y: 625
+                    width: 350
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: label6
+                    x: 773
+                    y: 730
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: label7
+                    x: 645
+                    y: 699
+                    visible: true
+                    text: qsTr("Confirm Password:")
+                }
+
+                PropertyChanges {
+                    target: login
+                    x: 1004
+                    y: 811
+                    width: 280
+                    height: 48
+                }
+
+                PropertyChanges {
+                    target: label11
+                    x: 774
+                    y: 653
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: confirm_password
+                    x: 934
+                    y: 695
+                    width: 350
+                    visible: true
+                    placeholderText: qsTr("Confirm Password")
+                }
+
+                PropertyChanges {
+                    target: label12
+                    x: 645
+                    y: 628
+                    visible: true
+                    text: qsTr("Password:")
+                }
+
+                PropertyChanges {
+                    target: label13
+                    x: 773
+                    y: 576
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: email
+                    x: 934
+                    y: 555
+                    width: 350
+                    visible: true
+                    placeholderText: qsTr("Email")
+                }
+
+                PropertyChanges {
+                    target: label14
+                    x: 645
+                    y: 559
+                    visible: true
+                    text: qsTr("Email:")
+                }
+
+                PropertyChanges {
+                    target: create
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: label
+                    x: 1696
+                    y: 719
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: forgot
+                    x: 1696
+                    y: 645
+                    visible: false
+                }
+
+                PropertyChanges {
+                    target: back
+                    x: 645
+                    y: 811
+                    width: 280
+                    height: 48
+                    visible: true
+                }
+
+                PropertyChanges {
+                    target: label3
+                    x: 499
+                    y: 202
+                }
+            }
+        ]
+    }
+}
