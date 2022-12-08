@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 int Q = 1000000007;
 
@@ -11,9 +12,9 @@ char random_character();
 class Profile {
 public:
     Profile();
-    std::vector<std::string> build_profile(string user, string pwd1, string pwd2);
+    vector<std::string> build_profile(string user, string pwd1, string pwd2);
     bool compare_password(string user, string pwd1, string pwd2);
-    std::vector<string> change_password(string user, string old, string new1, string new2);
+    vector<string> change_password(string user, string old, string new1, string new2);
 
     string encrypt(string password);
     string hash_it(string CandidatePass);

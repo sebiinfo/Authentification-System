@@ -11,11 +11,12 @@ using namespace std;
 
 int main() {
 
-    bool test = false; // Put to true if you want to test the hashing function
+    bool test = true; // Put to true if you want to test the hashing function
 
     if (test) { // Test doesn't work (it crashes directly) why ?
         cout << "Starting test ..." << endl;
-        tests();
+        Test t;
+        t.tests();
         cout << "Test finished !" << endl;
         cout << "Results of the test are in the file results_test.txt" << endl;
     } else {
@@ -40,7 +41,7 @@ int main() {
             p.set_random(database[p.get_username()].random);
             p.set_salt(database[p.get_username()].salt);
         }
-        std::vector<string> v = p.build_profile(user,pwd, pwd2);
+        vector<string> v = p.build_profile(user,pwd, pwd2);
         cout<<"Username: "<< p.get_username() <<endl;
         cout<<"Salt is: "<< p.get_salt() << endl;
         cout<<"Random string used for hash: "<< p.get_random() << endl;

@@ -4,7 +4,12 @@
 #include <string>
 #include <vector>
 
-void tests();
-void compare(std::vector<std::string> list_hash, std::vector<std::string> list);
+using namespace std;
+
+class Test {
+public:
+    void tests();
+    void compare(vector<string> list_hash, vector<string> list);
+};
 
 #endif // TESTS_HPP

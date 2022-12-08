@@ -14,15 +14,16 @@ static const char alphanum[] =
 
 int stringLength = sizeof(alphanum) - 1;
 
+char random_character(){
+    // Random string generator function.
+    return alphanum[rand() % stringLength];
+}
+
 Profile::Profile(){
     random=0;
     salt="";
     hashed="";
-}
-
-char random_character(){
-    // Random string generator function.
-    return alphanum[rand() % stringLength];
+    user="";
 }
 
 vector<string> Profile::build_profile(string user, string pwd1, string pwd2){
@@ -40,6 +41,8 @@ vector<string> Profile::build_profile(string user, string pwd1, string pwd2){
 bool Profile::compare_password(string user, string pwd1, string pwd2){
     //pwd1 is the string entered by the user
     // pwd2 is the hashed password in the database associated to user
+
+    // Check user first and use salt from user
     string h = encrypt(pwd1);
     if (pwd1 == pwd2) {
         return true;
@@ -47,7 +50,7 @@ bool Profile::compare_password(string user, string pwd1, string pwd2){
     return false;
 }
 
-std::vector<string> Profile::change_password(string user, string old, string new1, string new2){
+vector<string> Profile::change_password(string user, string old, string new1, string new2){
     std::vector<string> vect;
     //Check if user and old password match in database
     if (new1 == new2){
@@ -94,7 +97,6 @@ string Profile::hash_it(string CandidatePass){
 void Profile::generate_salt(){
     for (int i = 0; i < 32; i++) {
         salt += generate_random();
-        // MAKE SURE SALT IS UNIQUE
     }
 }
 void Profile::set_random(long long r) {
