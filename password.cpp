@@ -71,7 +71,6 @@ string Profile::encrypt(string password){
     string h=hash_it(candidatePass);
     for (int i=0;i<10;i++){
         h=hash_it(h);
-        cout<<"hash n°"<<i<<" is: "<<h<<endl;
     }
     return h;
 }
