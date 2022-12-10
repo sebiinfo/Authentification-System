@@ -32,7 +32,7 @@ void showFrame(Mat image);
 void runwebcam();
 // Opens the computer's webcam
 
-void draw(Mat& img, vector<Rect> faces,double scale);
+void draw(Mat& img, vector<Rect> faces,double scale,int margin);
 //draws the rectangles on the image given as input
 
 vector<Rect> detect(Mat& img, CascadeClassifier& cascade, double scale);
@@ -40,14 +40,11 @@ vector<Rect> detect(Mat& img, CascadeClassifier& cascade, double scale);
 void runCascadeFace(string path);
 // Continuously detetcs a face using the xml at the given path
 
-// !!!!!!!
-// DOES NOT WORK YET
-// !!!!!!!
 vector<Mat> cropWithRect(Mat frame, vector<Rect> faces);
 // Returns a list of Mat of the faces detected from the frame given
 
-// !!!!!!!
-// DOES NOT WORK YET, DUE TO cropWithRect
-// !!!!!!!
 vector<Mat> crop(Mat frame,string path);
 // Returns a list of Mat cropped around the face recogised by the harrcascade file linked by the path
+
+void showCrop(Mat frame,string path);
+// Shows the images cropped from the photo
