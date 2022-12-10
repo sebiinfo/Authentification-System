@@ -57,6 +57,6 @@ compile_commands.json
 
 .idea/
 .build/
-build/.
+build/*
 ./sources/TestCameraCapture/bogdan/build
 ./sources/TestCameraCapture/sebi/build
