@@ -15,4 +15,5 @@ As a fallback it will have a usual login system with username and password.
 
 ## Software Architecture
 
-- This project will heavily depend on the OpenCV library.
+- The implementation of all features are split in the `sources` folder. This folder will be subdivided in folders of name `feature-name` which should contain the `.cpp` and `.hpp` files used to implement this, and only this, specific feature.
+- This project will heavily depend on the OpenCV library for the Algorithm and QT for the Graphical Interface.
