@@ -7,10 +7,9 @@
 #include "database.cpp"
 
 int main() {
-
     bool test = false; // Put to true if you want to test the hashing function
 
-    if (test) { // Test doesn't work (it crashes directly) why ?
+    if (test) {
         std::cout << "Starting test ..." << std::endl;
         Test t;
         t.tests();
@@ -45,5 +44,4 @@ int main() {
         std::cout<<"Hashed password: "<< p.get_hash() << std::endl;
     }
     return 0;
-
 }
