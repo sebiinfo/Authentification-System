@@ -5,12 +5,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(${PROJECT_NAME} main.cpp sources/Classification/vector_id.hpp)
+add_executable(${PROJECT_NAME} main.cpp)
 
+add_library(opencv_qt6_includes INTERFACE)
 
 find_package(OpenCV REQUIRED)
 find_package(Qt6 OPTIONAL_COMPONENTS Core)
 
+add_subdirectory(sources)
 
 add_subdirectory(libs/opencv)
 if(${Qt6_FOUND})
@@ -18,14 +20,14 @@ if(${Qt6_FOUND})
   qt_standard_project_setup()
 endif()
 
-include_directories(${OpenCV_INCLUDE_DIRS})
-
 set(USING_QT "$<BOOL:${Qt6_FOUND}>")
 
 message(STATUS "MY_VARIABLE=${USING_QT}")
 
-
 target_link_libraries(${PROJECT_NAME} 
         PRIVATE "$<${USING_QT}:Qt6::Core>"
         PUBLIC "$<${USING_QT}:QtExternalLibrary>" 
-        PUBLIC OpenCVExternalLibrary)
+        PUBLIC OpenCVExternalLibrary
+        PUBLIC sources
+        )
+      message(S)

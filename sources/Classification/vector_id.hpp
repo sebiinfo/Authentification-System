@@ -10,4 +10,5 @@
 struct vector_id{
     int id;
     cv::Mat vector;
+    
 };
