@@ -9,5 +9,6 @@
 #include <opencv2/core/mat.hpp>
 struct vector_id{
     int id;
-    cv::Mat vector;
+    cv::Mat_<double> entries;
+    double distance_to_query; //for knn this will be the distance to the querry
 };
