@@ -60,18 +60,17 @@ void runwebcam(){
     }
 }
 
-void draw(Mat& img, vector<Rect> faces,double scale)
+void draw(Mat& img, vector<Rect> faces,double scale,int margin)
 {
 
-    int c = 50;
     for (size_t i = 0; i < faces.size(); i++)
     {
         Rect r = faces[i];
         Mat smallImgROI;
         Scalar color = Scalar(255, 0, 0); // Color for Drawing tool
-        rectangle(img, Point(cvRound(r.x*scale-c), cvRound(r.y*scale-c)),
-                    Point(cvRound((r.x + r.width-1)*scale+c),
-                    cvRound((r.y + r.height-1)*scale+c)), color, 3, 8, 0);
+        rectangle(img, Point(cvRound(r.x*scale-margin), cvRound(r.y*scale-margin)),
+                    Point(cvRound((r.x + r.width-1)*scale+margin),
+                    cvRound((r.y + r.height-1)*scale+margin)), color, 3, 8, 0);
     }
 }
 
@@ -89,7 +88,7 @@ vector<Rect> detect(Mat& img, CascadeClassifier& cascade, double scale){
 
     // Detect faces of different sizes using cascade classifier
     cascade.detectMultiScale(smallImg, faces, 1.1,
-                            2, 0|CASCADE_SCALE_IMAGE, Size(30, 30));
+                            2, 0|CASCADE_SCALE_IMAGE, Size(30, 30)),Size(50,50);
     return faces;
 }
 
@@ -112,7 +111,7 @@ void runCascadeFace(string path){
                 break;
             Mat frame1 = frame.clone();
             vector<Rect> faces = detect(frame1,cascade,scale);
-            draw(frame1,faces,scale);
+            draw(frame1,faces,scale,50);
             char c = (char)waitKey(10);
 
             // Press q to exit from window
@@ -126,29 +125,29 @@ void runCascadeFace(string path){
 
 }
 
-// DOES NOT WORK YET
 vector<Mat> cropWithRect(Mat frame, vector<Rect> faces)
 {
     vector<Mat> frameVect;
+    int x,w,y,h;
+    Mat img;
 
     for (size_t i = 0; i < faces.size(); i++)
     {
         Rect r = faces[i];
+        x = r.x;
+        w = r.width;
+        y = r.y;
+        h = r.height;
 
-//        Mat smallImgROI = frame.clone();
-        cout << 2;
-        cropOne(frame,r.x,r.x+r.width,r.y,r.y+r.height);
-        cout << 3;
+        img = frame.clone();
+        cropOne(img,x,x+w,y,y+h);
 
-        frameVect.push_back(frame.clone());
-//        frame.copyTo(frameList.back());
-        cout << 4;
+        frameVect.push_back(img.clone());
 
     };
     return frameVect;
 }
 
-// SHOULD WORK WHEN cropWithRect FIXED
 vector<Mat> crop(Mat frame,string path)
 {
     double scale = 1;
@@ -159,5 +158,21 @@ vector<Mat> crop(Mat frame,string path)
 
     return cropWithRect(frame,faces);
 
-//    return vector<Mat>();
 }
+
+
+void showCrop(Mat frame,string path)
+{
+
+    vector<Mat> v = crop(frame,path);
+    int n = v.size();
+
+    for(int i=0; i<n ;i++)
+    {
+        showFrame(v[i]);
+    }
+}
+
+
+
+//Please do not use using namespace. I know it is annoying to not but it will be beneficial in the long run. Thank you :) 
