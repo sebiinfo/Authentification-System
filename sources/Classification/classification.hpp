@@ -13,7 +13,20 @@
 
 class Classification{
 public:
-    int knn (cv::Mat query, int dimension, vector_id data ){
-        //should return the id of the k nearest neighbours
-    };
+    std::vector<vector_id> data;
+    int dimension_data, length_vector;
+
+    Classification(std::vector<vector_id> data);
+    ~Classification();
+
+
+};
+
+class KNN : public Classification{
+public:
+    int k;
+    KNN(std::vector<vector_id> data);
+    double compute_distance (vector_id query, int i); // computes Euclidian distance between a query and ith vector in data
+    static bool compare (vector_id v1, vector_id v2);
+    int classify(vector_id query);
 };
