@@ -26,17 +26,17 @@ int main() {
         std::cout << "Confirm password: "<< std::endl;
         std::cin >> pwd2;
         Profile p=Profile();
-        map <std::string, Database> database;
-        if (database.count(user)==0){
-            Database d;
-            d.hashed=p.get_hash();
-            d.salt=p.get_salt();
-            d.random=p.get_random();
-            database[p.get_username()]=d;
-        }else{
-            p.set_random(database[p.get_username()].random);
-            p.set_salt(database[p.get_username()].salt);
-        }
+//        map <std::string, Database> database;
+//        if (database.count(user)==0){
+//            Database d;
+//            d.hashed=p.get_hash();
+//            d.salt=p.get_salt();
+//            d.random=p.get_random();
+//            database[p.get_username()]=d;
+//        }else{
+//            p.set_random(database[p.get_username()].random);
+//            p.set_salt(database[p.get_username()].salt);
+//        }
         std::vector<std::string> v = p.build_profile(user,pwd, pwd2);
         std::cout<<"Username: "<< p.get_username() << std::endl;
         std::cout<<"Salt is: "<< p.get_salt() << std::endl;
