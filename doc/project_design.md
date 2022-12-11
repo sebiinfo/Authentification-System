@@ -21,3 +21,4 @@ As a fallback it will have a usual login system with username and password.
 
 - The implementation of all features should be split in the `sources` folder. This folder should be subdivided in folders of name `feature-name` which should contain the `.cpp` and `.hpp` files used to implement this, and only this, specific feature.
 - DO NOT USE `using namespace std/cv`.
+- Prefereably opt for snake_case and descriptive names while naming variables.
