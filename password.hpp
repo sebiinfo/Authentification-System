@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
+
 int Q = 1000000007;
 
 char random_character();
@@ -12,25 +12,25 @@ char random_character();
 class Profile {
 public:
     Profile();
-    vector<std::string> build_profile(string user, string pwd1, string pwd2);
-    bool compare_password(string user, string pwd1, string pwd2);
-    vector<string> change_password(string user, string old, string new1, string new2);
+    std::vector<std::string> build_profile(std::string user, std::string pwd1, std::string pwd2);
+    bool compare_password(std::string user, std::string pwd1, std::string pwd2);
+    std::vector<std::string> change_password(std::string user, std::string old, std::string new1, std::string new2);
 
-    string encrypt(string password);
-    string hash_it(string CandidatePass);
+    std::string encrypt(std::string password);
+    std::string hash_it(std::string CandidatePass);
     void generate_salt();
-    string generate_random();
+    std::string generate_random();
     void set_random(long long r);
-    void set_salt(string s);
-    string get_hash() {return hashed;}
-    string get_salt() {return salt;}
+    void set_salt(std::string s);
+    std::string get_hash() {return hashed;}
+    std::string get_salt() {return salt;}
     long long get_random() {return random;}
-    string get_username() {return user;}
+    std::string get_username() {return user;}
 
 private:
-    string user;
-    string hashed;
-    string salt;
+    std::string user;
+    std::string hashed;
+    std::string salt;
     long long random;
 };
 

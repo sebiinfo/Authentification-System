@@ -3,34 +3,31 @@
 #include <vector>
 #include "password.hpp"
 #include <map>
-// #include "password.cpp"
 #include "tests.cpp"
 #include "database.cpp"
 
-using namespace std;
-
 int main() {
 
-    bool test = true; // Put to true if you want to test the hashing function
+    bool test = false; // Put to true if you want to test the hashing function
 
     if (test) { // Test doesn't work (it crashes directly) why ?
-        cout << "Starting test ..." << endl;
+        std::cout << "Starting test ..." << std::endl;
         Test t;
         t.tests();
-        cout << "Test finished !" << endl;
-        cout << "Results of the test are in the file results_test.txt" << endl;
+        std::cout << "Test finished !" << std::endl;
+        std::cout << "Results of the test are in the file results_test.txt" << std::endl;
     } else {
-        string user;
-        cout << "Enter username: "<<endl;
-        cin >> user;
-        string pwd;
-        cout << "Enter password: "<<endl;
-        cin >> pwd;
-        string pwd2;
-        cout << "Confirm password: "<<endl;
-        cin >> pwd2;
+        std::string user;
+        std::cout << "Enter username: "<<std::endl;
+        std::cin >> user;
+        std::string pwd;
+        std::cout << "Enter password: "<< std::endl;
+        std::cin >> pwd;
+        std::string pwd2;
+        std::cout << "Confirm password: "<< std::endl;
+        std::cin >> pwd2;
         Profile p=Profile();
-        map <string, Database> database;
+        map <std::string, Database> database;
         if (database.count(user)==0){
             Database d;
             d.hashed=p.get_hash();
@@ -41,11 +38,11 @@ int main() {
             p.set_random(database[p.get_username()].random);
             p.set_salt(database[p.get_username()].salt);
         }
-        vector<string> v = p.build_profile(user,pwd, pwd2);
-        cout<<"Username: "<< p.get_username() <<endl;
-        cout<<"Salt is: "<< p.get_salt() << endl;
-        cout<<"Random string used for hash: "<< p.get_random() << endl;
-        cout<<"Hashed password: "<< p.get_hash() << endl;
+        std::vector<std::string> v = p.build_profile(user,pwd, pwd2);
+        std::cout<<"Username: "<< p.get_username() << std::endl;
+        std::cout<<"Salt is: "<< p.get_salt() << std::endl;
+        std::cout<<"Random string used for hash: "<< p.get_random() << std::endl;
+        std::cout<<"Hashed password: "<< p.get_hash() << std::endl;
     }
     return 0;
 

@@ -4,8 +4,6 @@
 #include <vector>
 #include <ctime>
 
-using namespace std;
-
 static const char alphanum[] =
 "0123456789"
 "!@#$%^&*"
@@ -26,56 +24,56 @@ Profile::Profile(){
     user="";
 }
 
-vector<string> Profile::build_profile(string user, string pwd1, string pwd2){
-    vector<string> vect;
+std::vector<std::string> Profile::build_profile(std::string user, std::string pwd1, std::string pwd2){
+    std::vector<std::string> vect;
     if (pwd1 == pwd2){
         user = user;
         vect.push_back(user);
-        string h = encrypt(pwd1);
+        std::string h = encrypt(pwd1);
         hashed = h;
         vect.push_back(hashed);
     }
     return vect;
 }
 
-bool Profile::compare_password(string user, string pwd1, string pwd2){
+bool Profile::compare_password(std::string user, std::string pwd1, std::string pwd2){
     //pwd1 is the string entered by the user
     // pwd2 is the hashed password in the database associated to user
 
     // Check user first and use salt from user
-    string h = encrypt(pwd1);
+    std::string h = encrypt(pwd1);
     if (pwd1 == pwd2) {
         return true;
     }
     return false;
 }
 
-vector<string> Profile::change_password(string user, string old, string new1, string new2){
-    std::vector<string> vect;
+std::vector<std::string> Profile::change_password(std::string user, std::string old, std::string new1, std::string new2){
+    std::vector<std::string> vect;
     //Check if user and old password match in database
     if (new1 == new2){
         user = user;
         vect.push_back(user);
-        string h = encrypt(new1);
+        std::string h = encrypt(new1);
         hashed = h;
         vect.push_back(hashed);
     }
     return vect;
 }
 
-string Profile::encrypt(string password){
+std::string Profile::encrypt(std::string password){
     if (salt.empty()){
         generate_salt();
     }
-    string candidatePass= password+salt;
-    string h=hash_it(candidatePass);
+    std::string candidatePass= password+salt;
+    std::string h=hash_it(candidatePass);
     for (int i=0;i<10;i++){
         h=hash_it(h);
     }
     return h;
 }
 
-string Profile::hash_it(string CandidatePass){
+std::string Profile::hash_it(std::string CandidatePass){
         int l1 = CandidatePass.length();
         long long hp = 0;
 
@@ -88,7 +86,7 @@ string Profile::hash_it(string CandidatePass){
             hp += CandidatePass[i];
             hp %= Q;
         }
-            string h=to_string(hp);
+            std::string h=std::to_string(hp);
 
         return h;
 };
@@ -101,11 +99,11 @@ void Profile::generate_salt(){
 void Profile::set_random(long long r) {
     random=r;
 }
-void Profile::set_salt(string s) {
+void Profile::set_salt(std::string s) {
     salt=s;
 }
-string Profile::generate_random(){
-    string s;
+std::string Profile::generate_random(){
+    std::string s;
     for(int i=0; i <= 12; i++) {
         s.push_back(random_character());
     }
