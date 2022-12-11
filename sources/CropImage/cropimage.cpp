@@ -172,3 +172,7 @@ void showCrop(Mat frame,string path)
         showFrame(v[i]);
     }
 }
+
+
+
+//Please do not use using namespace. I know it is annoying to not but it will be beneficial in the long run. Thank you :) 
