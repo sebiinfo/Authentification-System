@@ -8,7 +8,7 @@
 void Test::tests(){
     // Function to test the hashes
     std::vector<std::string> list_of_words;
-    std::ifstream infile("/Users/jwatissee/Desktop/Authentification-System/cmake-build-debug/words_for_testing.txt");
+    std::ifstream infile("/Users/jwatissee/Desktop/cmake-build-debug/words_for_testing.txt");
     if (infile.is_open()){
         std::string line;
         while(getline(infile, line)){
@@ -29,7 +29,7 @@ void Test::tests(){
 
 void Test::compare(std::vector<std::string> list_hash, std::vector<std::string> list_words){
     // Function to compare the hashes
-    std::ofstream outfile("/Users/jwatissee/Desktop/Authentification-System/cmake-build-debug/results_test.txt");
+    std::ofstream outfile("/Users/jwatissee/Desktop/cmake-build-debug/results_test.txt");
     sort(list_hash.begin(), list_hash.end() );
     for(int i = 0; i< sizeof(list_hash); i++){
         outfile << list_hash[i] << std::endl;
