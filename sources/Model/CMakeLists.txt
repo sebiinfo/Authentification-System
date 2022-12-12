@@ -1,0 +1,5 @@
+add_library(Model model.cpp)
+
+target_include_directories(Model INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(Model PRIVATE OpenCVExternalLibrary PRIVATE ${INCLUDE_QT} PRIVATE Interfaces)

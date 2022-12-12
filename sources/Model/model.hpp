@@ -5,7 +5,6 @@
 
 #include "../Interfaces/Facedata.hpp"
 #include <opencv2/core.hpp>
-
 class Model {
     /*
     A class that connects the components of algorithm together to create a complete facial classifier

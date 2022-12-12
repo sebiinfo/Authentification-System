@@ -1,7 +1,10 @@
 #include <iostream>
 
 #include <opencv2/core/mat.hpp>
+#include "cropimage.hpp" 
+#include "Facedata.hpp"
 using namespace std;
+
 using namespace cv;
 int main() {
     int dim[1] = {3};

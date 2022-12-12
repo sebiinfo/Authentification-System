@@ -30,3 +30,4 @@ class KNN : public Classification {
     static bool compare(Facedata v1, Facedata v2);
     int classify(Facedata query);
 };
+
