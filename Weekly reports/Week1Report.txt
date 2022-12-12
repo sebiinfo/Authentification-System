@@ -1,0 +1,128 @@
+Francisco Moreira Machado:
+    Installed OpenCV and studied a first example of Face Detection. 
+    Explored options for the facial recognition algorithms especially focusing on the distinction between non-machine learning, regular machine learning and deep learning alternatives.
+    For the next week I plan to start the development of generic interfaces that are independent of the choice of algorithm and start to specialize in one of the algorithm possibilities. 
+
+Yassine Turki:
+Tasks acheived / ongoing for this week:
+    - Read about the implementation of facial recognition using OpenCV, along with its different types (Eigenfaces and Fisherfaces). We are still deciding on which implementation we would like to work on, as there are both pros and cons for each implementation.
+    - 2 steps missing from installing OpenCV and start implementing code 
+    - Read about password encryption (in order to safely store and recover a password in case the system fails) , and notably the Password-Based Key Derivation Function.
+    - Solved issues regarding trello
+Next week:
+    - Install and use OpenCV
+    - Finish the password file (class (created) + encryption)
+    - Make sure the Trello is always updated
+
+Sebastian Simon:
+Week1:
+    -Installed and compiled OPENCV on my machine, and ran a few examples to get accustomed to the library
+    -Did research on the design of facial recognition algorithms
+    -For next week I plan to help my colleagues run OPENCV, develop a clearer view on how the parts of the project come together
+    and implement a few basic examples of manipulating images and recognizing patterns
+
+Bogdan Budura:
+This Week:
+	-I have installed OpenCV on my system and tested a few functions to get accustomed with the library. 
+	-I started reading about different facial detection algorithms that we will soon start to implement.
+	-Read a lot of CMake documentation and started work on the cmake for this project.
+
+Sophie-Claire Antoun:
+    Installation of Cmake and OpenCV (couldn't check if it works yet), installation of libomongoC (MongoDB C Driver), 
+    and setting up of my mongoDB compass for a new project (had some issues with the compatibility of the cluster with my compass,
+    since we created the cluster with Mija's new account (I had already used my free cluster), and it was not compatible on my mac.)
+
+    All packages were successfully installed, except for one. ( <bsoncxx/builder/stream/document.hpp> ) 
+    I hope to solve this issue next week, with the help of professors, because I spent hours on it, and couldn't find a solution. 
+
+    I also wrote some codes on input and output of password (masking of letters into * when pressed on keyboard, check if it is the same as the password in the data),
+    but it was based off arrays, containing passwords and not data from mongodb.
+
+    The next step, once the C driver is installed, is to link it to the database, and make it compatible with Jasmine's code for the password Class. 
+    As Mija mentioned, if the c driver is too complicated to install, it is not worth it to lose even more time on this, and we will switch to a local database (SQL Lite  normally), implement our codes and work on the user interface, and switch to mongoDB later depending on convenience and time. 
+
+    Once the password is set up, we will then move on to Image encryption and data processing.
+
+Santorin Yu:
+    This week, I did some research on the process we could carry out using Open CV (detection, extraction, recognition).
+    Unfortunately, I have yet to manage to install this library (on Windows). I also studied the features of some facial algorithms
+    (notably CNN and eigenface).
+    Next week, I plan to install Open CV, to discuss  which algorithms would be most suitable for the project and to better understand
+    biometric models.
+
+Jasmine Watissee:
+Week 1 (21/11/2022 - 27/11/2022):
+    - This week, I took some time installing openCV, for the moment it still doesn't work so I will try to fix it next week.
+    - I worked on the password: I created a class Password with different functionalities. The class can : set a password, change it, show the hash, 
+    create a random password, ... For the moment, it is in the branch: Encryption-Password. 
+    - The only thing missing is the encryption of the password which I will work on next week. I need to decide on an algorithm to encrypt the password 
+    and code it. This will probably be done by next week.
+Week 2 (28/11/2022 - 4/12/2022):
+    - This week, I worked on the encryption on the password together with Yassine. We finished it. 
+    - I also created a function to test the encryption (make sure the hashes are unique). The function is implemented but we haven't tested it yet.
+    - Next week, I will test the encryption thanks to the test function I created and 
+    I will work together with Sophie and Mija to link what I did with the database. 
+    Depending on where Paula and Victor are, I will also work on linking my code with the User Interface.
+
+Romain Poggi:
+    This week I have been trying to install OpenCV library for C++ on Mac, without success, but close to getting it. On the side, I have been reading
+    example short projects on how to use OpenCV and reading about common facial recognition AI algorithms. 
+
+Paula Gonzalez Alvarez:
+Week #1 (21/11/2022 - 27/11/2022)
+    - Spent at least 6 hours trying to download OpenCV on Windows which was very complicated because you need to use CMake to 
+      connect OpenCV to QT but CMake is programmed to connect OpenCV to QT5 but we need to use it with QT6 so I tried to modify 
+      the CMake variables and libraries and I managed to get through most of the steps but it is still not working. 
+    - Did research and took notes on OpenCV modules that will be helpful for our facial recognition project.
+    - Learned about user interface by looking at the QT libraries for C++ and started a widget-based desktop application with some basic buttons.
+    - Created a sketch on my computer of how the app could work. It showed every function needed and how the screen would look with 
+      the buttons and paths leading to the other screens. 
+    - Completed the README file with all of the information needed
+
+For next week
+    - Finish downloading and installing OpenCV
+    - Continue developing the desktop application and learn how to make it more aesthetic as well as how to link the pages and 
+      how to implement functions.
+
+
+Cezara Petrui:
+    This week I did the following:
+    - I spent some time trying to download OpenCV on Windows, but so far I haven't managed to finalize installing it on my machine. I'll take care of this task the upcoming week in order to start coding and test the library.
+    - I researched some facial recognition algorithms in order to understand the code and get familiar with some concepts (in particular, I looked into cascade classifiers)
+    - For the next week, I plan install OpenCV and discuss with my colleagues what algorithms to choose and how to further develop our project.
+
+Alexandru Serban
+
+This week:
+- I spent time trying to download OpenCV but I was not able to do it. I'll finsih installing it next week.
+- I focused more on the theoretical part, doing research about the face detection algorithm. 
+- I did more research on the OpenCV library in order to get accustomed to the existing classes that I am going to use for the project, such as CascadeClassifier and VideoCapture.
+- In the next week, I will discuss further the ideas for developing the algorithm. 
+
+#### Victor Lasocki
+### Week 1
+**What I did this week:**
+    - Spent quite some time trying to get CMake and OpenCV downloaded and running on my computer (still not completely done) 
+    - Experimented with building an App and a UI in QT Creator. Created a very basic desktop app with a basic login page and played around with buttons, 
+    different pages and functions to see what could be done for our project
+
+**Aim for next week:**
+    - Finish setting up OpenCV
+    - Using what I have learned we will be able to do in QT, to complete the plan of what we want the final interface to look like made by Paula
+    - Look into more complex elements of the UI and implementing placeholder functions and classes
+
+Mija Pilkaite:
+    Installation of Cmake and OpenCV (couldn't check if it works yet), installation of libomongoC (MongoDB C Driver), 
+    and setting up of my mongoDB compass for a new project (had some issues with the compatibility of the cluster with my compass,
+    since we created the cluster with Mija's new account (I had already used my free cluster), and it was not compatible on my mac.)
+
+    All packages were successfully installed, except for one. ( <bsoncxx/builder/stream/document.hpp> ) 
+    I hope to solve this issue next week, with the help of professors, because I spent hours on it, and couldn't find a solution. 
+
+    I also wrote some codes on input and output of password (masking of letters into * when pressed on keyboard, check if it is the same as the password in the data),
+    but it was based off arrays, containing passwords and not data from mongodb.
+
+    The next step, once the C driver is installed, is to link it to the database, and make it compatible with Jasmine's code for the password Class. 
+    As Mija mentioned, if the c driver is too complicated to install, it is not worth it to lose even more time on this, and we will switch to a local database (SQL Lite  normally), implement our codes and work on the user interface, and switch to mongoDB later depending on convenience and time. 
+
+    Once the password is set up, we will then move on to Image encryption and data processing.
