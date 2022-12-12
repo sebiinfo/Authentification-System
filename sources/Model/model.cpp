@@ -1,36 +1,35 @@
 #include "model.hpp"
+#include "../Interfaces/Facedata.hpp"
 #include <opencv2/core.hpp>
 
-Model::Model(int num_people; int localizer, int detector, int classifier, int num_feature, FacialData* data) {
+Model::Model(int num_people, int num_feature, int localizer, int vectorizer, int classifier, std::vector<Facedata>* data) {
     this->num_people = num_people;
-    this->localizer = localizer;
-    this->detector = detector;
-    this->classifier = classifier;
     this->num_feature = num_feature;
-    this->data = data;
+    this->localizer = localizer;
+    this->vectorizer = vectorizer(num_people, num_feature, data);
+    this->classifier = classifier(num_people, num_feature, data);
 }
 
-Model::Model(int num_feature, FacialData* data) {
+Model::Model(int num_people, int num_feature, std::vector<Facedata>* data) {
     this->num_people = num_people;
-    this->localizer = 0;
-    this->detector = 0;
-    this->classifier = 0;
     this->num_feature = num_feature;
-    this->data = data;
+    this->localizer = 0;
+    this->vectorizer = 0;
+    this->classifier = 0;
 }
 
 Model::~Model() {}
 
-void Model::forward(cv::Mat image, std::vector<Rect>* faces, std::vector<int>* ids;) {
+void Model::predict(cv::Mat image, std::vector<cv::Rect>* faces, std::vector<int>* ids;) {
     std::vector<std::vector<float>> numerical_reps;
 
     localizer.localize_update(image, faces); // hopefully this loads up faces with faces :)
-    for (int i = 0; i < faces.size(); i ++) {detector.vector_transform_update(image, faces[i], numerical_reps);}
-    for (int i = 0; i < faces.size(); i ++) {ids.push_back(classifier.classify(numerical_reps[i], data));}
+    vectorizer.vectorize_update(image, faces[i], numerical_reps);
+    for (int i = 0; i < faces.size(); i ++) {ids.push_back(classifier.classify(numerical_reps[i]));}
 }
 
-vector<float> Model::forward(cv::Mat image) {
-    std::vector<Rect> faces;
+std::vector<int> Model::predict(cv::Mat image) {
+    std::vector<cv::Rect> faces;
     std::vector<int> ids;
     forward(image, faces, ids);
     return ids;
