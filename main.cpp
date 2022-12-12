@@ -1,4 +1,4 @@
-//#include <iostream>
+// #include <iostream>
 
 // using namespace std;
 
@@ -15,9 +15,11 @@
 
 int main()
 {
-   bool writeFile = std::writeDataToFile("new.txt", "John", "Smith", "jsmith", "giraffe1", "john.smith@yahoo.com");
+   Database database("new.txt");
 
-   std::vector<std::string> data = readRecordFromFile("new.txt", "password");
+   bool writeFile = database.writeDataToFile("new.txt", "John", "Smith", "jsmith", "giraffe1", "john.smith@yahoo.com");
+
+   std::vector<std::string> data = database.readRecordFromFile("new.txt", "password");
 
    return 0;
 }

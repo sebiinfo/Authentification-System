@@ -5,86 +5,167 @@
 #include "csv_file.hpp"
 // DATABASE CLASS
 
-namespace std
+// constructor
+Database::Database()
 {
+    this->file_name = "";
+}
+Database::Database(std::string file_name)
+{
+    this->file_name = file_name;
+}
 
-    int test2()
+// registration, adding data to csv file, there are 5 parameters: username, name, last name, password and email (in this order)
+bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string email)
+{
+    std::ofstream file;
+    file.open(file_name, std::ios_base::app);
+    file << username << ',' << name << ',' << last_name << ',' << email << ',' << password << std::endl;
+    file.close();
+
+    return true;
+}
+
+// looking for a username in a csv file and returning all data about it
+std::vector<std::string> Database ::readRecordFromFile(std::string file_name, std::string username_search)
+{
+    std::vector<std::string> record;
+    std::ifstream file;
+    file.open(file_name);
+
+    bool found = false;
+    std::string username;
+    std::string name;
+    std::string last_name;
+    std::string password;
+    std::string email;
+
+    while (getline(file, username, ',') && !found)
     {
-        vector<string> data = readRecordFromFile("new.txt", "password");
-        return 0;
-    }
-
-    // registration, adding data to csv file
-    bool Database ::writeDataToFile(string file_name, string username, string name, string last_name, string password, string email)
-    {
-        std::ofstream file;
-        file.open(file_name, ios_base::app);
-        file << username << ',' << name << ',' << last_name << ',' << email << ',' << password << endl;
-        file.close();
-
-        return true;
-    }
-
-    // looking for a username in a csv file and returning all data about it
-    vector<string> Database ::readRecordFromFile(string file_name, string username_search)
-    {
-        vector<string> record;
-        ifstream file;
-        file.open(file_name);
-
-        bool found = false;
-        string username;
-        string name;
-        string last_name;
-        string password;
-        string email;
-
-        while (getline(file, username, ',') && !found)
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, '\n');
+        if (username == username_search)
         {
-            getline(file, name, ',');
-            getline(file, last_name, ',');
-            getline(file, password, ',');
-            getline(file, email, ',');
-            if (username == username_search)
-            {
-                found = true;
-                record.push_back(username);
-                record.push_back(name);
-                record.push_back(last_name);
-                record.push_back(password);
-                record.push_back(email);
-            }
+            found = true;
+            record.push_back(username);
+            record.push_back(name);
+            record.push_back(last_name);
+            record.push_back(password);
+            record.push_back(email);
         }
-        std::cout << record[0] << " " << record[1] << " " << record[2] << " " << record[3] << " " << record[4] << endl;
-        return record;
     }
+    std::cout << record[0] << " " << record[1] << " " << record[2] << " " << record[3] << " " << record[4] << std::endl;
+    return record;
+}
 
-    // check if the username is in the database and its password matches
-    bool Database::checkPasswordandUsername(string file_name, string username, string password)
+// check if the username is in the database and its password matches (for logging in)
+bool Database::checkPasswordandUsername(std::string file_name, std::string username_given, std::string password_given)
+{
+    std::vector<std::string> record;
+    std::ifstream file;
+    file.open(file_name);
+    std::string username;
+    std::string name;
+    std::string last_name;
+    std::string password;
+    std::string email;
+
+    bool found = false;
+
+    while (getline(file, username, ',') && !found)
     {
-        vector<string> record;
-        ifstream file;
-        file.open(file_name);
-        string one;
-        string two;
-
-        bool found = false;
-
-        while (getline(file, one, ',') && !found)
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, '\n');
+        if (username_given == username && password_given == password)
         {
-            getline(file, two, ',');
-            if (one == username && two == password)
-            {
-                found = true;
-            }
+            found = true;
         }
-        return found;
     }
+    return found;
+}
 
-    // changing email, password and username
+// changing email, password and username
+// generates a new password and set it as new password for the username and email
+// enter username and password, then you can change the corresponding email
 
-    bool change_email(string file_name, string username, string password, string email)
+bool Database::change_email(std::string file_name, std::string username_given, std::string password_given, std::string new_email)
+{
+    std::vector<std::string> record;
+    bool success = false;
+    std::ifstream file;
+    file.open(file_name);
+
+    if (checkPasswordandUsername(file_name, username_given, password_given))
     {
+        // can I make it return boolean and the data?
+        record = readRecordFromFile(file_name, username_given);
+        record.at(-1) = new_email; // check if works
+        success = true;
     }
+    std::cout << success << std::endl; // print out if the email was changed
+    std::cout << record[0] << " " << record[1] << " " << record[2] << " " << record[3] << " " << record[4] << std::endl;
+    return success;
+}
+// check if username is taken
+bool Database::check_username(std::string file_name, std::string username_given)
+{
+    std::vector<std::string> record;
+    std::ifstream file;
+    file.open(file_name);
+    std::string username;
+    std::string name;
+    std::string last_name;
+    std::string password;
+    std::string email;
+    bool found = false;
 
-} // std closed
+    while (getline(file, username, ',') && !found)
+    {
+        if (username_given == username)
+        {
+            found = true;
+        }
+    }
+    return found;
+}
+// check if email is taken
+
+bool Database::check_email(std::string file_name, std::string email_given)
+{
+    std::vector<std::string> record;
+    std::ifstream file;
+    file.open(file_name);
+    std::string username;
+    std::string name;
+    std::string last_name;
+    std::string password;
+    std::string email;
+    bool found = false;
+
+    while (getline(file, username, ',') && !found)
+    {
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, '\n');
+        if (email_given == email)
+        {
+            found = true;
+        }
+    }
+    return found;
+}
+// delete one user
+// a new class for user information and as input functions take user information
+
+// deleting data from csv file
+void Database::delete_data()
+{
+    std::ofstream ofs;
+    ofs.open("test.txt", std::ofstream::out | std::ofstream::trunc);
+    ofs.close();
+}

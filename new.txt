@@ -1,2 +1,0 @@
-username,password,date
-username1,password1,date1
