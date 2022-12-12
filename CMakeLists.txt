@@ -18,15 +18,15 @@ if(${Qt6_FOUND})
   qt_standard_project_setup()
 endif()
 
-set(USING_QT "$<BOOL:${Qt6_FOUND}>")
+set(USING_QT "$<BOOL:${Qt6_FOUND}>" CACHE INTERNAL "")
+set(INCLUDE_QT "$<${USING_QT}:QtExternalLibrary>" CACHE INTERNAL "")
 
 message(STATUS "MY_VARIABLE=${USING_QT}")
+message(STATUS "MY_INCLUDE_QT=${INCLUDE_QT}")
 
 target_link_libraries(${PROJECT_NAME} 
-        PUBLIC "$<${USING_QT}:Qt6::Core>"
-        PUBLIC "$<${USING_QT}:QtExternalLibrary>" 
+        PUBLIC ${INCLUDE_QT}
         PUBLIC OpenCVExternalLibrary
         PUBLIC sources
         )
 
-message(STATUS "MY_VARIABLE=${USING_QT}")

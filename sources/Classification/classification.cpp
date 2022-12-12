@@ -9,7 +9,7 @@ Classification::Classification(std::vector<Facedata> data) {
         throw "data has wrong dimensions";
     }
     this->data = data;
-    this->dimension_data = size(data);
+    this->dimension_data = data.size();
     this->length_vector = data[0].entries.cols;
 }
 
