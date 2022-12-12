@@ -7,8 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-add_library(opencv_qt6_includes INTERFACE)
-
 find_package(OpenCV REQUIRED)
 find_package(Qt6 OPTIONAL_COMPONENTS Core)
 
@@ -25,9 +23,10 @@ set(USING_QT "$<BOOL:${Qt6_FOUND}>")
 message(STATUS "MY_VARIABLE=${USING_QT}")
 
 target_link_libraries(${PROJECT_NAME} 
-        PRIVATE "$<${USING_QT}:Qt6::Core>"
+        PUBLIC "$<${USING_QT}:Qt6::Core>"
         PUBLIC "$<${USING_QT}:QtExternalLibrary>" 
         PUBLIC OpenCVExternalLibrary
         PUBLIC sources
         )
-      message(S)
+
+message(STATUS "MY_VARIABLE=${USING_QT}")
