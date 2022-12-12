@@ -9,7 +9,14 @@
 #include <opencv2/core/mat.hpp>
 
 class Fisher {
+  public:
+    Fisher();
+    ~Fisher();
+    int predict(cv::Mat);
+
   private:
     cv::Mat normalize(cv::InputArray);
     void train();
+    std::vector<cv::Mat> images;
+    std::vector<int> labels;
 };
