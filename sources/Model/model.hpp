@@ -4,7 +4,6 @@
 #endif // AUTHENTICATION_SYSTEM_MODEL_HPP
 
 #include <opencv2/core.hpp>
-
 class Model {
     /*
     A class that connects the components of algorithm together to create a complete facial classifier
