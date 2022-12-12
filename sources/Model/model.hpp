@@ -3,7 +3,7 @@
 
 #endif // AUTHENTICATION_SYSTEM_MODEL_HPP
 
-#include "../Interfaces/Facedata.hpp"
+#include "Facedata.hpp"
 #include <opencv2/core.hpp>
 class Model {
     /*

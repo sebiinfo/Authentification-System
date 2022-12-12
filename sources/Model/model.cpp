@@ -1,6 +1,7 @@
 #include "model.hpp"
-#include "../Interfaces/Facedata.hpp"
+#include "Facedata.hpp"
 #include <opencv2/core.hpp>
+
 
 Model::Model(int num_people, int num_feature, int localizer, int vectorizer, int classifier, std::vector<Facedata>* data) {
     this->num_people = num_people;
@@ -20,7 +21,7 @@ Model::Model(int num_people, int num_feature, std::vector<Facedata>* data) {
 
 Model::~Model() {}
 
-void Model::predict(cv::Mat image, std::vector<cv::Rect>* faces, std::vector<int>* ids;) {
+void Model::predict(cv::Mat image, std::vector<cv::Rect>* faces, std::vector<int>* ids) {
     std::vector<std::vector<float>> numerical_reps;
 
     localizer.localize_update(image, faces); // hopefully this loads up faces with faces :)
