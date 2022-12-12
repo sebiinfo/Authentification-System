@@ -12,9 +12,9 @@ char random_character();
 class Profile {
 public:
     Profile();
-    std::vector<std::string> build_profile(std::string user, std::string pwd1, std::string pwd2);
-    bool compare_password(std::string user, std::string pwd1, std::string pwd2);
-    std::vector<std::string> change_password(std::string user, std::string old, std::string new1, std::string new2);
+    std::vector<std::string> build_profile(std::string entered_username, std::string password_1, std::string confirm_password);
+    bool compare_password(std::string entered_username, std::string password_entered, std::string password_from_database);
+    std::vector<std::string> change_password(std::string username, std::string old_password, std::string new_password, std::string confirm_new_password);
 
     std::string encrypt(std::string password);
     std::string hash_it(std::string CandidatePass);
