@@ -1,3 +1,8 @@
+#ifndef AUTHENTICATION_SYSTEM_VECTORIZER_HPP
+#define AUTHENTICATION_SYSTEM_VECTORIZER_HPP
+
+#endif // AUTHENTICATION_SYSTEM_VECTORIZER_HPP
+
 #include <opencv2/core.hpp>
 
 class Vectorizer {
@@ -8,10 +13,10 @@ public:
     Vectorizer(int num_people, int num_feature);
     ~Vectorizer();
 
-    std::array<float> vectorize(cv::Mat image, std::array<cv::Rect> faces);
-    std::array<float> vectorize(cv::Mat image);
-    void vectorize_update(cv::Mat image, std::array<cv::Rect> faces, std::vector<std::vector<float>> numerical_reps);
-    void vectorize_update(cv::Mat image, std::vector<std::vector<float>> numerical_reps);
+    virtual std::array<float> vectorize(cv::Mat image, std::array<cv::Rect> faces);
+    virtual std::array<float> vectorize(cv::Mat image);
+    virtual void vectorize_update(cv::Mat image, std::array<cv::Rect> faces, std::vector<std::vector<float>> numerical_reps);
+    virtual void vectorize_update(cv::Mat image, std::vector<std::vector<float>> numerical_reps);
 
     int num_people;
     int num_feature;
