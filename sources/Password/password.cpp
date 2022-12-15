@@ -37,8 +37,9 @@ std::vector<std::string> Profile::build_profile(std::string entered_username, st
     return vect;
 }
 
-bool Profile::compare_password(std::string entered_username, std::string password_entered, std::string password_from_database){
-    // Check user first and use salt from user
+bool Profile::compare_password(std::string entered_username, std::string password_entered, std::string password_from_database, std::string salt_from_database){
+    // Check user first
+    set_salt(salt_from_database);
     std::string hashed_password = encrypt(password_entered);
     if (hashed_password == password_from_database) {
         return true;
@@ -90,7 +91,7 @@ std::string Profile::hash_it(std::string CandidatePass){
 
 void Profile::generate_salt(){
     for (int i = 0; i < 32; i++) {
-        salt += generate_random();
+        salt += generate_random(1);
     }
 }
 
@@ -100,10 +101,10 @@ void Profile::set_random(long long r) {
 void Profile::set_salt(std::string s) {
     salt = s;
 }
-std::string Profile::generate_random(){
+std::string Profile::generate_random(int length){
     // generate a random string of length 12
     std::string random_string;
-    for(int i=0; i <= 12; i++) {
+    for(int i=0; i <= length; i++) {
         random_string.push_back(random_character());
     }
     return random_string;
