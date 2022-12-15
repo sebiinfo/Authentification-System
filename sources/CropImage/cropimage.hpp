@@ -20,11 +20,11 @@
 using namespace cv;
 using namespace std;
 
-void cropOne (Mat& image, int botLeft, int botRight, int topLeft, int topRight);
 // Crops in place the image at given coordinates (bottom left, bottom right, top left, top right)
+void cropOne (Mat& image, int botLeft, int botRight, int topLeft, int topRight);
 
-Mat getFrame();
 // Get one frame from the webcam
+Mat getFrame();
 
 void showFrame(Mat image);
 // Displays the frame given as input.

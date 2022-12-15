@@ -1,4 +1,4 @@
-add_library(CropImage cropimage.cpp class.cpp)
+add_library(CropImage cropimage.cpp cropimage.hpp)
 
 target_include_directories(CropImage INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
