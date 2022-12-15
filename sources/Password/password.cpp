@@ -2,11 +2,12 @@
 #include "password.hpp"
 #include <string>
 #include <vector>
+#include <set>
 #include <ctime>
 
 static const char alphanum[] =
 "0123456789"
-"!@#$%^&*"
+"!@#$%^&*():;<>?"
 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "abcdefghijklmnopqrstuvwxyz";
 
@@ -27,7 +28,7 @@ Profile::Profile(){
 
 std::vector<std::string> Profile::build_profile(std::string entered_username, std::string password_1, std::string confirm_password){
     std::vector<std::string> vect;
-    if (password_1 == confirm_password){
+    if ((validate_password(password_1)) && (password_1 == confirm_password)){
         user = entered_username;
         vect.push_back(user);
         std::string hashed_password = encrypt(password_1);
@@ -50,7 +51,7 @@ bool Profile::compare_password(std::string entered_username, std::string passwor
 std::vector<std::string> Profile::change_password(std::string username, std::string old_password, std::string new_password, std::string confirm_new_password){
     std::vector<std::string> vect;
     //Check if user and old password match in database
-    if (new_password == confirm_new_password){
+    if ((validate_password(new_password)) && (new_password == confirm_new_password)){
         user = username;
         vect.push_back(user);
         std::string hashed_password = encrypt(new_password);
@@ -58,6 +59,32 @@ std::vector<std::string> Profile::change_password(std::string username, std::str
         vect.push_back(hashed);
     }
     return vect;
+}
+
+bool validate_password(std::string password){
+    if (password.length() < 9) {
+        return false;
+    }
+    std::set<char> special_characters = {'!','@','#','$','%','^','&','*','(',')',';',':','<','>','?'};
+    std::set<int> numbers = {0,1,2,3,4,5,6,7,8,9};
+    std::set<char> capital_letters = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    std::set<char> small_letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    int nbr_special_characters, nbr_capital_letters, nbr_small_letters, nbr_numbers;
+    for(int i=0; i<password.length(); i++){
+        if (numbers.count(password[i]) > 0 ){
+            nbr_numbers++;
+        } else if (special_characters.count(password[i]) > 0 ) {
+            nbr_special_characters++;
+        } else if (capital_letters.count(password[i]) > 0 ) {
+            nbr_capital_letters++;
+        } else {
+            nbr_small_letters++;
+        }
+    }
+    if ((nbr_numbers == 0) || (nbr_special_characters == 0) || (nbr_capital_letters == 0)){
+        return false;
+    }
+    return true;
 }
 
 std::string Profile::encrypt(std::string password){
