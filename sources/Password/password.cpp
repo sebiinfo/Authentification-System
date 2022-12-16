@@ -133,9 +133,7 @@ std::string Profile::hash_it(std::string CandidatePass) {
 };
 
 void Profile::generate_salt() {
-    for (int i = 0; i < 32; i++) {
-        salt += generate_random(1);
-    }
+    salt = generate_random(32);
 }
 
 void Profile::set_random(long long r) { random = r; }
