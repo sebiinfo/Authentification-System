@@ -1,35 +1,70 @@
-#include <iostream>
 #include "password.hpp"
+#include <ctime>
+#include <iostream>
+#include <set>
 #include <string>
 #include <vector>
-#include <set>
-#include <ctime>
 
-static const char alphanum[] =
-"0123456789"
-"!@#$%^&*():;<>?"
-"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-"abcdefghijklmnopqrstuvwxyz";
+static const char alphanum[] = "0123456789"
+                               "!@#$%^&*():;<>?"
+                               "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                               "abcdefghijklmnopqrstuvwxyz";
 
 int stringLength = sizeof(alphanum) - 1;
 
-char random_character(){
+char random_character() {
     // Random string generator function.
     return alphanum[rand() % stringLength];
 }
 
-Profile::Profile(){
-    // Initializes everything
-    random=0;
-    salt="";
-    hashed="";
-    user="";
+bool validate_password(std::string password) {
+    if (password.length() < 9) {
+        return false;
+    }
+    std::set<char> special_characters = {'!', '@', '#', '$', '%', '^', '&', '*',
+                                         '(', ')', ';', ':', '<', '>', '?'};
+    std::set<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::set<char> capital_letters = {
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    std::set<char> small_letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+                                    'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+                                    's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    int nbr_special_characters = 0, nbr_capital_letters = 0,
+        nbr_small_letters = 0, nbr_numbers = 0;
+    for (int i = 0; i < password.length(); i++) {
+        if (numbers.count(password[i]) > 0) {
+            nbr_numbers++;
+        } else if (special_characters.count(password[i]) > 0) {
+            nbr_special_characters++;
+        } else if (capital_letters.count(password[i]) > 0) {
+            nbr_capital_letters++;
+        } else {
+            nbr_small_letters++;
+        }
+    }
+    if ((nbr_numbers == 0) || (nbr_special_characters == 0) ||
+        (nbr_capital_letters == 0) || (nbr_small_letters == 0)) {
+        return false;
+    }
+    return true;
 }
 
-std::vector<std::string> Profile::build_profile(std::string entered_username, std::string password_1, std::string confirm_password){
+Profile::Profile() {
+    // Initializes everything
+    random = 0;
+    Q = 1000000007;
+    salt = "";
+    hashed = "";
+    user = "";
+}
+
+std::vector<std::string> Profile::build_profile(std::string username_entered,
+                                                std::string password_1,
+                                                std::string confirm_password) {
     std::vector<std::string> vect;
-    if ((validate_password(password_1)) && (password_1 == confirm_password)){
-        user = entered_username;
+    if ((validate_password(password_1)) && (password_1 == confirm_password)) {
+        user = username_entered;
         vect.push_back(user);
         std::string hashed_password = encrypt(password_1);
         hashed = hashed_password;
@@ -38,7 +73,10 @@ std::vector<std::string> Profile::build_profile(std::string entered_username, st
     return vect;
 }
 
-bool Profile::compare_password(std::string entered_username, std::string password_entered, std::string password_from_database, std::string salt_from_database){
+bool Profile::compare_password(std::string username_entered,
+                               std::string password_entered,
+                               std::string password_from_database,
+                               std::string salt_from_database) {
     // Check user first
     set_salt(salt_from_database);
     std::string hashed_password = encrypt(password_entered);
@@ -48,10 +86,14 @@ bool Profile::compare_password(std::string entered_username, std::string passwor
     return false;
 }
 
-std::vector<std::string> Profile::change_password(std::string username, std::string old_password, std::string new_password, std::string confirm_new_password){
+std::vector<std::string>
+Profile::change_password(std::string username, std::string old_password,
+                         std::string new_password,
+                         std::string confirm_new_password) {
     std::vector<std::string> vect;
-    //Check if user and old password match in database
-    if ((validate_password(new_password)) && (new_password == confirm_new_password)){
+    // Check if user and old password match in database
+    if ((validate_password(new_password)) &&
+        (new_password == confirm_new_password)) {
         user = username;
         vect.push_back(user);
         std::string hashed_password = encrypt(new_password);
@@ -61,45 +103,19 @@ std::vector<std::string> Profile::change_password(std::string username, std::str
     return vect;
 }
 
-bool validate_password(std::string password){
-    if (password.length() < 9) {
-        return false;
-    }
-    std::set<char> special_characters = {'!','@','#','$','%','^','&','*','(',')',';',':','<','>','?'};
-    std::set<int> numbers = {0,1,2,3,4,5,6,7,8,9};
-    std::set<char> capital_letters = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-    std::set<char> small_letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    int nbr_special_characters, nbr_capital_letters, nbr_small_letters, nbr_numbers;
-    for(int i=0; i<password.length(); i++){
-        if (numbers.count(password[i]) > 0 ){
-            nbr_numbers++;
-        } else if (special_characters.count(password[i]) > 0 ) {
-            nbr_special_characters++;
-        } else if (capital_letters.count(password[i]) > 0 ) {
-            nbr_capital_letters++;
-        } else {
-            nbr_small_letters++;
-        }
-    }
-    if ((nbr_numbers == 0) || (nbr_special_characters == 0) || (nbr_capital_letters == 0)){
-        return false;
-    }
-    return true;
-}
-
-std::string Profile::encrypt(std::string password){
-    if (salt.empty()){
+std::string Profile::encrypt(std::string password) {
+    if (salt.empty()) {
         generate_salt();
     }
-    std::string longer_password_to_encrypt = password+salt;
+    std::string longer_password_to_encrypt = password + salt;
     std::string h = hash_it(longer_password_to_encrypt);
-    for (int i=0;i<10;i++){
-        h=hash_it(h);
+    for (int i = 0; i < 10; i++) {
+        h = hash_it(h);
     }
     return h;
 }
 
-std::string Profile::hash_it(std::string CandidatePass){
+std::string Profile::hash_it(std::string CandidatePass) {
     int length_CandidatePass = CandidatePass.length();
     long long hp = 0;
 
@@ -107,7 +123,7 @@ std::string Profile::hash_it(std::string CandidatePass){
     if (random == 0) {
         random = rand() % (Q - 1) + 1; // generating random value x
     }
-    for(int i=0; i< length_CandidatePass ;i++) {
+    for (int i = 0; i < length_CandidatePass; i++) {
         hp = (random * hp) % Q; // calculating hash of Password
         hp += CandidatePass[i];
         hp %= Q;
@@ -116,22 +132,18 @@ std::string Profile::hash_it(std::string CandidatePass){
     return h;
 };
 
-void Profile::generate_salt(){
+void Profile::generate_salt() {
     for (int i = 0; i < 32; i++) {
         salt += generate_random(1);
     }
 }
 
-void Profile::set_random(long long r) {
-    random = r;
-}
-void Profile::set_salt(std::string s) {
-    salt = s;
-}
-std::string Profile::generate_random(int length){
-    // generate a random string of length 12
+void Profile::set_random(long long r) { random = r; }
+void Profile::set_salt(std::string s) { salt = s; }
+std::string Profile::generate_random(int length) {
+    // generate a random string of size length
     std::string random_string;
-    for(int i=0; i <= length; i++) {
+    for (int i = 0; i < length; i++) {
         random_string.push_back(random_character());
     }
     return random_string;
