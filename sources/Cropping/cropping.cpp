@@ -2,11 +2,10 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include "croping.hpp"
+#include "cropping.hpp"
 
 
 void cropOne (cv::Mat& image ,int x1,int x2,int y1,int y2){
-    // image(Range(start_row, end_row), Range(start_col, end_col))
     image = image(cv::Range(y1,y2), cv::Range(x1,x2));
     };
 
@@ -67,7 +66,7 @@ void draw(cv::Mat& img, std::vector<cv::Rect> faces,double scale,int margin)
     {
         cv::Rect r = faces[i];
         cv::Mat smallImgROI;
-        cv::Scalar color = cv::Scalar(255, 0, 0); // Color for Drawing tool
+        cv::Scalar color = cv::Scalar(255, 0, 0); // Color for Drawing
         rectangle(img, cv::Point(cvRound(r.x*scale-margin), cvRound(r.y*scale-margin)),
                     cv::Point(cvRound((r.x + r.width-1)*scale+margin),
                     cvRound((r.y + r.height-1)*scale+margin)), color, 3, 8, 0);
@@ -164,12 +163,11 @@ std::vector<cv::Mat> crop(cv::Mat frame,std::string path)
 void showCrop(cv::Mat frame,std::string path)
 {
 
-    std::vector<cv::Mat> v = crop(frame,path);
-    int n = v.size();
+    std::vector<cv::Mat> crops = crop(frame,path);
 
-    for(int i=0; i<n ;i++)
+    for(int i=0; i<crops.size() ;i++)
     {
-        showFrame(v[i]);
+        showFrame(crops[i]);
     }
 }
 
