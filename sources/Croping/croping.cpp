@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include "cropimage.hpp"
+#include "croping.hpp"
 
 
 void cropOne (cv::Mat& image ,int x1,int x2,int y1,int y2){
@@ -54,7 +54,10 @@ void runwebcam(){
 
             imshow("Cam",frame);
         }
-    }
+    }else
+    {
+        std::cout << "Could not open camera";
+    };
 }
 
 void draw(cv::Mat& img, std::vector<cv::Rect> faces,double scale,int margin)
