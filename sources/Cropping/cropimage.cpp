@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include "cropping.hpp"
+#include "cropimage.hpp"
 
 
 void cropOne (cv::Mat& image ,int x1,int x2,int y1,int y2){
