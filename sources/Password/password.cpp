@@ -17,7 +17,7 @@ char random_character() {
     return alphanum[rand() % stringLength];
 }
 
-bool validate_password(std::string password) {
+bool Profile::validate_password(std::string password) {
     if (password.length() < 9) {
         return false;
     }
@@ -132,9 +132,7 @@ std::string Profile::hash_it(std::string CandidatePass) {
     return h;
 };
 
-void Profile::generate_salt() {
-    salt = generate_random(32);
-}
+void Profile::generate_salt() { salt = generate_random(32); }
 
 void Profile::set_random(long long r) { random = r; }
 void Profile::set_salt(std::string s) { salt = s; }

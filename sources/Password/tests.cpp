@@ -23,7 +23,7 @@ void Test::tests() {
     }
     infile.close();
     std::vector<std::string> list_of_hash;
-    for (int i = 0; i < sizeof(list_of_words); i++) {
+    for (int i = 0; i < list_of_words.size(); i++) {
         Profile profile;
         std::string hash = profile.encrypt(list_of_words[i]);
         list_of_hash.push_back(hash);
@@ -38,8 +38,8 @@ void Test::compare(std::vector<std::string> list_hash,
         "/Users/jwatissee/Desktop/cmake-build-debug/results_test.txt"); */
     std::ofstream outfile("./results_test.txt");
     std::sort(list_hash.begin(), list_hash.end());
-    for (int i = 0; i < sizeof(list_hash); i++) {
-        outfile << list_hash[i] << std::endl;
+    for (int i = 0; i < list_hash.size(); i++) {
+        // outfile << list_hash[i] << std::endl;
         if (list_hash[i] == list_hash[i + 1]) {
             outfile << "Same hash (" << list_hash[i] << ") found !"
                     << std::endl;
