@@ -132,7 +132,7 @@ std::string Profile::hash_it(std::string CandidatePass) {
     return h;
 };
 
-void Profile::generate_salt() { salt = generate_random(32); }
+void Profile::generate_salt() { salt = generate_random(16384); }
 
 void Profile::set_random(long long r) { random = r; }
 void Profile::set_salt(std::string s) { salt = s; }
