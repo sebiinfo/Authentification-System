@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME} "sources/Password/main.cpp")
 
+
 #add_subdirectory(libs/qt)
 #add_subdirectory(libs/opencv)
 
