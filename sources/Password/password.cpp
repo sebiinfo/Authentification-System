@@ -53,7 +53,7 @@ bool Profile::validate_password(std::string password) {
 Profile::Profile() {
     // Initializes everything
     random = 0;
-    Q = 1000000007;
+    Q = pow(2,82589933) − 1;
     salt = "";
     hashed = "";
     user = "";
