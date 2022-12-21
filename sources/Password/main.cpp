@@ -14,7 +14,7 @@ int main() {
         Test t;
         t.tests();
         std::cout << "Test finished !" << std::endl;
-        std::cout << "Results of the test are in the file results_test.txt"
+        std::cout << "Results of the test are in the file results_test0.txt"
                   << std::endl;
     } else {
         std::string user;
