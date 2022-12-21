@@ -36,13 +36,16 @@ void Test::compare(std::vector<std::string> list_hash,
     // Function to compare the hashes
     /* std::ofstream outfile(
         "/Users/jwatissee/Desktop/cmake-build-debug/results_test.txt"); */
-    std::ofstream outfile("./results_test.txt");
-    std::sort(list_hash.begin(), list_hash.end());
-    for (int i = 0; i < list_hash.size(); i++) {
+    std::ofstream outfile("./results_test0.txt");
+    std::vector<std::pair<std::string,std::string>> hash_and_pwd;
+    for(int i=0; i<list_hash.size();i++){
+        hash_and_pwd.push_back(std::make_pair(list_hash[i],list_words[i]));
+    }
+    std::sort(hash_and_pwd.begin(), hash_and_pwd.end());
+    for (int i = 0; i < list_hash.size()-1; i++) {
         // outfile << list_hash[i] << std::endl;
-        if (list_hash[i] == list_hash[i + 1]) {
-            outfile << "Same hash (" << list_hash[i] << ") found !"
-                    << std::endl;
+        if (hash_and_pwd[i].first == hash_and_pwd[i+1].first) {
+            outfile << "Same hash: " << hash_and_pwd[i].second << " and "<< hash_and_pwd[i+1].second<< "found !"<< std::endl;
         }
     }
     outfile.close();
