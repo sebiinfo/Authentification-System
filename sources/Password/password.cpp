@@ -4,6 +4,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <math.h>
 
 static const char alphanum[] = "0123456789"
                                "!@#$%^&*():;<>?"
@@ -53,7 +54,8 @@ bool Profile::validate_password(std::string password) {
 Profile::Profile() {
     // Initializes everything
     random = 0;
-    Q = pow(2,82589933) − 1;
+    Q = 1<<31;
+    Q-=1;
     salt = "";
     hashed = "";
     user = "";
