@@ -1,9 +1,16 @@
 #include "fisher.hpp"
+#include "Vectorizer.hpp"
+#include <opencv2/core.hpp>
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
 
-cv::Mat Fisher::normalize(cv::InputArray src) {
+Fisher::Fisher() : Vectorizer() {}
+
+Fisher::Fisher(int num_people, int num_feature)
+    : Vectorizer(num_people, num_feature) {}
+
+cv::Mat Fisher::normalize(cv::InputArray &src) {
     int channels = src.channels();
     cv::Mat out;
     if (channels == 1 || channels == 3) {
@@ -12,4 +19,9 @@ cv::Mat Fisher::normalize(cv::InputArray src) {
         src.copyTo(out);
     }
     return out;
+}
+
+void Fisher::train(std::vector<cv::Mat> &images, std::vector<int> &labels) {
+    cv::LDA lda(num_feature);
+    lda.compute(images, labels);
 }
