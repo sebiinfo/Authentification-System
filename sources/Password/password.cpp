@@ -2,6 +2,7 @@
 #include <ctime>
 #include <iostream>
 #include <set>
+#include <cstring>
 #include <string>
 #include <vector>
 #include <math.h>
@@ -111,12 +112,14 @@ std::string Profile::encrypt(std::string password) {
     }
     std::string longer_password_to_encrypt = password + salt;
     std::string h = hash_it(longer_password_to_encrypt);
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i <10; i++) {
         h = hash_it(h);
     }
     return h;
 }
 
+
+/*
 std::string Profile::hash_it(std::string CandidatePass) {
     int length_CandidatePass = CandidatePass.length();
     long long hp = 0;
@@ -132,9 +135,9 @@ std::string Profile::hash_it(std::string CandidatePass) {
     }
     std::string h = std::to_string(hp);
     return h;
-};
-
-void Profile::generate_salt() { salt = generate_random(16384); }
+}
+*/
+void Profile::generate_salt() { salt = generate_random(10); }
 
 void Profile::set_random(long long r) { random = r; }
 void Profile::set_salt(std::string s) { salt = s; }
@@ -146,3 +149,56 @@ std::string Profile::generate_random(int length) {
     }
     return random_string;
 }
+
+std::string Profile::hash_it(const std::string& CandidatePass) {
+        const uint32_t m = 0x5bd1e995;
+        const int r = 24;
+        const int iterations = 1000;  // Number of iterations
+
+        uint64_t h = 0;
+
+        // Get the length of the input string
+        int len = CandidatePass.length();
+
+        // Mix 4 bytes at a time into the hash
+        const unsigned char *data = reinterpret_cast<const unsigned char *>(CandidatePass.data());
+        while (len >= 4) {
+            uint32_t k = *(uint32_t *)data;
+
+            k *= m;
+            k ^= k >> r;
+            k *= m;
+
+            h *= m;
+            h ^= k;
+
+            data += 4;
+            len -= 4;
+        }
+
+        // Handle the last few bytes of the input array
+        switch (len) {
+            case 3:
+                h ^= data[2] << 16;
+            case 2:
+                h ^= data[1] << 8;
+            case 1:
+                h ^= data[0];
+                h *= m;
+        }
+
+        // Do a large number of final mixes of the hash to ensure the last few
+        // bytes are well-incorporated.
+        for (int i = 0; i < iterations; i++) {
+            h ^= h >> 13;
+            h *= m;
+            h ^= h >> 15;
+        }
+
+        std::string result;
+        result.resize(8);
+        memcpy(&result[0], &h, 8);
+        return result;
+    }
+
+

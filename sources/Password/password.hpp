@@ -24,7 +24,7 @@ class Profile {
     bool validate_password(std::string password);
 
     std::string encrypt(std::string password);
-    std::string hash_it(std::string CandidatePass);
+    std::string hash_it(const std::string& CandidatePass);
 
     void generate_salt();
     std::string generate_random(int length);
