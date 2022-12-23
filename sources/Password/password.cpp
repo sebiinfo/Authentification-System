@@ -55,8 +55,6 @@ bool Profile::validate_password(std::string password) {
 Profile::Profile() {
     // Initializes everything
     random = 0;
-    Q = 1<<31;
-    Q-=1;
     salt = "";
     hashed = "";
     user = "";
@@ -118,25 +116,6 @@ std::string Profile::encrypt(std::string password) {
     return h;
 }
 
-
-/*
-std::string Profile::hash_it(std::string CandidatePass) {
-    int length_CandidatePass = CandidatePass.length();
-    long long hp = 0;
-
-    srand(time(0));
-    if (random == 0) {
-        random = rand() % (Q - 1) + 1; // generating random value x
-    }
-    for (int i = 0; i < length_CandidatePass; i++) {
-        hp = (random * hp) % Q; // calculating hash of Password
-        hp += CandidatePass[i];
-        hp %= Q;
-    }
-    std::string h = std::to_string(hp);
-    return h;
-}
-*/
 void Profile::generate_salt() { salt = generate_random(10); }
 
 void Profile::set_random(long long r) { random = r; }

@@ -41,7 +41,6 @@ class Profile {
     std::string user;
     std::string hashed;
     std::string salt;
-    int Q;
     long long random;
 };
 
