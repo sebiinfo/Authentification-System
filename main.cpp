@@ -1,15 +1,16 @@
 #include <iostream>
-
 #include <opencv2/core/mat.hpp>
-#include "cropimage.hpp"
-#include "Facedata.hpp"
-#include "rescale.hpp"
-using namespace std;
+//#include "cropimage.hpp"
+//#include "Facedata.hpp"
+//#include "rescale.hpp"
+#include "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/test/test.cpp"
 
-using namespace cv;
 int main() {
-    Mat image = imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\image.jpg");
-    Mat resizedImage = rescaleImage(image, 224, 224);
-    imwrite("C:\\Users\\USER\\CLionProjects\\Authentification-System\\imageout.jpg", resizedImage);
+
+    // Please use testing functions from the test directory
+
+    HelloWorld();
+
+//    cv::Mat image = imread();
 
 }

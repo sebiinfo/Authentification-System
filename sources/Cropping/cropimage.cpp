@@ -5,7 +5,11 @@
 #include "cropimage.hpp"
 
 
-void cropOne (cv::Mat& image ,int x1,int x2,int y1,int y2){
+void cropOne (cv::Mat& image ,int x1,int x2,int y1,int y2)
+    {
+    //  y2
+    //
+    //  x1:y1      x1
     image = image(cv::Range(y1,y2), cv::Range(x1,x2));
     };
 
