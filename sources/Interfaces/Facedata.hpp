@@ -2,7 +2,9 @@
 #define AUTHENTICATION_SYSTEM_VECTOR_ID_HPP
 
 #endif // AUTHENTICATION_SYSTEM_VECTOR_ID_HPP
+
 #include <opencv2/core/mat.hpp>
+
 struct Facedata {
     int id;
     cv::Mat_<double> entries;

@@ -2,14 +2,27 @@
 
 #include <opencv2/core/mat.hpp>
 #include "cropimage.hpp"
-#include "Facedata.hpp"
 #include "rescale.hpp"
-using namespace std;
+#include "classification.hpp"
+#include <random>
 
 using namespace cv;
+
 int main() {
-    Mat image = imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\image.jpg");
-    Mat resizedImage = rescaleImage(image, 224, 224);
-    imwrite("C:\\Users\\USER\\CLionProjects\\Authentification-System\\imageout.jpg", resizedImage);
+    std::vector<Facedata> vect;
+    for (int i = 0; i < 1000; i++) {
+        Facedata data;
+        data.id = i;
+        Mat_<double> mat;
+        mat.create(1, 50);
+        for (int j = 0; j < 50; j++) {
+            mat[0][j] = rand();
+        }
+        data.entries = mat;
+        vect.push_back(data);
+    }
+
+    KNN algo(vect);
+    std::cout << algo.classify(vect[465]) << std::endl;
 
 }

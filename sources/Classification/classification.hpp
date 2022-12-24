@@ -10,26 +10,35 @@
 #include "../Interfaces/Facedata.hpp"
 #include <iostream>
 #include <opencv2/core/mat.hpp>
+#include "../Interfaces/best_split_type.hpp"
 
+// should we use a namespace?
 class Classification {
-  public:
+public:
     std::vector<Facedata> data;
     int dimension_data, length_vector;
 
     Classification(std::vector<Facedata> data);
-    ~Classification();
+    // ~Classification();
 };
 
 class KNN : public Classification {
-  public:
+public:
     int k;
+
     KNN(std::vector<Facedata> data);
+
+    static bool compare(const Facedata &v1, const Facedata &v2);
+
+    int classify(const Facedata &query);
+
+private:
     double compute_distance(Facedata query,
                             int i); // computes Euclidian distance between a
-                                    // query and ith vector in data
-    static bool compare(Facedata v1, Facedata v2);
-    int classify(Facedata query);
+    // query and ith vector in data
+
 };
+
 
 class Node {
 public:
