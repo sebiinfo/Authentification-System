@@ -59,3 +59,16 @@ int KNN::classify(Facedata query) {
     }
     return max_id;
 }
+
+std::vector <double>  Node::get_thresholds(int entry) {
+    std::set<double> threshold_set;
+    for (auto & face : node_data){
+        threshold_set.insert(face.entries.at<double>(0, entry));
+    }
+    std::vector <double> thresholds;
+
+    for (auto & t : threshold_set){
+        thresholds.push_back(t);
+    }
+    return thresholds;
+}
