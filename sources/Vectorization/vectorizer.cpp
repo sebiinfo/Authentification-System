@@ -1,4 +1,4 @@
-#include "Vectorizer.hpp"
+#include "vectorizer.hpp"
 #include <cassert>
 #include <opencv2/core.hpp>
 

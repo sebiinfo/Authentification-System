@@ -1,5 +1,4 @@
 #include "fisher.hpp"
-#include "Vectorizer.hpp"
 #include <opencv2/core.hpp>
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/mat.hpp>

@@ -1,10 +1,10 @@
 #ifndef AUTHENTICATION_SYSTEM_FISHER_HPP
 #define AUTHENTICATION_SYSTEM_FISHER_HPP
 
-#include "Vectorizer.hpp"
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
+#include "vectorizer.hpp"
 #include <opencv2/core/mat.hpp>
 
 class Fisher : public Vectorizer {
