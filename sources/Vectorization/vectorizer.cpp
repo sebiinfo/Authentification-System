@@ -9,17 +9,4 @@ Vectorizer::Vectorizer(int num_people, int num_feature) {
 
 Vectorizer::~Vectorizer() {}
 
-std::vector<float> Vectorizer::vectorize(cv::Mat image,
-                                         std::vector<cv::Rect> faces) {
-    assert(false);
-}
-std::vector<float> Vectorizer::vectorize(cv::Mat image) { assert(false); }
-void Vectorizer::vectorize_update(
-    cv::Mat image, std::vector<cv::Rect> faces,
-    std::vector<std::vector<float>> numerical_reps) {
-    assert(false);
-}
-void Vectorizer::vectorize_update(
-    cv::Mat image, std::vector<std::vector<float>> numerical_reps) {
-    assert(false);
-}
+cv::Mat Vectorizer::vectorize(cv::Mat &image) { assert(false); }

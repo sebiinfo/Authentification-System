@@ -1,4 +1,5 @@
 #include "fisher.hpp"
+#include "vectorizer.cpp"
 #include <iostream>
 #include <opencv2/core.hpp>
 #include <opencv2/core/base.hpp>
@@ -9,7 +10,11 @@
 Fisher::Fisher(int num_people, int num_feature)
     : Vectorizer(num_people, num_feature) {
     load_images();
+    lda = cv::LDA(num_feature);
+    lda.compute(images, labels);
 }
+
+Fisher::~Fisher() {}
 
 cv::Mat Fisher::normalize(cv::InputArray &src) {
     int channels = src.channels();
@@ -22,27 +27,26 @@ cv::Mat Fisher::normalize(cv::InputArray &src) {
     return out;
 }
 
-void Fisher::train(std::vector<cv::Mat> &images, std::vector<int> &labels) {
-    cv::LDA lda(num_feature);
-    lda.compute(images, labels);
-}
-
 void Fisher::load_images() {
+    std::cout << "Loading Training Images" << std::endl;
     std::string filename, base_filename;
     for (int label = 1; label <= num_people; label++) {
-        base_filename = "./" + std::to_string(label) + "/";
+        base_filename = "./yalefaces/train/" + std::to_string(label) + "/";
         for (int i = 1; i <= 9; i++) {
             filename = base_filename + std::to_string(i);
-            filename = base_filename + ".pgm";
-            cv::Mat image = cv::imread(base_filename, 0);
+            filename = filename + ".png";
+            cv::Mat image = cv::imread(filename);
             cv::Mat flat_image = image.reshape(1, 1);
             images.push_back(flat_image);
             labels.push_back(label);
         }
     }
-    for (int i = 0; i < labels.size(); i++) {
-        std::cout << labels[i] << std::endl;
-    }
+    /* std::cout << "M = " << std::endl
+              << " " << images[0] << std::endl
+              << std::endl; */
+    std::cout << "Finished Loading" << std::endl;
 }
+
+cv::Mat Fisher::vectorize(cv::Mat &image) { return lda.project(image); }
 
 int main() { Fisher f = Fisher(15, 10); }
