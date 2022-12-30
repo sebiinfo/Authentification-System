@@ -10,7 +10,7 @@ class Vectorizer {
   public:
     Vectorizer(int num_people, int num_feature);
     ~Vectorizer();
-    virtual std::vector<float> vectorize(cv::Mat & image);
+    virtual cv::Mat vectorize(cv::Mat & image);
 
     int num_people;
     int num_feature;
