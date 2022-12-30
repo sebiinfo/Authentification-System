@@ -9,13 +9,12 @@
 
 class Fisher : public Vectorizer {
   public:
-    Fisher();
     Fisher(int num_people, int num_feature);
     ~Fisher();
 
   private:
-    cv::Mat normalize(cv::InputArray);
-    std::vector<cv::Mat> images = std::vector<cv::Mat>();
+    cv::Mat normalize(cv::InputArray &src);
+    void load_images() std::vector<cv::Mat> images = std::vector<cv::Mat>();
     std::vector<int> labels = std::vector<int>();
     void train(std::vector<cv::Mat> &images, std::vector<int> &labels);
     int num_components;

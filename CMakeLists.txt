@@ -5,7 +5,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(${PROJECT_NAME} main.cpp)
+# add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} sources/Vectorization/fisher.cpp)
 
 find_package(OpenCV REQUIRED)
 find_package(Qt6 OPTIONAL_COMPONENTS Core)
