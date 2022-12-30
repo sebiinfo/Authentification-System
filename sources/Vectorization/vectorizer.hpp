@@ -8,19 +8,9 @@ class Vectorizer {
     A base class for different vectorization methods that would be implement
     */
   public:
-    Vectorizer();
     Vectorizer(int num_people, int num_feature);
     ~Vectorizer();
-    int predict(cv::Mat);
-    virtual std::vector<float> vectorize(cv::Mat image,
-                                         std::vector<cv::Rect> faces);
-    virtual std::vector<float> vectorize(cv::Mat image);
-    virtual void
-    vectorize_update(cv::Mat image, std::vector<cv::Rect> faces,
-                     std::vector<std::vector<float>> numerical_reps);
-    virtual void
-    vectorize_update(cv::Mat image,
-                     std::vector<std::vector<float>> numerical_reps);
+    virtual std::vector<float> vectorize(cv::Mat & image);
 
     int num_people;
     int num_feature;
