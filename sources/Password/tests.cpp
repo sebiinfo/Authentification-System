@@ -7,7 +7,8 @@
 #include <string>
 #include <vector>
 
-void Test::tests() {
+void TestPassword::tests() {
+    std::cout << "Starting test ..." << std::endl;
     // Function to test the hashes
     std::vector<std::string> list_of_words;
     /* std::ifstream infile(
@@ -29,23 +30,27 @@ void Test::tests() {
         list_of_hash.push_back(hash);
     }
     compare(list_of_hash, list_of_words);
+    std::cout << "Test finished !" << std::endl;
+    std::cout << "Results of the test are in the file results_test0.txt"
+              << std::endl;
 }
 
-void Test::compare(std::vector<std::string> list_hash,
-                   std::vector<std::string> list_words) {
+void TestPassword::compare(std::vector<std::string> list_hash,
+                           std::vector<std::string> list_words) {
     // Function to compare the hashes
     /* std::ofstream outfile(
         "/Users/jwatissee/Desktop/cmake-build-debug/results_test.txt"); */
     std::ofstream outfile("./results_test0.txt");
-    std::vector<std::pair<std::string,std::string>> hash_and_pwd;
-    for(int i=0; i<list_hash.size();i++){
-        hash_and_pwd.push_back(std::make_pair(list_hash[i],list_words[i]));
+    std::vector<std::pair<std::string, std::string>> hash_and_pwd;
+    for (int i = 0; i < list_hash.size(); i++) {
+        hash_and_pwd.push_back(std::make_pair(list_hash[i], list_words[i]));
     }
     std::sort(hash_and_pwd.begin(), hash_and_pwd.end());
-    for (int i = 0; i < list_hash.size()-1; i++) {
+    for (int i = 0; i < list_hash.size() - 1; i++) {
         // outfile << list_hash[i] << std::endl;
-        if (hash_and_pwd[i].first == hash_and_pwd[i+1].first) {
-            outfile << "Same hash: " << hash_and_pwd[i].second << " and "<< hash_and_pwd[i+1].second<< "found !"<< std::endl;
+        if (hash_and_pwd[i].first == hash_and_pwd[i + 1].first) {
+            outfile << "Same hash: " << hash_and_pwd[i].second << " and "
+                    << hash_and_pwd[i + 1].second << "found !" << std::endl;
         }
     }
     outfile.close();
