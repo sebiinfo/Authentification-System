@@ -8,12 +8,13 @@
 #include <string>
 
 static cv::Mat formatImagesForPCA(const std::vector<cv::Mat> &data) {
-    cv::Mat dst(static_cast<int>(data.size()), data[0].rows * data[0].cols,
-                CV_32F);
+    // cv::Mat dst(static_cast<int>(data.size()), data[0].rows * data[0].cols,
+    // CV_32F);
+    cv::Mat dst(data.size(), data[0].rows * data[0].cols, CV_32F);
     for (unsigned int i = 0; i < data.size(); i++) {
         cv::Mat image_row = data[i].clone().reshape(1, 1);
-        cv::Mat row_i = dst.row(i);
-        image_row.convertTo(row_i, CV_32F);
+        // cv::Mat row_i = dst.row(i);
+        image_row.convertTo(dst.row(i), CV_32F);
     }
     return dst;
 }
@@ -31,7 +32,7 @@ Fisher::Fisher(int num_people, int num_feature)
 
 Fisher::~Fisher() {}
 
-cv::Mat Fisher::normalize(cv::InputArray &src) {
+/* cv::Mat Fisher::normalize(cv::InputArray &src) {
     int channels = src.channels();
     cv::Mat out;
     if (channels == 1 || channels == 3) {
@@ -40,7 +41,7 @@ cv::Mat Fisher::normalize(cv::InputArray &src) {
         src.copyTo(out);
     }
     return out;
-}
+} */
 
 void Fisher::load_images() {
     std::cout << "Loading Training Images" << std::endl;
@@ -59,7 +60,6 @@ void Fisher::load_images() {
             labels.push_back(label);
         }
     }
-    std::cout << images[0].size << std::endl;
     /* std::cout << "M = " << std::endl
               << " " << images[0] << std::endl
               << std::endl; */
