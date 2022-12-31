@@ -9,4 +9,7 @@ Vectorizer::Vectorizer(int num_people, int num_feature) {
 
 Vectorizer::~Vectorizer() {}
 
-cv::Mat Vectorizer::vectorize(cv::Mat &image) { assert(false); }
+cv::Mat Vectorizer::vectorize(cv::Mat &image) { 
+    assert(false);
+    return cv::Mat(); 
+}

@@ -18,7 +18,9 @@ class Fisher : public Vectorizer {
     void load_images();
     std::vector<cv::Mat> images = std::vector<cv::Mat>();
     std::vector<int> labels = std::vector<int>();
+    cv::PCA pca;
     cv::LDA lda;
     int num_components;
+    int dim;
 };
 #endif // AUTHENTICATION_SYSTEM_FISHER_HPP

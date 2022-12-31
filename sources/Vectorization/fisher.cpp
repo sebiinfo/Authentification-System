@@ -10,9 +10,16 @@
 Fisher::Fisher(int num_people, int num_feature)
     : Vectorizer(num_people, num_feature) {
     load_images();
+    dim = images.size();
+    std::cout<<1<<std::endl;
+    pca = cv::PCA(images, cv::Mat(), cv::PCA::DATA_AS_ROW, dim-num_people);
+    std::cout<<2<<std::endl;
     lda = cv::LDA(num_feature);
+    std::cout<<3<<std::endl;
+    images = pca.project(images);
+    std::cout<<4<<std::endl;
     lda.compute(images, labels);
-}
+ }
 
 Fisher::~Fisher() {}
 
