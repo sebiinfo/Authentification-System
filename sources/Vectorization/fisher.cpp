@@ -54,6 +54,9 @@ void Fisher::load_images() {
     std::cout << "Finished Loading" << std::endl;
 }
 
-cv::Mat Fisher::vectorize(cv::Mat &image) { return lda.project(image); }
+cv::Mat Fisher::vectorize(cv::Mat &image) {
+    cv::Mat output = pca.project(image);
+    return lda.project(output);
+}
 
 int main() { Fisher f = Fisher(15, 10); }
