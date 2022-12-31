@@ -7,23 +7,32 @@
 #include <opencv2/core/matx.hpp>
 #include <string>
 
+static cv::Mat formatImagesForPCA(const std::vector<cv::Mat> &data) {
+    // cv::Mat dst(static_cast<int>(data.size()), data[0].rows * data[0].cols,
+    // CV_32F);
+    cv::Mat dst(data.size(), data[0].rows * data[0].cols, CV_32F);
+    for (unsigned int i = 0; i < data.size(); i++) {
+        cv::Mat image_row = data[i].clone().reshape(1, 1);
+        // cv::Mat row_i = dst.row(i);
+        image_row.convertTo(dst.row(i), CV_32F);
+    }
+    return dst;
+}
+
 Fisher::Fisher(int num_people, int num_feature)
     : Vectorizer(num_people, num_feature) {
     load_images();
     dim = images.size();
-    std::cout<<1<<std::endl;
-    pca = cv::PCA(images, cv::Mat(), cv::PCA::DATA_AS_ROW, dim-num_people);
-    std::cout<<2<<std::endl;
+    cv::Mat data = formatImagesForPCA(images);
+    cv::PCA pca(data, cv::Mat(), cv::PCA::DATA_AS_ROW, dim - num_components);
+    data = pca.project(data);
     lda = cv::LDA(num_feature);
-    std::cout<<3<<std::endl;
-    images = pca.project(images);
-    std::cout<<4<<std::endl;
-    lda.compute(images, labels);
- }
+    lda.compute(data, labels);
+}
 
 Fisher::~Fisher() {}
 
-cv::Mat Fisher::normalize(cv::InputArray &src) {
+/* cv::Mat Fisher::normalize(cv::InputArray &src) {
     int channels = src.channels();
     cv::Mat out;
     if (channels == 1 || channels == 3) {
@@ -32,7 +41,7 @@ cv::Mat Fisher::normalize(cv::InputArray &src) {
         src.copyTo(out);
     }
     return out;
-}
+} */
 
 void Fisher::load_images() {
     std::cout << "Loading Training Images" << std::endl;
@@ -44,6 +53,9 @@ void Fisher::load_images() {
             filename = filename + ".png";
             cv::Mat image = cv::imread(filename);
             cv::Mat flat_image = image.reshape(1, 1);
+            /* int rows = flat_image.rows;
+            int cols = flat_image.cols;
+            std::cout << rows << ", " << cols << std::endl; */
             images.push_back(flat_image);
             labels.push_back(label);
         }
