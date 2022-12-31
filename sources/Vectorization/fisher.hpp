@@ -11,15 +11,18 @@ class Fisher : public Vectorizer {
   public:
     Fisher(int num_people, int num_feature);
     ~Fisher();
-    cv::Mat vectorize(cv::Mat &image);
+    cv::Mat vectorize(const cv::Mat &image);
+    int predict_label(const cv::Mat &projection);
+    cv::PCA pca;
+    cv::LDA lda;
 
   private:
     cv::Mat normalize(cv::InputArray &src);
+    void vectorize_trainset();
     void load_images();
-    std::vector<cv::Mat> images = std::vector<cv::Mat>();
-    std::vector<int> labels = std::vector<int>();
-    cv::PCA pca;
-    cv::LDA lda;
+    std::vector<cv::Mat> images;
+    std::vector<int> labels;
+    cv::Mat vectorized_images;
     int num_components;
     int dim;
 };
