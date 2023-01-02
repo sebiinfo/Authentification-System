@@ -9,6 +9,8 @@
 
 class Fisher : public Vectorizer {
   public:
+    Fisher(int num_people, int num_feature, std::vector<cv::Mat> &images,
+           std::vector<int> &labels);
     Fisher(int num_people, int num_feature);
     ~Fisher();
     cv::Mat vectorize(const cv::Mat &image);

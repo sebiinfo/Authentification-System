@@ -1,11 +1,12 @@
 #ifndef AUTHENTICATION_SYSTEM_MODEL_HPP
 #define AUTHENTICATION_SYSTEM_MODEL_HPP
 
+#include "../Classification/classifier.hpp"
+#include "../Localization/localizer.hpp"
+#include "../Vectorization/vectorizer.hpp"
 #include "Facedata.hpp"
-#include "localizer.hpp"
-#include "vectorizer.hpp"
-#include "classifier.hpp"
 #include <opencv2/core.hpp>
+#include <opencv2/core/mat.hpp>
 #include <string>
 
 class Model {
@@ -26,13 +27,14 @@ class Model {
     */
   public:
     Model(int num_people, int num_feature, int width, int height,
-          std::string localizer, std::string vectorizer, std::string classifier);
+          std::string localizer, std::string vectorizer,
+          std::string classifier);
     ~Model();
 
-    void predict(cv::Mat image, std::vector<cv::Rect> *faces,
-                 std::vector<int> *ids);
-    std::vector<int> predict(cv::Mat image);
-  
+    void predict(cv::Mat &image, std::vector<cv::Rect> &faces,
+                 std::vector<int> &ids);
+    std::vector<int> predict(cv::Mat &image);
+
   private:
     void load_train_images();
 
@@ -40,12 +42,11 @@ class Model {
     int num_feature;
     int width;
     int height;
-    int train_images;
-    int train_label;
-    Localizer *localizer;
+    std::vector<cv::Mat> train_images;
+    std::vector<int> train_labels;
     Vectorizer *vectorizer;
+    Localizer *localizer;
     Classifier *classifier;
-    
 };
 
 #endif // AUTHENTICATION_SYSTEM_MODEL_HPP
