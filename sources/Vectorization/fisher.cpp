@@ -29,10 +29,12 @@ static void print_dims(cv::Mat m) {
 }
 
 Fisher::Fisher(int num_people, int num_feature)
-    : Vectorizer(num_people, num_feature) {
-    load_images();
+    : Vectorizer(num_people, num_feature) {}
+
+Fisher::Fisher(int num_people, int num_feature, std::vector<cv::Mat> &images,
+               std::vector<int> &labels)
+    : Fisher(num_people, num_feature) {
     dim = images.size();
-    std::cout << num_people << " " << dim << std::endl;
     cv::Mat data = formatImagesForPCA(images);
     pca = cv::PCA(data, cv::Mat(), cv::PCA::DATA_AS_ROW, dim - num_people);
     std::cout << "Created PCA" << std::endl;
@@ -43,42 +45,6 @@ Fisher::Fisher(int num_people, int num_feature)
     std::cout << "Created LDA" << std::endl;
     vectorized_images = lda.project(data);
     // vectorize_trainset();
-}
-
-Fisher::~Fisher() {}
-
-/* cv::Mat Fisher::normalize(cv::InputArray &src) {
-    int channels = src.channels();
-    cv::Mat out;
-    if (channels == 1 || channels == 3) {
-        cv::normalize(src, out, 0, 255, cv::NORM_MINMAX, channels);
-    } else {
-        src.copyTo(out);
-    }
-    return out;
-} */
-
-void Fisher::load_images() {
-    std::cout << "Loading Training Images" << std::endl;
-    std::string filename, base_filename;
-    for (int label = 1; label <= num_people; label++) {
-        base_filename = "./yalefaces/train/" + std::to_string(label) + "/";
-        for (int i = 1; i <= 9; i++) {
-            filename = base_filename + std::to_string(i);
-            filename = filename + ".png";
-            cv::Mat image = cv::imread(filename);
-            cv::Mat flat_image = image.reshape(1, 1);
-            /* int rows = flat_image.rows;
-            int cols = flat_image.cols;
-            std::cout << rows << ", " << cols << std::endl; */
-            images.push_back(flat_image);
-            labels.push_back(label);
-        }
-    }
-    /* std::cout << "M = " << std::endl
-              << " " << images[0] << std::endl
-              << std::endl; */
-    std::cout << "Finished Loading" << std::endl;
 }
 
 cv::Mat Fisher::vectorize(const cv::Mat &image) {

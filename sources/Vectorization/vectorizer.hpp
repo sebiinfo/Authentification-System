@@ -8,9 +8,11 @@ class Vectorizer {
     A base class for different vectorization methods that would be implement
     */
   public:
+    Vectorizer(int num_people, int num_feature, std::vector<cv::Mat> &images,
+               std::vector<int> &labels);
     Vectorizer(int num_people, int num_feature);
     ~Vectorizer();
-    virtual cv::Mat vectorize(cv::Mat & image);
+    virtual cv::Mat vectorize(cv::Mat &image);
 
     int num_people;
     int num_feature;

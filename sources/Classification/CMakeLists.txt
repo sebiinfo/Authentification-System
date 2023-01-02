@@ -1,4 +1,4 @@
-add_library(Classification classification.cpp)
+add_library(Classification classifier.cpp)
 
 target_include_directories(Classification PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

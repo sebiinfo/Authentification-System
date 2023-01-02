@@ -4,10 +4,10 @@
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
-#include <opencv2/core/mat.hpp>
 #include <cassert>
+#include <opencv2/core/mat.hpp>
 
-class Localizer{
+class Localizer {
   public:
     Localizer();
     Localizer(int w);

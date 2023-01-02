@@ -5,37 +5,19 @@
 #ifndef AUTHENTICATION_SYSTEM_CLASSIFICATION_HPP
 #define AUTHENTICATION_SYSTEM_CLASSIFICATION_HPP
 
-#endif // AUTHENTICATION_SYSTEM_CLASSIFICATION_HPP
-
 #include "../Interfaces/Facedata.hpp"
 #include "../Interfaces/best_split_type.hpp"
 #include <iostream>
 #include <opencv2/core/mat.hpp>
 
 // should we use a namespace?
-class Classification {
+class Classifier {
   public:
     std::vector<Facedata> data;
     int dimension_data, length_vector;
 
-    Classification(std::vector<Facedata> data);
+    Classifier(std::vector<Facedata> data);
     // ~Classification();
-};
-
-class KNN : public Classification {
-  public:
-    int k;
-
-    KNN(std::vector<Facedata> data);
-
-    static bool compare(const Facedata &v1, const Facedata &v2);
-
-    int classify(const Facedata &query);
-
-  private:
-    double compute_distance(Facedata query,
-                            int i); // computes Euclidian distance between a
-    // query and ith vector in data
 };
 
 class Node {
@@ -64,7 +46,7 @@ class Node {
     // we instantly look for the best split everytime we build a node
 };
 
-class DecisionTree : public Classification {
+class DecisionTree : public Classifier {
   public:
     DecisionTree(std::vector<Facedata> data);
 
@@ -75,3 +57,5 @@ class DecisionTree : public Classification {
     int classify(Facedata query);
     // int max_depth;    it is a choice weather we do it
 };
+
+#endif // AUTHENTICATION_SYSTEM_CLASSIFICATION_HPP
