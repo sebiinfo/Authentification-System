@@ -34,9 +34,9 @@ class Model {
           std::string classifier);
     ~Model();
 
-    void predict(cv::Mat &image, std::vector<cv::Rect> &faces,
-                 std::vector<int> &ids);
-    std::vector<int> predict(cv::Mat &image);
+    std::vector<int> predict(cv::Mat & image, std::vector<cv::Rect> & faces);
+    std::vector<int> predict(cv::Mat & image);
+    int predict_most_likely(cv::Mat & image);
 
   private:
     void load_train_images();
