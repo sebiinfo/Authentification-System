@@ -14,13 +14,10 @@ class Cascade_Detector_CV : public Localizer {
     Cascade_Detector_CV(w, h);
     ~Cascade_Detector_CV();
 
-    std::vector<cv::Rect> localize_rect(cv::Mat & image);
-    std::vector<cv::Mat> localize(cv::Mat & image);
+    void localize_rect(cv::Mat & image, std::vector<cv::Rect> faces);
 
   private:
     cv::CascadeClassifier cascade;
-    int w = 224;
-    int h = 224;
 };
 
 #endif // AUTHENTICATION_SYSTEM_CASCADE_CV_HPP
