@@ -28,12 +28,20 @@ Model::Model(int num_people, int num_feature, int width, int height,
     if (classifier == "KNN") {this->classifier = KNN(num_people, num_feature);}
     else {assert(false);}
 
+    this->vectorizer->train(train_images, train_labels);
 }
 
 Model::~Model() {}
 
-std::vector<int> Model::predict(cv::Mat image, std::vector<cv::Rect> & faces) {
-    std::vector<cv::Mat> numerical_reps;
+std::vector<int> Model::predict(cv::Mat & image, std::vector<cv::Rect> & faces) {
+    std::vector<cv::Mat> in_faces = localizer->localize(image, faces);
+    std::vector<int> output;
+    for (int i = 0; i < in_faces.size(); i++) {
+        cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);
+        output.push_back(classifier->classify(numerical_reps));
+    }
+    return output;
+
 
     /* localizer.localize_update(
         image, faces); // hopefully this loads up faces with faces :)
