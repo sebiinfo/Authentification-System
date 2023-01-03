@@ -13,6 +13,8 @@ class Fisher : public Vectorizer {
            std::vector<int> &labels);
     Fisher(int num_people, int num_feature);
     ~Fisher();
+    void train(std::vector<cv::Mat> &train_images,
+               std::vector<int> &train_labels);
     cv::Mat vectorize(const cv::Mat &image);
     int predict_label(const cv::Mat &projection);
     cv::PCA pca;
@@ -26,6 +28,5 @@ class Fisher : public Vectorizer {
     std::vector<int> labels;
     cv::Mat vectorized_images;
     int num_components;
-    int dim;
 };
 #endif // AUTHENTICATION_SYSTEM_FISHER_HPP

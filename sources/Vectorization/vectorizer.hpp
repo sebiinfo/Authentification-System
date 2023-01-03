@@ -13,7 +13,8 @@ class Vectorizer {
     Vectorizer(int num_people, int num_feature);
     ~Vectorizer();
 
-    virtual void train(std::vector<cv::Mat> train_images, std::vector<int> train_labels);
+    virtual void train(std::vector<cv::Mat> &train_images,
+                       std::vector<int> &train_labels);
     virtual cv::Mat vectorize(cv::Mat &image);
 
     int num_people;

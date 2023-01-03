@@ -34,16 +34,22 @@ Fisher::Fisher(int num_people, int num_feature)
 Fisher::Fisher(int num_people, int num_feature, std::vector<cv::Mat> &images,
                std::vector<int> &labels)
     : Fisher(num_people, num_feature) {
-    dim = images.size();
-    cv::Mat data = formatImagesForPCA(images);
-    pca = cv::PCA(data, cv::Mat(), cv::PCA::DATA_AS_ROW, dim - num_people);
+    this->train(images, labels);
+}
+
+void Fisher::train(std::vector<cv::Mat> &train_images,
+                   std::vector<int> &train_labels) {
+    int dim = images.size();
+    cv::Mat train_data = formatImagesForPCA(train_images);
+    pca =
+        cv::PCA(train_data, cv::Mat(), cv::PCA::DATA_AS_ROW, dim - num_people);
     std::cout << "Created PCA" << std::endl;
-    data = pca.project(data);
-    print_dims(data);
+    train_data = pca.project(train_data);
+    print_dims(train_data);
     lda = cv::LDA(num_feature);
-    lda.compute(data, labels);
+    lda.compute(train_data, labels);
     std::cout << "Created LDA" << std::endl;
-    vectorized_images = lda.project(data);
+    vectorized_images = lda.project(train_data);
     // vectorize_trainset();
 }
 
@@ -114,8 +120,8 @@ void test_fisher(Fisher &F) {
     }
 }
 
-int main() {
+/* int main() {
     Fisher f = Fisher(15, 14);
     std::cout << "starting to test" << std::endl;
     test_fisher(f);
-}
+} */
