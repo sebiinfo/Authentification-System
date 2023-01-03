@@ -19,19 +19,25 @@ Model::Model(int num_people, int num_feature, int width, int height,
     this->width = width;
     this->height = height;
 
-    if (localizer == "Cascade") {this->localizer = Cascade_Detector_CV(width, height);}
+    if (localizer == "Cascade") {this->localizer = new Cascade_Detector_CV(width, height);}
     else {assert(false);}
 
-    if (vectorizer == "Fisher") {this->vectorizer = Fisher(num_people, num_feature);}
+    if (vectorizer == "Fisher") {this->vectorizer = new Fisher(num_people, num_feature);}
     else {assert(false);}
 
-    if (classifier == "KNN") {this->classifier = KNN(num_people, num_feature);}
+    if (classifier == "KNN") {this->classifier = new KNN(num_people, num_feature);}
     else {assert(false);}
 
+    this->load_train_images();
     this->vectorizer->train(train_images, train_labels);
+    this->classifier->train(train_images, train_labels);
 }
 
-Model::~Model() {}
+Model::~Model() {
+    delete localizer;
+    delete vectorizer;
+    delete classifier;
+}
 
 std::vector<int> Model::predict(cv::Mat & image, std::vector<cv::Rect> & faces) {
     std::vector<cv::Mat> in_faces = localizer->localize(image, faces);
