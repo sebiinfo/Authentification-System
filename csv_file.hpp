@@ -17,6 +17,7 @@ public:
     bool check_email(std::string file_name, std::string email_given);                                                        // Check if the username and password are correct, matching
     bool change_email(std::string file_name, std::string username_given, std::string password_given, std::string new_email); // change email account was registered with
     void delete_data();                                                                                                      // Deletes information from the CSV file
+    bool delete_user(std::string file_name, std::string username_given, std::string password_given);                         // Deletes one user from the CSV file
 
 private:
     std::string file_name;

@@ -15,12 +15,14 @@ Database::Database(std::string file_name)
     this->file_name = file_name;
 }
 
-// registration, adding data to csv file, there are 5 parameters: username, name, last name, password and email (in this order)
+// registration, adding data to csv file, there are 6 parameters: randomly generated 4 digit id, username, name, last name, password and email (in this order)
 bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string email)
 {
     std::ofstream file;
     file.open(file_name, std::ios_base::app);
-    file << username << ',' << name << ',' << last_name << ',' << email << ',' << password << std::endl;
+    int number = rand() % 9000 + 1000;
+    std::string id = std::to_string(number);
+    file << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << std::endl;
     file.close();
 
     return true;
@@ -34,14 +36,16 @@ std::vector<std::string> Database ::readRecordFromFile(std::string file_name, st
     file.open(file_name);
 
     bool found = false;
+    std::string id;
     std::string username;
     std::string name;
     std::string last_name;
     std::string password;
     std::string email;
 
-    while (getline(file, username, ',') && !found)
+    while (getline(file, id, ',') && !found)
     {
+        getline(file, username, ',');
         getline(file, name, ',');
         getline(file, last_name, ',');
         getline(file, password, ',');
@@ -49,6 +53,7 @@ std::vector<std::string> Database ::readRecordFromFile(std::string file_name, st
         if (username == username_search)
         {
             found = true;
+            record.push_back(id);
             record.push_back(username);
             record.push_back(name);
             record.push_back(last_name);
@@ -56,7 +61,14 @@ std::vector<std::string> Database ::readRecordFromFile(std::string file_name, st
             record.push_back(email);
         }
     }
-    std::cout << record[0] << " " << record[1] << " " << record[2] << " " << record[3] << " " << record[4] << std::endl;
+    if (found)
+    {
+        std::cout << record[0] << " " << record[1] << " " << record[2] << " " << record[3] << " " << record[4] << " " << record[5] << std::endl;
+    }
+    else
+    {
+        std::cout << "Username not found" << std::endl;
+    }
     return record;
 }
 
@@ -66,6 +78,7 @@ bool Database::checkPasswordandUsername(std::string file_name, std::string usern
     std::vector<std::string> record;
     std::ifstream file;
     file.open(file_name);
+    std::string id;
     std::string username;
     std::string name;
     std::string last_name;
@@ -74,8 +87,9 @@ bool Database::checkPasswordandUsername(std::string file_name, std::string usern
 
     bool found = false;
 
-    while (getline(file, username, ',') && !found)
+    while (getline(file, id, ',') && !found)
     {
+        getline(file, username, ',');
         getline(file, name, ',');
         getline(file, last_name, ',');
         getline(file, password, ',');
@@ -83,39 +97,69 @@ bool Database::checkPasswordandUsername(std::string file_name, std::string usern
         if (username_given == username && password_given == password)
         {
             found = true;
+            std::cout << "Username and password match" << std::endl;
         }
+    }
+    if (!found)
+    {
+        std::cout << "Username and password do not match" << std::endl;
     }
     return found;
 }
 
-// changing email, password and username
-// generates a new password and set it as new password for the username and email
-// enter username and password, then you can change the corresponding email
-
+// change an email when given a username
 bool Database::change_email(std::string file_name, std::string username_given, std::string password_given, std::string new_email)
 {
-    std::vector<std::string> record;
-    bool success = false;
+
+    std::ofstream fout;
+    fout.open("new1.csv", std::ios::out | std::ios::app);
     std::ifstream file;
     file.open(file_name);
+    std::string id;
+    std::string username;
+    std::string name;
+    std::string last_name;
+    std::string password;
+    std::string email;
 
-    if (checkPasswordandUsername(file_name, username_given, password_given))
+    bool found = false;
+    while (getline(file, id, ','))
     {
-        // can I make it return boolean and the data?
-        record = readRecordFromFile(file_name, username_given);
-        record.at(-1) = new_email; // check if works
-        success = true;
+        getline(file, username, ',');
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, '\n');
+
+        if (username_given == username && password_given == password)
+        {
+            found = true;
+            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << new_email << std::endl;
+        }
+        else
+        {
+            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << std::endl;
+        }
     }
-    std::cout << success << std::endl; // print out if the email was changed
-    std::cout << record[0] << " " << record[1] << " " << record[2] << " " << record[3] << " " << record[4] << std::endl;
-    return success;
+    fout.close();
+    file.close();
+
+    // removing the existing file
+    remove("new.csv");
+
+    // renaming the updated file with the existing file name
+    rename("new1.csv", "new.csv");
+
+    return found;
 }
+
 // check if username is taken
 bool Database::check_username(std::string file_name, std::string username_given)
 {
     std::vector<std::string> record;
     std::ifstream file;
     file.open(file_name);
+    std::string id;
     std::string username;
     std::string name;
     std::string last_name;
@@ -123,15 +167,22 @@ bool Database::check_username(std::string file_name, std::string username_given)
     std::string email;
     bool found = false;
 
-    while (getline(file, username, ',') && !found)
+    while (getline(file, id, ',') && !found)
     {
+        getline(file, username, ',');
         if (username_given == username)
         {
             found = true;
+            std::cout << "username is taken" << std::endl;
         }
+    }
+    if (!found)
+    {
+        std::cout << "username is available" << std::endl;
     }
     return found;
 }
+
 // check if email is taken
 
 bool Database::check_email(std::string file_name, std::string email_given)
@@ -139,6 +190,7 @@ bool Database::check_email(std::string file_name, std::string email_given)
     std::vector<std::string> record;
     std::ifstream file;
     file.open(file_name);
+    std::string id;
     std::string username;
     std::string name;
     std::string last_name;
@@ -146,8 +198,9 @@ bool Database::check_email(std::string file_name, std::string email_given)
     std::string email;
     bool found = false;
 
-    while (getline(file, username, ',') && !found)
+    while (getline(file, id, ',') && !found)
     {
+        getline(file, username, ',');
         getline(file, name, ',');
         getline(file, last_name, ',');
         getline(file, password, ',');
@@ -155,17 +208,63 @@ bool Database::check_email(std::string file_name, std::string email_given)
         if (email_given == email)
         {
             found = true;
+            std::cout << "email is taken" << std::endl;
         }
+    }
+    if (!found)
+    {
+        std::cout << "email is available" << std::endl;
     }
     return found;
 }
-// delete one user
-// a new class for user information and as input functions take user information
+// delete one user when given username and password
+bool Database::delete_user(std::string file_name, std::string username_given, std::string password_given)
+{
+    std::ofstream fout;
+    fout.open("new1.csv", std::ios::out | std::ios::app);
+    std::ifstream file;
+    file.open(file_name);
+    std::string id;
+    std::string username;
+    std::string name;
+    std::string last_name;
+    std::string password;
+    std::string email;
+
+    bool found = false;
+    while (getline(file, id, ','))
+    {
+        getline(file, username, ',');
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, '\n');
+
+        if (username_given == username && password_given == password)
+        {
+            found = true;
+        }
+        else
+        {
+            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << std::endl;
+        }
+    }
+    fout.close();
+    file.close();
+
+    // removing the existing file
+    remove("new.csv");
+
+    // renaming the updated file with the existing file name
+    rename("new1.csv", "new.csv");
+
+    return found;
+}
 
 // deleting data from csv file
 void Database::delete_data()
 {
     std::ofstream ofs;
-    ofs.open("test.txt", std::ofstream::out | std::ofstream::trunc);
+    ofs.open("new.csv", std::ofstream::out | std::ofstream::trunc);
     ofs.close();
 }
