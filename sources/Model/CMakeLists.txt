@@ -1,4 +1,4 @@
-add_library(Model model.cpp)
+add_library(Model model.cpp model.hpp)
 
 target_include_directories(Model INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
