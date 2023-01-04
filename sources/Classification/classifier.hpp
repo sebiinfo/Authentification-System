@@ -10,6 +10,8 @@
 #include <iostream>
 #include <opencv2/core/mat.hpp>
 
+/*
+
 // should we use a namespace?
 class Classifier {
   public:
@@ -17,7 +19,26 @@ class Classifier {
     int dimension_data, length_vector;
 
     Classifier(std::vector<Facedata> data);
+    
     // ~Classification();
+};
+
+*/
+
+class Classifier {
+  public:
+    Classifier(int num_people, int dim);
+    Classifier(int num_people, int dim, std::vector<cv::Mat> &num_reps, std::vector<int> &labels);
+    ~Classifier();
+
+    virtual void train(std::vector<cv::Mat> &num_reps; std::vector<int> &labels);
+    virtual int classify(cv::Mat &image);
+
+  private:
+    int num_people;
+    int dim;
+    std::vector<cv:Mat> num_reps; // numerical representations of the faces
+    std::vector<int> labels;
 };
 
 class Node {
