@@ -1,22 +1,29 @@
 #ifndef AUTHENTICATION_SYSTEM_KNN
 #define AUTHENTICATION_SYSTEM_KNN
 
-#include "Facedata.hpp"
 #include "classifier.hpp"
+#include <opencv2/core/mat.hpp>
+#include <vector>
 
 class KNN : public Classifier {
   public:
     int k;
 
-    KNN(std::vector<Facedata> data);
+    KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
+              std::vector<int> &labels);
 
-    static bool compare(const Facedata &v1, const Facedata &v2);
+    static bool compare(const cv::Mat &v1, const cv::Mat &v2);
 
-    int classify(const Facedata &query);
+    int classify(const cv::Mat &query);
 
-  private:
-    double compute_distance(Facedata query,
-                            int i); // computes Euclidian distance between a
+    // computes Euclidian distance between a
+    double compute_distance(cv::Mat query, int i); 
+    std::vector<double>distance_to_query;
+    int dim;
+    int num_people;
+    std::vector<cv::Mat> num_reps;
+    std::vector<cv::Mat> labels;
+     
     // query and ith vector in data
 };
 
