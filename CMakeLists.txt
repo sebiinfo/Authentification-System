@@ -5,13 +5,15 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp
+#         tests.cpp
+         )
 
 find_package(OpenCV REQUIRED)
 #find_package(Qt6 OPTIONAL_COMPONENTS Core)
 
 add_subdirectory(sources)
-add_subdirectory(images)
+#add_subdirectory(images)
 
 add_subdirectory(libs/opencv)
 if(${Qt6_FOUND})
@@ -29,7 +31,7 @@ target_link_libraries(${PROJECT_NAME}
         PUBLIC ${INCLUDE_QT}
         PUBLIC OpenCVExternalLibrary
         PUBLIC sources
-        PUBLIC images
+#        PUBLIC images
         )
 
-set_target_properties(images PROPERTIES LINKER_LANGUAGE CXX)
+#set_target_properties(images PROPERTIES LINKER_LANGUAGE CXX)
