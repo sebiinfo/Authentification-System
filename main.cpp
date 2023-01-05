@@ -16,10 +16,15 @@
 int main()
 {
    Database database("new.csv");
-   // adding three users to the database
+
+   // check if the file is empty
+   // bool empty = database.check_if_empty("new.csv");
+
+      // adding three users to the database
    // bool writeFile = database.writeDataToFile("new.csv", "jsmith", "John", "Smith", "giraffe1", "john.smith@yahoo.com");
    // bool writeFile1 = database.writeDataToFile("new.csv", "emmax", "Emma", "Stone", "peace567", "emma.stone@yahoo.com");
    // bool writeFile2 = database.writeDataToFile("new.csv", "oskarty", "Oskar", "Tyrone", "oskarisnice", "oskar.tyrone@yahoo.com");
+   // bool writeFile3 = database.writeDataToFile("new.csv", "oskarttty", "Osktar", "Tyronte", "oskaristnice", "oskar.tyrone@yahtoo.com");
 
    // // checking whether the username is in there and returning all the info, last one says username not found
    // std::vector<std::string> data = database.readRecordFromFile("new.csv", "jsmith");
@@ -45,7 +50,8 @@ int main()
    // bool taken_username1 = database.check_username("new.csv", "emmax1");
 
    // deleting a user from the database
-   bool delete_user = database.delete_user("new.csv", "jsmith", "giraffe1");
+   // bool delete_user = database.delete_user("new.csv", "jsmith", "giraffe1");
+
    // deleting all the data from the database
    // database.delete_data();
 
