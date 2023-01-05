@@ -10,7 +10,7 @@ KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
     k = int(sqrt(num_people));
 }
 
-double KNN::compute_distance(cv::Mat query, cv::Mat vect) {
+ double KNN::compute_distance(cv::Mat vect) {
     // todo check weather we need a weigthed sum
     double sum = 0;
     for (int cont = 0; cont < dim; ++cont) {
@@ -21,18 +21,19 @@ double KNN::compute_distance(cv::Mat query, cv::Mat vect) {
 }
 
 bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
-    return (compute_distance(query, v1) < v2.distance_to_query);
+    return (compute_distance(v1) < compute_distance( v2));
 }
 
 int KNN::classify(const cv::Mat &query) {
     // first we store in the distance_to_query field of the struct the right
     // distance
+    this->query=query;
     for (int i = 0; i < num_people; ++i) {
         distance_to_query[i] = compute_distance(query, i);
     }
     // now we want to sort the data in terms of the distance, O(nlogn),
     // n-dimensional trees will maybe be implemented later (O(n))
-    std::sort(data.begin(), data.end(), compare);
+    std::sort(num_reps.begin(), num_reps.end(), compare);
 
     std::map<int, int> id_freq;
     for (int i = 0; i < k; ++i) {
