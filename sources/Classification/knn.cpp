@@ -28,9 +28,6 @@ int KNN::classify(const cv::Mat &query) {
     // first we store in the distance_to_query field of the struct the right
     // distance
     this->query=query;
-    for (int i = 0; i < num_people; ++i) {
-        distance_to_query[i] = compute_distance(query, i);
-    }
     // now we want to sort the data in terms of the distance, O(nlogn),
     // n-dimensional trees will maybe be implemented later (O(n))
     std::sort(num_reps.begin(), num_reps.end(), compare);

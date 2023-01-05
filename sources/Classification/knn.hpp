@@ -18,7 +18,6 @@ public:
 
     // computes Euclidian distance between a
     double compute_distance(cv::Mat vect);
-    std::vector<double>distance_to_query;
     int dim;
     int num_people;
     cv::Mat query;
