@@ -20,9 +20,9 @@ public:
     double compute_distance(cv::Mat vect);
     int dim;
     int num_people;
-    cv::Mat query;
+    static cv::Mat query;
     std::vector<cv::Mat> num_reps;
-    std::vector<cv::Mat> labels;
+    std::vector<int> labels;
 
     // query and ith vector in data
 };
