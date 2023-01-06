@@ -1,4 +1,4 @@
-add_library(test test.cpp)
+knn_current_object(test test.cpp)
 add_subdirectory(images)
 
 #target_include_directories(Cropping INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

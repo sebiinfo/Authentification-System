@@ -25,8 +25,9 @@ Model::Model(int num_people, int num_feature, int width, int height,
     if (vectorizer == "Fisher") {this->vectorizer = new Fisher(num_people, num_feature);}
     else {assert(false);}
 
-    if (classifier == "KNN") {this->classifier = new KNN(num_people, num_feature);}
-    else {assert(false);}
+    //if (classifier == "KNN") {this->classifier = new KNN(num_people, num_feature);}
+    //else {assert(false);}
+    //KNN constructor has 4 arguments. For the moment leave this commented.
 
     this->load_train_images();
     this->vectorizer->train(train_images, train_labels);

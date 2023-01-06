@@ -9,7 +9,7 @@ Vectorizer::Vectorizer(int num_people, int num_feature) {
 
 Vectorizer::~Vectorizer() {}
 
-void Vectorizer::train(std::vector<cv::Mat> train_images, std::vector<int> train_label) {
+void Vectorizer::train(std::vector<cv::Mat> &train_images, std::vector<int> &train_label) {
     assert(false);
 }
 
