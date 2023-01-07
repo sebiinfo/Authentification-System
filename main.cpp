@@ -1,14 +1,12 @@
 #include <iostream>
+#include <opencv2/opencv.hpp>
 //#include "tests.cpp"
+#include "detect.hpp"
 #include "sources/Cropimage/cropimage.hpp"
 
 int main() {
-    std::cout << "Hello world" << std::endl;
-
-    cv::Mat frame;
-    frame = getFrame();
-
-    showFrame(frame);
-
-//    test();
+    cv::Mat frame = cv::imread("testimg.jpg");
+    bool eyeOpen = isEyeOpen(frame);
+    std::cout << "Eye open: " << eyeOpen << std::endl;
+    return 0;
 }
