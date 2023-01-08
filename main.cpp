@@ -17,11 +17,11 @@ int main(){
         while ((ent = readdir(dir)) != nullptr) {
             std::string fileName = ent->d_name;
             if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
-                cv::Mat frameclosed = cv::imread(fileName);
+                cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
                 //normalizeIntensities(frameclosed);
                 frameclosed=rescaleImage(frameclosed, 224,224);
                 bool eyeOpen0 = detectEyes(frameclosed);
-                std::cout<<"file: "<<fileName<< "1 if eye is open" << eyeOpen0;
+                std::cout<<"file: "<<fileName<< "   status: " << eyeOpen0<<std::endl;
             }
         }
         closedir(dir);
