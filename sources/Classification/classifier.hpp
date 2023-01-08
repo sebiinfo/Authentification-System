@@ -36,48 +36,12 @@ class Classifier {
    virtual void train(std::vector<cv::Mat> &num_reps, std::vector<int> &labels);
    virtual int classify(cv::Mat &image);
 
- private:
+
    int num_people;
    int dim;
    std::vector<cv::Mat> num_reps;  // numerical representations of the faces
    std::vector<int> labels;
 };
 
-class Node {
- public:
-   Node *left_child_pointer;
-   Node *right_child_pointer;
-   std::vector<Facedata> node_data;
-   static std::string info_measure;
-   // node_data is the data the node has stored, the root having node_data=data
-
-   Node(std::vector<Facedata> &node_data, std::string info_measure = "entropy");
-
-   //~Node();
-
-   static double get_information_gain(std::vector<int> id_vector);
-   // the information gain can be either computed with the gini index or
-   // entropy we set info_type to "entropy" and it can be manually adjusted to
-   // "gini"
-
-   std::vector<double> get_thresholds(int entry);
-   // this function retracts the values of all the thresholds in entry from
-   // node_data
-
-   best_split_type get_best_split();
-   // we instantly look for the best split everytime we build a node
-};
-
-class DecisionTree : public Classifier {
- public:
-   DecisionTree(std::vector<Facedata> data);
-
-   //~DecisionTree();
-
-   void build_tree(Node *node_pointer);
-
-   int classify(Facedata query);
-   // int max_depth;    it is a choice weather we do it
-};
 
 #endif  // AUTHENTICATION_SYSTEM_CLASSIFICATION_HPP

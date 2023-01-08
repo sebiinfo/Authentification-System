@@ -5,9 +5,9 @@
 #include <vector>
 
 struct compareFunctor {
-   compareFunctor(KNN *knn_current_object)
+   explicit compareFunctor(KNN *knn_current_object)
        : knn_current_object(knn_current_object) {}
-   bool operator()(const cv::Mat &v1, const cv::Mat &v2) {
+   bool operator()(const cv::Mat &v1, const cv::Mat &v2) const {
       return knn_current_object->compare(v1, v2);
    }
    KNN *knn_current_object;
@@ -15,11 +15,15 @@ struct compareFunctor {
 KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
          std::vector<int> &labels)
     : Classifier(num_people, dim, num_reps, labels) {
-   k = int(sqrt(num_people));
+    this->dim= dim;
+    this->num_reps= num_reps;
+    this->num_people=num_people;
+    this->labels=labels;
+    this-> k = int(sqrt(num_people));
 }
 
-double KNN::compute_distance(cv::Mat vect) {
-   // todo check weather we need a weigthed sum
+double KNN::compute_distance(cv::Mat vect) const {
+   // todo check weather we need a weigthed sum or different weight
    double sum = 0;
    for (int cont = 0; cont < dim; ++cont) {
       sum += pow(query.at<double>(0, cont) - vect.at<double>(0, cont), 2);
@@ -27,7 +31,7 @@ double KNN::compute_distance(cv::Mat vect) {
    return sqrt(sum);
 }
 
-bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
+bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) const {
    return (compute_distance(v1) < compute_distance(v2));
 }
 
