@@ -13,7 +13,7 @@ int main(){
     // Please name every picture you add with the word closed or open.
     DIR* dir;
     struct dirent* ent;
-    std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing";
+    std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Team";
     dir = opendir(folder.c_str());
     double trueclosed=0;
     double falseclosed=0;
@@ -21,9 +21,9 @@ int main(){
     double trueopen=0;
     double count=0;
         while ((ent = readdir(dir)) != nullptr) {
-            count+=1;
             std::string fileName = ent->d_name;
             if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
+                count+=1;
                 cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
                 //normalizeIntensities(frameclosed);
                 frameclosed=rescaleImage(frameclosed, 224,224);
