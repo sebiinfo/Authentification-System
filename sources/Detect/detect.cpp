@@ -2,7 +2,7 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include "detect.hpp"
 
-std::string path = "/haarcascade/haarcascade_eye.xml";
+std::string path = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
 
 
 // Function to adjust the threshold value
@@ -11,15 +11,20 @@ double adjustThreshold(double meanIntensity) {
     double thresholdAdjustment = meanIntensity * 0.1;
 
     // Return the adjusted threshold value
-    return 200 + thresholdAdjustment;
+    return 80 + thresholdAdjustment;
 }
 
 bool isEyeOpen(cv::Mat frame) {
     // Convert frame to grayscale
     cv::Mat gray;
     cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+
+    // Load the Haar cascade classifier for eye detection
     cv::CascadeClassifier eyeCascade;
-    eyeCascade.load("haarcascade_eye.xml");
+    if (!eyeCascade.load(path)) {
+        std::cerr << "Error: Could not load Haar cascade classifier for eye detection." << std::endl;
+        return false;
+    }
 
     // Detect eyes in the image using the Haar cascade classifier
     std::vector<cv::Rect> eyes;
@@ -36,3 +41,4 @@ bool isEyeOpen(cv::Mat frame) {
         return false;
     }
 }
+

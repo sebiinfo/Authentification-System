@@ -6,10 +6,10 @@
 #include "sources/Cropimage/cropimage.hpp"
 
 int main() {
-    cv::Mat frameclosed = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\agathaclosed.jpg");
+    cv::Mat frameclosed = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\cezaraclosed.jpg");
     frameclosed=rescaleImage(frameclosed, 224,224);
     bool eyeOpen0 = isEyeOpen(frameclosed);
-    cv::Mat frameopen = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\agathaopen.jpg");
+    cv::Mat frameopen = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\cezaraopen.jpg");
     frameopen=rescaleImage(frameopen, 224,224);
     bool eyeOpen1 = isEyeOpen(frameopen);
     std::cout << "Eye closed: (1 if eye is open) " << eyeOpen0 << std::endl;
