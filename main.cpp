@@ -16,6 +16,8 @@ int main(){
     std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing";
     dir = opendir(folder.c_str());
     double trueclosed=0;
+    double falseclosed=0;
+    double falseopen=0;
     double trueopen=0;
     double count=0;
         while ((ent = readdir(dir)) != nullptr) {
@@ -30,20 +32,29 @@ int main(){
                     if(eyeOpen0==0){
                         trueclosed+=1;
                     }
+                    else{
+                        falseclosed+=1;
+                    }
                 }
                 if (fileName.find("open") != std::string::npos) {
                     if(eyeOpen0==1){
                         trueopen+=1;
+                    }
+                    else{
+                        falseopen+=1;
                     }
                 }
                 std::cout<<"file: "<<fileName<< "   status: " << eyeOpen0<<std::endl;
             }
         }
         closedir(dir);
+        std::cout<<std::endl;
         std::cout<<"Total number of test images:   "<<count<<std::endl;
         std::cout<<"True openeyes: "<<trueopen<<std::endl;
+        std::cout<<"False openeyes: "<<falseopen<<std::endl;
         std::cout<<"True closedeyes:  "<<trueclosed<<std::endl;
-        std::cout << "Total correct cases:  "<<trueopen+trueclosed<<"/"<<count<<std::endl;
+        std::cout<<"False openeyes: "<<falseclosed<<std::endl;
+        std::cout << "Total correct cases:  "<<trueopen+trueclosed<<"/"<<count<<" = "<<((trueopen+trueclosed)/count)*100<<"%"<<std::endl;
     return 0;
     }
 
