@@ -6,39 +6,77 @@ std::string path = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Aut
 
 
 // Function to adjust the threshold value
-double adjustThreshold(double meanIntensity) {
-    // Use a value that is proportional to the mean intensity as the threshold adjustment
-    double thresholdAdjustment = meanIntensity * 0.1;
+double adjustThreshold(cv::Mat image) {
+    // Convert image to grayscale
+    cv::Mat gray;
+    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+
+    // Calculate the mean intensity of the pixels in the image
+    double meanIntensity = cv::mean(gray)[0];
+
+    // Use a fixed value as the threshold adjustment
+    double thresholdAdjustment = 10;
 
     // Return the adjusted threshold value
-    return 80 + thresholdAdjustment;
+    return meanIntensity + thresholdAdjustment;
 }
 
-bool isEyeOpen(cv::Mat frame) {
-    // Convert frame to grayscale
-    cv::Mat gray;
-    cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
 
+bool isEyeOpen(cv::Mat frame) {
     // Load the Haar cascade classifier for eye detection
     cv::CascadeClassifier eyeCascade;
-    if (!eyeCascade.load(path)) {
-        std::cerr << "Error: Could not load Haar cascade classifier for eye detection." << std::endl;
-        return false;
-    }
+    eyeCascade.load(path);
 
     // Detect eyes in the image using the Haar cascade classifier
     std::vector<cv::Rect> eyes;
-    eyeCascade.detectMultiScale(gray, eyes, 1.1, 3, 0, cv::Size(30, 30));
+        eyeCascade.detectMultiScale(frame, eyes, 1.1, 5, 0, cv::Size(20, 20));
 
     // Check if any eyes were detected
     if (eyes.size() > 0) {
         // Check if eye is open by analyzing the intensity of the pixels in the eye region
-        cv::Mat eye = gray(eyes[0]);
+        cv::Mat eye = frame(eyes[0]);
+        double threshold = adjustThreshold(eye);
         double meanIntensity = cv::mean(eye)[0];
-        double threshold = adjustThreshold(meanIntensity);
-        return meanIntensity > threshold;  // Threshold value may need to be adjusted
+        return meanIntensity > threshold;
     } else {
         return false;
     }
 }
 
+
+void normalizeIntensities(cv::Mat &image) {
+    // Convert image to grayscale
+    cv::Mat gray;
+    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+
+    // Compute mean and standard deviation of pixel intensities
+    cv::Scalar mean, stddev;
+    cv::meanStdDev(gray, mean, stddev);
+
+    // Normalize the pixel intensities
+    image = (image - mean[0]) / stddev[0];
+}
+
+
+
+bool detectEyes(cv::Mat image) {
+    // Check if the image is empty
+    if (image.empty()) {
+        std::cout << "Invalid image" << std::endl;
+        return false;
+    }
+
+    // Load the haar cascade for eye detection
+    cv::CascadeClassifier eyeCascade;
+    if (!eyeCascade.load(path)) {
+        std::cout << "Failed to load eye cascade" << std::endl;
+        return false;
+    }
+
+    // Detect eyes in the image
+    std::vector<cv::Rect> eyes;
+    eyeCascade.detectMultiScale(image, eyes, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+
+    // Return true if any eyes are detected, false otherwise
+    return eyes.size() > 0;
+}

@@ -1,18 +1,30 @@
 #include <iostream>
+#include <filesystem>
 #include <opencv2/opencv.hpp>
 //#include "tests.cpp"
 #include "detect.hpp"
 #include "rescale.hpp"
 #include "sources/Cropimage/cropimage.hpp"
+#include <dirent.h>
+#include <string>
 
-int main() {
-    cv::Mat frameclosed = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\cezaraclosed.jpg");
-    frameclosed=rescaleImage(frameclosed, 224,224);
-    bool eyeOpen0 = isEyeOpen(frameclosed);
-    cv::Mat frameopen = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\cezaraopen.jpg");
-    frameopen=rescaleImage(frameopen, 224,224);
-    bool eyeOpen1 = isEyeOpen(frameopen);
-    std::cout << "Eye closed: (1 if eye is open) " << eyeOpen0 << std::endl;
-    std::cout << "Eye opened: (1 if eye is open) " << eyeOpen1 << std::endl;
+
+int main(){
+    DIR* dir;
+    struct dirent* ent;
+    std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing";
+    dir = opendir(folder.c_str());
+        while ((ent = readdir(dir)) != nullptr) {
+            std::string fileName = ent->d_name;
+            if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
+                cv::Mat frameclosed = cv::imread(fileName);
+                //normalizeIntensities(frameclosed);
+                frameclosed=rescaleImage(frameclosed, 224,224);
+                bool eyeOpen0 = detectEyes(frameclosed);
+                std::cout<<"file: "<<fileName<< "1 if eye is open" << eyeOpen0;
+            }
+        }
+        closedir(dir);
     return 0;
-}
+    }
+
