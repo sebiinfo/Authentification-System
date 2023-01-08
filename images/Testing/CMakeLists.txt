@@ -1,3 +1,3 @@
-add_library(Testing image1.jpg)
+add_library(Testing r0eyesopen.jpg)
 
 set_target_properties(Testing PROPERTIES LINKER_LANGUAGE CXX)
