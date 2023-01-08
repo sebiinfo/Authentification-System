@@ -2,8 +2,6 @@
 
 #include <opencv2/opencv.hpp>
 
-
-
 // Rescales the image using bilinear interpolation and returns the resized image
 cv::Mat rescaleImage(cv::Mat image, int newWidth, int newHeight) {
     // Create a Mat object to hold the resized image
