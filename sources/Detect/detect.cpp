@@ -2,12 +2,7 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include "detect.hpp"
 
-// Load the Haar cascade classifier for eye detection
-cv::CascadeClassifier eyeCascade;
-if (!eyeCascade.load("haarcascade_eye.xml")) {
-std::cerr << "Error: Could not load Haar cascade classifier for eye detection." << std::endl;
-return 1;
-}
+
 
 // Function to adjust the threshold value
 double adjustThreshold(double meanIntensity) {
@@ -22,6 +17,8 @@ bool isEyeOpen(cv::Mat frame) {
     // Convert frame to grayscale
     cv::Mat gray;
     cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+    cv::CascadeClassifier eyeCascade;
+    eyeCascade.load("haarcascade_eye.xml");
 
     // Detect eyes in the image using the Haar cascade classifier
     std::vector<cv::Rect> eyes;
