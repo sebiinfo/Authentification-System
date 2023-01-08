@@ -2,6 +2,7 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include "detect.hpp"
 
+std::string path = "/haarcascade/haarcascade_eye.xml";
 
 
 // Function to adjust the threshold value

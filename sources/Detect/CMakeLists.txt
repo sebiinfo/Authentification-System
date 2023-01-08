@@ -1,4 +1,5 @@
 add_library(Detect detect.cpp detect.hpp)
+add_subdirectory(haarcascades)
 
 target_include_directories(Detect INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
