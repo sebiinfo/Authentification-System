@@ -1,5 +1,4 @@
 #include "password.hpp"
-#include "../Database/csv_file.cpp"
 #include <ctime>
 #include <iostream>
 #include <set>
@@ -79,7 +78,6 @@ bool Profile::compare_password(std::string username_entered,
                                std::string password_entered,
                                std::string password_from_database,
                                std::string salt_from_database) {
-    // Check user first
     set_salt(salt_from_database);
     std::string hashed_password = encrypt(password_entered);
     if (hashed_password == password_from_database) {
@@ -93,14 +91,15 @@ Profile::change_password(std::string username, std::string old_password,
                          std::string new_password,
                          std::string confirm_new_password) {
     std::vector<std::string> vect;
-    // Check if user and old password match in database
-    if ((validate_password(new_password)) &&
-        (new_password == confirm_new_password)) {
-        user = username;
-        vect.push_back(user);
-        std::string hashed_password = encrypt(new_password);
-        hashed = hashed_password;
-        vect.push_back(hashed);
+    if(d.checkPasswordandUsername("new.csv", username, old_password)){
+        if ((validate_password(new_password)) &&
+            (new_password == confirm_new_password)) {
+            user = username;
+            vect.push_back(user);
+            std::string hashed_password = encrypt(new_password);
+            hashed = hashed_password;
+            vect.push_back(hashed);
+        }
     }
     return vect;
 }
