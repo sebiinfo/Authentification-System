@@ -57,7 +57,7 @@ public:
     DecisionTree(int num_people, int dim, std::vector<cv::Mat> &num_reps,
                  std::vector<int> &labels);
 
-    //~DecisionTree();
+    ~DecisionTree();
 
     void build_tree(Node *node_pointer);
 

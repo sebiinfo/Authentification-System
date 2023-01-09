@@ -68,6 +68,6 @@ KNN::~KNN(){
    for(auto representation: num_reps) {
       representation.release();
    }
-
+   num_reps.clear();
    labels.clear();
 }
