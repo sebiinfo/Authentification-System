@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Camera</class>
+ <widget class="QMainWindow" name="Camera">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1009</width>
+    <height>545</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Camera</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">Camera-&gt;setStyleSheet(&quot;background-color: dark blue;&quot;
+                        &quot;selection-color: white;&quot;
+                        &quot;selection-background-color: white;&quot;);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="1">
+     <widget class="QStackedWidget" name="stacked">
+      <property name="styleSheet">
+       <string notr="true">target-&gt;setStyleSheet(QString(&quot;#%1 { background-color: Dark Blue; }&quot;).arg(target-&gt;objectName()));</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="authentication">
+       <widget class="QPushButton" name="classification_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>340</y>
+          <width>121</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#classification_1 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#classification_1:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Classification 1</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="vectorization_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>280</y>
+          <width>121</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#vectorization_2 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#vectorization_2:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Vectorization 2</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="vectorization_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>220</y>
+          <width>121</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#vectorization_1 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#vectorization_1:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Vectorization 1</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="localization_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>160</y>
+          <width>121</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#localization_2 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#localization_2:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Localization 2</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="localization_1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>121</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#localization_1 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#localization_1:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Localization 1</string>
+        </property>
+       </widget>
+       <widget class="QVideoWidget" name="viewfinder" native="true">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>20</y>
+          <width>741</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>741</width>
+           <height>411</height>
+          </rect>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="palette">
+          <palette>
+           <active>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>145</red>
+               <green>145</green>
+               <blue>145</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </active>
+           <inactive>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>145</red>
+               <green>145</green>
+               <blue>145</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </inactive>
+           <disabled>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>145</red>
+               <green>145</green>
+               <blue>145</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>145</red>
+               <green>145</green>
+               <blue>145</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </disabled>
+          </palette>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="viewfinderPage">
+          <layout class="QGridLayout" name="gridLayout_5"/>
+         </widget>
+         <widget class="QWidget" name="previewPage">
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lastImagePreviewLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Box</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="takeImageButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>450</y>
+          <width>181</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#takeImageButton {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#takeImageButton:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Capture Photo</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>:/images/shutter.svg</normaloff>:/images/shutter.svg</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="classification_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>400</y>
+          <width>121</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#classification_2 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#classification_2:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Classification 2</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>40</y>
+          <width>111</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Choose your</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>60</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>method:</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_5">
+       <widget class="QPushButton" name="update_password">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>270</y>
+          <width>241</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#update_password {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#update_password:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Update Password</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="photo_library">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>180</y>
+          <width>241</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#photo_library {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#photo_library:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Photo Library</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="update_email">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>360</y>
+          <width>241</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#update_email {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#update_email:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Update Email</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>90</y>
+          <width>521</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 24pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>You have successfully logged in!</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="main">
+       <widget class="QPushButton" name="register_2">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>260</y>
+          <width>236</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#register_2 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#register_2:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Register</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="password">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>260</y>
+          <width>236</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#password {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#password:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Login with password</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="face_recognition">
+        <property name="geometry">
+         <rect>
+          <x>640</x>
+          <y>260</y>
+          <width>236</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#face_recognition {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#face_recognition:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Login with Face Recognition</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>100</y>
+          <width>631</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 24pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Welcome to our Authentication System!</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>160</y>
+          <width>491</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: pt18 &quot;Times New Roman&quot;;
+font: italic 16pt &quot;Times New Roman&quot;;
+</string>
+        </property>
+        <property name="text">
+         <string>To start, select one of the following options:</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1009</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionStartCamera"/>
+    <addaction name="actionStopCamera"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuDevices">
+    <property name="title">
+     <string>Devices</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuDevices"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionStartCamera">
+   <property name="text">
+    <string>Start Camera</string>
+   </property>
+  </action>
+  <action name="actionStopCamera">
+   <property name="text">
+    <string>Stop Camera</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Change Settings</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QVideoWidget</class>
+   <extends>QWidget</extends>
+   <header>qvideowidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>Camera</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>154</x>
+     <y>130</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSettings</sender>
+   <signal>triggered()</signal>
+   <receiver>Camera</receiver>
+   <slot>configureCaptureSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>333</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionStartCamera</sender>
+   <signal>triggered()</signal>
+   <receiver>Camera</receiver>
+   <slot>startCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>333</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionStopCamera</sender>
+   <signal>triggered()</signal>
+   <receiver>Camera</receiver>
+   <slot>stopCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>333</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>takeImageButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Camera</receiver>
+   <slot>takeImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>625</x>
+     <y>132</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>603</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>record()</slot>
+  <slot>pause()</slot>
+  <slot>stop()</slot>
+  <slot>enablePreview(bool)</slot>
+  <slot>configureCaptureSettings()</slot>
+  <slot>takeImage()</slot>
+  <slot>startCamera()</slot>
+  <slot>toggleLock()</slot>
+  <slot>setMuted(bool)</slot>
+  <slot>stopCamera()</slot>
+  <slot>setExposureCompensation(int)</slot>
+ </slots>
+</ui>
