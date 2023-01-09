@@ -1,6 +1,0 @@
-Santorin Yu:
-This week, I did some research on the process we could carry out using Open CV (detection, extraction, recognition).
-Unfortunately, I have yet to manage to install this library (on Windows). I also studied the features of some facial algorithms
-(notably CNN and eigenface).
-Next week, I plan to install Open CV, to discuss  which algorithms would be most suitable for the project and to better understand
-biometric models.

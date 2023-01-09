@@ -1,8 +1,0 @@
-This week I created a set up my MongoDB account and set up a new cluster in order for us to store information. After that, I made it accessible to my teammates. 
-Then, I moved on to research about compatibility of C++ and MongoDB. I worked with installing the MongoDB C and C++ drivers, which unfortunately windows is not a fan of:(
-Thus, I downloaded and set up cmake, msys2 and other components to help me set up libraries. 
-Now, I am almost done (only need to set up flags in QT (to show where my downloaded drivers are)) and already have some code for adding, removing and editing users in the database, 
-which I cannot implement right now as the driver is not fully set up. 
-Thus, my plan is finish this up Monday with help, set up these functions and see the functionality of the database. After a discussion, for testing and simplicity purposes, 
-we might first implement a local database (such as SQL Lite) and then move on to MongoDB servers. 
-However, first the plan is to implement storing the data in the databases and see how to connect it to user interface. 
