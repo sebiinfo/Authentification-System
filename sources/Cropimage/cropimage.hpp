@@ -17,7 +17,8 @@ std::vector<cv::Mat> crop(cv::Mat frame, std::string path);
 // Shows the images cropped from the photo
 void showCrop(cv::Mat frame, std::string path);
 
-
+// Crops an image using an array of cv::Rect
+std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect);
 
 ///////////////
 

@@ -1,4 +1,3 @@
-#include <opencv2/opencv.hpp>
 #include <vector>
 #include <iostream>
 #include <string>
@@ -87,6 +86,30 @@ void showCrop(cv::Mat frame,std::string path)
             }
 //        showFrame(crops[i]);
     }
+}
+
+std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect)
+{
+    std::vector<cv::Mat> face_array;
+    int x,w,y,h;
+    cv::Mat face;
+    cv::Rect r;
+
+    for (size_t i = 0; i < faces_rect.size(); i++)
+    {
+        r = faces_rect[i];
+        x = r.x;
+        w = r.width;
+        y = r.y;
+        h = r.height;
+
+        face = image.clone();
+        cropOne(face,x,x+w,y,y+h);
+
+        face_array.push_back(face.clone());
+
+    };
+    return face_array;
 }
 
 

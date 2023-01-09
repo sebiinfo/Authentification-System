@@ -1,6 +1,5 @@
 #include "rescale.hpp"
-
-#include <opencv2/opencv.hpp>
+#include <opencv2/core/mat.hpp>
 
 // Rescales the image using bilinear interpolation and returns the resized image
 cv::Mat rescaleImage(cv::Mat image, int newWidth, int newHeight)
@@ -49,4 +48,13 @@ cv::Mat rescaleImage(cv::Mat image, int newWidth, int newHeight)
 
     // Return the resized image
     return resized;
+}
+
+std::vector<cv::Mat> rescaleArray (std::vector<cv::Mat> array,int w, int h)
+{
+    for (int i=0; i<array.size();i++)
+    {
+        array[i] = rescaleImage(array[i],w,h);
+    }
+    return array;
 }

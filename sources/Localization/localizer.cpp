@@ -1,10 +1,8 @@
 #include "localizer.hpp"
-//#include "opencv2/core.hpp"
-//#include "opencv2/highgui.hpp"
-//#include "opencv2/imgproc.hpp"
 #include <opencv2/core/mat.hpp>
-#include <cassert>
 #include "../Detect/detect.hpp"
+#include "../Cropimage/cropimage.hpp"
+#include "../Rescale/rescale.hpp"
 
 Localizer::Localizer()
 {
@@ -26,7 +24,11 @@ Localizer::Localizer(int w, int h)
 
 Localizer::~Localizer() {}
 
-void Localizer::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces) {assert(false);}
+
+void Localizer::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces)
+{
+    faces = detectFaces(image);
+}
 
 std::vector<cv::Rect> Localizer::localize_rect(cv::Mat & image) {
     std::vector<cv::Rect> faces;
@@ -37,11 +39,8 @@ std::vector<cv::Rect> Localizer::localize_rect(cv::Mat & image) {
 std::vector<cv::Mat> Localizer::localize(cv::Mat & image, std::vector<cv::Rect> & faces_rect) {
     localize_rect(image, faces_rect);
     std::vector<cv::Mat> faces;
-    for (int i = 0; i < faces_rect.size(); i++) {
-        cv::Mat temp;
-        Resize(cv::Mat(image, faces_rect[i]), temp, cv::Size(width, height), 0, 0, cv::INTER_LINEAR)
-        faces.push_back(temp);
-    }
+    faces = cropArray(image,faces_rect);
+    faces = rescaleArray(faces,width,height);
     return faces;
 }
 
@@ -49,5 +48,4 @@ std::vector<cv::Mat> Localizer::localize(cv::Mat & image) {
     std::vector<cv::Rect> faces_rect;
     return localize(image, faces_rect);
 }
-
 
