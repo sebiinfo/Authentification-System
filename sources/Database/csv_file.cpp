@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 #include "csv_file.hpp"
+#include "../Password/password.cpp"
 // DATABASE CLASS
 
 // constructor
@@ -14,6 +15,10 @@ Database::Database()
 Database::Database(std::string file_name)
 {
     this->file_name = file_name;
+    // std::ifstream file;
+    // file.open(file_name, std::ios::app);
+    // file << "id,username,name,last_name,password,email,salt" << std::endl;
+    // file.close();
 }
 
 // check if the csv file is empty
@@ -33,8 +38,8 @@ bool Database::check_if_empty(std::string file_name)
     }
 }
 
-// registration, adding data to csv file, there are 6 parameters: unique id (users are ordered), username, name, last name, password and email (in this order)
-bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string email)
+// registration, adding data to csv file, there are 6 parameters: unique id (users are ordered), username, name, last name, password, email, salt (in this order)
+bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string email, std::string salt)
 {
 
     std::ifstream file;
@@ -57,7 +62,7 @@ bool Database ::writeDataToFile(std::string file_name, std::string username, std
 
     std::ofstream file1;
     file1.open(file_name, std::ios::app);
-    file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << std::endl;
+    file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << ',' << salt << std::endl;
     file1.close();
 
     return true;
@@ -77,6 +82,7 @@ std::vector<std::string> Database ::readRecordFromFile(std::string file_name, st
     std::string last_name;
     std::string password;
     std::string email;
+    std::string salt;
 
     while (getline(file, id, ',') && !found)
     {
@@ -84,7 +90,8 @@ std::vector<std::string> Database ::readRecordFromFile(std::string file_name, st
         getline(file, name, ',');
         getline(file, last_name, ',');
         getline(file, password, ',');
-        getline(file, email, '\n');
+        getline(file, email, ',');
+        getline(file, salt, '\n');
         if (username == username_search)
         {
             found = true;
@@ -94,11 +101,12 @@ std::vector<std::string> Database ::readRecordFromFile(std::string file_name, st
             record.push_back(last_name);
             record.push_back(password);
             record.push_back(email);
+            record.push_back(salt);
         }
     }
     if (found)
     {
-        std::cout << record[0] << " " << record[1] << " " << record[2] << " " << record[3] << " " << record[4] << " " << record[5] << std::endl;
+        std::cout << record[0] << " " << record[1] << " " << record[2] << " " << record[3] << " " << record[4] << " " << record[5] << " " << record[6] << std::endl;
     }
     else
     {
@@ -119,6 +127,7 @@ bool Database::checkPasswordandUsername(std::string file_name, std::string usern
     std::string last_name;
     std::string password;
     std::string email;
+    std::string salt;
 
     bool found = false;
 
@@ -128,10 +137,12 @@ bool Database::checkPasswordandUsername(std::string file_name, std::string usern
         getline(file, name, ',');
         getline(file, last_name, ',');
         getline(file, password, ',');
-        getline(file, email, '\n');
-        if (username_given == username && password_given == password)
+        getline(file, email, ',');
+        getline(file, salt, '\n');
+        if (username_given == username)
         {
-            found = true;
+            if ()
+                found = true;
             std::cout << "Username and password match" << std::endl;
         }
     }
@@ -156,6 +167,7 @@ bool Database::change_email(std::string file_name, std::string username_given, s
     std::string last_name;
     std::string password;
     std::string email;
+    std::string salt;
 
     bool found = false;
     while (getline(file, id, ','))
@@ -164,16 +176,17 @@ bool Database::change_email(std::string file_name, std::string username_given, s
         getline(file, name, ',');
         getline(file, last_name, ',');
         getline(file, password, ',');
-        getline(file, email, '\n');
+        getline(file, email, ',');
+        getline(file, salt, '\n');
 
         if (username_given == username && password_given == password)
         {
             found = true;
-            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << new_email << std::endl;
+            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << new_email << ',' << salt << std::endl;
         }
         else
         {
-            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << std::endl;
+            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << ',' << salt << std::endl;
         }
     }
     fout.close();
@@ -200,6 +213,7 @@ bool Database::check_username(std::string file_name, std::string username_given)
     std::string last_name;
     std::string password;
     std::string email;
+    std::string salt;
     std::string line;
     bool found = false;
 
@@ -232,6 +246,7 @@ bool Database::check_email(std::string file_name, std::string email_given)
     std::string last_name;
     std::string password;
     std::string email;
+    std::string salt;
     bool found = false;
 
     while (getline(file, id, ',') && !found)
@@ -240,7 +255,8 @@ bool Database::check_email(std::string file_name, std::string email_given)
         getline(file, name, ',');
         getline(file, last_name, ',');
         getline(file, password, ',');
-        getline(file, email, '\n');
+        getline(file, email, ',');
+        getline(file, salt, '\n');
         if (email_given == email)
         {
             found = true;
@@ -266,6 +282,7 @@ bool Database::delete_user(std::string file_name, std::string username_given, st
     std::string last_name;
     std::string password;
     std::string email;
+    std::string salt;
 
     bool found = false;
     while (getline(file, id, ','))
@@ -274,7 +291,8 @@ bool Database::delete_user(std::string file_name, std::string username_given, st
         getline(file, name, ',');
         getline(file, last_name, ',');
         getline(file, password, ',');
-        getline(file, email, '\n');
+        getline(file, email, ',');
+        getline(file, salt, '\n');
 
         if (username_given == username && password_given == password)
         {
@@ -282,7 +300,7 @@ bool Database::delete_user(std::string file_name, std::string username_given, st
         }
         else
         {
-            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << std::endl;
+            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << ',' << salt << std::endl;
         }
     }
     fout.close();
@@ -331,6 +349,7 @@ bool User_Input::add_data(std::string file_name)
     std::string last_name;
     std::string password;
     std::string email;
+    std::string salt;
     std::string username_given;
     std::string password_given;
     bool found = false;
@@ -358,16 +377,17 @@ bool User_Input::add_data(std::string file_name)
             getline(file, name, ',');
             getline(file, last_name, ',');
             getline(file, password, ',');
-            getline(file, email, '\n');
+            getline(file, email, ',');
+            getline(file, salt, '\n');
 
             if (username_given == username && password_given == password)
             {
                 found = true;
-                fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << ',' << hobbies << std::endl;
+                fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << ',' << salt << ',' << hobbies << std::endl;
             }
             else
             {
-                fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << std::endl;
+                fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << ',' << salt << std::endl;
             }
         }
         fout.close();

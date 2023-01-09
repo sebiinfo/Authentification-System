@@ -16,11 +16,12 @@
 int main()
 {
    Database database("new.csv");
+   User_Input user_input("new.csv");
 
    // check if the file is empty
    // bool empty = database.check_if_empty("new.csv");
 
-      // adding three users to the database
+   // adding three users to the database
    // bool writeFile = database.writeDataToFile("new.csv", "jsmith", "John", "Smith", "giraffe1", "john.smith@yahoo.com");
    // bool writeFile1 = database.writeDataToFile("new.csv", "emmax", "Emma", "Stone", "peace567", "emma.stone@yahoo.com");
    // bool writeFile2 = database.writeDataToFile("new.csv", "oskarty", "Oskar", "Tyrone", "oskarisnice", "oskar.tyrone@yahoo.com");
@@ -51,6 +52,9 @@ int main()
 
    // deleting a user from the database
    // bool delete_user = database.delete_user("new.csv", "jsmith", "giraffe1");
+
+   // user_input testing
+   bool adding = user_input.add_data("new.csv");
 
    // deleting all the data from the database
    // database.delete_data();
