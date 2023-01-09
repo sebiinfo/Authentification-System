@@ -15,7 +15,7 @@ double adjustThreshold(cv::Mat image) {
     double meanIntensity = cv::mean(gray)[0];
 
     // Use a fixed value as the threshold adjustment
-    double thresholdAdjustment = 10;
+    double thresholdAdjustment = 0;
 
     // Return the adjusted threshold value
     return meanIntensity + thresholdAdjustment;
@@ -29,7 +29,7 @@ bool isEyeOpen(cv::Mat frame) {
 
     // Detect eyes in the image using the Haar cascade classifier
     std::vector<cv::Rect> eyes;
-        eyeCascade.detectMultiScale(frame, eyes, 1.1, 5, 0, cv::Size(20, 20));
+    eyeCascade.detectMultiScale(frame, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
     // Check if any eyes were detected
     if (eyes.size() > 0) {
@@ -37,7 +37,7 @@ bool isEyeOpen(cv::Mat frame) {
         cv::Mat eye = frame(eyes[0]);
         double threshold = adjustThreshold(eye);
         double meanIntensity = cv::mean(eye)[0];
-        return meanIntensity > threshold;
+        return meanIntensity > 30;
     } else {
         return false;
     }
@@ -75,7 +75,7 @@ bool detectEyes(cv::Mat image) {
 
     // Detect eyes in the image
     std::vector<cv::Rect> eyes;
-    eyeCascade.detectMultiScale(image, eyes, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+    eyeCascade.detectMultiScale(image, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
     // Return true if any eyes are detected, false otherwise
     return eyes.size() > 0;

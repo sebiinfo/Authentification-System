@@ -51,9 +51,9 @@ int main(){
         std::cout<<std::endl;
         std::cout<<"Total number of test images:   "<<count<<std::endl;
         std::cout<<"True openeyes: "<<trueopen<<std::endl;
-        std::cout<<"False openeyes: "<<falseopen<<std::endl;
+        std::cout<<"Non detected openeyes: "<<falseopen<<std::endl;
         std::cout<<"True closedeyes:  "<<trueclosed<<std::endl;
-        std::cout<<"False closedeyes: "<<falseclosed<<std::endl;
+        std::cout<<"Non detected closedeyes: "<<falseclosed<<std::endl;
         std::cout << "Total correct cases:  "<<trueopen+trueclosed<<"/"<<count<<" = "<<((trueopen+trueclosed)/count)*100<<"%"<<std::endl;
     return 0;
     }
