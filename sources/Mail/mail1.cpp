@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <curl/curl.h>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -8,15 +10,16 @@ int main()
 {
 CURL *curl;
 CURLcode res;
-string email = "youremail@gmail.com"; // Replace with your email
-string password = "yourpassword"; // Replace with your email password
-string recipient = "clientemail@gmail.com"; // Replace with recipient's email
+string email = "systemauthentification@gmail.com"; // Replace with your email
+string password = "sophieclairejasmine"; // Replace with your email password
+string recipient = "sophieclaireantoun@gmail.com"; // Replace with recipient's email
 string subject = "Email to Client"; // Replace with email subject
 string body = "Hello, this is an email to my client."; // Replace with email body
 
 curl = curl_easy_init();
 if(curl)
 {
+cout <<"working"<< endl;
 curl_easy_setopt(curl, CURLOPT_USERNAME, email.c_str());
 curl_easy_setopt(curl, CURLOPT_PASSWORD, password.c_str());
 curl_easy_setopt(curl, CURLOPT_URL, "smtp://smtp.gmail.com:587");
