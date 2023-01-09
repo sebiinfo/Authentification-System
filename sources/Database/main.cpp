@@ -11,11 +11,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "csv_file.cpp"
+//#include "csv_file.cpp"
+#include "../Password/password.cpp"
 
 int main()
 {
    Database database("new.csv");
+   Profile p = Profile();
 
    // check if the file is empty
    // bool empty = database.check_if_empty("new.csv");
