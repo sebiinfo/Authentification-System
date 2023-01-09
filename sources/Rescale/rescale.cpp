@@ -3,7 +3,8 @@
 #include <opencv2/opencv.hpp>
 
 // Rescales the image using bilinear interpolation and returns the resized image
-cv::Mat rescaleImage(cv::Mat image, int newWidth, int newHeight) {
+cv::Mat rescaleImage(cv::Mat image, int newWidth, int newHeight)
+{
     // Create a Mat object to hold the resized image
     cv::Mat resized(newHeight, newWidth, image.type());
 
@@ -12,8 +13,10 @@ cv::Mat rescaleImage(cv::Mat image, int newWidth, int newHeight) {
     double scaleFactorY = (double)newHeight / image.rows;
 
     // Loop through the rows and columns of the resized image
-    for (int y = 0; y < newHeight; y++) {
-        for (int x = 0; x < newWidth; x++) {
+    for (int y = 0; y < newHeight; y++)
+    {
+        for (int x = 0; x < newWidth; x++)
+        {
             // Calculate the corresponding coordinates in the original image
             double xOriginal = x / scaleFactorX;
             double yOriginal = y / scaleFactorY;
@@ -34,7 +37,8 @@ cv::Mat rescaleImage(cv::Mat image, int newWidth, int newHeight) {
 
             // Calculate the pixel value for the resized image using the weights
             cv::Vec3b pixel;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++)
+            {
                 pixel[i] = (unsigned char)(w1 * p1[i] + w2 * p2[i] + w3 * p3[i] + w4 * p4[i]);
             }
 

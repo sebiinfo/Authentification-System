@@ -1,4 +1,4 @@
-add_library(OpenCVExternalLibrary INTERFACE)
+add_library(OpenCVExternalLibrary INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
 find_package(OpenCV REQUIRED)
 
@@ -14,3 +14,4 @@ message(STATUS "    install path: ${OpenCV_INSTALL_PATH}")
 target_link_libraries(OpenCVExternalLibrary INTERFACE
         ${OpenCV_LIBS}
         )
+target_include_directories(OpenCVExternalLibrary INTERFACE ${OpenCV_INCLUDE_DIRS})
