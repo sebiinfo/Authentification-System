@@ -15,7 +15,7 @@ class Cascade_Detector_CV : public Localizer {
     Cascade_Detector_CV(int w, int h);
     ~Cascade_Detector_CV();
 
-    void localize_rect(cv::Mat & image, std::vector<cv::Rect> faces);
+    void localize_rect(cv::Mat &image, std::vector<cv::Rect> &faces);
 
   private:
     cv::CascadeClassifier cascade;
