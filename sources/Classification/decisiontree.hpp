@@ -19,8 +19,8 @@
 
 class Node {
 public:
-    Node *left_child_pointer{};
-    Node *right_child_pointer{};
+    Node *left_child_pointer;
+    Node *right_child_pointer;
    // std::vector<Facedata> node_data;               instead of FaceData we now use a different data format
     int dim;
     int num_people;
@@ -33,7 +33,7 @@ public:
     Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
          std::vector<int> &labels,  const std::string &info_measure="entropy");
 
-    //~Node();
+    ~Node();
 
     double get_information_gain(std::vector<int> id_vector);
     // the information gain can be either computed with the gini index or

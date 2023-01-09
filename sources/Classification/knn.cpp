@@ -61,3 +61,13 @@ int KNN::classify(const cv::Mat &query) {
    }
    return max_id;
 }
+
+KNN::~KNN(){
+   query.release();
+
+   for(auto representation: num_reps) {
+      representation.release();
+   }
+
+   labels.clear();
+}
