@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "../Database/csv_file.cpp"
 
 char random_character();
 
@@ -15,7 +14,9 @@ class Profile {
                                            std::string password_1,
                                            std::string confirm_password);
     bool compare_password(std::string username_entered,
-                          std::string password_entered);
+                          std::string password_entered,
+                          std::string password_from_database,
+                          std::string salt_from_database);
     std::vector<std::string> change_password(std::string username,
                                              std::string old_password,
                                              std::string new_password,
@@ -41,7 +42,6 @@ class Profile {
     std::string hashed;
     std::string salt;
     long long random;
-    Database d;
 };
 
 #endif // PASSWORD_HPP

@@ -64,10 +64,6 @@ std::vector<std::string> Profile::build_profile(std::string username_entered,
                                                 std::string password_1,
                                                 std::string confirm_password) {
     std::vector<std::string> vect;
-    if(! d.check_username("new.csv", username_entered)) {
-        std::cout << "Username already taken" << std::endl;
-        return vect;
-    }
     if ((validate_password(password_1)) && (password_1 == confirm_password)) {
         user = username_entered;
         vect.push_back(user);
@@ -75,19 +71,13 @@ std::vector<std::string> Profile::build_profile(std::string username_entered,
         hashed = hashed_password;
         vect.push_back(hashed);
     }
-    bool v = d.writeDataToFile("new.csv", user, hashed, salt);
     return vect;
 }
 
 bool Profile::compare_password(std::string username_entered,
-                               std::string password_entered) {
-    std::vector<std::string> line_in_file = d.readRecordFromFile("new.csv", username_entered);
-    if(line_in_file.empty()) {
-        std::cout << "No matching username" << std::endl ;
-        return false;
-    }
-    std::string password_from_database = line_in_file[2];
-    std::string salt_from_database = line_in_file[3];
+                               std::string password_entered,
+                               std::string password_from_database,
+                               std::string salt_from_database) {
     set_salt(salt_from_database);
     std::string hashed_password = encrypt(password_entered);
     if (hashed_password == password_from_database) {
