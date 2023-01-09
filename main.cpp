@@ -13,7 +13,7 @@ int main(){
     // Please name every picture you add with the word closed or open.
     DIR* dir;
     struct dirent* ent;
-    std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Team";
+    std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing";
     dir = opendir(folder.c_str());
     double trueclosed=0;
     double falseclosed=0;
@@ -53,7 +53,7 @@ int main(){
         std::cout<<"True openeyes: "<<trueopen<<std::endl;
         std::cout<<"False openeyes: "<<falseopen<<std::endl;
         std::cout<<"True closedeyes:  "<<trueclosed<<std::endl;
-        std::cout<<"False openeyes: "<<falseclosed<<std::endl;
+        std::cout<<"False closedeyes: "<<falseclosed<<std::endl;
         std::cout << "Total correct cases:  "<<trueopen+trueclosed<<"/"<<count<<" = "<<((trueopen+trueclosed)/count)*100<<"%"<<std::endl;
     return 0;
     }
