@@ -5,6 +5,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <sys/socket.h>
+#include <Poco/Net/HTTPServer.h>
 
 
 int main() {
