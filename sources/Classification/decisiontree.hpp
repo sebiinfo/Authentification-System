@@ -40,6 +40,10 @@ public:
     // entropy we set info_type to "entropy" and it can be manually adjusted to
     // "gini"
 
+    double split_and_give_information(int entry, double threshold, cv::Mat &face);
+    //this function takes a face splits it in entry with value threshold and
+    //gives either the gini index or information leakage
+
     std::vector<double> get_thresholds(int entry);
     // this function retracts the values of all the thresholds in entry from
     // node_data

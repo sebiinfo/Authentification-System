@@ -38,6 +38,10 @@ double Node::get_information_gain(std::vector<int> id_vector)  {
     return 0;
 }
 
+double Node::split_and_give_information(int entry, double threshold, cv::Mat &face) {
+
+}
+
 std::vector<double> Node::get_thresholds(int entry) {
     std::set<double> threshold_set;
     for (auto const &face : num_reps) {
@@ -55,15 +59,22 @@ best_split_type Node::get_best_split() {
     std::vector<std::vector<double>> all_thresholds;
     // all_thresholds[i] contains all the thresholds in our data on position i
     // we start by initializing this vector
-    for (int i = 0; i < num_people; ++i) {
+    for (int i = 0; i < dim; ++i) {
         all_thresholds.push_back(get_thresholds(i));
     }
     // now we need to look over all the possible splits and choose
     // the one which gives the best information
-    for (int i=0; i < num_people; ++i) {
+
+    best_split_type best_split;
+    best_split.information_gain=INFINITY;
+
+    for (int i=0; i < dim; ++i) {
         for (auto j : all_thresholds[i]) {
             // threshold j at position i
-            //now we need to separate all
+            //now we need to separate all the vectors in our dataset based on this query
+            for (auto face: num_reps){
+
+            }
         }
     }
 }
@@ -75,4 +86,5 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
     this->num_people=num_people;
     this->labels=labels;
     this->info_measure=info_measure;
+    //here we need to initialize this->best_split
 }
