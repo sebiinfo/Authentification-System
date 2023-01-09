@@ -3,7 +3,7 @@
 #include "detect.hpp"
 #include <vector>
 
-std::string path_face = "/Authentification-System/sources/Detect/haarcascades/haarcascade_frontalface.xml";
+std::string path_face = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
 std::string path_eye = "/Authentification-System/sources/Detect/haarcascades/haarcascade_eye.xml";
 
 // Function to adjust the threshold value
@@ -44,17 +44,7 @@ bool isEyeOpen(cv::Mat frame) {
     // Detect eyes in the image using the Haar cascade classifier
     std::vector<cv::Rect> eyes;
     eyeCascade.detectMultiScale(frame, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-
-    // Check if any eyes were detected
-    if (eyes.size() > 0) {
-        // Check if eye is open by analyzing the intensity of the pixels in the eye region
-        cv::Mat eye = frame(eyes[0]);
-        double threshold = adjustThreshold(eye);
-        double meanIntensity = cv::mean(eye)[0];
-        return meanIntensity > 20;
-    } else {
-        return false;
-    }
+return eyes.size()>0;
 }
 
 bool isFace(cv::Mat image){
