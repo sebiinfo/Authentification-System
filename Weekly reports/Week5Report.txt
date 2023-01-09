@@ -48,4 +48,5 @@ I kept the last version with the Curl on the hub so that, maybe, we could fix it
 This week’s work did not get us the desired result (with jasmine). And as it has taken too much time, we hence decided to provide a simple alternative: Verification questions to verify the identity of the user, that would provide them with a new encrypted password. 
 The code is mostly ready, and committed to the U-I branch. We just need to link it to the database. 
 
-
+Paula Gonzalez Alvarez
+This week and over break I had some issues because my initial code for the UI stopped working and then I had issues with QTCreator and QTDesigner because they stopped running and I had to reinstall them. However, after I fixed that issue I re-started the UI solely on QTCreator to avoid any further compatibility issues. I managed to get a working camera with the buttons we need. However I need to connect the functions with other people's code and create multiple states.
