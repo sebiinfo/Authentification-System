@@ -22,6 +22,19 @@ double adjustThreshold(cv::Mat image) {
     return meanIntensity + thresholdAdjustment;
 }
 
+void normalizeIntensities(cv::Mat &image) {
+    // Convert image to grayscale
+    cv::Mat gray;
+    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+
+    // Compute mean and standard deviation of pixel intensities
+    cv::Scalar mean, stddev;
+    cv::meanStdDev(gray, mean, stddev);
+
+    // Normalize the pixel intensities
+    image = (image - mean[0]) / stddev[0];
+}
+
 
 bool isEyeOpen(cv::Mat frame) {
     // Load the Haar cascade classifier for eye detection
@@ -38,47 +51,20 @@ bool isEyeOpen(cv::Mat frame) {
         cv::Mat eye = frame(eyes[0]);
         double threshold = adjustThreshold(eye);
         double meanIntensity = cv::mean(eye)[0];
-        return meanIntensity > 30;
+        return meanIntensity > 20;
     } else {
         return false;
     }
 }
 
-
-void normalizeIntensities(cv::Mat &image) {
-    // Convert image to grayscale
-    cv::Mat gray;
-    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-
-    // Compute mean and standard deviation of pixel intensities
-    cv::Scalar mean, stddev;
-    cv::meanStdDev(gray, mean, stddev);
-
-    // Normalize the pixel intensities
-    image = (image - mean[0]) / stddev[0];
+bool isFace(cv::Mat image){
+    std::vector<cv::Rect> faces = detectFaces(image);
+    return faces.size() > 0;
 }
 
 
-
-bool detectEyes(cv::Mat image) {
-    // Check if the image is empty
-    if (image.empty()) {
-        std::cout << "Invalid image" << std::endl;
-        return false;
-    }
-
-    // Load the haar cascade for eye detection
-    cv::CascadeClassifier eyeCascade;
-    if (!eyeCascade.load(path_eye)) {
-        std::cout << "Failed to load eye cascade" << std::endl;
-        return false;
-    }
-
-    // Detect eyes in the image
-    std::vector<cv::Rect> eyes;
-    eyeCascade.detectMultiScale(image, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-
-    // Return true if any eyes are detected, false otherwise
+bool isEye(cv::Mat image) {
+    std::vector<cv::Rect> eyes = detectEyes(image);
     return eyes.size() > 0;
 }
 
@@ -92,4 +78,41 @@ std::vector<cv::Rect> detectFaces(cv::Mat image) {
     faceCascade.detectMultiScale(image,faces,1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
     return faces;
+}
+
+std::vector<cv::Rect> detectEyes(cv::Mat image) {
+    cv::CascadeClassifier faceCascade;
+    if (!faceCascade.load(path_eye)){
+        std::cout << "Failed to laod the faca cascade at directory:" << path_face << std::endl;
+     }
+
+    std::vector<cv::Rect> faces;
+    faceCascade.detectMultiScale(image,faces,1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+
+    return faces;
+}
+
+bool conform(cv::Mat image)
+{
+    if( !isFace(image) ) {
+//        std::cout << "No face was found";
+        return false;
+    }
+    if (isEyeOpen(image)) {
+//        std::cout << "Face and eyes are open";
+        return true;
+    }
+//    std::cout << "Face was found but eyes were closed";
+    return false;
+}
+
+std::vector<cv::Mat> conformArray (std::vector<cv::Mat> faces)
+{
+    std::vector<cv::Mat> conformArray;
+    for (int i =0; i<faces.size();i++){
+        if (conform(faces[i])){
+            conformArray.push_back(faces[i]);
+        }
+    }
+    return conformArray;
 }

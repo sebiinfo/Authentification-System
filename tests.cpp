@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include "sources/Detect/detect.hpp"
+
 //#include "sources/Cropimage/cropimage.hpp"
 
 cv::Mat getFrame(){
@@ -51,6 +53,16 @@ void runwebcam(){
     {
         std::cout << "Could not open camera";
     };
+}
+
+void test_open_eye(std::string image_path)
+{
+    cv::Mat image = cv::imread(image_path);
+    if (conform(image)){
+        std::cout << image_path.substr(0,13)<< ": is conform";
+    }else{
+        std::cout << "Image not conform";
+    }
 }
 
 //void runCascadeFace(std::string path){
