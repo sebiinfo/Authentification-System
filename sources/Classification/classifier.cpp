@@ -29,10 +29,11 @@ Classifier::Classifier(int num_people, int dim, std::vector<cv::Mat> &num_reps,
    this->labels = labels;
 }
 
-Classifier::~Classifier() = default;
 
 void Classifier::train(std::vector<cv::Mat> &num_reps,
                        std::vector<int> &labels) {
    this->num_reps = num_reps;
    this->labels = labels;
 }
+
+Classifier::~Classifier() = default;
