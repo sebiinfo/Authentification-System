@@ -1,9 +1,10 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 #include "detect.hpp"
+#include <vector>
 
-std::string path = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
-
+std::string path_face = "/Authentification-System/sources/Detect/haarcascades/haarcascade_frontalface.xml";
+std::string path_eye = "/Authentification-System/sources/Detect/haarcascades/haarcascade_eye.xml";
 
 // Function to adjust the threshold value
 double adjustThreshold(cv::Mat image) {
@@ -25,7 +26,7 @@ double adjustThreshold(cv::Mat image) {
 bool isEyeOpen(cv::Mat frame) {
     // Load the Haar cascade classifier for eye detection
     cv::CascadeClassifier eyeCascade;
-    eyeCascade.load(path);
+    eyeCascade.load(path_face);
 
     // Detect eyes in the image using the Haar cascade classifier
     std::vector<cv::Rect> eyes;
@@ -68,7 +69,7 @@ bool detectEyes(cv::Mat image) {
 
     // Load the haar cascade for eye detection
     cv::CascadeClassifier eyeCascade;
-    if (!eyeCascade.load(path)) {
+    if (!eyeCascade.load(path_eye)) {
         std::cout << "Failed to load eye cascade" << std::endl;
         return false;
     }
@@ -79,4 +80,16 @@ bool detectEyes(cv::Mat image) {
 
     // Return true if any eyes are detected, false otherwise
     return eyes.size() > 0;
+}
+
+std::vector<cv::Rect> detectFaces(cv::Mat image) {
+    cv::CascadeClassifier faceCascade;
+    if (!faceCascade.load(path_face)){
+        std::cout << "Failed to laod the faca cascade at directory:" << path_face << std::endl;
+     }
+
+    std::vector<cv::Rect> faces;
+    faceCascade.detectMultiScale(image,faces,1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+
+    return faces;
 }
