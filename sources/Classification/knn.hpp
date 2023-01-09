@@ -24,7 +24,7 @@ public:
     static cv::Mat query;
     std::vector<cv::Mat> num_reps;
     std::vector<int> labels;
-
+    ~KNN();
     // query and ith vector in data
 };
 
