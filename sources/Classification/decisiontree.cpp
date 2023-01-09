@@ -38,7 +38,23 @@ double Node::get_information_gain(std::vector<int> id_vector)  {
     return 0;
 }
 
-double Node::split_and_give_information(int entry, double threshold, cv::Mat &face) {
+double Node::split_and_give_information(int entry, double threshold) {
+    std::vector<int> labels_group1, labels_group2;
+    for(int i=0; i<num_people; ++i){
+        if (num_reps[i].at<double>(0,entry)<=threshold){
+            labels_group1.push_back(labels[i]);
+        }
+        else{
+            labels_group2.push_back(labels[i]);
+        }
+    }
+
+    //if (info_measure=="entropy"){
+        double entropy_group1=Node::get_information_gain(labels_group1);
+        double entropy_group2=Node::get_information_gain(labels_group2);
+        return entropy_group1*double(labels_group1.size()/num_people)+entropy_group2*double(labels_group2.size()/num_people);
+    //}
+    //I believe that for both gini impurity and entropy the combined information is a linear sum
 
 }
 
@@ -65,18 +81,22 @@ best_split_type Node::get_best_split() {
     // now we need to look over all the possible splits and choose
     // the one which gives the best information
 
-    best_split_type best_split;
-    best_split.information_gain=INFINITY;
+    best_split_type final_split{};
+    final_split.information_gain=INFINITY;
 
     for (int i=0; i < dim; ++i) {
         for (auto j : all_thresholds[i]) {
             // threshold j at position i
             //now we need to separate all the vectors in our dataset based on this query
-            for (auto face: num_reps){
-
+            double current_information=Node::split_and_give_information(i,j);
+            if (current_information< final_split.information_gain){
+                final_split.information_gain=current_information;
+                final_split.threshold=j;
+                final_split.entry=i;
             }
         }
     }
+    return final_split;
 }
 
 Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
@@ -87,4 +107,6 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
     this->labels=labels;
     this->info_measure=info_measure;
     //here we need to initialize this->best_split
+    this->best_split=Node::get_best_split();
+
 }
