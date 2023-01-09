@@ -4,7 +4,7 @@
 #include <vector>
 
 std::string path_face = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
-std::string path_eye = "/Authentification-System/sources/Detect/haarcascades/haarcascade_eye.xml";
+std::string path_eye = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
 
 // Function to adjust the threshold value
 double adjustThreshold(cv::Mat image) {
