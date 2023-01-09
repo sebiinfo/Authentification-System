@@ -3,21 +3,7 @@
 //
 #include "decisiontree.hpp"
 
-#include <opencv2/core/mat.hpp>
-#include <opencv2/dnn/utils/inference_engine.hpp>
 #include <utility>
-<<<<<<< HEAD
-#include <vector>
-
-#include "classifier.hpp"
-Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
-           std::vector<int> &labels, const std::string &info_measure) {
-   this->dim = dim;
-   this->num_reps = num_reps;
-   this->num_people = num_people;
-   this->labels = labels;
-   this->info_measure = info_measure;
-=======
 
 double Node::get_information_gain(std::vector<int> id_vector)  {
     std::map<int, int> id_freq;
@@ -50,7 +36,6 @@ double Node::get_information_gain(std::vector<int> id_vector)  {
         return 1 - gini_index;
     }
     return 0;
->>>>>>> fe09daf8e17f9bc807cfc8ea4e8fa60ed38f4bd8
 }
 
 double Node::split_and_give_information(int entry, double threshold) {
@@ -87,62 +72,6 @@ std::vector<double> Node::get_thresholds(int entry) {
 }
 
 best_split_type Node::get_best_split() {
-<<<<<<< HEAD
-   std::vector<std::vector<double>> all_thresholds;
-   // all_thresholds[i] contains all the thresholds in our data on position i
-   // we start by initializing this vector
-   for (int i = 0; i < num_people; ++i) {
-      all_thresholds.push_back(get_thresholds(i));
-   }
-   // now we need to look over all the possible splits and choose
-   // the one which gives the best information
-   for (auto &all_threshold : all_thresholds) {
-      for (auto j : all_threshold) {
-         // threshold j at position i
-      }
-   }
-}
-
-Node::~Node() {
-   num_reps.clear();
-   labels.clear();
-   info_measure.clear();
-
-   while (left_child_pointer != NULL) {
-      Node *current_pointer = left_child_pointer->left_child_pointer;
-      delete left_child_pointer;
-      left_child_pointer = current_pointer;
-   }
-
-   while (right_child_pointer != NULL) {
-      Node *current_pointer = right_child_pointer->right_child_pointer;
-      delete right_child_pointer;
-      right_child_pointer = current_pointer;
-   }
-}
-
-DecisionTree::DecisionTree(int num_people, int dim,
-                           std::vector<cv::Mat> &num_reps,
-                           std::vector<int> &labels)
-    : Classifier(num_people, dim, num_reps, labels) {
-
-   this->num_people = num_people;
-   this->dim = dim;
-   this->num_reps = num_reps;
-   this->labels = labels;
-}
-
-
-DecisionTree::~DecisionTree(){
-
-   for(auto representation : num_reps) {
-       representation.release();
-   }
-   num_reps.clear();
-   labels.clear();
-
-    
-=======
     std::vector<std::vector<double>> all_thresholds;
     // all_thresholds[i] contains all the thresholds in our data on position i
     // we start by initializing this vector
@@ -180,7 +109,6 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
     //here we need to initialize this->best_split
     this->best_split=Node::get_best_split();
 
->>>>>>> fe09daf8e17f9bc807cfc8ea4e8fa60ed38f4bd8
 }
 
 Node::~Node() {
