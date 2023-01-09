@@ -27,6 +27,7 @@ public:
     std::vector<cv::Mat> num_reps;
     std::vector<int> labels;
     std::string info_measure;
+    best_split_type best_split;
     // node_data is the data the node has stored, the root having node_data=data
 
     Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,

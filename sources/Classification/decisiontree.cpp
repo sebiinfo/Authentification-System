@@ -4,14 +4,6 @@
 #include "decisiontree.hpp"
 
 #include <utility>
-Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
-         std::vector<int> &labels,  const std::string &info_measure) {
-    this->dim= dim;
-    this->num_reps= num_reps;
-    this->num_people=num_people;
-    this->labels=labels;
-    this->info_measure=info_measure;
-}
 
 double Node::get_information_gain(std::vector<int> id_vector)  {
     std::map<int, int> id_freq;
@@ -68,9 +60,19 @@ best_split_type Node::get_best_split() {
     }
     // now we need to look over all the possible splits and choose
     // the one which gives the best information
-    for (auto & all_threshold : all_thresholds) {
-        for (auto j : all_threshold) {
+    for (int i=0; i < num_people; ++i) {
+        for (auto j : all_thresholds[i]) {
             // threshold j at position i
+            //now we need to separate all
         }
     }
+}
+
+Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
+           std::vector<int> &labels,  const std::string &info_measure) {
+    this->dim= dim;
+    this->num_reps= num_reps;
+    this->num_people=num_people;
+    this->labels=labels;
+    this->info_measure=info_measure;
 }
