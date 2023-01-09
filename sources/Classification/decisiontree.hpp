@@ -27,6 +27,7 @@ public:
     std::vector<cv::Mat> num_reps;
     std::vector<int> labels;
     std::string info_measure;
+    best_split_type best_split;
     // node_data is the data the node has stored, the root having node_data=data
 
     Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
@@ -38,6 +39,10 @@ public:
     // the information gain can be either computed with the gini index or
     // entropy we set info_type to "entropy" and it can be manually adjusted to
     // "gini"
+
+    double split_and_give_information(int entry, double threshold, cv::Mat &face);
+    //this function takes a face splits it in entry with value threshold and
+    //gives either the gini index or information leakage
 
     std::vector<double> get_thresholds(int entry);
     // this function retracts the values of all the thresholds in entry from
