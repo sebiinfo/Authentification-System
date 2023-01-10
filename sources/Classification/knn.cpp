@@ -109,7 +109,7 @@ bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
    return max_id;
 }
 
-/*KNN::~KNN() {
+KNN::~KNN() {
    query.release();
 
    for (auto representation : num_reps) {
@@ -118,4 +118,4 @@ bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
    num_reps.clear();
    labels.clear();
 }
-*/
+

@@ -38,4 +38,6 @@ void Classifier::train(std::vector<cv::Mat> &num_reps,
 
 int Classifier::classify(cv::Mat &image) {return 0;}
 
+Classifier::~Classifier() = default;
+
 
