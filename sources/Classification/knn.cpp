@@ -73,11 +73,11 @@ double KNN::compute_distance(cv::Mat vect) const {
    return sqrt(sum);
 }
 
-bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) const {
+bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
    return (compute_distance(v1) < compute_distance(v2));
 }
 
-int KNN::classify(const cv::Mat &query) {
+ int KNN::classify(const cv::Mat &query) {
    // first we store in the distance_to_query field of the struct the right
    // distance
    this->query = query;
@@ -109,7 +109,7 @@ int KNN::classify(const cv::Mat &query) {
    return max_id;
 }
 
-KNN::~KNN() {
+/*KNN::~KNN() {
    query.release();
 
    for (auto representation : num_reps) {
@@ -118,4 +118,4 @@ KNN::~KNN() {
    num_reps.clear();
    labels.clear();
 }
-
+*/

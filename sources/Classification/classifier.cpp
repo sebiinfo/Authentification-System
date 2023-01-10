@@ -36,4 +36,6 @@ void Classifier::train(std::vector<cv::Mat> &num_reps,
    this->labels = labels;
 }
 
-Classifier::~Classifier() = default;
+int Classifier::classify(cv::Mat &image) {return 0;}
+
+
