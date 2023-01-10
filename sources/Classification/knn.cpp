@@ -1,9 +1,13 @@
 #include "knn.hpp"
 
+#include <exception>
 #include <map>
+#include <numeric>
 #include <opencv2/core/mat.hpp>
 #include <vector>
 
+// Creates a comaparator object that will help us with sorting using a
+// non-static function
 struct compareFunctor {
    explicit compareFunctor(KNN *knn_current_object)
        : knn_current_object(knn_current_object) {}
@@ -12,14 +16,52 @@ struct compareFunctor {
    }
    KNN *knn_current_object;
 };
+
+// When sorting the numerical representation we also need information for the
+// labels vector.Gathering the sorting permutation solves this problem
+
+std::vector<int> get_permutation_vector(std::vector<cv::Mat> &sort_vector,
+                                        compareFunctor comparator) {
+   std::vector<int> permutation_vector(sort_vector.size());
+   std::iota(permutation_vector.begin(), permutation_vector.end(), 0);
+
+   std::sort(permutation_vector.begin(), permutation_vector.end(),
+             [&](int i, int j) {
+                return comparator(sort_vector[i], sort_vector[j]);
+             });
+
+   return permutation_vector;
+}
+
+void apply_permutation(std::vector<int> &permutation_vector,
+                       std::vector<int> labels_vector) {
+   std::vector<bool> done(permutation_vector.size());
+
+   for (int i = 0; i < permutation_vector.size(); i++) {
+      if (done[i]) continue;
+
+      int previous_position = i;
+      int correct_position = permutation_vector[i];
+
+      while (i != correct_position) {
+         std::swap(labels_vector[previous_position],
+                   labels_vector[correct_position]);
+
+         done[correct_position] = true;
+         previous_position = correct_position;
+         correct_position = permutation_vector[correct_position];
+      }
+   }
+}
+
 KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
          std::vector<int> &labels)
     : Classifier(num_people, dim, num_reps, labels) {
-    this->dim= dim;
-    this->num_reps= num_reps;
-    this->num_people=num_people;
-    this->labels=labels;
-    this-> k = int(sqrt(num_people));
+   this->dim = dim;
+   this->num_reps = num_reps;
+   this->num_people = num_people;
+   this->labels = labels;
+   this->k = int(sqrt(num_people));
 }
 
 double KNN::compute_distance(cv::Mat vect) const {
@@ -41,6 +83,11 @@ int KNN::classify(const cv::Mat &query) {
    this->query = query;
    // now we want to sort the data in terms of the distance, O(nlogn),
    // n-dimensional trees will maybe be implemented later (O(n))
+
+   std::vector<int> permutation_numerical_faces =
+       get_permutation_vector(num_reps, compareFunctor(this));
+
+   apply_permutation(permutation_numerical_faces, this->labels);
    std::sort(num_reps.begin(), num_reps.end(), compareFunctor(this));
 
    std::map<int, int> id_freq;
@@ -62,12 +109,13 @@ int KNN::classify(const cv::Mat &query) {
    return max_id;
 }
 
-KNN::~KNN(){
+KNN::~KNN() {
    query.release();
 
-   for(auto representation: num_reps) {
+   for (auto representation : num_reps) {
       representation.release();
    }
    num_reps.clear();
    labels.clear();
 }
+
