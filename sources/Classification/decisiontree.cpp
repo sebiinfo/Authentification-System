@@ -101,6 +101,8 @@ best_split_type Node::get_best_split() {
 
 Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
            std::vector<int> &labels,  const std::string &info_measure) {
+    this->left_child_pointer=nullptr;
+    this->right_child_pointer=nullptr;
     this->dim= dim;
     this->num_reps= num_reps;
     this->num_people=num_people;
@@ -116,13 +118,13 @@ Node::~Node() {
     labels.clear();
     info_measure.clear();
 
-    while (left_child_pointer != NULL) {
+    while (left_child_pointer != nullptr) {
         Node *current_pointer = left_child_pointer->left_child_pointer;
         delete left_child_pointer;
         left_child_pointer = current_pointer;
     }
 
-    while (right_child_pointer != NULL) {
+    while (right_child_pointer != nullptr) {
         Node *current_pointer = right_child_pointer->right_child_pointer;
         delete right_child_pointer;
         right_child_pointer = current_pointer;
@@ -140,7 +142,6 @@ DecisionTree::DecisionTree(int num_people, int dim,
     this->labels = labels;
 }
 
-
 DecisionTree::~DecisionTree(){
 
     for(auto representation : num_reps) {
@@ -148,6 +149,14 @@ DecisionTree::~DecisionTree(){
     }
     num_reps.clear();
     labels.clear();
+
+
+}
+
+void DecisionTree::build_tree(Node *node_pointer) {
+    // we need to initialize a Node object containing all the data
+    //when we de the initialization we already have the best split
+    Node initial_node=Node(num_people, dim, num_reps, labels);
 
 
 }

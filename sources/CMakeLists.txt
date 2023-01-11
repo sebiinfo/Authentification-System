@@ -1,5 +1,5 @@
 
-add_library(sources INTERFACE)
+add_library(sources INTERFACE Liveness/liveness.cpp)
 add_subdirectory(Cropping)
 add_subdirectory(Vectorization)
 add_subdirectory(Classification)
