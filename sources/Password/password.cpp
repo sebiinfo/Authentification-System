@@ -66,12 +66,12 @@ std::vector<std::string> Profile::build_profile(std::string username_entered,
     std::vector<std::string> vect;
     if ((validate_password(password_1)) && (password_1 == confirm_password)) {
         user = username_entered;
-        vect.push_back(user);
         std::string hashed_password = encrypt(password_1);
         hashed = hashed_password;
         vect.push_back(hashed);
+        vect.push_back(salt);
     }
-    return vect;
+    return vect; // return the hashed password and the salt in a vector
 }
 
 bool Profile::compare_password(std::string username_entered,
@@ -83,7 +83,7 @@ bool Profile::compare_password(std::string username_entered,
     if (hashed_password == password_from_database) {
         return true;
     }
-    return false;
+    return false; // return true or false depending on if the password entered matched with the encrypted password in the database
 }
 
 std::vector<std::string>
@@ -91,17 +91,15 @@ Profile::change_password(std::string username, std::string old_password,
                          std::string new_password,
                          std::string confirm_new_password) {
     std::vector<std::string> vect;
-    if(d.checkPasswordandUsername("new.csv", username, old_password)){
-        if ((validate_password(new_password)) &&
-            (new_password == confirm_new_password)) {
-            user = username;
-            vect.push_back(user);
-            std::string hashed_password = encrypt(new_password);
-            hashed = hashed_password;
-            vect.push_back(hashed);
-        }
+    if ((validate_password(new_password)) &&
+        (new_password == confirm_new_password)) {
+        user = username;
+        vect.push_back(user);
+        std::string hashed_password = encrypt(new_password);
+        hashed = hashed_password;
+        vect.push_back(hashed);
     }
-    return vect;
+    return vect; // return a vector with the user and the new password encrypted
 }
 
 std::string Profile::encrypt(std::string password) {

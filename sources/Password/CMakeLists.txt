@@ -1,4 +1,4 @@
-add_library(Password password.cpp password.hpp)
+add_library(Password password.cpp password.hpp main.cpp)
 
 target_include_directories(Password INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 

@@ -1,4 +1,4 @@
-add_library(Database csv_file.cpp csv_file.hpp csv.hpp main.cpp)
+add_library(Database csv_file.cpp csv_file.hpp main.cpp)
 
 target_include_directories(Database INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
