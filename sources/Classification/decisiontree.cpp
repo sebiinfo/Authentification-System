@@ -153,7 +153,6 @@ DecisionTree::~DecisionTree(){
 
 }
 
-
 void DecisionTree::build_tree(Node *node_pointer) {
     // we need to initialize a Node object containing all the data
     //when we de the initialization we already have the best split
