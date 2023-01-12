@@ -131,6 +131,25 @@ Node::~Node() {
     }
 }
 
+bool Node::is_pure() {
+    const double limit=0.9;
+    std::map<int, int> id_freq;
+    for (int label: labels){
+        if (id_freq.count(label)){
+            id_freq[label]+=1;
+        }
+        else{
+            id_freq[label]=1;
+        }
+    }
+    for (auto &it: id_freq){
+        if (it.second>limit*num_people){
+            return true;
+        }
+    }
+    return false;
+}
+
 DecisionTree::DecisionTree(int num_people, int dim,
                            std::vector<cv::Mat> &num_reps,
                            std::vector<int> &labels)

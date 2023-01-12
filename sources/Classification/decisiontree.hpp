@@ -19,9 +19,15 @@
 
 class Node {
 public:
+    /*The nodes are nodes of the decision tree, and they store the information
+     * We use a cv::Mat object and a list of labels to keep the data !!!ONLY MODIFY THEM TOGETHER!!!
+     * We no longer use the Facedata struct for optimization reasons
+     */
+
+    //Pointer to the left and right child
     Node *left_child_pointer;
     Node *right_child_pointer;
-   // std::vector<Facedata> node_data;               instead of FaceData we now use a different data format
+
     int dim;
     int num_people;
     std::vector<cv::Mat> num_reps;
@@ -50,6 +56,9 @@ public:
 
     best_split_type get_best_split();
     // we instantly look for the best split everytime we build a node
+
+    bool is_pure();
+    //checks if the node is pure enough to deduce a label of the query
 };
 
 class DecisionTree : public Classifier {
@@ -61,6 +70,6 @@ public:
 
     void build_tree(Node *node_pointer);
 
-    int classify(Facedata query);
+    int classify(cv::Mat query);
     // int max_depth;    it is a choice weather we do it
 };
