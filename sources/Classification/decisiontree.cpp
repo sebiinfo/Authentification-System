@@ -175,28 +175,43 @@ DecisionTree::~DecisionTree(){
 
 }
 
-void DecisionTree::build_tree(Node *node_pointer) {
+void DecisionTree::build_tree(Node *current_node_pointer) {
     // we need to initialize a Node object containing all the data
     //when we de the initialization we already have the best split
-    Node current_node=Node(num_people, dim, num_reps, labels);
+  //  Node current_node=Node(num_people, dim, num_reps, labels);
 
     //we only build a children of the Node if not pure
-    if (current_node.is_pure()){
+    if (current_node_pointer->is_pure()){
         return ;
     }
 
     //we get the coordinate and threshold for the best split
-    current_node.best_split=current_node.get_best_split();
+    current_node_pointer->best_split=current_node_pointer->get_best_split();
 
     //now we need to split accordingly to make the left and right nodes
     std::vector<int> labels_left, labels_right;
     std::vector <cv::Mat> num_reps_left, num_reps_right;
 
-    int split_entry=current_node.best_split.entry;
-    double split_threshold= current_node.best_split.threshold;
+    int split_entry=current_node_pointer->best_split.entry;
+    double split_threshold= current_node_pointer->best_split.threshold;
 
     for (int i=0; i<num_people; ++i){
-        //if (num_reps[i].at<double>(0,))
+        if (num_reps[i].at<double>(0, split_entry)<= split_threshold){
+            num_reps_left.push_back(num_reps[i]);
+            labels_left.push_back(labels[i]);
+        }
+        else{
+            num_reps_right.push_back(num_reps[i]);
+            labels_right.push_back(labels[i]);
+        }
     }
+
+    //we create pointers to the two new nodes
+    Node* node_left = new Node(int(num_reps_left.size()), dim , num_reps_left, labels_left);
+    Node* node_right= new Node(int(num_reps_right.size()), dim , num_reps_right, labels_right);
+
+    current_node_pointer->left_child_pointer=node_left;
+    current_node_pointer->right_child_pointer=node_right;
+
 
 }
