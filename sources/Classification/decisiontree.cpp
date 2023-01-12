@@ -13,11 +13,8 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
    this->num_people = num_people;
    this->labels = labels;
    this->info_measure = info_measure;
-<<<<<<< HEAD
-=======
    this->best_split = get_best_split();
 
->>>>>>> 04355109aa8861340d454f1fa8f4efa3a9929167
 }
 
 Node::~Node() {
@@ -223,5 +220,6 @@ int DecisionTree::classify(cv::Mat query) {
    while (parent_node->node_label == -1) {
       int split_entry = parent_node->best_split.entry;
       double split_threshold = parent_node->best_split.threshold;
-      if (qu) }
+      //if (query)
+   }
 }
