@@ -213,5 +213,10 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
     current_node_pointer->left_child_pointer=node_left;
     current_node_pointer->right_child_pointer=node_right;
 
+    //now we need to construct
+    DecisionTree::build_tree(current_node_pointer->left_child_pointer);
+    DecisionTree::build_tree(current_node_pointer->right_child_pointer);
+}
+int DecisionTree::classify(cv::Mat query) {
 
 }
