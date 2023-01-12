@@ -13,6 +13,11 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
    this->num_people = num_people;
    this->labels = labels;
    this->info_measure = info_measure;
+<<<<<<< HEAD
+=======
+   this->best_split = get_best_split();
+
+>>>>>>> 04355109aa8861340d454f1fa8f4efa3a9929167
 }
 
 Node::~Node() {
