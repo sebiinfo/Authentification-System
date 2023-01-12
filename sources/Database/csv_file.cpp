@@ -4,7 +4,6 @@
 #include <vector>
 #include <sstream>
 #include "csv_file.hpp"
-#include "../Password/password.cpp"
 
 // DATABASE CLASS
 
@@ -84,7 +83,6 @@ bool Database ::writeDataToFile(std::string file_name, std::string username, std
 
         while (getline(file, line))
         {
-            std::cout << "line: " << line << std::endl;
             id1 = line.substr(0, line.find(','));
             std::stringstream ss(id1);
             ss >> number;
@@ -95,6 +93,7 @@ bool Database ::writeDataToFile(std::string file_name, std::string username, std
         id = std::to_string(number);
         std::ofstream file1;
         file1.open(file_name, std::ios::app);
+        profile.generate_salt();
         std::vector<std::string> encrypted_password_salt = profile.build_profile(username, password, confirm_password);
         file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << encrypted_password_salt[0] << ',' << email << ',' << encrypted_password_salt[1] << std::endl;
         file1.close();
