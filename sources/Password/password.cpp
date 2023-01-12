@@ -14,12 +14,12 @@ static const char alphanum[] = "0123456789"
 
 int stringLength = sizeof(alphanum) - 1;
 
-char random_character()
-{
-    // Random string generator function.
+// Random string generator function.
+char random_character(){
     return alphanum[rand() % stringLength];
 }
 
+// Return true if the password satisfies certain conditions
 bool Profile::validate_password(std::string password)
 {
     if (password.length() < 9)
@@ -64,15 +64,16 @@ bool Profile::validate_password(std::string password)
     return true;
 }
 
+// Initializes everything
 Profile::Profile()
 {
-    // Initializes everything
     random = 0;
     salt = "";
     hashed = "";
     user = "";
 }
 
+// Return the hashed password and the salt in a vector
 std::vector<std::string> Profile::build_profile(std::string username_entered,
                                                 std::string password_1,
                                                 std::string confirm_password)
@@ -86,9 +87,10 @@ std::vector<std::string> Profile::build_profile(std::string username_entered,
         vect.push_back(hashed);
         vect.push_back(salt);
     }
-    return vect; // return the hashed password and the salt in a vector
+    return vect;
 }
 
+// Return true if the password matches the hashed password in the database
 bool Profile::compare_password(std::string username_entered,
                                std::string password_entered,
                                std::string password_from_database,
@@ -100,11 +102,12 @@ bool Profile::compare_password(std::string username_entered,
     {
         return true;
     }
-    return false; // return true or false depending on if the password entered matched with the encrypted password in the database
+    return false;
 }
 
+// return a vector with the new password encrypted and the salt
 std::vector<std::string>
-Profile::change_password(std::string username, std::string old_password,
+Profile::change_password(std::string username,
                          std::string new_password,
                          std::string confirm_new_password)
 {
@@ -113,14 +116,15 @@ Profile::change_password(std::string username, std::string old_password,
         (new_password == confirm_new_password))
     {
         user = username;
-        vect.push_back(user);
         std::string hashed_password = encrypt(new_password);
         hashed = hashed_password;
         vect.push_back(hashed);
+        vect.push_back(salt);
     }
-    return vect; // return a vector with the user and the new password encrypted
+    return vect;
 }
 
+// Return the password encrypted
 std::string Profile::encrypt(std::string password)
 {
     if (salt.empty())
@@ -137,12 +141,12 @@ std::string Profile::encrypt(std::string password)
 }
 
 void Profile::generate_salt() { salt = generate_random(10); }
-
 void Profile::set_random(long long r) { random = r; }
 void Profile::set_salt(std::string s) { salt = s; }
+
+// generate a random string of size length
 std::string Profile::generate_random(int length)
 {
-    // generate a random string of size length
     std::string random_string;
     for (int i = 0; i < length; i++)
     {
@@ -151,6 +155,7 @@ std::string Profile::generate_random(int length)
     return random_string;
 }
 
+// Hashing function
 std::string Profile::hash_it(const std::string &CandidatePass)
 {
     const uint32_t m = 0x5bd1e995;

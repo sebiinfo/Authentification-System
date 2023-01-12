@@ -42,7 +42,7 @@ bool Database::check_if_empty()
 // registration, adding data to csv file, there are 6 parameters: unique id (users are ordered), username, name, last name, password, email, salt (in this order)
 // checks the password twice whether the input is the same
 // returns true if the data was successfully added to the database
-bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string confirm_password, std::string email, std::string salt)
+bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string confirm_password, std::string email)
 { // if password meets all length and character requirements, if username and email are not taken and password and confirm_password matches
     if (profile.validate_password(password) && !(check_username(file_name, username)) && !(check_email(file_name, email)) && check_confirm_password(password, confirm_password))
     {
@@ -66,9 +66,8 @@ bool Database ::writeDataToFile(std::string file_name, std::string username, std
         id = std::to_string(number);
         std::ofstream file1;
         file1.open(file_name, std::ios::app);
-        std::string encrypted_password = profile.encrypt(password);
-        // what do we do with salt here?
-        file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << encrypted_password << ',' << email << ',' << salt << std::endl;
+        std::vector<std::string> encrypted_password_salt = profile.build_profile(username, password, confirm_password);
+        file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << encrypted_password_salt[0] << ',' << email << ',' << encrypted_password_salt[1] << std::endl;
         file1.close();
         std::cout << "user authenticated" << std::endl;
         return true;
@@ -213,6 +212,56 @@ bool Database::change_email(std::string file_name, std::string username_given, s
         {
             found = true;
             fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << new_email << ',' << salt << std::endl;
+        }
+        else
+        {
+            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << ',' << salt << std::endl;
+        }
+    }
+    fout.close();
+    file.close();
+
+    // removing the existing file
+    remove("new.csv");
+
+    // renaming the updated file with the existing file name
+    rename("new1.csv", "new.csv");
+
+    return found;
+}
+
+// change password when given a username and a password
+bool Database::change_password(std::string file_name, std::string username_given, std::string password_given, std::string new_password, std::string confirm_new_password)
+{
+
+    std::ofstream fout;
+    fout.open("new1.csv", std::ios::out | std::ios::app);
+    std::ifstream file;
+    file.open(file_name);
+    std::string id;
+    std::string username;
+    std::string name;
+    std::string last_name;
+    std::string password;
+    std::string email;
+    std::string salt;
+    Profile profile = Profile();
+
+    bool found = false;
+    while (getline(file, id, ','))
+    {
+        getline(file, username, ',');
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, ',');
+        getline(file, salt, '\n');
+
+        if ((username_given == username) && (profile.compare_password(username_given, password_given, password, salt)))
+        {
+            found = true;
+            std::vector<std::string> new_vector = profile.change_password(username, new_password, confirm_new_password);
+            fout << id << ',' << username << ',' << name << ',' << last_name << ',' << new_vector[0] << ',' << email << ',' << new_vector[1] << std::endl;
         }
         else
         {

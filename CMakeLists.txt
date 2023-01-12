@@ -13,7 +13,7 @@ include_directories(MY_INCLUDES)
 add_executable( ${PROJECT_NAME} main.cpp )
 
 
-#add_subdirectory(libs/qt)
+#dd_subdirectory(libs/qt)
 #add_subdirectory(libs/opencv)
 add_subdirectory(sources)
 
