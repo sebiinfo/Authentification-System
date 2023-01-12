@@ -1,11 +1,11 @@
 #include "password.hpp"
+#include <cstring>
 #include <ctime>
 #include <iostream>
+#include <math.h>
 #include <set>
-#include <cstring>
 #include <string>
 #include <vector>
-#include <math.h>
 
 static const char alphanum[] = "0123456789"
                                "!@#$%^&*():;<>?"
@@ -15,15 +15,11 @@ static const char alphanum[] = "0123456789"
 int stringLength = sizeof(alphanum) - 1;
 
 // Random string generator function.
-char random_character(){
-    return alphanum[rand() % stringLength];
-}
+char random_character() { return alphanum[rand() % stringLength]; }
 
 // Return true if the password satisfies certain conditions
-bool Profile::validate_password(std::string password)
-{
-    if (password.length() < 9)
-    {
+bool Profile::validate_password(std::string password) {
+    if (password.length() < 9) {
         return false;
     }
     std::set<char> special_characters = {'!', '@', '#', '$', '%', '^', '&', '*',
@@ -37,36 +33,26 @@ bool Profile::validate_password(std::string password)
                                     's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     int nbr_special_characters = 0, nbr_capital_letters = 0,
         nbr_small_letters = 0, nbr_numbers = 0;
-    for (int i = 0; i < password.length(); i++)
-    {
-        if (numbers.count(password[i]) > 0)
-        {
+    for (int i = 0; i < password.length(); i++) {
+        if (numbers.count(password[i]) > 0) {
             nbr_numbers++;
-        }
-        else if (special_characters.count(password[i]) > 0)
-        {
+        } else if (special_characters.count(password[i]) > 0) {
             nbr_special_characters++;
-        }
-        else if (capital_letters.count(password[i]) > 0)
-        {
+        } else if (capital_letters.count(password[i]) > 0) {
             nbr_capital_letters++;
-        }
-        else
-        {
+        } else {
             nbr_small_letters++;
         }
     }
     if ((nbr_numbers == 0) || (nbr_special_characters == 0) ||
-        (nbr_capital_letters == 0) || (nbr_small_letters == 0))
-    {
+        (nbr_capital_letters == 0) || (nbr_small_letters == 0)) {
         return false;
     }
     return true;
 }
 
 // Initializes everything
-Profile::Profile()
-{
+Profile::Profile() {
     random = 0;
     salt = "";
     hashed = "";
@@ -76,11 +62,9 @@ Profile::Profile()
 // Return the hashed password and the salt in a vector
 std::vector<std::string> Profile::build_profile(std::string username_entered,
                                                 std::string password_1,
-                                                std::string confirm_password)
-{
+                                                std::string confirm_password) {
     std::vector<std::string> vect;
-    if ((validate_password(password_1)) && (password_1 == confirm_password))
-    {
+    if ((validate_password(password_1)) && (password_1 == confirm_password)) {
         user = username_entered;
         std::string hashed_password = encrypt(password_1);
         hashed = hashed_password;
@@ -94,12 +78,10 @@ std::vector<std::string> Profile::build_profile(std::string username_entered,
 bool Profile::compare_password(std::string username_entered,
                                std::string password_entered,
                                std::string password_from_database,
-                               std::string salt_from_database)
-{
+                               std::string salt_from_database) {
     set_salt(salt_from_database);
     std::string hashed_password = encrypt(password_entered);
-    if (hashed_password == password_from_database)
-    {
+    if (hashed_password == password_from_database) {
         return true;
     }
     return false;
@@ -107,14 +89,11 @@ bool Profile::compare_password(std::string username_entered,
 
 // return a vector with the new password encrypted and the salt
 std::vector<std::string>
-Profile::change_password(std::string username,
-                         std::string new_password,
-                         std::string confirm_new_password)
-{
+Profile::change_password(std::string username, std::string new_password,
+                         std::string confirm_new_password) {
     std::vector<std::string> vect;
     if ((validate_password(new_password)) &&
-        (new_password == confirm_new_password))
-    {
+        (new_password == confirm_new_password)) {
         user = username;
         std::string hashed_password = encrypt(new_password);
         hashed = hashed_password;
@@ -125,16 +104,13 @@ Profile::change_password(std::string username,
 }
 
 // Return the password encrypted
-std::string Profile::encrypt(std::string password)
-{
-    if (salt.empty())
-    {
+std::string Profile::encrypt(std::string password) {
+    if (salt.empty()) {
         generate_salt();
     }
     std::string longer_password_to_encrypt = password + salt;
     std::string h = hash_it(longer_password_to_encrypt);
-    for (int i = 0; i < 10; i++)
-    {
+    for (int i = 0; i < 10; i++) {
         h = hash_it(h);
     }
     std::cout << h << std::endl;
@@ -146,19 +122,16 @@ void Profile::set_random(long long r) { random = r; }
 void Profile::set_salt(std::string s) { salt = s; }
 
 // generate a random string of size length
-std::string Profile::generate_random(int length)
-{
+std::string Profile::generate_random(int length) {
     std::string random_string;
-    for (int i = 0; i < length; i++)
-    {
+    for (int i = 0; i < length; i++) {
         random_string.push_back(random_character());
     }
     return random_string;
 }
 
 // Hashing function
-std::string Profile::hash_it(const std::string &CandidatePass)
-{
+std::string Profile::hash_it(const std::string &CandidatePass) {
     const uint32_t m = 0x5bd1e995;
     const int r = 24;
     const int iterations = 1000; // Number of iterations
@@ -169,9 +142,9 @@ std::string Profile::hash_it(const std::string &CandidatePass)
     int len = CandidatePass.length();
 
     // Mix 4 bytes at a time into the hash
-    const unsigned char *data = reinterpret_cast<const unsigned char *>(CandidatePass.data());
-    while (len >= 4)
-    {
+    const unsigned char *data =
+        reinterpret_cast<const unsigned char *>(CandidatePass.data());
+    while (len >= 4) {
         uint32_t k = *(uint32_t *)data;
 
         k *= m;
@@ -186,8 +159,7 @@ std::string Profile::hash_it(const std::string &CandidatePass)
     }
 
     // Handle the last few bytes of the input array
-    switch (len)
-    {
+    switch (len) {
     case 3:
         h ^= data[2] << 16;
     case 2:
@@ -199,17 +171,18 @@ std::string Profile::hash_it(const std::string &CandidatePass)
 
     // Do a large number of final mixes of the hash to ensure the last few
     // bytes are well-incorporated.
-    for (int i = 0; i < iterations; i++)
-    {
+    for (int i = 0; i < iterations; i++) {
         h ^= h >> 13;
         h *= m;
         h ^= h >> 15;
     }
 
-    std::string result;
-    std::cout << "h:" <<  h << std::endl;
+    std::string result = std::to_string(h).substr(0, 8);
+    /* std::string str_h = std::to_string(h);
+    std::cout << "h:" << str_h << std::endl;
     result.resize(8);
-    // memcpy(&result[0], (char *)&h, 8);
+    for(int i = 0; i < 8; i++)
+    memcpy(&result[0], &str_h, 8); */
     std::cout << "after memcpy: " << result << std::endl;
     return result;
 }
