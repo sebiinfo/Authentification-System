@@ -62,7 +62,7 @@ bool isEye(cv::Mat image) {
 std::vector<cv::Rect> detectFaces(cv::Mat image) {
     cv::CascadeClassifier faceCascade;
     if (!faceCascade.load(path_face)){
-        std::cout << "Failed to laod the faca cascade at directory:" << path_face << std::endl;
+        std::cout << "Failed to load the face cascade at directory:" << path_face << std::endl;
      }
 
     std::vector<cv::Rect> faces;
@@ -74,7 +74,7 @@ std::vector<cv::Rect> detectFaces(cv::Mat image) {
 std::vector<cv::Rect> detectEyes(cv::Mat image) {
     cv::CascadeClassifier faceCascade;
     if (!faceCascade.load(path_eye)){
-        std::cout << "Failed to laod the face cascade at directory:" << path_face << std::endl;
+        std::cout << "Failed to load the face cascade:" << path_face << std::endl;
      }
 
     std::vector<cv::Rect> faces;
@@ -110,11 +110,11 @@ std::vector<cv::Mat> conformArray (std::vector<cv::Mat> faces)
 
 cv::Mat rotate_face(cv::Mat &image){
     cv::CascadeClassifier faceCascade;
-    if (!faceCascade.load(path_face){
+    if (!faceCascade.load(path_face)){
         std::cout<<"Failed to load the face cascade: "<<path_face<<std::endl;
     }
     cv::CascadeClassifier eyeCascade;
-    if (!eyeCascade.load(path_eye){
+    if (!eyeCascade.load(path_eye)){
         std::cout<<"Failed to load the eye cascade: "<<path_face<<std::endl;
 }
     while (1) {
