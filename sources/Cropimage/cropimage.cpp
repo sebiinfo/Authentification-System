@@ -3,13 +3,15 @@
 #include <string>
 #include "cropimage.hpp"
 
+int dim = 60;
 
 void crop (cv::Mat& image ,int x1,int x2,int y1,int y2)
     {
+    int pad =0;
     //  y2
     //
-    //  x1:y1      x1
-    image = image(cv::Range(y1,y2), cv::Range(x1,x2));
+    //  x1:y1      x2
+    image = image(cv::Range(y1-pad,y2+pad), cv::Range(x1-pad,x2+pad));
     };
 
 std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect)
@@ -22,10 +24,11 @@ std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect)
     for (size_t i = 0; i < faces_rect.size(); i++)
     {
         r = faces_rect[i];
-        x = r.x;
-        w = r.width;
-        y = r.y;
-        h = r.height;
+        std::cout << r.size() << std::endl;
+        x = r.x - dim/2;
+        w = r.width + dim;
+        y = r.y - dim/2;
+        h = r.height + dim;
 
         face = image.clone();
         crop(face,x,x+w,y,y+h);
