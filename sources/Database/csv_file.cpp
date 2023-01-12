@@ -4,13 +4,15 @@
 #include <vector>
 #include <sstream>
 #include "csv_file.hpp"
+#include "../Password/password.cpp"
+
 // DATABASE CLASS
 
 // constructor
 Database::Database()
 {
-    this->file_name = "";
-    // this->profile = Profile();
+    this->file_name = "new.csv";
+    this->profile = Profile();
 }
 Database::Database(std::string file_name)
 {
@@ -44,18 +46,45 @@ bool Database::check_if_empty()
 // returns true if the data was successfully added to the database
 bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string confirm_password, std::string email, std::string salt)
 { // if password meets all length and character requirements, if username and email are not taken and password and confirm_password matches
-    if (profile.validate_password(password) && !(check_username(file_name, username)) && !(check_email(file_name, email)) && check_confirm_password(password, confirm_password))
+
+    // std::ifstream file;
+    // file.open(file_name);
+    // int number = 0;
+    // std::string id1;
+    // std::string id;
+    // std::string line;
+
+    // while (getline(file, line))
+    // {
+    //     id1 = line.substr(0, line.find(','));
+    //     std::stringstream ss(id1);
+    //     ss >> number;
+    // }
+    // number = number + 1;
+
+    // file.close();
+    // id = std::to_string(number);
+
+    // std::ofstream file1;
+    // file1.open(file_name, std::ios::app);
+    // file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << std::endl;
+    // file1.close();
+
+    // return true;
+    // }
+    if (profile.validate_password(password) && !(check_username(file_name, username)) && !(check_email(file_name, email)))
     {
 
         std::ifstream file;
         file.open(file_name);
-        int number;
+        int number = 0;
         std::string id1;
         std::string id;
         std::string line;
 
         while (getline(file, line))
         {
+            std::cout << "line: " << line << std::endl;
             id1 = line.substr(0, line.find(','));
             std::stringstream ss(id1);
             ss >> number;
@@ -67,7 +96,7 @@ bool Database ::writeDataToFile(std::string file_name, std::string username, std
         std::ofstream file1;
         file1.open(file_name, std::ios::app);
         std::string encrypted_password = profile.encrypt(password);
-        // what do we do with salt here?
+        //  what do we do with salt here?
         file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << encrypted_password << ',' << email << ',' << salt << std::endl;
         file1.close();
         std::cout << "user authenticated" << std::endl;
@@ -81,17 +110,17 @@ bool Database ::writeDataToFile(std::string file_name, std::string username, std
 }
 
 // check if confirm password = password
-bool Database::check_confirm_password(std::string password, std::string confirm_password)
-{
-    if (password == confirm_password)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
+// bool Database::check_confirm_password(std::string password, std::string confirm_password)
+// {
+//     if (password == confirm_password)
+//     {
+//         return true;
+//     }
+//     else
+//     {
+//         return false;
+//     }
+// }
 
 // looking for a username in a csv file and returning all data about it
 std::vector<std::string> Database ::readRecordFromFile(std::string file_name, std::string username_search)
