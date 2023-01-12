@@ -13,8 +13,7 @@
 int main() {
    
 
-   int num_people = 3, dim = 1;
-   
+   int num_people = 50, dim = 3;
    KNN_Testing test_obj = KNN_Testing(num_people, dim);
    test_obj.test_clasify(num_people, dim);
 

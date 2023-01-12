@@ -39,7 +39,7 @@ std::vector<int> get_permutation_vector(std::vector<cv::Mat> &sort_vector,
 
 template <typename T>
 void apply_permutation(std::vector<int> &permutation_vector,
-                       std::vector<T> my_vector) {
+                       std::vector<T> &my_vector) {
    std::vector<bool> done(permutation_vector.size());
 
    for (int i = 0; i < permutation_vector.size(); i++) {
