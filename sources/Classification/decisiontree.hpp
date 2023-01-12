@@ -34,8 +34,7 @@ public:
     std::vector<int> labels;
     std::string info_measure;
     best_split_type best_split{};
-    // node_data is the data the node has stored, the root having node_data=data
-
+    int node_label;
     Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
          std::vector<int> &labels,  const std::string &info_measure="entropy");
 
@@ -57,8 +56,8 @@ public:
     best_split_type get_best_split();
     // we instantly look for the best split everytime we build a node
 
-    bool is_pure();
-    //checks if the node is pure enough to deduce a label of the query
+    int is_pure();
+    // return the label if the node is pure and -1 otherwise
 };
 
 class DecisionTree : public Classifier {

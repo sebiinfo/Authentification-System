@@ -131,7 +131,7 @@ best_split_type Node::get_best_split() {
 
 
 
-bool Node::is_pure() {
+int Node::is_pure() {
     if (labels.size()<2){
         return true;
     }
@@ -147,10 +147,10 @@ bool Node::is_pure() {
     }
     for (auto &it: id_freq){
         if (it.second>limit*num_people){
-            return true;
+            return it.second;
         }
     }
-    return false;
+    return -1;
 }
 
 DecisionTree::DecisionTree(int num_people, int dim,
@@ -180,8 +180,10 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
     //when we de the initialization we already have the best split
   //  Node current_node=Node(num_people, dim, num_reps, labels);
 
+    // we initialize the node label: -1 if not pure, the label otherwise
+    current_node_pointer->node_label=current_node_pointer->is_pure();
     //we only build a children of the Node if not pure
-    if (current_node_pointer->is_pure()){
+    if (current_node_pointer->node_label==-1){
         return ;
     }
 
