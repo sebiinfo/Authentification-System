@@ -27,7 +27,7 @@ class KNN_Testing {
             std::cout << row_pointer[i] << " ";
          }
 
-         std::cout<<"next_face ";
+         std::cout<<" ?-? ";
       }
 
    }

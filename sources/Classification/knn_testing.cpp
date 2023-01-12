@@ -1,4 +1,5 @@
 
+#include <chrono>
 #include <iostream>
 #include <random>
 #include <vector>
@@ -15,13 +16,14 @@ KNN_Testing::KNN_Testing(int num_people , int dim) {
 std::vector<double> KNN_Testing::generate_random_vector(int dim) {
    // Generates a random line vector with varialble size
    std::random_device rd;
-   std::mt19937 gen(rd());
-   std::uniform_real_distribution<> dis(0, 2.0);
+   auto seed = std::chrono::system_clock::now().time_since_epoch().count();
+   std::mt19937 gen (seed);
+   std::uniform_real_distribution<> dis(0, 10.0);
 
    std::vector<double> result(dim);
 
-   for (auto &element : result) {
-      element = dis(rd);
+   for (int i=0;i < result.size();i++) {
+      result[i] = dis(gen);
    }
    return result;
 }
@@ -32,6 +34,7 @@ std::vector<int> KNN_Testing::generate_random_id(int num_people) {
 
    for (auto &face : result) {
       face = rand() % 10000;
+      face = face % 4;
    }
 
    return result;
@@ -42,7 +45,7 @@ std::vector<cv::Mat> KNN_Testing::generate_faces(int num_people, int dim) {
    std::vector<cv::Mat> faces_vector(num_people);
 
    for (auto &face : faces_vector) {
-      face = cv::Mat(generate_random_vector(dim));
+      face = cv::Mat(generate_random_vector(dim), true);
    }
 
    return faces_vector;
@@ -51,13 +54,14 @@ std::vector<cv::Mat> KNN_Testing::generate_faces(int num_people, int dim) {
 void KNN_Testing::test_clasify(int number_faces, int dim) {
 
    cv::Mat query = cv::Mat(generate_random_vector(dim));
+   std::cout<<"  Query is :" << query.at<double>(0,0)<<" "<<query.at<double>(0,1)<< "\n";
    print_vector(knn_instance.labels);
    std::cout<<"\n";
    print_vector_mat(knn_instance.num_reps);
    std::cout<<"\n\n\n";
 
    // Will it print a cv::Mat? We'll find out :)
-   knn_instance.classify(query);
+   std::cout <<"\n "<<" This is the answer: " <<knn_instance.classify(query)<<" \n";
 
    print_vector(knn_instance.labels);
    std::cout<<"\n";
