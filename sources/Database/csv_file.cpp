@@ -4,16 +4,17 @@
 #include <vector>
 #include <sstream>
 #include "csv_file.hpp"
-#include "../Password/password.cpp"
 // DATABASE CLASS
 
 // constructor
 Database::Database()
 {
     this->file_name = "";
+    // this->profile = Profile();
 }
 Database::Database(std::string file_name)
 {
+    Database();
     this->file_name = file_name;
     // std::ifstream file;
     // file.open(file_name, std::ios::app);
@@ -22,7 +23,7 @@ Database::Database(std::string file_name)
 }
 
 // check if the csv file is empty
-bool Database::check_if_empty(std::string file_name)
+bool Database::check_if_empty()
 {
     std::ifstream file;
     file.open(file_name);
@@ -39,33 +40,57 @@ bool Database::check_if_empty(std::string file_name)
 }
 
 // registration, adding data to csv file, there are 6 parameters: unique id (users are ordered), username, name, last name, password, email, salt (in this order)
-bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string email, std::string salt)
-{
-
-    std::ifstream file;
-    file.open(file_name);
-    int number;
-    std::string id1;
-    std::string id;
-    std::string line;
-
-    while (getline(file, line))
+// checks the password twice whether the input is the same
+// returns true if the data was successfully added to the database
+bool Database ::writeDataToFile(std::string file_name, std::string username, std::string name, std::string last_name, std::string password, std::string confirm_password, std::string email, std::string salt)
+{ // if password meets all length and character requirements, if username and email are not taken and password and confirm_password matches
+    if (profile.validate_password(password) && !(check_username(file_name, username)) && !(check_email(file_name, email)) && check_confirm_password(password, confirm_password))
     {
-        id1 = line.substr(0, line.find(','));
-        std::stringstream ss(id1);
-        ss >> number;
+
+        std::ifstream file;
+        file.open(file_name);
+        int number;
+        std::string id1;
+        std::string id;
+        std::string line;
+
+        while (getline(file, line))
+        {
+            id1 = line.substr(0, line.find(','));
+            std::stringstream ss(id1);
+            ss >> number;
+        }
+        number = number + 1;
+
+        file.close();
+        id = std::to_string(number);
+        std::ofstream file1;
+        file1.open(file_name, std::ios::app);
+        std::string encrypted_password = profile.encrypt(password);
+        // what do we do with salt here?
+        file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << encrypted_password << ',' << email << ',' << salt << std::endl;
+        file1.close();
+        std::cout << "user authenticated" << std::endl;
+        return true;
     }
-    number = number + 1;
+    else
+    {
+        std::cout << "smth didnt work" << std::endl;
+        return false;
+    }
+}
 
-    file.close();
-    id = std::to_string(number);
-
-    std::ofstream file1;
-    file1.open(file_name, std::ios::app);
-    file1 << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << email << ',' << salt << std::endl;
-    file1.close();
-
-    return true;
+// check if confirm password = password
+bool Database::check_confirm_password(std::string password, std::string confirm_password)
+{
+    if (password == confirm_password)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 // looking for a username in a csv file and returning all data about it
@@ -128,6 +153,7 @@ bool Database::checkPasswordandUsername(std::string file_name, std::string usern
     std::string password;
     std::string email;
     std::string salt;
+    Profile profile = Profile();
 
     bool found = false;
 
@@ -141,11 +167,14 @@ bool Database::checkPasswordandUsername(std::string file_name, std::string usern
         getline(file, salt, '\n');
         if (username_given == username)
         {
-            if ()
+            if (profile.compare_password(username_given, password_given, password, salt))
+            {
                 found = true;
-            std::cout << "Username and password match" << std::endl;
+                std::cout << "Username and password match" << std::endl;
+            }
         }
     }
+
     if (!found)
     {
         std::cout << "Username and password do not match" << std::endl;
@@ -168,6 +197,7 @@ bool Database::change_email(std::string file_name, std::string username_given, s
     std::string password;
     std::string email;
     std::string salt;
+    Profile profile = Profile();
 
     bool found = false;
     while (getline(file, id, ','))
@@ -179,7 +209,7 @@ bool Database::change_email(std::string file_name, std::string username_given, s
         getline(file, email, ',');
         getline(file, salt, '\n');
 
-        if (username_given == username && password_given == password)
+        if ((username_given == username) && (profile.compare_password(username_given, password_given, password, salt)))
         {
             found = true;
             fout << id << ',' << username << ',' << name << ',' << last_name << ',' << password << ',' << new_email << ',' << salt << std::endl;
@@ -283,6 +313,7 @@ bool Database::delete_user(std::string file_name, std::string username_given, st
     std::string password;
     std::string email;
     std::string salt;
+    Profile profile = Profile();
 
     bool found = false;
     while (getline(file, id, ','))
@@ -294,7 +325,7 @@ bool Database::delete_user(std::string file_name, std::string username_given, st
         getline(file, email, ',');
         getline(file, salt, '\n');
 
-        if (username_given == username && password_given == password)
+        if (username_given == username && profile.compare_password(username_given, password_given, password, salt))
         {
             found = true;
         }

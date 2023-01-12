@@ -16,17 +16,16 @@
 int main()
 {
    Database database("new.csv");
-   User_Input user_input("new.csv");
-   Profile p = Profile();
+   // User_Input user_input("new.csv");
 
    // check if the file is empty
    // bool empty = database.check_if_empty("new.csv");
 
    // adding three users to the database
-   // bool writeFile = database.writeDataToFile("new.csv", "jsmith", "John", "Smith", "giraffe1", "john.smith@yahoo.com");
-   // bool writeFile1 = database.writeDataToFile("new.csv", "emmax", "Emma", "Stone", "peace567", "emma.stone@yahoo.com");
-   // bool writeFile2 = database.writeDataToFile("new.csv", "oskarty", "Oskar", "Tyrone", "oskarisnice", "oskar.tyrone@yahoo.com");
-   // bool writeFile3 = database.writeDataToFile("new.csv", "oskarttty", "Osktar", "Tyronte", "oskaristnice", "oskar.tyrone@yahtoo.com");
+   // bool writeFile = database.writeDataToFile("new.csv", "jsmith", "John", "Smith", "Giraffe13!!", "Giraffe13!!", "john.smith@yahoo.com", "mysalt");
+   // bool writeFile1 = database.writeDataToFile("new.csv", "emmax", "Emma", "Stone", "Peaceandlove567!", "Peaceandlove567!", "emma.stone@yahoo.com", "salt");
+   // bool writeFile2 = database.writeDataToFile("new.csv", "oskarty", "Oskar", "Tyrone", "oskarisnice", "oskarisnice", "oskar.tyrone@yahoo.com", "salt");
+   // bool writeFile3 = database.writeDataToFile("new.csv", "oskarttty", "Osktar", "Tyronte", "Oskaristnice123?", "Oskarisnice123?", "oskar.tyrone@yahtoo.com", "salt");
 
    // // checking whether the username is in there and returning all the info, last one says username not found
    // std::vector<std::string> data = database.readRecordFromFile("new.csv", "jsmith");
@@ -58,7 +57,7 @@ int main()
    // bool adding = user_input.add_data("new.csv");
 
    // deleting all the data from the database
-   // database.delete_data();
+   database.delete_data();
 
    return 0;
 }
