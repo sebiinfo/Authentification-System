@@ -4,6 +4,9 @@
 #include "../Cropimage/cropimage.hpp"
 #include "../Rescale/rescale.hpp"
 
+int dim_face = 60;
+int dim_eye = 30;
+
 Localizer::Localizer()
 {
     width = 224;
@@ -27,7 +30,7 @@ Localizer::~Localizer() {}
 
 void Localizer::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces)
 {
-    faces = detectFaces(image);
+    faces = detectFaces(image,dim_face);
 }
 
 std::vector<cv::Rect> Localizer::localize_rect(cv::Mat & image) {
