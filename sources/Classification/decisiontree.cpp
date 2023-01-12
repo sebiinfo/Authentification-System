@@ -4,6 +4,36 @@
 #include "decisiontree.hpp"
 
 #include <utility>
+Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
+           std::vector<int> &labels,  const std::string &info_measure) {
+    this->left_child_pointer=nullptr;
+    this->right_child_pointer=nullptr;
+    this->dim= dim;
+    this->num_reps= num_reps;
+    this->num_people=num_people;
+    this->labels=labels;
+    this->info_measure=info_measure;
+
+
+}
+
+Node::~Node() {
+    num_reps.clear();
+    labels.clear();
+    info_measure.clear();
+
+    while (left_child_pointer != nullptr) {
+        Node *current_pointer = left_child_pointer->left_child_pointer;
+        delete left_child_pointer;
+        left_child_pointer = current_pointer;
+    }
+
+    while (right_child_pointer != nullptr) {
+        Node *current_pointer = right_child_pointer->right_child_pointer;
+        delete right_child_pointer;
+        right_child_pointer = current_pointer;
+    }
+}
 
 double Node::get_information_gain(std::vector<int> id_vector)  {
     std::map<int, int> id_freq;
@@ -99,39 +129,12 @@ best_split_type Node::get_best_split() {
     return final_split;
 }
 
-Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
-           std::vector<int> &labels,  const std::string &info_measure) {
-    this->left_child_pointer=nullptr;
-    this->right_child_pointer=nullptr;
-    this->dim= dim;
-    this->num_reps= num_reps;
-    this->num_people=num_people;
-    this->labels=labels;
-    this->info_measure=info_measure;
-    //here we need to initialize this->best_split
-    this->best_split=Node::get_best_split();
 
-}
-
-Node::~Node() {
-    num_reps.clear();
-    labels.clear();
-    info_measure.clear();
-
-    while (left_child_pointer != nullptr) {
-        Node *current_pointer = left_child_pointer->left_child_pointer;
-        delete left_child_pointer;
-        left_child_pointer = current_pointer;
-    }
-
-    while (right_child_pointer != nullptr) {
-        Node *current_pointer = right_child_pointer->right_child_pointer;
-        delete right_child_pointer;
-        right_child_pointer = current_pointer;
-    }
-}
 
 bool Node::is_pure() {
+    if (labels.size()<2){
+        return true;
+    }
     const double limit=0.9;
     std::map<int, int> id_freq;
     for (int label: labels){
@@ -175,7 +178,25 @@ DecisionTree::~DecisionTree(){
 void DecisionTree::build_tree(Node *node_pointer) {
     // we need to initialize a Node object containing all the data
     //when we de the initialization we already have the best split
-    Node initial_node=Node(num_people, dim, num_reps, labels);
+    Node current_node=Node(num_people, dim, num_reps, labels);
 
+    //we only build a children of the Node if not pure
+    if (current_node.is_pure()){
+        return ;
+    }
+
+    //we get the coordinate and threshold for the best split
+    current_node.best_split=current_node.get_best_split();
+
+    //now we need to split accordingly to make the left and right nodes
+    std::vector<int> labels_left, labels_right;
+    std::vector <cv::Mat> num_reps_left, num_reps_right;
+
+    int split_entry=current_node.best_split.entry;
+    double split_threshold= current_node.best_split.threshold;
+
+    for (int i=0; i<num_people; ++i){
+        //if (num_reps[i].at<double>(0,))
+    }
 
 }

@@ -7,7 +7,7 @@
 #include <random>
 #include <vector>
 
-// Creates a comaparator object that will help us with sorting using a
+// Creates a comparator object that will help us with sorting using a
 // non-static function
 struct compareFunctor {
    explicit compareFunctor(KNN *knn_current_object)
