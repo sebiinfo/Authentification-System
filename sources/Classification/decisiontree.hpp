@@ -35,7 +35,7 @@ class Node {
    std::vector<int> labels;
    std::string info_measure;
    best_split_type best_split{};
-   int node_label;
+   int node_label = -1;
 
    Node(){}
 
