@@ -77,7 +77,10 @@ void test_open_eye(std::string image_path)
     }
 }
 
+void test_rotate_face{
+    cv::Mat image = cv::imread("C:\Users\USER\CLionProjects\Authentification-System\Authentification-System\images\Testing\yassinetiltedopen.jpg");
 
+};
 
 ///Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team
 //    test_open_eye(image_path);
