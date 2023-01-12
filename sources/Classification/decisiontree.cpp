@@ -14,6 +14,7 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
    this->labels = labels;
    this->info_measure = info_measure;
    this->best_split = get_best_split();
+
 }
 
 Node::~Node() {
