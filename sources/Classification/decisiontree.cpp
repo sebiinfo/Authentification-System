@@ -215,11 +215,18 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
 int DecisionTree::classify(cv::Mat query) {
    // we initialize the node with the faces
    Node *parent_node = new Node(num_people, dim, num_reps, labels);
-   // while the node is not pure we go to the corresponding child
 
+   // while the node is not pure we go to the corresponding child
    while (parent_node->node_label == -1) {
       int split_entry = parent_node->best_split.entry;
       double split_threshold = parent_node->best_split.threshold;
-      //if (query)
+      if (query.at<double>(0,split_entry)<=split_threshold){
+            parent_node=parent_node->left_child_pointer;
+      }
+      else{
+          parent_node=parent_node->right_child_pointer;
+      }
    }
+   // when we exit the while we have a pure node
+    return parent_node->node_label;
 }
