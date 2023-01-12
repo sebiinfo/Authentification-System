@@ -28,6 +28,7 @@ class Classifier {
 
 class Classifier {
  public:
+   Classifier(){}
    Classifier(int num_people, int dim);
    Classifier(int num_people, int dim, std::vector<cv::Mat> &num_reps,
               std::vector<int> &labels);

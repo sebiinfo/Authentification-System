@@ -36,8 +36,10 @@ std::vector<int> get_permutation_vector(std::vector<cv::Mat> &sort_vector,
    return permutation_vector;
 }
 
+
+template <typename T>
 void apply_permutation(std::vector<int> &permutation_vector,
-                       std::vector<int> labels_vector) {
+                       std::vector<T> my_vector) {
    std::vector<bool> done(permutation_vector.size());
 
    for (int i = 0; i < permutation_vector.size(); i++) {
@@ -47,8 +49,8 @@ void apply_permutation(std::vector<int> &permutation_vector,
       int correct_position = permutation_vector[i];
 
       while (i != correct_position) {
-         std::swap(labels_vector[previous_position],
-                   labels_vector[correct_position]);
+         std::swap(my_vector[previous_position],
+                   my_vector[correct_position]);
 
          done[correct_position] = true;
          previous_position = correct_position;
@@ -58,58 +60,6 @@ void apply_permutation(std::vector<int> &permutation_vector,
 }
 
 // KNN_Testing Object for easy testing of fuctions
-
-std::vector<double> KNN_Testing::generate_random_vector(int size) {
-   // Generates a random line vector with varialble size
-   std::random_device rd;
-   std::mt19937 gen(rd());
-   std::uniform_real_distribution<> dis(0, 1.0);
-
-   std::vector<double> result(size);
-
-   for (auto &element : result) {
-      element = dis(gen);
-   }
-   return result;
-}
-
-std::vector<int> KNN_Testing::generate_random_id(int number_faces) {
-   // generates a random list of ids corresponding to a vector of faces
-   std::vector<int> result(number_faces);
-
-   for (auto &face : result) {
-      face = rand() % 10000;
-   }
-
-   return result;
-}
-
-std::vector<cv::Mat> KNN_Testing::generate_faces(int number_faces, int size) {
-   // generates faces from line_vectors
-   std::vector<cv::Mat> faces_vector(number_faces);
-
-   for (auto &face : faces_vector) {
-      face = cv::Mat(generate_random_vector(size));
-   }
-
-   return faces_vector;
-}
-
-void KNN_Testing::test_clasify(int number_faces, int size) {
-   std::vector<cv::Mat> num_faces = generate_faces(number_faces, size);
-   std::vector<int> labels = generate_random_id(number_faces);
-
-   KNN knn = KNN(number_faces, size, num_faces, labels);
-   knn_instance = knn;
-
-   cv::Mat query = cv::Mat(generate_random_vector(1));
-   print_vector(knn_instance.labels);
-   print_vector(knn_instance.num_reps);
-   //Will it print a cv::Mat? We'll find out :)
-   knn_instance.classify(query);
-   print_vector(knn_instance.labels);
-   print_vector(knn_instance.num_reps);
-}
 
 KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
          std::vector<int> &labels)
@@ -149,7 +99,7 @@ int KNN::classify(const cv::Mat &query) {
        get_permutation_vector(num_reps, compareFunctor(this));
 
    apply_permutation(permutation_numerical_faces, this->labels);
-   std::sort(num_reps.begin(), num_reps.end(), compareFunctor(this));
+   apply_permutation(permutation_numerical_faces, this->num_reps);
 
    std::map<int, int> id_freq;
 
@@ -187,3 +137,4 @@ KNN::~KNN() {
    labels.clear();
 }
 
+// KNN testing
