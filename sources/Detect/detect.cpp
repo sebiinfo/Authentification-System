@@ -109,15 +109,18 @@ std::vector<cv::Mat> conformArray (std::vector<cv::Mat> faces)
 }
 
 cv::Mat rotate_face(cv::Mat &image){
-    cv::CascadeClassifier faceCascade;
-    if (!faceCascade.load(path_face)){
+
+    //Load cascades
+    cv::CascadeClassifier face_cascade;
+    if (!face_cascade.load(path_face)){
         std::cout<<"Failed to load the face cascade: "<<path_face<<std::endl;
     }
-    cv::CascadeClassifier eyeCascade;
-    if (!eyeCascade.load(path_eye)){
+    cv::CascadeClassifier eye_cascade;
+    if (!eye_cascade.load(path_eye)){
         std::cout<<"Failed to load the eye cascade: "<<path_face<<std::endl;
 }
     while (1) {
+        //Convert to grayscale
         cv::Mat gray;
         cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
         std::vector<cv::Rect> faces;
@@ -160,10 +163,10 @@ cv::Mat rotate_face(cv::Mat &image){
                                                   left_eye.y + (left_eye.height / 2));
             cv::Point right_eye_center = cv::Point(right_eye.x + (right_eye.width / 2),
                                                    right_eye.y + (right_eye.height / 2));
-            cv::Rect left_eye_x=left_eye_center.x;
-            cv::Rect left_eye_y=left_eye_center.y;
-            cv::Rect right_eye_x=right_eye_center.x;
-            cv::Rect right_eye_x=right_eye_center.y;
+            double left_eye_x=left_eye_center.x;
+            double left_eye_y=left_eye_center.y;
+            double right_eye_x=right_eye_center.x;
+            double right_eye_y=right_eye_center.y;
             double delta_x, delta y;
             delta_x=right_eye_x-left_eye_x;
             delta_y=right_eye_y-left_eye_y;
@@ -176,6 +179,9 @@ cv::Mat rotate_face(cv::Mat &image){
             elif (angle<-10){ //If a left tilt is detected
                 //Rotate face right
                 return rotate_face_aux(cv::Mat &image, double angle);
+3
+
+
 
           }
             else{
