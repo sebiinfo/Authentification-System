@@ -18,7 +18,7 @@ class Localizer {
     ~Localizer();
 
     // Update array faces by replacing it with faces detected on the image
-    virtual void localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces);\
+    virtual void localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces);
 
     // Returns array of cv::Rect objects corresponding to coordinates of faces recognized on the image
     std::vector<cv::Rect> localize_rect(cv::Mat & image);

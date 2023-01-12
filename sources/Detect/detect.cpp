@@ -5,6 +5,7 @@
 
 std::string path_face = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
 std::string path_eye = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
+double pi=3.14159265358979323846;
 
 // Function to adjust the threshold value
 double adjustThreshold(cv::Mat image) {
@@ -61,7 +62,7 @@ bool isEye(cv::Mat image) {
 std::vector<cv::Rect> detectFaces(cv::Mat image) {
     cv::CascadeClassifier faceCascade;
     if (!faceCascade.load(path_face)){
-        std::cout << "Failed to laod the faca cascade at directory:" << path_face << std::endl;
+        std::cout << "Failed to load the face cascade at directory:" << path_face << std::endl;
      }
 
     std::vector<cv::Rect> faces;
@@ -73,7 +74,7 @@ std::vector<cv::Rect> detectFaces(cv::Mat image) {
 std::vector<cv::Rect> detectEyes(cv::Mat image) {
     cv::CascadeClassifier faceCascade;
     if (!faceCascade.load(path_eye)){
-        std::cout << "Failed to laod the faca cascade at directory:" << path_face << std::endl;
+        std::cout << "Failed to load the face cascade:" << path_face << std::endl;
      }
 
     std::vector<cv::Rect> faces;
@@ -105,4 +106,96 @@ std::vector<cv::Mat> conformArray (std::vector<cv::Mat> faces)
         }
     }
     return conformArray;
+}
+
+cv::Mat rotate_face(cv::Mat &image){
+    cv::CascadeClassifier faceCascade;
+    if (!faceCascade.load(path_face)){
+        std::cout<<"Failed to load the face cascade: "<<path_face<<std::endl;
+    }
+    cv::CascadeClassifier eyeCascade;
+    if (!eyeCascade.load(path_eye)){
+        std::cout<<"Failed to load the eye cascade: "<<path_face<<std::endl;
+}
+    while (1) {
+        cv::Mat gray;
+        cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+        std::vector<cv::Rect> faces;
+        face_cascade.detectMultiScale(gray, faces, 1.1, 5);
+        int x, y, w, h;
+        for (int i = 0; i < faces.size(); i++) {
+            x = faces[i].x;
+            y = faces[i].y;
+            w = faces[i].width;
+            h = faces[i].height;
+            cv::rectangle(image, cv::Point(x, y), cv::Point(x + w, y + h), cv::Scalar(0, 255, 0), 2);
+            cv::circle(image, cv::Point(x + int(w * 0.5), y + int(h * 0.5)), 4, cv::Scalar(0, 255, 0), -1);
+        }
+        std::vector<cv::Rect> eyes;
+        eye_cascade.detectMultiScale(gray(cv::Rect(x, y, w, h)), eyes, 1.1, 4);
+        int index = 0;
+        cv::Rect eye_1(0, 0, 0, 0);
+        cv::Rect eye_2(0, 0, 0, 0);
+        for (int i = 0; i < eyes.size(); i++) {
+            if (index == 0) {
+                eye_1 = eyes[i];
+            } else if (index == 1) {
+                eye_2 = eyes[i];
+            }
+            cv::rectangle(image(cv::Rect(x, y, w, h)), cv::Point(eyes[i].x, eyes[i].y),
+                          cv::Point(eyes[i].x + eyes[i].width, eyes[i].y + eyes[i].height), cv::Scalar(0, 0, 255), 2);
+            index++;
+        }
+        if (eye_1.x != 0 && eye_2.x != 0) {
+            cv::Rect left_eye;
+            cv::Rect right_eye;
+            if (eye_1.x < eye_2.x) {
+                left_eye = eye_1;
+                right_eye = eye_2;
+            } else {
+                left_eye = eye_2;
+                right_eye = eye_1;
+            }
+            cv::Point left_eye_center = cv::Point(left_eye.x + (left_eye.width / 2),
+                                                  left_eye.y + (left_eye.height / 2));
+            cv::Point right_eye_center = cv::Point(right_eye.x + (right_eye.width / 2),
+                                                   right_eye.y + (right_eye.height / 2));
+            cv::Rect left_eye_x=left_eye_center.x;
+            cv::Rect left_eye_y=left_eye_center.y;
+            cv::Rect right_eye_x=right_eye_center.x;
+            cv::Rect right_eye_x=right_eye_center.y;
+            double delta_x, delta y;
+            delta_x=right_eye_x-left_eye_x;
+            delta_y=right_eye_y-left_eye_y;
+            double angle_rad = std::atan(delta_y/delta_x);
+            double angle = (angle_rad*180)/pi;
+            if (angle>10){ // If a right tilt is detected
+                //Rotate face left
+                return rotate_face_aux(cv::Mat &image, double angle);
+            }
+            elif (angle<-10){ //If a left tilt is detected
+                //Rotate face right
+                return rotate_face_aux(cv::Mat &image, double angle);
+
+          }
+            else{
+            return image;}
+        }
+    }
+}
+
+cv::Mat rotate_face_aux(cv::Mat &image, double angle){
+    cv::Size s= image.size();
+    double height=s.height;
+    double width = s.width;
+    double image_center[2] = {height/2,width/2};
+    cv::Mat rotation_mat=cv::getRotationMatrix2D(image_center, angle, 1);
+    double abs_cos= abs(rotation_mat[0,0]);
+    double abs_sin = abs(rotation_mat[0,1]);
+    int bound_w = height * abs_sin + width * abs_cos;
+    int bound_h = height * abs_cos + width * abs_sin;
+    rotation_mat[0, 2] += bound_w/2 - image_center[0];
+    rotation_mat[1, 2] += bound_h/2 - image_center[1];
+    rotated_mat = cv::warpAffine(image, rotation_mat, (bound_w, bound_h));
+    return rotated_mat;
 }

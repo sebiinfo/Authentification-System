@@ -33,4 +33,10 @@ bool conform(cv::Mat image);
 //Returns an array containing only the conform images
 std::vector<cv::Mat> conformArray (std::vector<cv::Mat> faces);
 
+// Returns the straightened face
+
+cv::Mat rotate_face(cv::Mat &image);
+
+cv::Mat rotate_face_aux(cv::Mat &image, double angle);
+
 #endif // DETECT_HPP

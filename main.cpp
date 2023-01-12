@@ -59,6 +59,7 @@ int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
 
 int main(){
     testeyedetection();
+    test_rotate_face();
 //    std::string image_path = "Authentification_System/images/Team/yassine.jpg";
 //    std::string path2 = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team/yassine.jpg";
 //    cv::Mat image = cv::imread(image_path);
@@ -77,7 +78,12 @@ void test_open_eye(std::string image_path)
     }
 }
 
+void test_rotate_face{
+    cv::Mat image = cv::imread("C:\Users\USER\CLionProjects\Authentification-System\Authentification-System\images\Testing\yassinetiltedopen.jpg");
+    image=rotate_face(image);
+    cv::imshow("img",image);
 
+};
 
 ///Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team
 //    test_open_eye(image_path);

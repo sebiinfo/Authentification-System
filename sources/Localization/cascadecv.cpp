@@ -18,5 +18,5 @@ Cascade_Detector_CV::Cascade_Detector_CV(w, h) : Localizer(w, h) {
 Cascade_Detector_CV::~Cascade_Detector_CV() {}
 
 void Cascade_Detector_CV::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces) {
-    cascade.detechMultiScale(image, faces, 1.1, 2, 0, Size(30, 30));
+    cascade.detectMultiScale(image, faces, 1.1, 2, 0, Size(30, 30));
 }
