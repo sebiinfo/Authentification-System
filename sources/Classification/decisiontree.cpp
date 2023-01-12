@@ -132,8 +132,8 @@ best_split_type Node::get_best_split() {
 
 
 int Node::is_pure() {
-    if (labels.size()<2){
-        return true;
+    if (labels.empty()){
+        return -1;
     }
     const double limit=0.9;
     std::map<int, int> id_freq;
