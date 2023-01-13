@@ -119,7 +119,6 @@ cv::Mat rotate_face(cv::Mat &image){
     if (!eye_cascade.load(path_eye)){
         std::cout<<"Failed to load the eye cascade: "<<path_face<<std::endl;
 }
-    while (1) {
         //Convert to grayscale
         cv::Mat gray;
         cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
@@ -167,41 +166,37 @@ cv::Mat rotate_face(cv::Mat &image){
             double left_eye_y=left_eye_center.y;
             double right_eye_x=right_eye_center.x;
             double right_eye_y=right_eye_center.y;
-            double delta_x, delta y;
+            double delta_x, delta_y;
             delta_x=right_eye_x-left_eye_x;
             delta_y=right_eye_y-left_eye_y;
             double angle_rad = std::atan(delta_y/delta_x);
             double angle = (angle_rad*180)/pi;
             if (angle>10){ // If a right tilt is detected
                 //Rotate face left
-                return rotate_face_aux(cv::Mat &image, double angle);
+                return rotate_face_aux(image, angle);
             }
-            elif (angle<-10){ //If a left tilt is detected
+            else if (angle<-10){ //If a left tilt is detected
                 //Rotate face right
-                return rotate_face_aux(cv::Mat &image, double angle);
-3
-
-
-
+                return rotate_face_aux(image, angle);
           }
             else{
             return image;}
         }
     }
-}
 
 cv::Mat rotate_face_aux(cv::Mat &image, double angle){
     cv::Size s= image.size();
     double height=s.height;
     double width = s.width;
-    double image_center[2] = {height/2,width/2};
-    cv::Mat rotation_mat=cv::getRotationMatrix2D(image_center, angle, 1);
-    double abs_cos= abs(rotation_mat[0,0]);
-    double abs_sin = abs(rotation_mat[0,1]);
+    cv::Point2f image_center = {height/2,width/2};
+    cv::Mat rotation_mat=cv::getRotationMatrix2D(image_center, angle, 1.0);
+    double abs_cos = abs(rotation_mat.at<double>(0,0));
+    double abs_sin = abs(rotation_mat.at<double>(0,1));
     int bound_w = height * abs_sin + width * abs_cos;
     int bound_h = height * abs_cos + width * abs_sin;
-    rotation_mat[0, 2] += bound_w/2 - image_center[0];
-    rotation_mat[1, 2] += bound_h/2 - image_center[1];
-    rotated_mat = cv::warpAffine(image, rotation_mat, (bound_w, bound_h));
+    rotation_mat.at<double>(0,2) += bound_w/2 - image_center.x;
+    rotation_mat.at<double>(1,2) += bound_h/2 - image_center.y;
+    cv::Mat rotated_mat;
+    cv::warpAffine(image, rotated_mat, rotation_mat, cv::Size(bound_w, bound_h), cv::INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar());
     return rotated_mat;
 }
