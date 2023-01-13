@@ -66,11 +66,14 @@ class Node {
 
 class DecisionTree : public Classifier {
  public:
+   DecisionTree () {}
    DecisionTree(int num_people, int dim, std::vector<cv::Mat> &num_reps,
                 std::vector<int> &labels);
 
    ~DecisionTree();
 
+   //added a root property 
+   Node *root;
    void build_tree(Node *node_pointer);
 
    int classify(cv::Mat query);

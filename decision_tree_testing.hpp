@@ -5,13 +5,13 @@
 
 #include "decisiontree.hpp"
 
-class Testing_Functions {
+class RandomFunctions {
  public:
-   Testing_Functions() {}
+   RandomFunctions() {}
    static std::vector<double> generate_random_vector(int dim);
    static std::vector<int> generate_random_id(int num_people);
    static std::vector<cv::Mat> generate_faces(int num_people, int dim);
-   static void print_best_split(best_split_type best_split);
+    
 
    template <typename T>
    static void print_vector(std::vector<T> my_vector) {
@@ -34,19 +34,14 @@ class Testing_Functions {
 
 class Testing_Node {
  public:
-   Testing_Node() {};
-   static void test_get_best_split(Node *node);
-   static void test_is_pure(Node *node);
-   static void get_thresholds(Node *node, int entry);
-   static void split_and_give_information(Node *node, int entry, double threshold);
-   static void get_information_gain(Node *node, std::vector<int> id_vector);
-   static void print_node(Node *node);
-   static Node* create_node(int num_people, int dim);
-};
+   Testing_Node(int num_people, int dim);
+   std::vector<int> labels;
+   std::vector<cv::Mat> num_reps;
+   int dim;
+   int num_people;
+   void test_get_best_split();
+   void test_is_pure();
+   void split_and_give_information(int entry, double threshold);
+   void get_information_gain(std::vector<int> id_vector);
 
-class Testing_Decision_Tree {
- public:
-   Testing_Decision_Tree(){}
-   static DecisionTree* build_tree(int num_people, int dim);
-   static void Testing_Build_Tree(int num_people, int dim);
 };

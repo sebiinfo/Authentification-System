@@ -155,11 +155,10 @@ DecisionTree::DecisionTree(int num_people, int dim,
                            std::vector<cv::Mat> &num_reps,
                            std::vector<int> &labels)
     : Classifier(num_people, dim, num_reps, labels) {
-   this->num_people = num_people;
-   this->dim = dim;
-   this->num_reps = num_reps;
-   this->labels = labels;
-}
+       Node *root = new Node(num_people, dim, num_reps, labels);
+       build_tree(root);
+    }
+
 
 DecisionTree::~DecisionTree() {
    for (auto representation : num_reps) {
