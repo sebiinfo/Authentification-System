@@ -7,12 +7,13 @@
 #include "rescale.hpp"
 #include "sources/Cropimage/cropimage.hpp"
 #include <string>
+#include "localizer.hpp"
 
 
 //Yassine = 0;
 //Romain = 1;
 
-#define test 1
+#define test 0
 
 #if test == 0
 
@@ -68,9 +69,11 @@ int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
 int main(){
     testeyedetection();
     cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
-    image=rescaleImage(image,224,224);
-    cv::Mat rotate =rotate_face(image);
-    cv::imshow("img",image);
+    Localizer loc = Localizer();
+    std::vector<cv::Mat> crops = loc.localize(image);
+    cv::Mat out = crops[0];
+    cv::Mat rotate =rotate_face(out);
+    cv::imshow("img",rotate);
     cv::waitKey(0);
 
 //    std::string image_path = "Authentification_System/images/Team/yassine.jpg";
