@@ -63,6 +63,7 @@ int main(){
     image=rescaleImage(image,224,224);
     cv::Mat rotate =rotate_face(image);
     cv::imshow("img",image);
+    cv::waitKey(0);
 
 //    std::string image_path = "Authentification_System/images/Team/yassine.jpg";
 //    std::string path2 = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team/yassine.jpg";
