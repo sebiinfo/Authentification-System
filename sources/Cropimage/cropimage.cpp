@@ -3,16 +3,14 @@
 #include <string>
 #include "cropimage.hpp"
 
-int dim = 60;
 
 void crop (cv::Mat& image ,int x1,int x2,int y1,int y2)
-    {
-    int pad =0;
+{
     //  y2
     //
     //  x1:y1      x2
-    image = image(cv::Range(y1-pad,y2+pad), cv::Range(x1-pad,x2+pad));
-    };
+    image = image(cv::Range(y1,y2), cv::Range(x1,x2));
+}
 
 std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect)
 {
@@ -25,10 +23,10 @@ std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect)
     {
         r = faces_rect[i];
         std::cout << r.size() << std::endl;
-        x = r.x - dim/2;
-        w = r.width + dim;
-        y = r.y - dim/2;
-        h = r.height + dim;
+        x = r.x;
+        w = r.width;
+        y = r.y;
+        h = r.height;
 
         face = image.clone();
         crop(face,x,x+w,y,y+h);
@@ -38,6 +36,51 @@ std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect)
     };
     return face_array;
 }
+
+bool is_pad (cv::Mat image, cv::Rect face,int pad){
+    int padx, pady,boundx, boundy;
+    int w,h;
+    boundx = image.cols;
+    boundy = image.dims;
+
+    w = face.width;
+    h = face.height;
+    padx = round ( pad * w / 100);
+    pady = round ( pad * h / 100);
+
+    if(face.x-padx < 0){return false;} // Left side
+
+    if(face.x+w+padx > boundx){return false;} // Right side
+
+    if(face.y-pady < 0){return false;} // Bottom side
+
+    if(face.y+h+pady > boundy){return false;} // Top side
+
+    return true;
+}
+
+void cropPad(cv::Mat& image,cv::Rect face,int pad)
+{
+    if (!is_pad(image,face,pad))
+    {
+        return;
+    }
+
+    int padx,pady,w,h,x,y;
+    w = face.width;
+    h = face.height;
+    x = face.x;
+    y = face.y;
+
+    padx = round(w * pad / 100);
+    pady = round(h * pad / 100);
+
+    crop(image,x-padx,x+w+padx,y-pady,y+h+pady);
+
+}
+
+
+
 
 
 //std::vector<cv::Rect> detect(cv::Mat& img, cv::CascadeClassifier& cascade, double scale){

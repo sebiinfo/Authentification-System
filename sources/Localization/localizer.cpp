@@ -30,7 +30,7 @@ Localizer::~Localizer() {}
 
 void Localizer::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces)
 {
-    faces = detectFaces(image,dim_face);
+    faces = detectFaces(image);
 }
 
 std::vector<cv::Rect> Localizer::localize_rect(cv::Mat & image) {

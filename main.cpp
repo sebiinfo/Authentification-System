@@ -8,6 +8,14 @@
 #include "sources/Cropimage/cropimage.hpp"
 #include <string>
 
+
+//Yassine = 0;
+//Romain = 1;
+
+#define test 1
+
+#if test == 0
+
 int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
     // Please name every picture you add with the word closed or open.
     DIR* dir;
@@ -88,3 +96,11 @@ void test_rotate_face{
 ///Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team
 //    test_open_eye(image_path);
 
+#elif test ==1
+int main(){
+double angle = 30;
+cv::Point image_center = cv::Point( 10, 20);
+cv::Mat rotation_mat=cv::getRotationMatrix2D(image_center, angle, 1);
+std::cout << rotation_mat.size();
+}
+#endif

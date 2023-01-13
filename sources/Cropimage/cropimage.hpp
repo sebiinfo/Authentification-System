@@ -8,6 +8,12 @@ void crop(cv::Mat &image, int botLeft, int botRight, int topLeft, int topRight);
 // Crops an image using an array of cv::Rect
 std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect);
 
+// Returns true if we can add a padding of pad %
+bool is_pad (cv::Mat image, cv::Rect face,int pad);
+
+// Crops an image with padding, if the padding is in the frame, if not, then crops without padding
+void cropPad(cv::Mat& image,cv::Rect face,int pad);
+
 // Returns a vector array of Rectangles holding the coordinates of faces recognised on the given image
 //std::vector<cv::Rect> detect(cv::Mat &img, cv::CascadeClassifier &cascade, double scale);
 
