@@ -10,7 +10,7 @@ std::vector<double> Testing_Functions::generate_random_vector(int dim) {
    std::random_device rd;
    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
    std::mt19937 gen(seed);
-   std::uniform_real_distribution<> dis(0, 10.0);
+   std::uniform_real_distribution<> dis(20, 30);
 
    std::vector<double> result(dim);
 
@@ -72,7 +72,9 @@ void Testing_Node::print_node(Node *node) {
    std::cout << " Node instance: " << node->node_label << "\n";
    std::cout << "\n";
 
+   std::cout<<"Labels:\n";
    Testing_Functions::print_vector(node->labels);
+   std::cout<<"Numerical Representations:\n";
    Testing_Functions::print_vector_mat(node->num_reps);
    std::cout << "\n\n";
 }

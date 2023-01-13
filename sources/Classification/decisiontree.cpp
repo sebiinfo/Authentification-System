@@ -176,7 +176,7 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
    // we initialize the node label: -1 if not pure, the label otherwise
    current_node_pointer->node_label = current_node_pointer->is_pure();
    // we only build a children of the Node if not pure
-   if (current_node_pointer->node_label == -1) {
+   if (current_node_pointer->node_label != -1) {
       return;
    }
 
@@ -188,13 +188,13 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
    int split_entry = current_node_pointer->best_split.entry;
    double split_threshold = current_node_pointer->best_split.threshold;
 
-   for (int i = 0; i < num_people; ++i) {
-      if (num_reps[i].at<double>(0, split_entry) <= split_threshold) {
-         num_reps_left.push_back(num_reps[i]);
-         labels_left.push_back(labels[i]);
+   for (int i = 0; i < current_node_pointer->num_people; ++i) {
+      if (current_node_pointer->num_reps[i].at<double>(0, split_entry) <= split_threshold) {
+         num_reps_left.push_back(current_node_pointer->num_reps[i]);
+         labels_left.push_back(current_node_pointer->labels[i]);
       } else {
-         num_reps_right.push_back(num_reps[i]);
-         labels_right.push_back(labels[i]);
+         num_reps_right.push_back(current_node_pointer->num_reps[i]);
+         labels_right.push_back(current_node_pointer->labels[i]);
       }
    }
 
