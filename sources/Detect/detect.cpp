@@ -3,9 +3,23 @@
 #include "detect.hpp"
 #include <vector>
 
+// Yassine = 0
+// Romain = 1
+// Other = 2
+#define test 0 // To load correct haarcascade
+
+#if test == 0
 std::string path_face = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
 std::string path_eye = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
-double pi = 3.14159265358979323846;
+
+#elif test == 1
+
+std::string path_face = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/sources/Detect/haarcascades/haarcascade_frontalface_default.xml";
+std::string path_eye = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/sources/Detect/haarcascades/haarcascade_eye.xml";
+
+#endif
+
+const double pi = 3.14159265358979323846;
 
 // Function to adjust the threshold value
 double adjustThreshold(cv::Mat image)
@@ -221,7 +235,7 @@ cv::Mat rotate_face_aux(cv::Mat &image, double angle)
     height = image.rows;
     width = image.cols;
 
-    cv::Point2f image_center = cv::Pointf2(height / 2, width / 2);
+    cv::Point2f image_center = cv::Point(height / 2, width / 2);
     cv::Mat rotation_mat = cv::getRotationMatrix2D(image_center, angle, 1);
 
     double abs_cos = abs(cos(angle));
@@ -237,4 +251,3 @@ cv::Mat rotate_face_aux(cv::Mat &image, double angle)
 
     return rotated_mat;
 }
-i
