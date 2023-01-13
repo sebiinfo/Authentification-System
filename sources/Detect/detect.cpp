@@ -22,7 +22,6 @@ std::string path_eye = "/Users/florencepoggi/Documents/Romain/Education/Bachelor
 const double pi = 3.14159265358979323846;
 
 
-
 void normalizeIntensities(cv::Mat &image)
 {
     // Convert image to grayscale
@@ -130,13 +129,12 @@ cv::Mat rotate_face(cv::Mat &image)
     cv::CascadeClassifier eye_cascade;
     if (!eye_cascade.load(path_eye))
     {
-        std::cout << "Failed to load the eye cascade: " << path_face << std::endl;
+        std::cout << "Failed to load the eye cascade: " << path_eye << std::endl;
     }
     // Convert to grayscale
     cv::Mat gray;
     cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-    std::vector<cv::Rect> faces;
-    face_cascade.detectMultiScale(gray, faces, 1.1, 5);
+    std::vector<cv::Rect> faces= detectFaces(gray);
     int x, y, w, h;
     for (int i = 0; i < faces.size(); i++)
     {
