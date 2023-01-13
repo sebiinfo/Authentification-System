@@ -16,7 +16,7 @@ class Testing_Functions {
    template <typename T>
    static void print_vector(std::vector<T> my_vector) {
       for (const auto &element : my_vector) {
-         std::cout << element << " ";
+         std::cout << element <<" ";
       }
       std::cout << "\n";
    }
@@ -34,19 +34,21 @@ class Testing_Functions {
 
 class Testing_Node {
  public:
-   Testing_Node() {};
+   Testing_Node(){};
    static void test_get_best_split(Node *node);
    static void test_is_pure(Node *node);
    static void get_thresholds(Node *node, int entry);
-   static void split_and_give_information(Node *node, int entry, double threshold);
+   static void split_and_give_information(Node *node, int entry,
+                                          double threshold);
    static void get_information_gain(Node *node, std::vector<int> id_vector);
    static void print_node(Node *node);
-   static Node* create_node(int num_people, int dim);
-};
+   static Node *create_node(int num_people, int dim);
 
+};
 class Testing_Decision_Tree {
  public:
-   Testing_Decision_Tree(){}
-   static DecisionTree* build_tree(int num_people, int dim);
+   Testing_Decision_Tree() {}
+   static DecisionTree *build_tree(int num_people, int dim);
    static void Testing_Build_Tree(int num_people, int dim);
+   static void print_tree(Node *decision_tree, int current_depth);
 };

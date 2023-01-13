@@ -1,5 +1,4 @@
 #include "knn.hpp"
-
 #include <exception>
 #include <map>
 #include <numeric>

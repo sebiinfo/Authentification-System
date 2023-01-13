@@ -45,9 +45,9 @@ std::vector<cv::Mat> Testing_Functions::generate_faces(int num_people,
 }
 
 void Testing_Functions::print_best_split(best_split_type best_split) {
-   std::cout << "Entry: " << best_split.entry
+   std::cout << "\n Entry: " << best_split.entry
              << "\n Information Gain: " << best_split.information_gain
-             << "\n Threshold :" << best_split.threshold;
+             << "\n Threshold :" << best_split.threshold << "\n";
 }
 
 void Testing_Node::split_and_give_information(Node *node, int entry,
@@ -66,18 +66,23 @@ void Testing_Node::get_thresholds(Node *node, int entry) {
 }
 
 void Testing_Node::print_node(Node *node) {
-   Testing_Functions::print_vector(node->labels);
-   Testing_Functions::print_vector_mat(node->num_reps);
    Testing_Functions::print_best_split(node->best_split);
 
-   std::cout << "Info measure: " << node->info_measure << "\n";
-   std::cout << "Node instance: " << node->node_label << "\n";
+   std::cout << " Info measure: " << node->info_measure << "\n";
+   std::cout << " Node instance: " << node->node_label << "\n";
+   std::cout << "\n";
+
+   Testing_Functions::print_vector(node->labels);
+   Testing_Functions::print_vector_mat(node->num_reps);
+   std::cout << "\n\n";
 }
+
 Node *Testing_Node::create_node(int num_people, int dim) {
    auto num_reps = Testing_Functions::generate_faces(num_people, dim);
    auto labels = Testing_Functions::generate_random_id(num_people);
    return new Node(num_people, dim, num_reps, labels);
 }
+
 DecisionTree *Testing_Decision_Tree ::build_tree(int num_people, int dim) {
    auto num_reps = Testing_Functions::generate_faces(num_people, dim);
    auto labels = Testing_Functions::generate_random_id(num_people);
@@ -85,8 +90,36 @@ DecisionTree *Testing_Decision_Tree ::build_tree(int num_people, int dim) {
        new DecisionTree(num_people, dim, num_reps, labels);
    return decision_tree;
 }
+
+void Testing_Decision_Tree::print_tree(Node *root, int current_depth) {
+   if (current_depth == 0) {
+      std::cout << "Root of Tree:\n";
+   }
+   if (root == NULL) return;
+
+   Testing_Node::print_node(root);
+
+   std::cout << "Left Node "
+             << "Current Depth: " << current_depth;
+
+   print_tree(root->left_child_pointer, current_depth + 1);
+
+   std::cout << "\n";
+
+   std::cout << "Right Node "
+             << "Current Depth: " << current_depth;
+
+   print_tree(root->right_child_pointer, current_depth + 1);
+
+   std::cout << "\n";
+}
+
 void Testing_Decision_Tree::Testing_Build_Tree(int num_people, int dim) {
    DecisionTree *decision_tree =
        Testing_Decision_Tree::build_tree(num_people, dim);
+
+   Node *root = decision_tree->root;
+
+   Testing_Decision_Tree::print_tree(root, 0);
 }
 

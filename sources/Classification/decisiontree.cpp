@@ -155,7 +155,7 @@ DecisionTree::DecisionTree(int num_people, int dim,
                            std::vector<cv::Mat> &num_reps,
                            std::vector<int> &labels)
     : Classifier(num_people, dim, num_reps, labels) {
-       Node *root = new Node(num_people, dim, num_reps, labels);
+       root = new Node(num_people, dim, num_reps, labels);
        build_tree(root);
     }
 
