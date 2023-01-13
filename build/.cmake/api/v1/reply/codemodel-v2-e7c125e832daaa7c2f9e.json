@@ -1,0 +1,129 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						3
+					],
+					"jsonFile" : "directory-.-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "sources",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-sources-b6fecc0fc9023ba523a9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "sources"
+				},
+				{
+					"build" : "sources/Mail",
+					"jsonFile" : "directory-sources.Mail-73317fc0b079e5074ed1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "sources/Mail",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "libs/opencv",
+					"jsonFile" : "directory-libs.opencv-d7cc1747060ffc30d578.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "libs/opencv",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					],
+					"name" : "Authentication-System",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Authentication-System::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Authentication-System-05550cb790780780d1ed.json",
+					"name" : "Authentication-System",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Mail::@e4f43b2a1cd2f1f6fb2c",
+					"jsonFile" : "target-Mail-9590b7c8b6e203785be9.json",
+					"name" : "Mail",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "OpenCVExternalLibrary::@4654b1831207b76458ea",
+					"jsonFile" : "target-OpenCVExternalLibrary-01eb24c08775a2fae7c8.json",
+					"name" : "OpenCVExternalLibrary",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build",
+		"source" : "C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

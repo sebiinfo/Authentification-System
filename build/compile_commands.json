@@ -1,0 +1,17 @@
+[
+{
+  "directory": "C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build",
+  "command": "C:\\Qt\\Tools\\mingw1120_64\\bin\\g++.exe  @CMakeFiles/Authentication-System.dir/includes_CXX.rsp -std=gnu++11 -o CMakeFiles\\Authentication-System.dir\\TestInterface\\camera\\main.cpp.obj -c C:\\Users\\paula\\OneDrive\\Desktop\\Paris\\c++\\github\\Authentification-System\\TestInterface\\camera\\main.cpp",
+  "file": "C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/TestInterface/camera/main.cpp"
+},
+{
+  "directory": "C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/sources/Mail",
+  "command": "C:\\Qt\\Tools\\mingw1120_64\\bin\\g++.exe   -std=gnu++11 -o CMakeFiles\\Mail.dir\\mail.cpp.obj -c C:\\Users\\paula\\OneDrive\\Desktop\\Paris\\c++\\github\\Authentification-System\\sources\\Mail\\mail.cpp",
+  "file": "C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/sources/Mail/mail.cpp"
+},
+{
+  "directory": "C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/sources/Mail",
+  "command": "C:\\Qt\\Tools\\mingw1120_64\\bin\\g++.exe   -std=gnu++11 -o CMakeFiles\\Mail.dir\\mail1.cpp.obj -c C:\\Users\\paula\\OneDrive\\Desktop\\Paris\\c++\\github\\Authentification-System\\sources\\Mail\\mail1.cpp",
+  "file": "C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/sources/Mail/mail1.cpp"
+}
+]

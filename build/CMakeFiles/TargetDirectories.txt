@@ -1,0 +1,11 @@
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/CMakeFiles/Authentication-System.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/CMakeFiles/edit_cache.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/CMakeFiles/rebuild_cache.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/sources/CMakeFiles/edit_cache.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/sources/CMakeFiles/rebuild_cache.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/sources/Mail/CMakeFiles/Mail.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/sources/Mail/CMakeFiles/edit_cache.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/sources/Mail/CMakeFiles/rebuild_cache.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/libs/opencv/CMakeFiles/OpenCVExternalLibrary.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/libs/opencv/CMakeFiles/edit_cache.dir
+C:/Users/paula/OneDrive/Desktop/Paris/c++/github/Authentification-System/build/libs/opencv/CMakeFiles/rebuild_cache.dir
