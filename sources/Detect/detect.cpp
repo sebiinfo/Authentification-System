@@ -21,22 +21,7 @@ std::string path_eye = "/Users/florencepoggi/Documents/Romain/Education/Bachelor
 
 const double pi = 3.14159265358979323846;
 
-// Function to adjust the threshold value
-double adjustThreshold(cv::Mat image)
-{
-    // Convert image to grayscale
-    cv::Mat gray;
-    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
 
-    // Calculate the mean intensity of the pixels in the image
-    double meanIntensity = cv::mean(gray)[0];
-
-    // Use a fixed value as the threshold adjustment
-    double thresholdAdjustment = 0;
-
-    // Return the adjusted threshold value
-    return meanIntensity + thresholdAdjustment;
-}
 
 void normalizeIntensities(cv::Mat &image)
 {
