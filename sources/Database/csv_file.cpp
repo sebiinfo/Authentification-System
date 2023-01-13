@@ -86,7 +86,6 @@ bool Database ::writeDataToFile(
             ss >> number;
         }
         number = number + 1;
-
         file.close();
         id = std::to_string(number);
         std::ofstream file1;
@@ -94,6 +93,10 @@ bool Database ::writeDataToFile(
         profile.generate_salt();
         std::vector<std::string> encrypted_password_salt =
             profile.build_profile(username, password, confirm_password);
+        if (encrypted_password_salt.empty()){
+            std::cout << "smth didnt work" << std::endl;
+            return false;
+        }
         file1 << id << ',' << username << ',' << name << ',' << last_name << ','
               << encrypted_password_salt[0] << ',' << email << ','
               << encrypted_password_salt[1] << std::endl;
@@ -327,8 +330,13 @@ bool Database::check_username(std::string file_name,
     std::string line;
     bool found = false;
 
-    while (getline(file, line) && !found) {
-        username = line.substr(1, line.find(','));
+    while (getline(file, id, ',') && !found) {
+        getline(file, username, ',');
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, ',');
+        getline(file, salt, '\n');
         if (username_given == username) {
             found = true;
             std::cout << "username is taken" << std::endl;
@@ -341,7 +349,6 @@ bool Database::check_username(std::string file_name,
 }
 
 // check if email is taken
-
 bool Database::check_email(std::string file_name, std::string email_given) {
     std::vector<std::string> record;
     std::ifstream file;

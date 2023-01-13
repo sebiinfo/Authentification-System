@@ -113,7 +113,7 @@ std::string Profile::encrypt(std::string password) {
     for (int i = 0; i < 10; i++) {
         h = hash_it(h);
     }
-    std::cout << h << std::endl;
+    //std::cout << h << std::endl;
     return h;
 }
 
@@ -183,6 +183,6 @@ std::string Profile::hash_it(const std::string &CandidatePass) {
     result.resize(8);
     for(int i = 0; i < 8; i++)
     memcpy(&result[0], &str_h, 8); */
-    std::cout << "after memcpy: " << result << std::endl;
+    //std::cout << "after memcpy: " << result << std::endl;
     return result;
 }
