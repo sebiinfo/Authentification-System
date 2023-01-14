@@ -18,7 +18,7 @@
 #if test == 0
 
 int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
-     Please name every picture you add with the word closed or open.
+    //Please name every picture you add with the word closed or open.
     DIR* dir;
     struct dirent* ent;
     std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing";
@@ -79,6 +79,8 @@ int test_angle() {
             double angle;
             angle=rotate_face(frameclosed);
             std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
+            cv::imshow(fileName,frameclosed);
+            cv::waitKey(0);
         }
     }
     closedir(dir);
