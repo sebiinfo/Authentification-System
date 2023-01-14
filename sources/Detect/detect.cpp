@@ -117,7 +117,8 @@ std::vector<cv::Mat> conformArray(std::vector<cv::Mat> faces)
     return conformArray;
 }
 
-cv::Mat rotate_face(cv::Mat &image)
+//cv::Mat rotate_face(cv::Mat &image)
+double rotate_face(cv::Mat &image)
 {
 
     // Load cascades
@@ -189,22 +190,27 @@ cv::Mat rotate_face(cv::Mat &image)
         double delta_x, delta_y;
         delta_x = right_eye_x - left_eye_x;
         delta_y = right_eye_y - left_eye_y;
-        double angle_rad = std::atan(delta_y / delta_x);
-        double angle = (angle_rad * 180) / pi;
-        if (angle > 10)
-        { // If a right tilt is detected
-            // Rotate face left
-            return rotate_face_aux(image, angle);
+        double angle;
+        if (delta_x==0 || delta_y==0){
+            angle=0;
         }
-        else if (angle < -10)
-        { // If a left tilt is detected
-            // Rotate face right
-            return rotate_face_aux(image, angle);
+        else {
+            double angle_rad = std::atan(delta_y / delta_x);
+             angle = (angle_rad * 180) / pi;
         }
-        else
-        {
-            return image;
-        }
+        return angle;
+//        if (angle > 10){ // If a right tilt is detected
+//            // Rotate face left
+//            return rotate_face_aux(image, angle);
+//        }
+//        else if (angle < -10){ // If a left tilt is detected
+//            // Rotate face right
+//            return rotate_face_aux(image, angle);
+//        }
+//        else
+//        {
+//            return image;
+//        }
     }
 }
 

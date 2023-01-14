@@ -65,16 +65,35 @@ int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
     std::cout << "Total correct cases:  "<<trueopen+trueclosed<<"/"<<count<<" = "<<((trueopen+trueclosed)/count)*100<<"%"<<std::endl;
     return 0;
 }
-
+void test_angle() {
+    DIR *dir;
+    struct dirent *ent;
+    std::string folder = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing";
+    dir = opendir(folder.c_str());
+    while ((ent = readdir(dir)) != nullptr) {
+        std::string fileName = ent->d_name;
+        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
+            std::cout<<"image";
+            cv::Mat frameclosed = cv::imread(folder + "//" + fileName);
+            //normalizeIntensities(frameclosed);
+            frameclosed = rescaleImage(frameclosed, 224, 224);
+            double angle;
+            angle = rotate_face(frameclosed);
+            std::cout << "File = " << fileName << "  angle= " << angle << std::endl;
+        }
+        closedir(dir);
+    }
+}
 int main(){
-    testeyedetection();
-    cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
-    Localizer loc = Localizer();
-    std::vector<cv::Mat> crops = loc.localize(image);
-    cv::Mat out = crops[0];
-    cv::Mat rotate =rotate_face(out);
-    cv::imshow("img",rotate);
-    cv::waitKey(0);
+    //testeyedetection();
+    test_angle();
+//    cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
+//    Localizer loc = Localizer();
+//    std::vector<cv::Mat> crops = loc.localize(image);
+//    cv::Mat out = crops[0];
+//    cv::Mat rotate =rotate_face(out);
+//    cv::imshow("img",rotate);
+//    cv::waitKey(0);
 
 //    std::string image_path = "Authentification_System/images/Team/yassine.jpg";
 //    std::string path2 = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team/yassine.jpg";
@@ -84,6 +103,8 @@ int main(){
 //    }
     return 0;
 }
+
+
 void test_open_eye(std::string image_path)
 {
     cv::Mat image = cv::imread(image_path);

@@ -35,7 +35,7 @@ std::vector<cv::Mat> conformArray (std::vector<cv::Mat> faces);
 
 // Returns the straightened face
 
-cv::Mat rotate_face(cv::Mat &image);
+double rotate_face(cv::Mat &image);
 
 cv::Mat rotate_face_aux(cv::Mat &image, double angle);
 
