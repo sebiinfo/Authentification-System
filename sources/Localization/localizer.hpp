@@ -9,10 +9,10 @@ class Localizer {
     Localizer();
 
     // Initialize localiser with height = w, width = w
-    Localizer(int w);
+    Localizer(int w,int padd);
 
-    // Initialize localiser with height = h, width = w
-    Localizer(int w, int h);
+    // Initialize localiser with height = h, width = w and pad
+    Localizer(int w, int h, int pad);
 
     // Deconstructor
     ~Localizer();
@@ -32,6 +32,7 @@ class Localizer {
   private:
     int width;
     int height;
+    int pad; // in percentage
 };
 
 #endif

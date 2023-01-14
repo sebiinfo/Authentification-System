@@ -4,25 +4,25 @@
 #include "../Cropimage/cropimage.hpp"
 #include "../Rescale/rescale.hpp"
 
-int dim_face = 60;
-int dim_eye = 30;
-
 Localizer::Localizer()
 {
     width = 224;
     height = 224;
+    pad = 10;
 }
 
-Localizer::Localizer(int w)
+Localizer::Localizer(int w,int padd)
 {
     width = w;
     height = w;
+    pad = padd;
 }
 
-Localizer::Localizer(int w, int h)
+Localizer::Localizer(int w, int h,int padd)
 {
     width = w;
     height = h;
+    pad = padd;
 }
 
 Localizer::~Localizer() {}
@@ -42,7 +42,7 @@ std::vector<cv::Rect> Localizer::localize_rect(cv::Mat & image) {
 std::vector<cv::Mat> Localizer::localize(cv::Mat & image, std::vector<cv::Rect> & faces_rect) {
     localize_rect(image, faces_rect);
     std::vector<cv::Mat> faces;
-    faces = cropArray(image,faces_rect);
+    faces = cropArrayPad(image,faces_rect,pad);
     faces = rescaleArray(faces,width,height);
     return faces;
 }

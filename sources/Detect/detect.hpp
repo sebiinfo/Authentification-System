@@ -6,9 +6,9 @@
 #ifndef DETECT_HPP
 #define DETECT_HPP
 
-double adjustThreshold(double meanIntensity);
+//double adjustThreshold(double meanIntensity);
 
-void normalizeIntensities(cv::Mat image);
+//void normalizeIntensities(cv::Mat image);
 
 // Returns true if both eyes are open, else false
 bool isEyeOpen(cv::Mat frame);

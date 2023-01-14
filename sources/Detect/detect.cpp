@@ -210,6 +210,7 @@ double rotate_face(cv::Mat &image)
 //            return image;
 //        }
     }
+    return 0;
 }
 
 cv::Mat rotate_face_aux(cv::Mat &image, double angle)

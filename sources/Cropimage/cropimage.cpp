@@ -22,7 +22,7 @@ std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect)
     for (size_t i = 0; i < faces_rect.size(); i++)
     {
         r = faces_rect[i];
-        std::cout << r.size() << std::endl;
+//        std::cout << r.size() << std::endl;
         x = r.x;
         w = r.width;
         y = r.y;
@@ -77,6 +77,26 @@ void cropPad(cv::Mat& image,cv::Rect face,int pad)
 
     crop(image,x-padx,x+w+padx,y-pady,y+h+pady);
 
+}
+
+std::vector<cv::Mat> cropArrayPad(cv::Mat image, std::vector<cv::Rect> faces_rect,int pad)
+{
+    std::vector<cv::Mat> face_array;
+    int x,w,y,h;
+    cv::Mat face;
+    cv::Rect r;
+
+    for (size_t i = 0; i < faces_rect.size(); i++)
+    {
+        r = faces_rect[i];
+
+        face = image.clone();
+        cropPad(face,r,pad);
+
+        face_array.push_back(face.clone());
+
+    };
+    return face_array;
 }
 
 

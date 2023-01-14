@@ -62,3 +62,4 @@ build/
 ./sources/TestCameraCapture/sebi/build
 .cache/
 .vscode
+CMakeLists.txt.user
