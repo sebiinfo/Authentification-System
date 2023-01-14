@@ -143,8 +143,6 @@ double rotate_face(cv::Mat &image)
         y = faces[i].y;
         w = faces[i].width;
         h = faces[i].height;
-        cv::rectangle(image, cv::Point(x, y), cv::Point(x + w, y + h), cv::Scalar(0, 255, 0), 2);
-        cv::circle(image, cv::Point(x + int(w * 0.5), y + int(h * 0.5)), 4, cv::Scalar(0, 255, 0), -1);
     }
     std::vector<cv::Rect> eyes;
     eye_cascade.detectMultiScale(gray(cv::Rect(x, y, w, h)), eyes, 1.1, 4);
@@ -161,8 +159,6 @@ double rotate_face(cv::Mat &image)
         {
             eye_2 = eyes[i];
         }
-        cv::rectangle(image(cv::Rect(x, y, w, h)), cv::Point(eyes[i].x, eyes[i].y),
-                      cv::Point(eyes[i].x + eyes[i].width, eyes[i].y + eyes[i].height), cv::Scalar(0, 0, 255), 2);
         index++;
     }
     if (eye_1.x != 0 && eye_2.x != 0)
