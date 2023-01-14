@@ -1,6 +1,7 @@
 
 #include "decision_tree_testing.hpp"
 
+#include <cstddef>
 #include <iostream>
 #include <opencv2/core/mat.hpp>
 #include <vector>
@@ -72,9 +73,9 @@ void Testing_Node::print_node(Node *node) {
    std::cout << " Node instance: " << node->node_label << "\n";
    std::cout << "\n";
 
-   std::cout<<"Labels:\n";
+   std::cout << "Labels:\n";
    Testing_Functions::print_vector(node->labels);
-   std::cout<<"Numerical Representations:\n";
+   std::cout << "Numerical Representations:\n";
    Testing_Functions::print_vector_mat(node->num_reps);
    std::cout << "\n\n";
 }
@@ -94,22 +95,31 @@ DecisionTree *Testing_Decision_Tree ::build_tree(int num_people, int dim) {
 }
 
 void Testing_Decision_Tree::print_tree(Node *root, int current_depth) {
+   if (root == NULL) return;
    if (current_depth == 0) {
       std::cout << "Root of Tree:\n";
+
+
+      Testing_Node::print_node(root);
    }
-   if (root == NULL) return;
 
-   Testing_Node::print_node(root);
+   if (root->left_child_pointer != NULL) {
+      std::cout << "Left Node "
+                << "Current Depth: " << current_depth;
 
-   std::cout << "Left Node "
-             << "Current Depth: " << current_depth;
-
-   print_tree(root->left_child_pointer, current_depth + 1);
-
+      Testing_Node::print_node(root->left_child_pointer);
+   }
    std::cout << "\n";
 
-   std::cout << "Right Node "
-             << "Current Depth: " << current_depth;
+   if (root->right_child_pointer != NULL) {
+      std::cout << "Right Node "
+                << "Current Depth: " << current_depth;
+      std::cout << "\n";
+
+      Testing_Node::print_node(root->right_child_pointer);
+   }
+
+   print_tree(root->left_child_pointer, current_depth + 1);
 
    print_tree(root->right_child_pointer, current_depth + 1);
 
