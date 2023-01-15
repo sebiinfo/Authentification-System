@@ -1,6 +1,6 @@
 add_library(sources INTERFACE)
 # add_subdirectory(Mail)
-add_subdirectory(camera)
+#add_subdirectory(camera)
 
 target_link_libraries(sources INTERFACE camera)
 
