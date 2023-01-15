@@ -1,5 +1,6 @@
 add_library(sources INTERFACE)
 add_subdirectory(Cropimage)
+add_subdirectory(Cascade)
 add_subdirectory(Detect)
 add_subdirectory(Vectorization)
 add_subdirectory(Classification)
@@ -19,6 +20,7 @@ target_link_libraries(sources
      INTERFACE Interfaces
      INTERFACE Rescale
      INTERFACE Model
+     INTERFACE Cascade
  )
 
 target_include_directories(sources INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
