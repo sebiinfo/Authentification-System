@@ -39,10 +39,10 @@ std::vector<cv::Rect> Localizer::localize_rect(cv::Mat & image) {
     return faces;
 }
 
-std::vector<cv::Mat> Localizer::localize(cv::Mat & image, std::vector<cv::Rect> & faces_rect) {
+std::vector<cv::Mat> Localizer::localize(cv::Mat &image, std::vector<cv::Rect> & faces_rect) {
     localize_rect(image, faces_rect);
     std::vector<cv::Mat> faces;
-    faces = cropArrayPad(image,faces_rect,pad);
+    faces=cropArrayPad(image,faces_rect,pad);
     faces = rescaleArray(faces,width,height);
     return faces;
 }

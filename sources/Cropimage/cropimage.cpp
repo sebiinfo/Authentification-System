@@ -79,7 +79,7 @@ void cropPad(cv::Mat& image,cv::Rect face,int pad)
 
 }
 
-std::vector<cv::Mat> cropArrayPad(cv::Mat image, std::vector<cv::Rect> faces_rect,int pad)
+std::vector<cv::Mat> cropArrayPad(cv::Mat &image, std::vector<cv::Rect> faces_rect,int pad)
 {
     std::vector<cv::Mat> face_array;
     int x,w,y,h;

@@ -2,11 +2,10 @@
 #include <filesystem>
 #include <opencv2/opencv.hpp>
 #include <dirent.h>
-
 //#include "tests.cpp"
 #include "detect.hpp"
 #include "rescale.hpp"
-#include "sources/Cropimage/cropimage.hpp"
+#include "cropimage.hpp"
 #include <string>
 #include "localizer.hpp"
 
