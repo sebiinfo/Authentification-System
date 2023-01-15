@@ -1,6 +1,6 @@
-#include "password.hpp"
-#include "tests.cpp"
-#include "tests.hpp"
+#include "profile.hpp"
+//#include "tests.cpp"
+//#include "tests.hpp"
 #include <iostream>
 #include <map>
 #include <string>

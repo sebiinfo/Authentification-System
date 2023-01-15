@@ -1,5 +1,5 @@
-#ifndef PASSWORD_HPP
-#define PASSWORD_HPP
+#ifndef PROFILE_HPP
+#define PROFILE_HPP
 
 #include <iostream>
 #include <string>
@@ -43,4 +43,4 @@ class Profile {
     long long random;
 };
 
-#endif // PASSWORD_HPP
+#endif // PROFILE_HPP

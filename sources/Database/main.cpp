@@ -11,12 +11,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "csv_file.cpp"
+#include "database.cpp"
 
 int test_database()
 {
    Database database("new.csv");
-   User_Input user_input("new.csv");
 
     //check if the file is empty
     bool empty = database.check_if_empty();
@@ -25,7 +24,7 @@ int test_database()
     bool writeFile = database.writeDataToFile("new.csv", "jsmith", "John", "Smith", "Giraffe13!!", "Giraffe13!!", "john.smith@yahoo.com");
     bool writeFile1 = database.writeDataToFile("new.csv", "emmax", "Emma", "Stone", "Peaceandlove567!", "Peaceandlove567!", "emma.stone@yahoo.com");
     bool writeFile2 = database.writeDataToFile("new.csv", "oskarty", "Oskar", "Tyrone", "oskarisnice", "oskarisnice", "oskar.tyrone@yahoo.com");
-    bool writeFile3 = database.writeDataToFile("new.csv", "oskarttty", "Osktar", "Tyronte", "Oskaristnice123?", "Oskarisnice123?", "oskar.tyrone@yahtoo.com");
+    bool writeFile3 = database.writeDataToFile("new.csv", "oskarttty", "Osktar", "Tyronte", "Oskarisnice123?", "Oskarisnice123?", "oskar.tyrone@yahtoo.com");
 
     std::cout << "working writeDataToFile" << std::endl;
     // checking whether the username is in there and returning all the info, last one says username not found
@@ -58,14 +57,14 @@ int test_database()
     std::cout << "working check username" << std::endl;
 
     //deleting a user from the database
-    bool delete_user = database.delete_user("new.csv", "jsmith", "giraffe1");
+    bool delete_user = database.delete_user("new.csv", "jsmith", "Giraffe13!!");
     std::cout << "working delete user" << std::endl;
 
     //user_input testing
-    bool adding = user_input.add_data("new.csv");
+    //bool adding = user_input.add_data("new.csv");
 
     //deleting all the data from the database
-    database.delete_data();
+    //database.delete_data();
     std::cout << "working ALL" << std::endl;
     return 0;
 }

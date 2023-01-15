@@ -1,9 +1,9 @@
-#ifndef CSV_HPP
-#define CSV_HPP
+#ifndef DATABASE_HPP
+#define DATABASE_HPP
 
 #include <string>
 #include <vector>
-#include "../Password/password.cpp"
+#include "../Password/profile.cpp"
 
 // right now to include functions of csv file
 class Database
@@ -40,6 +40,7 @@ private:
     Profile profile;
 };
 
+/*
 class User_Input
 {
 public:
@@ -53,6 +54,6 @@ private:
     std::string last_name;
     std::string password;
     std::string email;
-};
+};*/
 
 #endif
