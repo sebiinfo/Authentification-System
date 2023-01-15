@@ -1,0 +1,15 @@
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/CMakeFiles/Authentication-System.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/CMakeFiles/edit_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/CMakeFiles/rebuild_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/sources/CMakeFiles/edit_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/sources/CMakeFiles/rebuild_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/sources/camera/CMakeFiles/camera.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/sources/camera/CMakeFiles/camera_other_files.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/sources/camera/CMakeFiles/edit_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/sources/camera/CMakeFiles/rebuild_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/sources/camera/CMakeFiles/camera_autogen.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/libs/opencv/CMakeFiles/OpenCVExternalLibrary.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/libs/opencv/CMakeFiles/edit_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/libs/opencv/CMakeFiles/rebuild_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/libs/qt/CMakeFiles/edit_cache.dir
+/home/fcomoreira/bachelor/current/CSE201/Authentification-System/build/libs/qt/CMakeFiles/rebuild_cache.dir
