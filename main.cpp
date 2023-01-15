@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <opencv2/opencv.hpp>
 #include <dirent.h>
+
 //#include "tests.cpp"
 #include "detect.hpp"
 #include "rescale.hpp"
@@ -13,15 +14,33 @@
 //Yassine = 0;
 //Romain = 1;
 
-#define test 1
+#define test 0
 
 #if test == 0
+void newtest()
+{
+
+    std::string folder ="C:\\Authentification-System\\images\\Testing\\agathaopen.jpg";
+
+    cv::Mat image;
+    image = cv::imread(folder);
+
+    Localizer loc = Localizer();
+
+    std::vector<cv::Mat> arr = loc.localize(image);
+
+    while (true){
+        cv::imshow("img",arr[0]);
+    }
+
+}
+
 
 int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
     //Please name every picture you add with the word closed or open.
     DIR* dir;
     struct dirent* ent;
-    std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing";
+    std::string folder ="C:\\Authentification-System\\images\\Testing";
     dir = opendir(folder.c_str());
     double trueclosed=0;
     double falseclosed=0;
@@ -69,7 +88,7 @@ int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
 int test_angle() {
     DIR* dir;
     struct dirent* ent;
-    std::string folder ="C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing";
+    std::string folder ="C:\\Authentification-System\\images\\Testing";
     dir = opendir(folder.c_str());
     while ((ent = readdir(dir)) != nullptr) {
         std::string fileName = ent->d_name;
@@ -89,7 +108,8 @@ int test_angle() {
 
 int main(){
     //testeyedetection();
-    test_angle();
+    newtest();
+   //  test_angle();
 //    cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
 //    Localizer loc = Localizer();
 //    std::vector<cv::Mat> crops = loc.localize(image);
