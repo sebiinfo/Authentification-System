@@ -4,7 +4,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "qstackedwidget.h"
+#include <QStackedWidget>
 #include <QAudioInput>
 #include <QCamera>
 #include <QImageCapture>
@@ -59,8 +59,8 @@ private slots:
     void updateCameraDevice(QAction *action);
 
     void updateCameraActive(bool active);
-    void updateCaptureMode();
-    void updateRecorderState(QMediaRecorder::RecorderState state);
+    // void updateCaptureMode();
+    // void updateRecorderState(QMediaRecorder::RecorderState state);
     void setExposureCompensation(int index);
 
     void updateRecordTime();

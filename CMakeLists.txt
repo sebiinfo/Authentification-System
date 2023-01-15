@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME}
-    TestInterface/camera/main.cpp
+    main.cpp
 )
 
 find_package(OpenCV REQUIRED)
@@ -31,6 +31,6 @@ message(STATUS "MY_INCLUDE_QT=${INCLUDE_QT}")
 
 target_link_libraries(${PROJECT_NAME} 
         PUBLIC ${INCLUDE_QT}
-        PUBLIC PocoExternalLibrary
+        # PUBLIC PocoExternalLibrary
         PUBLIC OpenCVExternalLibrary
         PUBLIC sources)
