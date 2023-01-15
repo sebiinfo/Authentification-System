@@ -11,12 +11,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "csv_file.cpp"
+#include "database.cpp"
 
-int main()
+int test_database()
 {
     Database database("new.csv");
-    User_Input user_input("new.csv");
 
     // check if the file is empty bool empty = database.check_if_empty();
 
