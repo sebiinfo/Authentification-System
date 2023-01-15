@@ -13,15 +13,14 @@
 #include <vector>
 #include "csv_file.cpp"
 
-int test_database()
+int main()
 {
-   Database database("new.csv");
-   User_Input user_input("new.csv");
+    Database database("new.csv");
+    User_Input user_input("new.csv");
 
-    //check if the file is empty
-    bool empty = database.check_if_empty();
+    // check if the file is empty bool empty = database.check_if_empty();
 
-    //adding three users to the database
+    // adding three users to the database
     bool writeFile = database.writeDataToFile("new.csv", "jsmith", "John", "Smith", "Giraffe13!!", "Giraffe13!!", "john.smith@yahoo.com");
     bool writeFile1 = database.writeDataToFile("new.csv", "emmax", "Emma", "Stone", "Peaceandlove567!", "Peaceandlove567!", "emma.stone@yahoo.com");
     bool writeFile2 = database.writeDataToFile("new.csv", "oskarty", "Oskar", "Tyrone", "oskarisnice", "oskarisnice", "oskar.tyrone@yahoo.com");
@@ -42,30 +41,30 @@ int test_database()
     bool login3 = database.checkPasswordandUsername("new.csv", "beccac", "beccaisnice");
     std::cout << "working checkPasswordandUsername" << std::endl;
 
-    //changing an email to existing users when given a username and a password
+    // changing an email to existing users when given a username and a password
     bool change = database.change_email("new.csv", "jsmith", "Giraffe13!!", "john.smith@gmail.com");
     std::vector<std::string> data10 = database.readRecordFromFile("new.csv", "jsmith");
     std::cout << "working changeemail" << std::endl;
 
-    //check if email is taken, first one should be taken, second one should not be taken as we have changed it above
+    // check if email is taken, first one should be taken, second one should not be taken as we have changed it above
     bool taken = database.check_email("new.csv", "john.smith@gmail.com");
     bool taken_old = database.check_email("new.csv", "john.smith@yahoo.com");
     std::cout << "working checkmail" << std::endl;
 
-    //check if username is taken
+    // check if username is taken
     bool taken_username = database.check_username("new.csv", "jsmith");
     bool taken_username1 = database.check_username("new.csv", "emmax1");
     std::cout << "working check username" << std::endl;
 
-    //deleting a user from the database
+    // deleting a user from the database
     bool delete_user = database.delete_user("new.csv", "jsmith", "giraffe1");
     std::cout << "working delete user" << std::endl;
 
-    //user_input testing
-    bool adding = user_input.add_data("new.csv");
+    // user_input testing
+    // bool adding = user_input.add_data("new.csv");
 
-    //deleting all the data from the database
-    database.delete_data();
-    std::cout << "working ALL" << std::endl;
+    //     // deleting all the data from the database
+    //     database.delete_data();
+    //     std::cout << "working ALL" << std::endl;
     return 0;
 }
