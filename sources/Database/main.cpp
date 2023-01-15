@@ -1,4 +1,4 @@
-// #include <iostream>
+
 
 // using namespace std;
 
@@ -60,11 +60,8 @@ int main()
     bool delete_user = database.delete_user("new.csv", "jsmith", "giraffe1");
     std::cout << "working delete user" << std::endl;
 
-    // user_input testing
-    // bool adding = user_input.add_data("new.csv");
-
-    //     // deleting all the data from the database
-    //     database.delete_data();
-    //     std::cout << "working ALL" << std::endl;
+    // deleting all the data from the database
+    database.delete_data();
+    std::cout << "working ALL" << std::endl;
     return 0;
 }

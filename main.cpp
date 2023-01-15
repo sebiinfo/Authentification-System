@@ -4,5 +4,5 @@
 int main (){
     int a = test_database();
     std::cout << "Hello world";
-    return a;
+    return 0;
 }
