@@ -9,8 +9,8 @@
 #define test 0 // To load correct haarcascade
 
 #if test == 0
-std::string path_face = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
-std::string path_eye = "C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
+std::string path_face = "C:\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
+std::string path_eye = "C:\\Authentification-System\\sources\\Detect\\haarcascades\\haarcascade_eye.xml";
 
 #elif test == 1
 
