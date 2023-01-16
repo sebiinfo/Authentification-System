@@ -1,7 +1,17 @@
+#include <Poco/Net/HTTPServer.h>
+#include <Poco/Net/MailMessage.h>
+#include <Poco/Net/MailRecipient.h>
+#include <Poco/Net/SMTPClientSession.h>
+#include <Poco/Net/NetException.h>
+#include <Poco/Net/SecureSMTPClientSession.h>
+
+#define CAMERA 1
+
+
+#if CAMERA == 0
+
 #include <camera.h>
-
 #include <QApplication>
-
 #include <iostream>
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
@@ -10,3 +20,37 @@ int main(int argc, char *argv[]) {
     camera.show();
     return app.exec();
 };
+
+#elif CAMERA ==1
+
+#include <iostream>
+#include "mail.hpp"
+
+using namespace std;
+
+int main(){
+    cout << "start" << endl;
+    Poco::Net::MailMessage msg;
+    msg.addRecipient (Poco::Net::MailRecipient(Poco::Net::MailRecipient::PRIMARY_RECIPIENT,"sophieclaireantoun0@gmail.com", "Sophie"));
+    msg.setSender ("Me <sophieclaireantoun0@gmail.com>");
+    msg.setSubject ("Test");
+    msg.setContent ("Content");
+
+    Poco::Net::SMTPClientSession smtp ("smtp-relay.gmail.com", 465);
+    try {
+        smtp.login (    Poco::Net::SMTPClientSession::LoginMethod::AUTH_LOGIN,
+                        "sophieclaireantoun0@gmail.com",
+                        "tnofcyabsptdsqrc");
+        smtp.sendMessage (msg);
+    } catch (Poco::Net::SMTPException e) {
+        cout << e.message() << endl;
+    }
+
+    //                "tnofcyabsptdsqrc");
+
+    smtp.close ();
+    cout << "stop" << endl;
+    return 0;
+}
+
+#endif

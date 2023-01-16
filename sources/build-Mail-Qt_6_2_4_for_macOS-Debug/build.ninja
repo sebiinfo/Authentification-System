@@ -1,0 +1,159 @@
+## This file contains all the build statements describing the
+# compilation DAG.
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# 
+# Which is the root file.
+# =============================================================================
+
+# =============================================================================
+# Project: Project
+# Configurations: Debug
+# =============================================================================
+
+#############################################
+# Minimal version of Ninja required by this file
+
+ninja_required_version = 1.5
+
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
+# =============================================================================
+# Include auxiliary files.
+
+
+#############################################
+# Include rules file.
+
+include CMakeFiles/rules.ninja
+
+# =============================================================================
+
+#############################################
+# Logical path to working directory; prefix for absolute paths.
+
+cmake_ninja_workdir = /Users/sca/Desktop/BX/Semester$ 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug/
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target Mail
+
+
+#############################################
+# Order-only phony target for Mail
+
+build cmake_object_order_depends_target_Mail: phony || CMakeFiles/Mail.dir
+
+build CMakeFiles/Mail.dir/mail.o: CXX_COMPILER__Mail_Debug /Users/sca/Desktop/BX/Semester$ 3/CSE201/Authentification-System/sources/Mail/mail.cpp || cmake_object_order_depends_target_Mail
+  DEP_FILE = CMakeFiles/Mail.dir/mail.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.0
+  OBJECT_DIR = CMakeFiles/Mail.dir
+  OBJECT_FILE_DIR = CMakeFiles/Mail.dir
+  TARGET_COMPILE_PDB = CMakeFiles/Mail.dir/Mail.pdb
+  TARGET_PDB = libMail.pdb
+
+build CMakeFiles/Mail.dir/questions.o: CXX_COMPILER__Mail_Debug /Users/sca/Desktop/BX/Semester$ 3/CSE201/Authentification-System/sources/Mail/questions.cpp || cmake_object_order_depends_target_Mail
+  DEP_FILE = CMakeFiles/Mail.dir/questions.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.0
+  OBJECT_DIR = CMakeFiles/Mail.dir
+  OBJECT_FILE_DIR = CMakeFiles/Mail.dir
+  TARGET_COMPILE_PDB = CMakeFiles/Mail.dir/Mail.pdb
+  TARGET_PDB = libMail.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Mail
+
+
+#############################################
+# Link the static library libMail.a
+
+build libMail.a: CXX_STATIC_LIBRARY_LINKER__Mail_Debug CMakeFiles/Mail.dir/mail.o CMakeFiles/Mail.dir/questions.o
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.0
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles/Mail.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/Mail.dir/Mail.pdb
+  TARGET_FILE = libMail.a
+  TARGET_PDB = libMail.pdb
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug" && /Applications/Tools/CMake/CMake.app/Contents/bin/ccmake -S"/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/Mail" -B"/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug"
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug" && /Applications/Tools/CMake/CMake.app/Contents/bin/cmake --regenerate-during-build -S"/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/Mail" -B"/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Target aliases.
+
+build Mail: phony libMail.a
+
+# =============================================================================
+# Folder targets.
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug
+
+build all: phony libMail.a
+
+# =============================================================================
+# Unknown Build Time Dependencies.
+# Tell Ninja that they may appear as side effects of build rules
+# otherwise ordered by order-only dependencies.
+
+# =============================================================================
+# Built-in targets
+
+
+#############################################
+# Re-run CMake if any of its inputs changed.
+
+build build.ninja: RERUN_CMAKE | /Applications/Qt$ Creator.app/Contents/Resources/package-manager/auto-setup.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCCompiler.cmake.in /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCCompilerABI.c /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCInformation.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCXXCompiler.cmake.in /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCXXCompilerABI.cpp /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCompilerIdDetection.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCXXCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCompileFeatures.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCompilerABI.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCompilerId.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineSystem.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeFindBinUtils.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeNinjaFindMake.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeParseImplicitIncludeInfo.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeParseLibraryArchitecture.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeSystem.cmake.in /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeTestCCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeTestCXXCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeTestCompilerCommon.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/ADSP-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/ARMCC-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/ARMClang-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/AppleClang-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Borland-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Cray-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/GHS-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/GNU-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/HP-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IAR-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Intel-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/LCC-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/MSVC-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/NVHPC-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/PGI-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/PathScale-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/SCO-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/TI-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Watcom-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/XL-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/zOS-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Internal/FeatureTesting.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Darwin-Determine-CXX.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /Users/sca/Desktop/BX/Semester$ 3/CSE201/Authentification-System/sources/Mail/CMakeLists.txt CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
+  pool = console
+
+
+#############################################
+# A missing CMake input file is not an error.
+
+build /Applications/Qt$ Creator.app/Contents/Resources/package-manager/auto-setup.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCCompiler.cmake.in /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCCompilerABI.c /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCInformation.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCXXCompiler.cmake.in /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCXXCompilerABI.cpp /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeCompilerIdDetection.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCXXCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCompileFeatures.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCompilerABI.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineCompilerId.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeDetermineSystem.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeFindBinUtils.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeNinjaFindMake.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeParseImplicitIncludeInfo.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeParseLibraryArchitecture.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeSystem.cmake.in /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeTestCCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeTestCXXCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/CMakeTestCompilerCommon.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/ADSP-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/ARMCC-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/ARMClang-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/AppleClang-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Borland-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Cray-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/GHS-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/GNU-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/HP-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IAR-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Intel-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/LCC-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/MSVC-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/NVHPC-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/PGI-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/PathScale-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/SCO-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/TI-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/Watcom-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/XL-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/zOS-C-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Internal/FeatureTesting.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Darwin-Determine-CXX.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/Tools/CMake/CMake.app/Contents/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /Users/sca/Desktop/BX/Semester$ 3/CSE201/Authentification-System/sources/Mail/CMakeLists.txt CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean all the built files.
+
+build clean: CLEAN
+
+
+#############################################
+# Print all primary targets available.
+
+build help: HELP
+
+
+#############################################
+# Make the all target the default.
+
+default all

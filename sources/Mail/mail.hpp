@@ -3,6 +3,8 @@
 #include <Poco/Net/SMTPClientSession.h>
 #include <Poco/Net/MailMessage.h>
 
+void mail();
+
 class SMTPClientSession
 {
 public:
@@ -154,4 +156,16 @@ public:
 
     void
     setRealName(const std::string& realName);
+};
+
+class Randomnumber
+{
+public:
+    Randomnumber();
+    void generaterandom();
+    bool checkifsame();
+
+private:
+    long long randomnumber;
+
 };

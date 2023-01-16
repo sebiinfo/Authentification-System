@@ -1,0 +1,3 @@
+/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug/CMakeFiles/Mail.dir
+/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug/CMakeFiles/edit_cache.dir
+/Users/sca/Desktop/BX/Semester 3/CSE201/Authentification-System/sources/build-Mail-Qt_6_2_4_for_macOS-Debug/CMakeFiles/rebuild_cache.dir

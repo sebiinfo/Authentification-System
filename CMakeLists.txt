@@ -10,13 +10,15 @@ add_executable(${PROJECT_NAME}
 )
 
 find_package(OpenCV REQUIRED)
-#find_package(Poco REQUIRED Net)
-find_package(Qt6 OPTIONAL_COMPONENTS Core)
+find_package(Poco REQUIRED Net)
+find_package(OpenSSL REQUIRED)
+#find_package(Qt6 OPTIONAL_COMPONENTS Core)
 
 add_subdirectory(sources)
 
 add_subdirectory(libs/opencv)
-#add_subdirectory(libs/Poco)
+add_subdirectory(libs/Poco)
+include_directories(${OpenSSL_INCLUDE_DIRS})
 
 if(${Qt6_FOUND})
   add_subdirectory(libs/qt)
@@ -31,6 +33,7 @@ message(STATUS "MY_INCLUDE_QT=${INCLUDE_QT}")
 
 target_link_libraries(${PROJECT_NAME} 
         PUBLIC ${INCLUDE_QT}
-        # PUBLIC PocoExternalLibrary
+        PUBLIC ${OpenSSL_LIBRARY_DIRS}
+         PUBLIC PocoExternalLibrary
         PUBLIC OpenCVExternalLibrary
         PUBLIC sources)
