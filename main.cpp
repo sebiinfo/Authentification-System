@@ -16,7 +16,7 @@
 #define test 0
 
 #if test == 0
-void newtest()
+void testlocalizer()
 {
 
     std::string folder ="C:\\Authentification-System\\images\\Testing\\agathaopen.jpg";
@@ -107,7 +107,7 @@ int test_angle() {
 
 int main(){
     //testeyedetection();
-    newtest();
+    testlocalizer();
    //  test_angle();
 //    cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
 //    Localizer loc = Localizer();
