@@ -28,6 +28,10 @@ Conformity::Conformity(std::vector<cv::Mat> input_faces) {
 }
 Conformity::~Conformity(){}
 
+void Conformity::append_face(cv::Mat image){
+    faces.push_back(image);
+}
+
 cv::Mat Conformity::get_face(int i) {
     return faces[i];
 }
@@ -84,8 +88,12 @@ std::vector<cv::Rect> Conformity::detectEyes(cv::Mat image)
     return faces;
 }
 
-bool Conformity::conform(cv::Mat image)
+bool Conformity::conform(cv::Mat image,bool smartcascade/*=true*/)
 {
+    // if smartcascade==true, we only take the images that are conform into the conformity vector faces.
+
+    if (smartcascade==true){
+
     if (!isFace(image))
     {
         //        std::cout << "No face was found";
@@ -97,7 +105,11 @@ bool Conformity::conform(cv::Mat image)
         return true;
     }
     //    std::cout << "Face was found but eyes were closed";
+
     return false;
+}
+    else{return true;}
+
 }
 
 std::vector<cv::Mat> Conformity::conformArray(std::vector<cv::Mat> faces)
@@ -224,5 +236,20 @@ cv::Mat rotate_face(cv::Mat &image, double angle)
 
     return rotated_mat;
 }
+
+void Conformity::normalizeIntensities(cv::Mat &image)
+{
+    // Convert image to grayscale
+    cv::Mat gray;
+    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+
+    // Compute mean and standard deviation of pixel intensities
+    cv::Scalar mean, stddev;
+    cv::meanStdDev(gray, mean, stddev);
+
+    // Normalize the pixel intensities
+    image = (image - mean[0]) / stddev[0];
+}
+
 
 

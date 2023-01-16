@@ -5,6 +5,7 @@
 //#include "tests.cpp"
 #include "detect.hpp"
 #include "rescale.hpp"
+#include "conformity.hpp"
 #include "cropimage.hpp"
 #include <string>
 #include "localizer.hpp"
@@ -16,23 +17,23 @@
 #define test 0
 
 #if test == 0
-void testlocalizer()
-{
-
-    std::string folder ="C:\\Authentification-System\\images\\Testing\\agathaopen.jpg";
-
-    cv::Mat image;
-    image = cv::imread(folder);
-
-    Localizer loc = Localizer();
-
-    std::vector<cv::Mat> arr = loc.localize(image);
-
-    while (true){
-        cv::imshow("img",arr[0]);
-    }
-
-}
+//void testlocalizer()
+//{
+//
+//    std::string folder ="C:\\Authentification-System\\images\\Testing\\agathaopen.jpg";
+//
+//    cv::Mat image;
+//    image = cv::imread(folder);
+//
+//    Localizer loc = Localizer();
+//
+//    std::vector<cv::Mat> arr = loc.localize(image);
+//
+//    while (true){
+//        cv::imshow("img",arr[0]);
+//    }
+//
+//}
 
 
 int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
@@ -105,9 +106,32 @@ int test_angle() {
     return 0;
 }
 
+int test_conformity(){
+
+   Conformity Conform_faces=Conformity();
+    DIR* dir;
+    struct dirent* ent;
+    std::string folder ="C:\\Authentification-System\\images\\Testing";
+    dir = opendir(folder.c_str());
+    while ((ent = readdir(dir)) != nullptr) {
+        std::string fileName = ent->d_name;
+        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
+            cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
+            double angle;
+            angle=rotate_face(frameclosed);
+            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
+            cv::imshow(fileName,frameclosed);
+            cv::waitKey(0);
+        }
+    }
+    closedir(dir);
+    return 0;
+
+}
 int main(){
-    //testeyedetection();
-    testlocalizer();
+//    testeyedetection();
+    //testlocalizer();
+
    //  test_angle();
 //    cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
 //    Localizer loc = Localizer();

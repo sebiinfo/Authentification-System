@@ -11,6 +11,7 @@ public:
     Conformity();
     Conformity(std::vector<cv::Mat> input_faces);
     ~Conformity();
+    void append_face(cv::Mat image);
     bool isEyeOpen(cv::Mat frame);
 // Returns true if a face was detected, else false
     bool isFace(cv::Mat frame);
@@ -27,9 +28,14 @@ public:
     double get_angle_from_eyes(cv::Mat &image);
     cv::Mat rotate_face(cv::Mat &image, double angle);
 // Checks if an image is comform ( face + open eyes )
-    bool conform(cv::Mat image);
+    bool conform(cv::Mat image,bool smartcascade=true);
+    // if smartcascade==true, we only take the images that are conform into the conformity vector faces.
+
     // Gets the ith element of the vector faces
     cv::Mat get_face(int i);
+    void normalizeIntensities(cv::Mat &image);
+
+
 private:
 std::vector <cv::Mat> faces;
 };
