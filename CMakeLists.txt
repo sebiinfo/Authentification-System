@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable( ${PROJECT_NAME} main.cpp )
 
-find_package(Poco REQUIRED Net)
+#find_package(Poco REQUIRED Net)
+#find_package(OpenSSL REQUIRED)
 
 
 add_subdirectory(libs/opencv)
@@ -25,6 +26,7 @@ add_subdirectory(sources)
 
 
 target_link_libraries(${PROJECT_NAME}
-       PUBLIC PocoExternalLibrary
-       PUBLIC sources
+    PUBLIC PocoExternalLibrary
+    PUBLIC OpensslExternalLibrary
+    PUBLIC sources
 )

@@ -1,7 +1,10 @@
 add_library(PocoExternalLibrary INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
 find_package(Poco REQUIRED Net)
-include_directories( ${POCO_INCLUDE_DIRS} )
+
+include_directories(
+    ${POCO_INCLUDE_DIRS}
+)
 
 
 message(STATUS "Poco library status:")
