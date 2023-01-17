@@ -39,8 +39,8 @@ void normalizeIntensities(cv::Mat &image)
 bool isEyeOpen(cv::Mat frame)
 {
     // Load the Haar cascade classifier for eye detection
-    cv::CascadeClassifier eyeCascade;
-    eyeCascade.load(path_face);
+    cascade_detect_cv cascade= cascade_detect_cv()
+
 
     // Detect eyes in the image using the Haar cascade classifier
     std::vector<cv::Rect> eyes;

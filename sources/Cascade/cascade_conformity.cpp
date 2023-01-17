@@ -1,4 +1,4 @@
-#include "conformity.hpp"
+#include "cascade_conformity.hpp"
 const double pi = 3.14159265358979323846;
 
 // Yassine = 0
@@ -17,26 +17,30 @@ std::string path_eye = "/Users/florencepoggi/Documents/Romain/Education/Bachelor
 #endif
 
 
-Conformity::Conformity() {
+Cascade_conformity::Cascade_conformity() {
     //Empty vector
     faces=std::vector<cv::Mat>();
+    cascade_face.load(path_face);
+    cascade_eyes.load(path_eye);
 }
 
-Conformity::Conformity(std::vector<cv::Mat> input_faces) {
+Cascade_conformity::Cascade_conformity(std::vector<cv::Mat> input_faces) {
     //Empty vector
     faces=input_faces;
+    cascade_face.load(path_face);
+    cascade_eyes.load(path_eye);
 }
-Conformity::~Conformity(){}
+Cascade_conformity::~Cascade_conformity(){}
 
-void Conformity::append_face(cv::Mat image){
+void Cascade_conformity::append_face(cv::Mat image){
     faces.push_back(image);
 }
 
-cv::Mat Conformity::get_face(int i) {
+cv::Mat Cascade_conformity::get_face(int i) {
     return faces[i];
 }
 
-bool Conformity::isEyeOpen(cv::Mat frame)
+bool Cascade_conformity::isEyeOpen(cv::Mat frame)
 {
     // Load the Haar cascade classifier for eye detection
     cv::CascadeClassifier eyeCascade;
@@ -48,19 +52,19 @@ bool Conformity::isEyeOpen(cv::Mat frame)
     return eyes.size() > 0;
 }
 
-bool Conformity::isFace(cv::Mat image)
+bool Cascade_conformity::isFace(cv::Mat image)
 {
     std::vector<cv::Rect> faces = detectFaces(image);
     return faces.size() > 0;
 }
 
-bool Conformity::isEye(cv::Mat image)
+bool Cascade_conformity::isEye(cv::Mat image)
 {
     std::vector<cv::Rect> eyes = detectEyes(image);
     return eyes.size() > 0;
 }
 
-std::vector<cv::Rect> Conformity::detectFaces(cv::Mat image)
+std::vector<cv::Rect> Cascade_conformity::detectFaces(cv::Mat image)
 {
     cv::CascadeClassifier faceCascade;
     if (!faceCascade.load(path_face))
@@ -74,7 +78,7 @@ std::vector<cv::Rect> Conformity::detectFaces(cv::Mat image)
     return faces;
 }
 
-std::vector<cv::Rect> Conformity::detectEyes(cv::Mat image)
+std::vector<cv::Rect> Cascade_conformity::detectEyes(cv::Mat image)
 {
     cv::CascadeClassifier faceCascade;
     if (!faceCascade.load(path_eye))
@@ -82,13 +86,13 @@ std::vector<cv::Rect> Conformity::detectEyes(cv::Mat image)
         std::cout << "Failed to load the face cascade:" << path_face << std::endl;
     }
 
-    std::vector<cv::Rect> faces;
+    std::vector<cv::Rect> faces;..................................................................................................
     faceCascade.detectMultiScale(image, faces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
     return faces;
 }
 
-bool Conformity::conform(cv::Mat image,bool smartcascade/*=true*/)
+bool Cascade_conformity::conform(cv::Mat image, bool smartcascade/*=true*/)
 {
     // if smartcascade==true, we only take the images that are conform into the conformity vector faces.
 
@@ -112,7 +116,7 @@ bool Conformity::conform(cv::Mat image,bool smartcascade/*=true*/)
 
 }
 
-std::vector<cv::Mat> Conformity::conformArray(std::vector<cv::Mat> faces)
+std::vector<cv::Mat> Cascade_conformity::conformArray(std::vector<cv::Mat> faces)
 {
     std::vector<cv::Mat> conformArray;
     for (int i = 0; i < faces.size(); i++)
@@ -126,7 +130,7 @@ std::vector<cv::Mat> Conformity::conformArray(std::vector<cv::Mat> faces)
 }
 
 //cv::Mat rotate_face(cv::Mat &image)
-double Conformity::get_angle_from_eyes(cv::Mat &image) {
+double Cascade_conformity::get_angle_from_eyes(cv::Mat &image) {
 
     // Load cascades
     cv::CascadeClassifier face_cascade;
@@ -237,7 +241,7 @@ cv::Mat rotate_face(cv::Mat &image, double angle)
     return rotated_mat;
 }
 
-void Conformity::normalizeIntensities(cv::Mat &image)
+void Cascade_conformity::normalizeIntensities(cv::Mat &image)
 {
     // Convert image to grayscale
     cv::Mat gray;

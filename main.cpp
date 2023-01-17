@@ -5,7 +5,7 @@
 //#include "tests.cpp"
 #include "detect.hpp"
 #include "rescale.hpp"
-#include "conformity.hpp"
+#include "cascade_conformity.hpp"
 #include "cropimage.hpp"
 #include <string>
 #include "localizer.hpp"
@@ -108,7 +108,7 @@ int test_angle() {
 
 int test_conformity(){
 
-   Conformity Conform_faces=Conformity();
+    Cascade_conformity Conform_faces=Cascade_conformity();
     DIR* dir;
     struct dirent* ent;
     std::string folder ="C:\\Authentification-System\\images\\Testing";

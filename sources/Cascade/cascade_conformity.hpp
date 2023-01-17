@@ -1,16 +1,18 @@
 #include <iostream>
 #include <vector>
 #include "opencv2/opencv.hpp"
+#include "cascade_detect_cv.hpp"
 #include <opencv2/objdetect/objdetect.hpp>
+#include "cascade_Base.hpp"
 #ifndef AUTHENTICATION_SYSTEM_CONFORMITY_H
 #define AUTHENTICATION_SYSTEM_CONFORMITY_H
 
 
-class Conformity {
+class Cascade_conformity: public cascade_Base{
 public:
-    Conformity();
-    Conformity(std::vector<cv::Mat> input_faces);
-    ~Conformity();
+    Cascade_conformity();
+    Cascade_conformity(std::vector<cv::Mat> input_faces);
+    ~Cascade_conformity();
     void append_face(cv::Mat image);
     bool isEyeOpen(cv::Mat frame);
 // Returns true if a face was detected, else false
@@ -34,10 +36,12 @@ public:
     // Gets the ith element of the vector faces
     cv::Mat get_face(int i);
     void normalizeIntensities(cv::Mat &image);
-
+    void detectMultiScale(cv::Mat image, cv::Rect faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
 private:
 std::vector <cv::Mat> faces;
+cascade_detect_cv cascade_face;
+cascade_detect_cv cascade_eyes;
 };
 
 
