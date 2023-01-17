@@ -57,6 +57,9 @@ void Testing_Node::split_and_give_information(Node *node, int entry,
              << node->split_and_give_information(entry, threshold);
 }
 
+void Testing_Node::get_information_gain(Node *node, std::vector<int> id_vector){
+   std::cout << node->get_information_gain(id_vector);
+}
 void Testing_Node::test_get_best_split(Node *node) {
    best_split_type best_split = node->get_best_split();
    Testing_Functions::print_best_split(best_split);
@@ -70,7 +73,7 @@ void Testing_Node::print_node(Node *node) {
    Testing_Functions::print_best_split(node->best_split);
 
    std::cout << " Info measure: " << node->info_measure << "\n";
-   std::cout << " Node instance: " << node->node_label << "\n";
+   std::cout << " Node Label: " << node->node_label << "\n";
    std::cout << "\n";
 
    std::cout << "Labels:\n";

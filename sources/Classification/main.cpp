@@ -13,13 +13,12 @@
 
 int main() {
    
-   int num_people = 10, dim = 5; //KNN_Testing test_obj = KNN_Testing(num_people, dim);
+   int num_people = 10, dim = 1; //KNN_Testing test_obj = KNN_Testing(num_people, dim);
    //test_obj.test_clasify(num_people, dim);
 
-   Testing_Decision_Tree::Testing_Build_Tree(num_people,dim) ;
-   // Node *x=Testing_Node::create_node(num_people,dim);
-    //Testing_Node::print_node(x);
-    //Testing_Functions::print_best_split(x->best_split);
-    
-    //Testing_Node::get_information_gain(x, {1,2,3});
+   //Testing_Decision_Tree::Testing_Build_Tree(num_people,dim) ;
+    Node *x=Testing_Node::create_node(num_people,dim);
+    Testing_Node::print_node(x);
+   Testing_Node::get_information_gain(x, {1,2,3})   ;
+
 }

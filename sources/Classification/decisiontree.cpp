@@ -3,6 +3,7 @@
 //
 #include "decisiontree.hpp"
 
+#include <iostream>
 #include <utility>
 Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
            std::vector<int> &labels, const std::string &info_measure) {
@@ -14,7 +15,6 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
    this->labels = labels;
    this->info_measure = info_measure;
    this->best_split = get_best_split();
-
 }
 
 Node::~Node() {
@@ -37,7 +37,7 @@ Node::~Node() {
 
 double Node::get_information_gain(std::vector<int> id_vector) {
    std::map<int, int> id_freq;
-   unsigned long long length_vector = id_freq.size();
+   unsigned long long length_vector = id_vector.size();
    for (int i = 0; i < length_vector; ++i) {
       if (id_freq.count(id_vector[i])) {
          id_freq[id_vector[i]] += 1;
@@ -46,16 +46,28 @@ double Node::get_information_gain(std::vector<int> id_vector) {
       }
    }
    std::vector<double> freq_vector;
+   //std::cout << "Printing id_freq" << "\n";
+   //for(auto key: id_freq){
+      //std::cout << key.first << " " << key.second <<" ";
+      //std::cout << "\n";
+   //}
+
    // above we will keep the vector of probabilities of each element
    for (auto &it : id_freq) {
       freq_vector.push_back(double(it.second) / double(length_vector));
    }
+   //std::cout << "Freq Vector" << "\n";
+   //for (auto i : freq_vector) {
+      //std::cout << i << " ";
+   //}
+
 
    if (info_measure == "entropy") {
       double entropy = 0;
       for (auto i : freq_vector) {
          entropy += -double(i) * double(log2(i));
       }
+
       return entropy;
    }
    if (info_measure == "gini") {
@@ -81,8 +93,9 @@ double Node::split_and_give_information(int entry, double threshold) {
    // if (info_measure=="entropy"){
    double entropy_group1 = Node::get_information_gain(labels_group1);
    double entropy_group2 = Node::get_information_gain(labels_group2);
-   return entropy_group1 * double(labels_group1.size() / num_people) +
-          entropy_group2 * double(labels_group2.size() / num_people);
+
+   return entropy_group1 * double(double(labels_group1.size() )/ num_people) +
+          entropy_group2 * double(double(labels_group2.size() )/ num_people);
    //}
    // I believe that for both gini impurity and entropy the combined information
    // is a linear sum
@@ -120,6 +133,7 @@ best_split_type Node::get_best_split() {
          // now we need to separate all the vectors in our dataset based on this
          // query
          double current_information = Node::split_and_give_information(i, j);
+         
          if (current_information < final_split.information_gain) {
             final_split.information_gain = current_information;
             final_split.threshold = j;
@@ -145,7 +159,7 @@ int Node::is_pure() {
    }
    for (auto &it : id_freq) {
       if (it.second > limit * num_people) {
-         return it.second;
+         return it.first;
       }
    }
    return -1;
@@ -155,10 +169,9 @@ DecisionTree::DecisionTree(int num_people, int dim,
                            std::vector<cv::Mat> &num_reps,
                            std::vector<int> &labels)
     : Classifier(num_people, dim, num_reps, labels) {
-       root = new Node(num_people, dim, num_reps, labels);
-       build_tree(root);
-    }
-
+   root = new Node(num_people, dim, num_reps, labels);
+   build_tree(root);
+}
 
 DecisionTree::~DecisionTree() {
    for (auto representation : num_reps) {
@@ -189,7 +202,8 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
    double split_threshold = current_node_pointer->best_split.threshold;
 
    for (int i = 0; i < current_node_pointer->num_people; ++i) {
-      if (current_node_pointer->num_reps[i].at<double>(0, split_entry) <= split_threshold) {
+      if (current_node_pointer->num_reps[i].at<double>(0, split_entry) <=
+          split_threshold) {
          num_reps_left.push_back(current_node_pointer->num_reps[i]);
          labels_left.push_back(current_node_pointer->labels[i]);
       } else {
@@ -219,13 +233,12 @@ int DecisionTree::classify(cv::Mat query) {
    while (parent_node->node_label == -1) {
       int split_entry = parent_node->best_split.entry;
       double split_threshold = parent_node->best_split.threshold;
-      if (query.at<double>(0,split_entry)<=split_threshold){
-            parent_node=parent_node->left_child_pointer;
-      }
-      else{
-          parent_node=parent_node->right_child_pointer;
+      if (query.at<double>(0, split_entry) <= split_threshold) {
+         parent_node = parent_node->left_child_pointer;
+      } else {
+         parent_node = parent_node->right_child_pointer;
       }
    }
    // when we exit the while we have a pure node
-    return parent_node->node_label;
+   return parent_node->node_label;
 }
