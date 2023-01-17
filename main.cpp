@@ -14,7 +14,7 @@
 //Yassine = 0;
 //Romain = 1;
 
-#define test 0
+#define test 1
 
 #if test == 0
 //void testlocalizer()
@@ -167,10 +167,11 @@ void test_open_eye(std::string image_path)
 //    test_open_eye(image_path);
 
 #elif test ==1
-int main(){
-double angle = 30;
-cv::Point image_center = cv::Point( 10, 20);
-cv::Mat rotation_mat=cv::getRotationMatrix2D(image_center, angle, 1);
-std::cout << rotation_mat.size();
+int main()
+{
+
+
+    return 0;
 }
+
 #endif
