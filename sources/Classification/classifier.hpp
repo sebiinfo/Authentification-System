@@ -30,6 +30,7 @@ class Classifier {
     /*The class classifier is the parent class which will inherit all the classification algorithms
      * It has as attributes the number of people in the dataset, num_people, the vectors representing the faces in num_reps
      * and their dimension dim, and labels which contains the id of each face
+     * This class will be called by the model class and loaded with the proper data
      */
 
  public:
@@ -54,8 +55,8 @@ class Classifier {
    //helper function for is_alienated which checks alienation on people with label : id
     bool is_alienated_id (const cv::Mat& query, int id);
 
-    // the alienation constant is the percentage of admissible alineated coordinates
-    const double alienation_constant=0.3;
+    // the alienation constant is the percentage of admissible alienated coordinates
+    double alienation_constant=0.35;
     int num_people;
     int dim;
     std::vector<cv::Mat> num_reps;  // numerical representations of the faces
