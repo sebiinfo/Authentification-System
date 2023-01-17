@@ -27,7 +27,7 @@ smtp.close ();
 
 void Randomnumber::generaterandom() {
     std::random_device rd; //create a random device
-    std::mt19937 gen(rd()); //create a Mersenne Twister generator
+    std::mt19937; gen(rd()); //create a Mersenne Twister generator
     std::uniform_int_distribution<> dis(10000, 99999); //create a distribution for 5-digit numbers
     int randomNum = dis(gen); //generate a random 5-digit number
     randomnumber=randomNum;
