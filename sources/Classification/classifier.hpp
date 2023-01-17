@@ -44,6 +44,8 @@ class Classifier {
    virtual void train(std::vector<cv::Mat> &num_reps, std::vector<int> &labels);
 
    //the function which is overwritten by the inherited algorithm class
+   //it return the id of the person that it matches with the most
+   //or -1 if it is too far away from all the people
    virtual int classify(cv::Mat &image);
 
 

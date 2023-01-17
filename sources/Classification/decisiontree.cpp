@@ -227,6 +227,10 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
 }
 int DecisionTree::classify(cv::Mat query) {
    // we initialize the node with the faces
+   if (is_alienated(query)){
+       return -1;
+   }
+
    Node *parent_node = new Node(num_people, dim, num_reps, labels);
 
    // while the node is not pure we go to the corresponding child

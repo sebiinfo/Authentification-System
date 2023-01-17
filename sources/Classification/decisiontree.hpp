@@ -66,6 +66,9 @@ class Node {
 
 class DecisionTree : public Classifier {
  public:
+    /*The decision tree class which builds the tree and classifies the query to a certain id using
+     * the class node to store the data
+     */
    DecisionTree () {}
    DecisionTree(int num_people, int dim, std::vector<cv::Mat> &num_reps,
                 std::vector<int> &labels);

@@ -86,13 +86,15 @@ bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
 }
 
 int KNN::classify(const cv::Mat &query) {
-   // first we store in the distance_to_query field of the struct the right
-   // distance
-
    this->query = query;
 
+   //we check if the query is too far off from our data
+    if (is_alienated(query)){
+        return -1;
+    }
+
    // now we want to sort the data in terms of the distance, O(nlogn),
-   // n-dimensional trees will maybe be implemented later (O(n))
+
 
    std::vector<int> permutation_numerical_faces =
        get_permutation_vector(num_reps, compareFunctor(this));
