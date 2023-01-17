@@ -1,6 +1,6 @@
 add_library(PocoExternalLibrary INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-find_package(Poco REQUIRED Net)
+find_package(Poco REQUIRED COMPONENTS Foundation Net NetSSL Data Util MongoDB Redis)
 
 include_directories(
     ${POCO_INCLUDE_DIRS}

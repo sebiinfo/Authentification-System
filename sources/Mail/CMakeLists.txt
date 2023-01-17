@@ -1,4 +1,4 @@
-add_library(Mail mail.cpp main.cpp mail.hpp)
+add_library(Mail mail.cpp mail.hpp)
 
 target_include_directories(Mail INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 

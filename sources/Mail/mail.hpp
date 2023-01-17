@@ -3,7 +3,7 @@
 #include <Poco/Net/SMTPClientSession.h>
 #include <Poco/Net/MailMessage.h>
 
-void mail();
+//void mail();
 
 class SMTPClientSession
 {
