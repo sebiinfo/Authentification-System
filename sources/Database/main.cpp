@@ -1,12 +1,3 @@
-
-
-// using namespace std;
-
-// int main() {
-//     cout << "Hello World!" << endl;
-//     return 0;
-// }
-
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -17,7 +8,8 @@ int test_database()
 {
     Database database("new.csv");
 
-    // check if the file is empty bool empty = database.check_if_empty();
+    // check if the file is empty
+    bool empty = database.check_if_empty();
 
     // adding three users to the database
     bool writeFile = database.writeDataToFile("new.csv", "jsmith", "John", "Smith", "Giraffe13!!", "Giraffe13!!", "john.smith@yahoo.com");
