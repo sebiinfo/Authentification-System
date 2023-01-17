@@ -11,8 +11,8 @@ add_executable(${PROJECT_NAME}
 
 find_package(OpenCV REQUIRED)
 # find_package(Poco REQUIRED Net)
-find_package(OpenSSL REQUIRED)
-#find_package(Qt6 OPTIONAL_COMPONENTS Core)
+# find_package(OpenSSL REQUIRED)
+find_package(Qt6 OPTIONAL_COMPONENTS Core)
 
 add_subdirectory(sources)
 
