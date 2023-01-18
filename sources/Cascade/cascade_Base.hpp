@@ -10,6 +10,7 @@ public:
     cascade_Base();
     ~ cascade_Base();
     virtual void detectMultiScale(cv::Mat image, std::vector<cv::Mat> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+    std::vector<cv::Rect> vect_faces;
 
 };
 

@@ -11,38 +11,30 @@
 class Cascade_conformity: public cascade_Base{
 public:
     Cascade_conformity();
-    Cascade_conformity(std::vector<cv::Mat> &input_faces);
+    Cascade_conformity(std::vector<cv::Rect> &input_faces);
     ~Cascade_conformity();
-    void append_face(cv::Mat image);
-    bool isEyeOpen(cv::Mat frame);
-    cv::Mat convert_rect_to_mat(cv::Rect &rect);
-// Returns true if a face was detected, else false
-    bool isFace(cv::Mat frame);
-// Returns ture if an eye was detected, else false
-    bool isEye(cv::Mat);
-// Returns an array of cv::Mat corresponding to coordinates of faces recognized in the image
-    std::vector<cv::Mat> detectFaces(cv::Mat image);
-// Returns an array of cv::Mat corresponding to coordinates of eyes recognized in the image
-    std::vector<cv::Mat> detectEyes(cv::Mat);
-    bool openEyes(cv::Mat image);
-//Returns an array containing only the conform images
-    std::vector<cv::Mat> conformArray (std::vector<cv::Mat> faces);
-// Returns the straightened face
+    void load_cascade_face(std::string path_f);
+    void load_cascade_eyes(std::string path_e);
+    // Returns an array of cv::Mat corresponding to coordinates of faces recognized in the image
+    std::vector<cv::Rect> detectFaces(cv::Mat &image);
+    // Returns an array of cv::Mat corresponding to coordinates of eyes recognized in the image
+    std::vector<cv::Rect> detectEyes(cv::Mat image);
+    // Returns ture if an eye was detected, else false
+    bool isFace(cv::Mat image);
+    bool isEye(cv::Mat image);
     double get_angle_from_eyes(cv::Mat &image);
     cv::Mat rotate_face(cv::Mat &image, double angle);
-// Checks if an image is comform ( face + open eyes )
-    bool conform(cv::Mat image,bool smartcascade=true);
-    // if smartcascade==true, we only take the images that are conform into the conformity vector faces.
-
-    // Gets the ith element of the vector faces
-    cv::Mat get_face(int i);
+    void append_face(cv::Mat image);
+    cv::Mat convert_rect_to_mat(cv::Rect &rect);
+    // gets the ith face
+    cv::Rect get_face(int i);
+    // Normalize Intensities of the pixels (efficiency to be tested)
     void normalizeIntensities(cv::Mat &image);
-    void detectMultiScale(cv::Mat image, std::vector<cv::Mat> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+    void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
 private:
-std::vector <cv::Mat> faces;
-cascade_detect_cv cascade_face;
-cascade_detect_cv cascade_eyes;
+    cv::CascadeClassifier cascade_face;
+    cv::CascadeClassifier cascade_eyes;
 };
 
 
