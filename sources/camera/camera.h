@@ -12,6 +12,7 @@
 #include <QMediaDevices>
 #include <QMediaMetaData>
 #include <QMediaRecorder>
+#include <QGraphicsAnchorLayout>
 #include <QScopedPointer>
 
 #include <QMainWindow>
@@ -130,6 +131,13 @@ private slots:
     void on_takeImageButton_clicked();
 
     void on_photo_library_clicked();
+
+
+    void on_resend_code_clicked();
+
+    void on_back_10_clicked();
+
+    void on_verify_code_clicked();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

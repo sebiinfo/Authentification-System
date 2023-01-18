@@ -28,7 +28,10 @@
 #include <QMediaRecorder>
 #include <QMessageBox>
 #include <QPalette>
+#include <QGraphicsAnchor>
+#include <QGraphicsAnchorLayout>
 #include <QTimer>
+#include <QtWidgets>
 #include <QVideoWidget>
 
 Camera::Camera() : ui(new Ui::Camera)
@@ -396,12 +399,14 @@ void Camera::on_create_2_clicked()
     std::string name = ui -> name -> text().toStdString();
     std::string last_name = ui -> last_name -> text().toStdString();
     std::string user = ui -> username -> text().toStdString();
+    std::string email = ui -> email -> text().toStdString();
     std::string pass = ui -> password_2 -> text().toStdString();
     std::string conf_pass = ui -> confirm_password -> text().toStdString();
 
     std::cout <<name<<std::endl;
     std::cout <<last_name<<std::endl;
     std::cout <<user<<std::endl;
+    std::cout <<email<<std::endl;
     std::cout <<pass<<std::endl;
     std::cout <<conf_pass<<std::endl;
 }
@@ -421,7 +426,7 @@ void Camera::on_new_password_clicked()
 
 void Camera::on_update_password_clicked()
 {
-    ui->stacked->setCurrentIndex(5);
+    ui->stacked->setCurrentIndex(6);
 }
 
 
@@ -519,8 +524,8 @@ void Camera::on_back_4_clicked()
 void Camera::on_get_code_clicked()
 {
     std::string change_credentials = ui -> email_code -> text().toStdString();
-
     std::cout <<change_credentials<<std::endl;
+    ui->stacked->setCurrentIndex(8);
 }
 
 
@@ -534,5 +539,22 @@ void Camera::on_takeImageButton_clicked()
 void Camera::on_photo_library_clicked()
 {
     ui->stacked->setCurrentIndex(4);
+}
+
+void Camera::on_resend_code_clicked()
+{
+    ui->stacked->setCurrentIndex(3);
+}
+
+
+void Camera::on_back_10_clicked()
+{
+    ui->stacked->setCurrentIndex(0);
+}
+
+
+void Camera::on_verify_code_clicked()
+{
+    ui->stacked->setCurrentIndex(9);
 }
 
