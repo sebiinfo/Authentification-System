@@ -70,6 +70,11 @@ KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
    this->k = int(sqrt(num_people));
 }
 
+KNN::KNN(int num_people, int dim) : Classifier(num_people, dim){
+    this->num_people=num_people;
+    this->dim=dim;
+}
+
 double KNN::compute_distance(cv::Mat vect) const {
    // todo check weather we need a weigthed sum or different weight
    double sum = 0;

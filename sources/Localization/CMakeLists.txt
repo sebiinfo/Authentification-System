@@ -1,4 +1,4 @@
-add_library(Localization INTERFACE localizer.hpp)
+add_library(Localization INTERFACE localizer.hpp localizer.cpp)
 
 target_include_directories(Localization INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 

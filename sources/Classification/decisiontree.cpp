@@ -165,6 +165,10 @@ int Node::is_pure() {
    return -1;
 }
 
+DecisionTree::DecisionTree(int num_people, int dim): Classifier(num_people, dim) {
+
+}
+
 DecisionTree::DecisionTree(int num_people, int dim,
                            std::vector<cv::Mat> &num_reps,
                            std::vector<int> &labels)

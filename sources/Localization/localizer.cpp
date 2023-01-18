@@ -26,7 +26,7 @@ std::vector<cv::Mat> Localizer::localize(cv::Mat & image, std::vector<cv::Rect> 
     std::vector<cv::Mat> faces;
     for (int i = 0; i < faces_rect.size(); i++) {
         cv::Mat temp;
-        cv::resize(cv::Mat(img, faces_rect[i]), temp, cv::Size(width, height), 0, 0, cv::INTER_LINEAR)
+        cv::resize(cv::Mat(image, faces_rect[i]), temp, cv::Size(width, height), 0, 0, cv::INTER_LINEAR);
         faces.push_back(temp);
     }
     return faces;

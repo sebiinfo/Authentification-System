@@ -69,14 +69,15 @@ class DecisionTree : public Classifier {
     /*The decision tree class which builds the tree and classifies the query to a certain id using
      * the class node to store the data
      */
-   DecisionTree () {}
+   DecisionTree () = default;
+   DecisionTree (int num_people, int dim);
    DecisionTree(int num_people, int dim, std::vector<cv::Mat> &num_reps,
                 std::vector<int> &labels);
 
    ~DecisionTree();
 
    //added a root property 
-   Node *root;
+   Node *root{};
    void build_tree(Node *node_pointer);
 
    int classify(cv::Mat query);

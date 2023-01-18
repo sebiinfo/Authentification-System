@@ -19,14 +19,14 @@ Model::Model(int num_people, int num_feature, int width, int height,
     this->width = width;
     this->height = height;
 
-    if (localizer == "Cascade") {this->localizer = new Cascade_Detector_CV(width, height);}
-    else {assert(false);}
+//    if (localizer == "Cascade") {this->localizer = new Cascade_Detector_CV(width, height);}
+  //  else {assert(false);}
 
     if (vectorizer == "Fisher") {this->vectorizer = new Fisher(num_people, num_feature);}
     else {assert(false);}
 
-    //if (classifier == "KNN") {this->classifier = new KNN(num_people, num_feature);}
-    //else {assert(false);}
+    if (classifier == "KNN") {this->classifier = new KNN(num_people, num_feature);}
+    else {assert(false);}
     //KNN constructor has 4 arguments. For the moment leave this commented.
 
     this->load_train_images();
@@ -35,7 +35,7 @@ Model::Model(int num_people, int num_feature, int width, int height,
 }
 
 Model::~Model() {
-    delete localizer;
+    //delete localizer;
     delete vectorizer;
     delete classifier;
 }

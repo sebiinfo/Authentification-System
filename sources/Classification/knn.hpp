@@ -10,9 +10,10 @@
 class KNN : public Classifier {
     //finds the kth nearest neighbours of the query in the dim dimensional space
  public:
-   int k;
+   int k{};
 
    KNN() : Classifier() {}
+   KNN(int num_people, int dim);
    KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
        std::vector<int> &labels);
 
@@ -23,8 +24,8 @@ class KNN : public Classifier {
    // computes Euclidian distance between a
    double compute_distance(cv::Mat vect) const;
 
-   int dim;
-   int num_people;
+   int dim{};
+   int num_people{};
    cv::Mat query;
    std::vector<cv::Mat> num_reps;
    std::vector<int> labels;

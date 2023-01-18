@@ -12,6 +12,7 @@
 #include <knn_testing.hpp>
 #include <decision_tree_testing.hpp>
 #include <vector>
+#include "model.hpp"
 
 int main() {
    
@@ -24,8 +25,9 @@ int main() {
     std::vector<double> pula = {INFINITY, INFINITY};
     cv::Mat query = cv::Mat(Testing_Functions::generate_random_vector(dim), true);
     std::cout<<my_classifier->is_alienated(query);
+    Testing_Decision_Tree::Testing_Build_Tree(num_people, dim);
     //Testing_Node::print_node(x);
     //Testing_Functions::print_best_split(x->best_split);
-    
+    Model model(num_people, dim, 224, 224, "Cascade", "Fisher", "KNN");
     //Testing_Node::get_information_gain(x, {1,2,3});
 }

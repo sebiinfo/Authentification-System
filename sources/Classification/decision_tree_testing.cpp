@@ -94,6 +94,7 @@ DecisionTree *Testing_Decision_Tree ::build_tree(int num_people, int dim) {
    auto labels = Testing_Functions::generate_random_id(num_people);
    DecisionTree *decision_tree =
        new DecisionTree(num_people, dim, num_reps, labels);
+   //decision_tree->build_tree(decision_tree->root);
    return decision_tree;
 }
 
