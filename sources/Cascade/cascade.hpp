@@ -1,53 +1,51 @@
 #include <opencv2/opencv.hpp>
 #include <vector>
-//#include "../Localization/cascadecv.hpp"
 
 class Cascade
 {
+public:
 
-Cascade();
-Cascade(int w,int h,int pad,cv::Mat img, cv::CascadeClassifier casc);
-Cascade(cv::Mat img);
-~Cascade();
+Cascade(); // Contructor initialize with 244x244 dimension, 10% padding, no image and no special cascade.
+
+Cascade(int w,int h,int pad,cv::Mat img); // Initialize with specific dims
+Cascade(cv::Mat img); // Give image with default size
+
+~Cascade(); // Destructor
+
+
+private: // Private methods only used inside the class
 
 std::vector<cv::Rect> CoordCascade();
-
-
-void Tilt(); // Tilt the image so it is horizontal, it uses the eyes detection
-bool Conform(); // Check if the image is in the proper format for transformation: if eyes are open, padding fits
-
-
-
 cv::Mat Crop(cv::Rect rect); // Crops the image using coordinates given with padding
-
+void Tilt(); // Tilt the image so it is horizontal, it uses the eyes detection
 cv::Mat Resize(cv::Mat img); // Resizes the image given to the dimensions set by the class attribute
 
-
+public: // Methods that can be accessed from outside the class ( on the object )
 
 cv::Mat Transform(); // Transforms and returns the image attribute in the proper form for the algorithm
-
+bool Conform(); // Check if the image is in the proper format for transformation: if eyes are open, padding fits
 
 ////////////////////////////////////////////
 // Methods to access the class attributes //
 ////////////////////////////////////////////
 
-void set_image(cv::Mat img);
-void get_image(cv::Mat img);
+void set_image(cv::Mat img); // Change image
+void get_image(cv::Mat img); // Get the image of the class
 
-void set_width(int w);
-int get_width();
+void set_width(int w); // Changes the width of the image detected
+int get_width(); // Get the width of the image after the transformation
 
-void set_height(int h);
-int get_height();
+void set_height(int h); // Changes the height of the image detected
+int get_height(); // Get the height of the image after the transformation
 
-void set_padding(int pad);
-int get_padding();
+void set_padding(int pad); // Changes the padding of the image detected
+int get_padding(); // Get the padding of the image after the transformation
 
+cv::CascadeClassifier get_face_cascade(); // get the classifier used for face
+cv::CascadeClassifier get_eye_cascade(); // get the classifier used for eye
 
-void load_special_cascade(cv::CascadeClassifier cascade);
-cv::CascadeClassifier get_face_cascade();
-cv::CascadeClassifier get_eye_cascade();
-cv::CascadeClassifier get_special_cascade();
+void load_special_cascade(cv::CascadeClassifier cascade); // Set the special cascade
+cv::CascadeClassifier get_special_cascade(); // get the special classifier
 
 private:
     cv::Mat image; // The image we work on in the class
