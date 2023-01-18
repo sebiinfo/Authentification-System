@@ -1,5 +1,5 @@
-#ifndef PASSWORD_HPP
-#define PASSWORD_HPP
+#ifndef PROFILE_HPP
+#define PROFILE_HPP
 
 #include <iostream>
 #include <string>
@@ -18,7 +18,6 @@ class Profile {
                           std::string password_from_database,
                           std::string salt_from_database);
     std::vector<std::string> change_password(std::string username,
-                                             std::string old_password,
                                              std::string new_password,
                                              std::string confirm_new_password);
     bool validate_password(std::string password);
@@ -44,4 +43,4 @@ class Profile {
     long long random;
 };
 
-#endif // PASSWORD_HPP
+#endif // PROFILE_HPP
