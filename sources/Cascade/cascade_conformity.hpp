@@ -11,18 +11,19 @@
 class Cascade_conformity: public cascade_Base{
 public:
     Cascade_conformity();
-    Cascade_conformity(std::vector<cv::Mat> input_faces);
+    Cascade_conformity(std::vector<cv::Mat> &input_faces);
     ~Cascade_conformity();
     void append_face(cv::Mat image);
     bool isEyeOpen(cv::Mat frame);
+    cv::Mat convert_rect_to_mat(cv::Rect &rect);
 // Returns true if a face was detected, else false
     bool isFace(cv::Mat frame);
 // Returns ture if an eye was detected, else false
     bool isEye(cv::Mat);
-// Returns an array of cv::Rect corresponding to coordinates of faces recognized in the image
-    std::vector<cv::Rect> detectFaces(cv::Mat image);
-// Returns an array of cv::Rect corresponding to coordinates of eyes recognized in the image
-    std::vector<cv::Rect> detectEyes(cv::Mat);
+// Returns an array of cv::Mat corresponding to coordinates of faces recognized in the image
+    std::vector<cv::Mat> detectFaces(cv::Mat image);
+// Returns an array of cv::Mat corresponding to coordinates of eyes recognized in the image
+    std::vector<cv::Mat> detectEyes(cv::Mat);
     bool openEyes(cv::Mat image);
 //Returns an array containing only the conform images
     std::vector<cv::Mat> conformArray (std::vector<cv::Mat> faces);
@@ -36,7 +37,7 @@ public:
     // Gets the ith element of the vector faces
     cv::Mat get_face(int i);
     void normalizeIntensities(cv::Mat &image);
-    void detectMultiScale(cv::Mat image, cv::Rect faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+    void detectMultiScale(cv::Mat image, std::vector<cv::Mat> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
 private:
 std::vector <cv::Mat> faces;
