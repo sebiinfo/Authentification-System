@@ -8,6 +8,7 @@
 #include "classifier.hpp"
 
 class KNN : public Classifier {
+    //finds the kth nearest neighbours of the query in the dim dimensional space
  public:
    int k;
 

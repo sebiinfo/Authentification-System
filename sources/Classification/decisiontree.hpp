@@ -26,25 +26,25 @@ class Node {
     */
 
    // Pointer to the left and right child
-   Node *left_child_pointer;
-   Node *right_child_pointer;
+   Node *left_child_pointer{};
+   Node *right_child_pointer{};
 
-   int dim;
-   int num_people;
+   int dim{};
+   int num_people{};
    std::vector<cv::Mat> num_reps;
    std::vector<int> labels;
    std::string info_measure;
    best_split_type best_split{};
    int node_label = -1;
 
-   Node(){}
+   Node()= default;
 
    Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
         std::vector<int> &labels, const std::string &info_measure = "entropy");
 
    ~Node();
 
-   double get_information_gain(std::vector<int> id_vector);
+    double get_information_gain(std::vector<int> id_vector) const;
    // the information gain can be either computed with the gini index or
    // entropy we set info_type to "entropy" and it can be manually adjusted to
    // "gini"

@@ -35,7 +35,7 @@ Node::~Node() {
    }
 }
 
-double Node::get_information_gain(std::vector<int> id_vector) {
+double Node::get_information_gain(std::vector<int> id_vector) const {
    std::map<int, int> id_freq;
    unsigned long long length_vector = id_vector.size();
    for (int i = 0; i < length_vector; ++i) {

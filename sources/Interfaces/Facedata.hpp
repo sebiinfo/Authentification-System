@@ -3,7 +3,7 @@
 
 #include <opencv2/core/mat.hpp>
 
-struct Facedata {
+struct [[maybe_unused]] Facedata {
     int id;
     cv::Mat_<double> entries;
     double distance_to_query; // for knn this will be the distance to the querry
