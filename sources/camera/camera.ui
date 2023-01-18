@@ -20,13 +20,13 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="1">
+    <item row="0" column="0">
      <widget class="QStackedWidget" name="stacked">
       <property name="styleSheet">
        <string notr="true">target-&gt;setStyleSheet(QString(&quot;#%1 { background-color: Dark Blue; }&quot;).arg(target-&gt;objectName()));</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="main">
        <widget class="QPushButton" name="register_2">
@@ -86,7 +86,7 @@ QPushButton#password:pressed {
 }</string>
         </property>
         <property name="text">
-         <string>Login with password</string>
+         <string>Login with Password</string>
         </property>
        </widget>
        <widget class="QPushButton" name="face_recognition">
@@ -163,6 +163,9 @@ font: italic 16pt &quot;Times New Roman&quot;;
           <width>231</width>
           <height>31</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
        <widget class="QLabel" name="name_lbl">
@@ -262,7 +265,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
          <string>Confirm password:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="password_lbl_2">
+       <widget class="QLineEdit" name="password_2">
         <property name="geometry">
          <rect>
           <x>490</x>
@@ -270,6 +273,9 @@ font: italic 16pt &quot;Times New Roman&quot;;
           <width>231</width>
           <height>31</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="email">
@@ -281,6 +287,9 @@ font: italic 16pt &quot;Times New Roman&quot;;
           <height>31</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
        </widget>
        <widget class="QLineEdit" name="username">
         <property name="geometry">
@@ -290,6 +299,9 @@ font: italic 16pt &quot;Times New Roman&quot;;
           <width>231</width>
           <height>31</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="last_name">
@@ -301,6 +313,9 @@ font: italic 16pt &quot;Times New Roman&quot;;
           <height>31</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
        </widget>
        <widget class="QLineEdit" name="confirm_password">
         <property name="geometry">
@@ -310,6 +325,9 @@ font: italic 16pt &quot;Times New Roman&quot;;
           <width>231</width>
           <height>31</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_10">
@@ -425,21 +443,27 @@ QPushButton#create_2:pressed {
        <widget class="QLineEdit" name="password_input">
         <property name="geometry">
          <rect>
-          <x>490</x>
+          <x>500</x>
           <y>200</y>
           <width>231</width>
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_2">
+       <widget class="QLineEdit" name="username_input">
         <property name="geometry">
          <rect>
-          <x>490</x>
+          <x>500</x>
           <y>150</y>
           <width>231</width>
           <height>25</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_9">
@@ -491,10 +515,10 @@ QPushButton#back_2:pressed {
        <widget class="QPushButton" name="login_2">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>260</y>
+          <x>650</x>
+          <y>340</y>
           <width>131</width>
-          <height>31</height>
+          <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -516,6 +540,173 @@ QPushButton#login_2:pressed {
         </property>
         <property name="text">
          <string>Login</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="forgot_credentials">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>270</y>
+          <width>201</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#forgot_credentials {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#forgot_credentials:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Forgot Credentials</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="create_account">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>270</y>
+          <width>211</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#create_account {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#create_account:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Create Account</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="new_credentials">
+       <widget class="QLabel" name="label_21">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>70</y>
+          <width>711</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 21pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Enter your email address to get a verification code:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="email_code">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>180</y>
+          <width>231</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>180</y>
+          <width>121</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Email Address:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="get_code">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>270</y>
+          <width>131</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#get_code {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#get_code:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Get Code</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="back_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>94</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#back_4 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#back_4:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Go back</string>
         </property>
        </widget>
       </widget>
@@ -817,7 +1008,7 @@ QPushButton#takeImageButton:pressed {
 }</string>
         </property>
         <property name="text">
-         <string>Capture Photo</string>
+         <string>Authenticate</string>
         </property>
         <property name="icon">
          <iconset>
@@ -886,6 +1077,36 @@ QPushButton#classification_2:pressed {
          <string>method:</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="back_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>94</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#back_3 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#back_3:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Go back</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="successful">
        <widget class="QPushButton" name="update_password">
@@ -945,7 +1166,7 @@ QPushButton#photo_library:pressed {
 }</string>
         </property>
         <property name="text">
-         <string>Photo Library</string>
+         <string>Continue Testing Authentication</string>
         </property>
        </widget>
        <widget class="QPushButton" name="update_email">
@@ -992,6 +1213,306 @@ QPushButton#update_email:pressed {
         </property>
         <property name="text">
          <string>You have successfully logged in!</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="change_password">
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>60</y>
+          <width>741</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Hello, to change your password fill in your information below:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="old_password">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>140</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="password_lbl_2">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>150</y>
+          <width>131</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Old Password:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="new_pass">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>210</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="confirm_new">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>280</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="password_lbl_3">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>220</y>
+          <width>161</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>New Password:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="password_lbl_4">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>290</y>
+          <width>201</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Confirm New Password:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="new_password">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>350</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#new_password {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#new_password:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Change Password</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="back_8">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>94</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#back_8 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#back_8:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Go back</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="email_change">
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>60</y>
+          <width>741</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 18pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Hello, to change your email fill in your information below:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="back_9">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>94</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#back_9 {
+color: #333;
+border: 2px solid #555;
+border-radius: 11px;
+padding: 5px;
+background: qradialgradient(cx: 0.3, cy: -0.4,
+fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #888);
+font: 10pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#back_8:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Go back</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="password_lbl_5">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>150</y>
+          <width>131</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Old Email:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="password_lbl_6">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>220</y>
+          <width>131</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>New Email:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="password_lbl_7">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>290</y>
+          <width>131</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Confirm Email:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="old_email">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>140</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="new_email">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>210</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="confirm_email">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>280</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
       </widget>

@@ -11,7 +11,8 @@
 #include "imagesettings.h"
 #include "metadatadialog.h"
 #include "videosettings.h"
-
+#include <iostream>
+#include <string>
 #include <QAction>
 #include <QActionGroup>
 #include <QAudioDevice>
@@ -46,7 +47,7 @@ Camera::Camera() : ui(new Ui::Camera)
     connect(videoDevicesGroup, &QActionGroup::triggered, this, &Camera::updateCameraDevice);
 
     setCamera(QMediaDevices::defaultVideoInput());
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stacked->setCurrentIndex(0);
 }
 
 void Camera::setCamera(const QCameraDevice &cameraDevice)
@@ -86,8 +87,7 @@ void Camera::setCamera(const QCameraDevice &cameraDevice)
     if (m_camera->cameraFormat().isNull()) {
         auto formats = cameraDevice.videoFormats();
         if (!formats.isEmpty()) {
-            // Choose a decent camera format: Maximum resolution at at least 30 FPS
-            // we use 29 FPS to compare against as some cameras report 29.97 FPS...
+            // Choose a decent camera format: Maximum resolution of at least 30 FPS
             QCameraFormat bestFormat;
             for (const auto &fmt : formats) {
                 if (bestFormat.maxFrameRate() < 29
@@ -346,16 +346,193 @@ void Camera::saveMetaData()
 
 void Camera::on_register_2_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stacked->setCurrentIndex(1);
 }
 
-void Camera::on_localization_1_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
 
 void Camera::on_face_recognition_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stacked->setCurrentIndex(4);
+}
+
+
+void Camera::on_password_clicked()
+{
+    ui->stacked->setCurrentIndex(2);
+}
+
+
+void Camera::on_back_clicked()
+{
+    ui->stacked->setCurrentIndex(0);
+}
+
+
+void Camera::on_back_2_clicked()
+{
+    ui->stacked->setCurrentIndex(0);
+}
+
+
+void Camera::on_back_3_clicked()
+{
+    ui->stacked->setCurrentIndex(0);
+}
+
+void Camera::on_login_2_clicked()
+{
+    std::string username = ui -> username_input -> text().toStdString();
+    std::string password = ui -> password_input -> text().toStdString();
+    std::cout <<username<<std::endl;
+    std::cout <<password<<std::endl;
+    QMessageBox::about(this, "Login Error", "Your username and password do not match.");
+    ui->stacked->setCurrentIndex(5);
+
+}
+
+
+void Camera::on_create_2_clicked()
+{
+    std::string name = ui -> name -> text().toStdString();
+    std::string last_name = ui -> last_name -> text().toStdString();
+    std::string user = ui -> username -> text().toStdString();
+    std::string pass = ui -> password_2 -> text().toStdString();
+    std::string conf_pass = ui -> confirm_password -> text().toStdString();
+
+    std::cout <<name<<std::endl;
+    std::cout <<last_name<<std::endl;
+    std::cout <<user<<std::endl;
+    std::cout <<pass<<std::endl;
+    std::cout <<conf_pass<<std::endl;
+}
+
+
+void Camera::on_new_password_clicked()
+{
+    std::string old = ui -> old_password -> text().toStdString();
+    std::string new_pass = ui -> new_pass -> text().toStdString();
+    std::string confirmation = ui -> confirm_new -> text().toStdString();
+
+    std::cout <<old<<std::endl;
+    std::cout <<new_pass<<std::endl;
+    std::cout <<confirmation<<std::endl;
+}
+
+
+void Camera::on_update_password_clicked()
+{
+    ui->stacked->setCurrentIndex(5);
+}
+
+
+void Camera::on_change_email_clicked()
+{
+    std::string old_email = ui -> old_email -> text().toStdString();
+    std::string new_email = ui -> new_email -> text().toStdString();
+    std::string confirm_email = ui -> confirm_email -> text().toStdString();
+
+    std::cout <<old_email<<std::endl;
+    std::cout <<new_email<<std::endl;
+    std::cout <<confirm_email<<std::endl;
+}
+
+
+void Camera::on_update_email_clicked()
+{
+    ui->stacked->setCurrentIndex(6);
+}
+
+
+void Camera::on_back_7_clicked()
+{
+    ui->stacked->setCurrentIndex(5);
+}
+
+
+void Camera::on_back_8_clicked()
+{
+    ui->stacked->setCurrentIndex(5);
+}
+
+
+void Camera::on_localization_1_clicked()
+{
+    QMessageBox::about(this, "Localization 1 Authentication", "You have been recognized with a 93.5% accuracy.");
+}
+
+void Camera::on_localization_2_clicked()
+{
+    QMessageBox::about(this, "Localization 2 Authentication", "You have been recognized with a 76.4% accuracy.");
+}
+
+
+void Camera::on_vectorization_1_clicked()
+{
+    QMessageBox::about(this, "Vectorization 1 Authentication", "You have been recognized with a 85.1% accuracy.");
+}
+
+
+
+void Camera::on_vectorization_2_clicked()
+{
+    QMessageBox::about(this, "Vectorization 2 Authentication", "You have been recognized with a 94.7% accuracy.");
+}
+
+
+void Camera::on_classification_1_clicked()
+{
+    QMessageBox::about(this, "Vectorization 2 Authentication", "You have been recognized with a 83.9% accuracy.");
+}
+
+
+void Camera::on_classification_2_clicked()
+{
+    QMessageBox::about(this, "Vectorization 2 Authentication", "You have been recognized with a 76.2% accuracy.");
+}
+
+
+void Camera::on_create_account_clicked()
+{
+    ui->stacked->setCurrentIndex(1);
+}
+
+
+void Camera::on_back_9_clicked()
+{
+    ui->stacked->setCurrentIndex(5);
+}
+
+
+
+void Camera::on_forgot_credentials_clicked()
+{
+    ui->stacked->setCurrentIndex(3);
+}
+
+
+void Camera::on_back_4_clicked()
+{
+    ui->stacked->setCurrentIndex(2);
+}
+
+
+void Camera::on_get_code_clicked()
+{
+    std::string change_credentials = ui -> email_code -> text().toStdString();
+
+    std::cout <<change_credentials<<std::endl;
+}
+
+
+void Camera::on_takeImageButton_clicked()
+{
+    QMessageBox::about(this, "Verification Result", "Using verification methods x, y, and Vectorization 1, your authentication accuracy was __%");
+    ui->stacked->setCurrentIndex(5);
+}
+
+
+void Camera::on_photo_library_clicked()
+{
+    ui->stacked->setCurrentIndex(4);
 }
 

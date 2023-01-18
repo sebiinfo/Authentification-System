@@ -77,14 +77,59 @@ private slots:
 
     void showMetaDataDialog();
 
-
-
-
-    void on_localization_1_clicked();
-
     void on_register_2_clicked();
 
     void on_face_recognition_clicked();
+
+    void on_password_clicked();
+
+    void on_back_clicked();
+
+    void on_back_2_clicked();
+
+    void on_back_3_clicked();
+
+    void on_login_2_clicked();
+
+    void on_create_2_clicked();
+
+    void on_new_password_clicked();
+
+    void on_update_password_clicked();
+
+    void on_change_email_clicked();
+
+    void on_update_email_clicked();
+
+    void on_back_7_clicked();
+
+    void on_back_8_clicked();
+
+    void on_localization_1_clicked();
+
+    void on_localization_2_clicked();
+
+    void on_vectorization_1_clicked();
+
+    void on_vectorization_2_clicked();
+
+    void on_classification_1_clicked();
+
+    void on_classification_2_clicked();
+
+    void on_create_account_clicked();
+
+    void on_back_9_clicked();
+
+    void on_forgot_credentials_clicked();
+
+    void on_back_4_clicked();
+
+    void on_get_code_clicked();
+
+    void on_takeImageButton_clicked();
+
+    void on_photo_library_clicked();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
