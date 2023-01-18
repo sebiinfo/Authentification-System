@@ -44,12 +44,16 @@ void set_padding(int pad);
 int get_padding();
 
 
-void load_cascade(cv::CascadeClassifier cascade);
-cv::CascadeClassifier get_cascade();
+void load_special_cascade(cv::CascadeClassifier cascade);
+cv::CascadeClassifier get_face_cascade();
+cv::CascadeClassifier get_eye_cascade();
+cv::CascadeClassifier get_special_cascade();
 
 private:
     cv::Mat image; // The image we work on in the class
-    cv::CascadeClassifier cascade; // The cascade we use for detection
+    cv::CascadeClassifier face_cascade; // The cascade we use for detection of face
+    cv::CascadeClassifier eye_cascade; // The cascade we use for detection of eyes
+    cv::CascadeClassifier special_cascade; // Special cascade used for detection of other than face/eyes or fancier face/eyes
 
     int width; // Width of the size of the image we want to trasnform
     int height; // Height of the size of the image we want to trasnform
