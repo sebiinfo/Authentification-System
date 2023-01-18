@@ -1,0 +1,52 @@
+Budura Bogdan-
+This week I worked on classification and decision tree algorithms together with Sebastian Simon.
+I continued my research on classification algorithms and helped the team with Cmake related issues. Next week I will continue my work with Sebastian on adding a probabilistic element to the decision tree algorithm which will determine the accuracy with which we identify a face.
+
+Romain Poggi -
+This week, I have come up with new features and functionalities that could be added. So I started working on it along with Yassine. I have set up a new branch with all the new source files and created the makes. I also came across a big issue I had with my github, which I have fixed now. 
+
+Jasmine Watissee:
+This week, I spent a lot of time with Sophie on sending an email when the user forgot their password. We spent the whole TD working on that, but we couldn’t make it work so we’re thinking about doing something else to recover the password, like answering a question. I started implementing it during the weekend but I haven’t committed anything yet. I also started merging the Password with the Database and I will continue working on that with Mija next week. And after merging with the Database, we will merge with the User Interface, hopefully before the end of next week.
+
+Sebastian Simon:
+I had a talk with Khoa and Morreira about the development of the algorithm. We want to have a centralized way to call the classification algorithms so I needed to modify the already working KNN to have two methods of initialization, and change the sorting helper function, as now we don't pass in the data as the struct Facedata, but separate vectors, one cv::Mat for the vector of features and the ids of the vector. Now knn should be modified and done. I almost finished the implementation of decision trees too, but I need to implement the same modifications next week. Secondly I am working together with Santorin Yu on a feature that checks the liveness of the image by checking the flow of movement in the image. We still have to check that the code we wrote works.
+
+Satorin Yu:
+I worked alongside Sebi to make a feature that checks if someone shows the camera a picture of a person, or it is a real life video, we call this measire liveness. I did the research on how to make this but a lot of the precise solutions required neural networks, which were hard too implement in C++. We decided to implement an algorithm which checks for dynamicty in the video, or the motion flow, using Haarcascades. I still have to make sure the code runs and talk to other teams to make sure it connects well.
+
+Yassine Turki:
+I worked on the new branch “detection” that Romain created (to which some folders from “facial recognition” were moved from) and implemented a function to detect if there is an eye in a  cv::Mat object. I used the haarcascade classifier from opencv and gathered data for testing purposes to get a result of 66% accuracy. Next week, the goal is to add more training data to adjust our algorithm and enhance accuracy by finding a better alternative to the haarcascade. I also continued to update the trello to make sure everyone is on track with the project.
+
+Victor Lasocki:
+Spent most of my time building the temporary app in QtCreator with all the basic functionalities for the group to be able to test their functions on, while working on the design and a ‘better looking’ app in QtDesign. However, QtCreator crashed several times, and I lost a lot of what I had done there. So, this week, Monday I will catch up on the work I lost, and then I will look into QtDesign on how to use all its functionalities properly.
+
+Francisco Moreira Machado:
+Worked on merging the subparts of the algorithm into a model class, making organizational changes on the code in general (splitting classes into separate folders, renaming variables and class names for consistency). Currently working on testing all parts separately while they are plugged in to the model, and during this week will try all of them at once. Developed testing with an open dataset of images for the vectorization and finished the implementation of the first algorithm for it (FisherFaces). Coordinating the algorithm development so that all pieces continue going together smoothly.
+
+Do Bach Khoa:
+Defined the Localizer base class and worked more on the Vectorizer base class. Fixed namespace errors, inconsistencies, and completed base definition for some other model-related classes. We have all the base blocks we need - and a complete model now! (theoretically and untested). My next tasks are to 1) test and confirm that the model can actually load up and work as a baseline, and 2) look into some fancier deep learning methods.
+
+Alexandru Serban:
+Worked together with Cezara Petrui on developing the algorithm for Linear Discriminant Analysis. We finished coding the main function and also some small functions from the class LDA in OpenCV that were used by our colleagues in FisherFaces. We did research about the decomposition of the eigenvalues but the Mathematics part was too advanced so we used a class we found online for computing them. The only thing left is to discuss with our colleagues about the input for one of the functions that we’ve implemented. We also started doing research about localisers, which will be our main focus until the end of the project.
+
+Cezara Petrui
+Worked together with Alexandru Serban on the Linear Discriminant Analysis. We created the main algorithm and developed some other small functions that were used by our colleagues in the FisherFaces algorithm from the main class LDA of OpenCV. The part with which we struggled a lot was understanding the Mathematics part behind the eigenvalue decomposition. Since we were not able to understand it fully we decided to use a class for eigenvalue decomposition that we found online. Tomorrow we will be finishing with everything related to LDA after we discuss with our colleagues about the required input for one of our small functions. 
+Moreover, we started doing some research about implementing a new localiser, which will be our main focus until the end of the project.
+
+Mija Pilkaite: 
+
+This week I finished up and improved my functions, wrote the testing functions and corrected the errors and inaccuracies that arose. I spent a significant amount of time on fixing the IDs of users in the database, as it took time to make it work. The database is ready to be connected with UI and password teams and that's what I want to focus on this upcoming week. 
+
+
+Sophie-Claire Antoun:
+After spending the whole two weeks of vacation on implementing a function that would send an email to users in case of password forgotten, I decided that this week would be the last week dedicated to it. 
+I have tried nearly all different types of implementation for this task, here are the three main ones:
+using the microsoft API (which uses multiple libraries and is provided in C language)
+using the boost package (which caused me troubles due to some non-functional/updated libraries that did not work)
+using Curl (which had no problem in building, but did not execute the task)
+I kept the last version with the Curl on the hub so that, maybe, we could fix it?
+This week’s work did not get us the desired result (with jasmine). And as it has taken too much time, we hence decided to provide a simple alternative: Verification questions to verify the identity of the user, that would provide them with a new encrypted password. 
+The code is mostly ready, and committed to the U-I branch. We just need to link it to the database. 
+
+Paula Gonzalez Alvarez
+This week and over break I had some issues because my initial code for the UI stopped working and then I had issues with QTCreator and QTDesigner because they stopped running and I had to reinstall them. However, after I fixed that issue I re-started the UI solely on QTCreator to avoid any further compatibility issues. I managed to get a working camera with the buttons we need. However I need to connect the functions with other people's code and create multiple states.

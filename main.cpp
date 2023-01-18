@@ -1,4 +1,3 @@
-
 #define CAMERA 1
 
 #if CAMERA == 1

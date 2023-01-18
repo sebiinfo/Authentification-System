@@ -1,0 +1,2 @@
+Romain Poggi -
+This week, I have come up with new features and functionalities that could be added. So I started working on it along with Yassine. I have set up a new branch with all the new source files and created the makes. I also came across a big issue I had with my github, which I have fixed now. I have also created a simple Flowchart of what the final main function should consist of. I am also working on splitting Cropimage more accurately, and will add eye detection functionality.
