@@ -139,6 +139,8 @@ private slots:
 
     void on_verify_code_clicked();
 
+    void on_back_11_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void closeEvent(QCloseEvent *event) override;

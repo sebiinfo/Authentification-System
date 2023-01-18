@@ -395,7 +395,7 @@ void Camera::on_login_2_clicked()
 
 
 void Camera::on_create_2_clicked()
-{
+{    
     std::string name = ui -> name -> text().toStdString();
     std::string last_name = ui -> last_name -> text().toStdString();
     std::string user = ui -> username -> text().toStdString();
@@ -409,6 +409,7 @@ void Camera::on_create_2_clicked()
     std::cout <<email<<std::endl;
     std::cout <<pass<<std::endl;
     std::cout <<conf_pass<<std::endl;
+    ui->stacked->setCurrentIndex(10);
 }
 
 
@@ -556,5 +557,11 @@ void Camera::on_back_10_clicked()
 void Camera::on_verify_code_clicked()
 {
     ui->stacked->setCurrentIndex(9);
+}
+
+
+void Camera::on_back_11_clicked()
+{
+    ui->stacked->setCurrentIndex(0);
 }
 

@@ -12,3 +12,4 @@ target_link_libraries(QtExternalLibrary INTERFACE
         Qt::Gui
         Qt::Widgets
         Qt::Multimedia
+    )

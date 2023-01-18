@@ -85,7 +85,7 @@ face_recognition {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="main">
        <widget class="QPushButton" name="register_2">
@@ -1697,8 +1697,8 @@ QPushButton#change_password_2:pressed {
        <widget class="QLabel" name="lastImagePreviewLabel_2">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>50</y>
+          <x>150</x>
+          <y>30</y>
           <width>719</width>
           <height>389</height>
          </rect>
