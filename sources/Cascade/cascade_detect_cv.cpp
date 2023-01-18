@@ -8,6 +8,7 @@ cascade_detect_cv::~cascade_detect_cv(){}
 void cascade_detect_cv::load(std::string path){
     cascade.load(path);
 }
-void cascade_detect_cv::detectMultiScale(cv::Mat image, cv::Rect &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize){
-    detectMultiScale(image,faces, scaleFactor, minNeighbors, flags, minSize);
+void cascade_detect_cv::detectMultiScale(cv::Mat image, std::vector<cv::Mat> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize){
+
+    cascade.detectMultiScale(image,faces, scaleFactor, minNeighbors, flags, minSize);
 }

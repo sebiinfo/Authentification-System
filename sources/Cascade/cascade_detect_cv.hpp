@@ -11,7 +11,7 @@ public:
     cascade_detect_cv();
     ~cascade_detect_cv();
     void load(std::string path);
-    void detectMultiScale(cv::Mat image, cv::Rect faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+    void detectMultiScale(cv::Mat image, std::vector<cv::Mat> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 private:
     cv::CascadeClassifier cascade;
 };

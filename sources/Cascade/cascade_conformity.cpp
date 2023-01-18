@@ -24,7 +24,7 @@ Cascade_conformity::Cascade_conformity() {
     cascade_eyes.load(path_eye);
 }
 
-Cascade_conformity::Cascade_conformity(std::vector<cv::Mat> input_faces) {
+Cascade_conformity::Cascade_conformity(std::vector<cv::Mat> &input_faces) {
     //Empty vector
     faces=input_faces;
     cascade_face.load(path_face);
@@ -32,6 +32,19 @@ Cascade_conformity::Cascade_conformity(std::vector<cv::Mat> input_faces) {
 }
 Cascade_conformity::~Cascade_conformity(){}
 
+void Cascade_conformity::detectMultiScale(cv::Mat image, std::vector<cv::Mat> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize) {
+
+    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+    cv::equalizeHist(image, image);
+    std::vector<cv::Mat> tempfaces;
+    cascade_face.detectMultiScale(image,tempfaces, scaleFactor, minNeighbors, flags, minSize );
+    for (int i=0; i<tempfaces.size(); i++){
+        if (conform(tempfaces[i])){
+         faces.push_back(faces[i]);
+        }
+    }
+
+}
 void Cascade_conformity::append_face(cv::Mat image){
     faces.push_back(image);
 }
@@ -54,17 +67,17 @@ bool Cascade_conformity::isEyeOpen(cv::Mat frame)
 
 bool Cascade_conformity::isFace(cv::Mat image)
 {
-    std::vector<cv::Rect> faces = detectFaces(image);
+    std::vector<cv::Mat> faces = detectFaces(image);
     return faces.size() > 0;
 }
 
 bool Cascade_conformity::isEye(cv::Mat image)
 {
-    std::vector<cv::Rect> eyes = detectEyes(image);
+    std::vector<cv::Mat> eyes = detectEyes(image);
     return eyes.size() > 0;
 }
 
-std::vector<cv::Rect> Cascade_conformity::detectFaces(cv::Mat image)
+std::vector<cv::Mat> Cascade_conformity::detectFaces(cv::Mat image)
 {
     cv::CascadeClassifier faceCascade;
     if (!faceCascade.load(path_face))
@@ -72,13 +85,13 @@ std::vector<cv::Rect> Cascade_conformity::detectFaces(cv::Mat image)
         std::cout << "Failed to load the face cascade at directory:" << path_face << std::endl;
     }
 
-    std::vector<cv::Rect> faces;
+    std::vector<cv::Mat> faces;
     faceCascade.detectMultiScale(image, faces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
     return faces;
 }
 
-std::vector<cv::Rect> Cascade_conformity::detectEyes(cv::Mat image)
+std::vector<cv::Mat> Cascade_conformity::detectEyes(cv::Mat image)
 {
     cv::CascadeClassifier faceCascade;
     if (!faceCascade.load(path_eye))
@@ -86,35 +99,32 @@ std::vector<cv::Rect> Cascade_conformity::detectEyes(cv::Mat image)
         std::cout << "Failed to load the face cascade:" << path_face << std::endl;
     }
 
-    std::vector<cv::Rect> faces;..................................................................................................
+    std::vector<cv::Mat> faces;
     faceCascade.detectMultiScale(image, faces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
     return faces;
 }
 
-bool Cascade_conformity::conform(cv::Mat image, bool smartcascade/*=true*/)
-{
+bool Cascade_conformity::conform(cv::Mat image, bool smartcascade/*=true*/) {
     // if smartcascade==true, we only take the images that are conform into the conformity vector faces.
 
-    if (smartcascade==true){
-
-    if (!isFace(image))
-    {
-        //        std::cout << "No face was found";
-        return false;
+    if (smartcascade == true) {
+        if (isFace(image)) {
+            if (isEye(image)) {
+                double angle = get_angle_from_eyes(image);
+                rotate_face(image, angle);
+                return true;
+            } else {
+                std::cout << "Face was found but eyes were closed";
+                return false;
+            }
+        } else {
+            std::cout << "No face was found";
+            return false;
+        }
     }
-    if (isEyeOpen(image))
-    {
-        //        std::cout << "Face and eyes are open";
-        return true;
-    }
-    //    std::cout << "Face was found but eyes were closed";
-
-    return false;
 }
-    else{return true;}
 
-}
 
 std::vector<cv::Mat> Cascade_conformity::conformArray(std::vector<cv::Mat> faces)
 {
@@ -146,7 +156,7 @@ double Cascade_conformity::get_angle_from_eyes(cv::Mat &image) {
     // Convert to grayscale
     cv::Mat gray;
     cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-    std::vector<cv::Rect> faces= detectFaces(gray);
+    std::vector<cv::Mat> faces= detectFaces(gray);
     int x, y, w, h;
     for (int i = 0; i < faces.size(); i++)
     {
@@ -236,11 +246,15 @@ cv::Mat rotate_face(cv::Mat &image, double angle)
     rotation_mat.at<double>(1, 2) += bound_h / 2 - image_center.y;
 
     cv::Mat rotated_mat;
-    cv::warpAffine(image, rotated_mat, rotation_mat, cv::Size(bound_w, bound_h));
+    cv::warpAffine(image, image, rotation_mat, cv::Size(bound_w, bound_h));
 
-    return rotated_mat;
 }
 
+cv::Mat Cascade_conformity::convert_rect_to_mat(cv::Rect &rect) {
+    cv::Mat rec_to_mat;
+    cv::Mat rec_to_mat= rec_to_mat(rect);
+
+}
 void Cascade_conformity::normalizeIntensities(cv::Mat &image)
 {
     // Convert image to grayscale
@@ -254,6 +268,8 @@ void Cascade_conformity::normalizeIntensities(cv::Mat &image)
     // Normalize the pixel intensities
     image = (image - mean[0]) / stddev[0];
 }
+
+
 
 
 
