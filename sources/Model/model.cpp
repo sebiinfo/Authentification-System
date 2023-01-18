@@ -30,7 +30,9 @@ Model::Model(int num_people, int num_feature, int width, int height,
     //KNN constructor has 4 arguments. For the moment leave this commented.
 
     this->load_train_images();
+    std::cout << "Training the Vectorizer" << std::endl;
     this->vectorizer->train(train_images, train_labels);
+    std::cout << "Training the Classifier" << std::endl;
     this->classifier->train(train_images, train_labels);
 }
 
@@ -41,7 +43,9 @@ Model::~Model() {
 }
 
 std::vector<int> Model::predict(cv::Mat & image, std::vector<cv::Rect> & faces) {
-    std::vector<cv::Mat> in_faces = localizer->localize(image, faces);
+   // std::vector<cv::Mat> in_faces = localizer->localize(image, faces);
+    std::vector<cv::Mat> in_faces;
+    in_faces.push_back(image);
     std::vector<int> output;
     for (int i = 0; i < in_faces.size(); i++) {
         cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);

@@ -47,7 +47,7 @@ void Fisher::train(std::vector<cv::Mat> &train_images,
     train_data = pca.project(train_data);
     print_dims(train_data);
     lda = cv::LDA(num_feature);
-    lda.compute(train_data, labels);
+    lda.compute(train_data, train_labels);
     std::cout << "Created LDA" << std::endl;
     vectorized_images = lda.project(train_data);
     // vectorize_trainset();

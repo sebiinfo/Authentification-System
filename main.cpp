@@ -16,7 +16,7 @@
 
 int main() {
    
-   int num_people = 10, dim = 1000; //KNN_Testing test_obj = KNN_Testing(num_people, dim);
+   int num_people = 15, dim = 14; //KNN_Testing test_obj = KNN_Testing(num_people, dim);
    //test_obj.test_clasify(num_people, dim);
 
    Testing_Decision_Tree::Testing_Build_Tree(num_people,dim) ;
@@ -30,4 +30,5 @@ int main() {
     //Testing_Functions::print_best_split(x->best_split);
     Model model(num_people, dim, 224, 224, "Cascade", "Fisher", "KNN");
     //Testing_Node::get_information_gain(x, {1,2,3});
+
 }
