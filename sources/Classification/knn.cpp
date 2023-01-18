@@ -1,5 +1,4 @@
 #include "knn.hpp"
-
 #include <exception>
 #include <map>
 #include <numeric>
@@ -7,7 +6,7 @@
 #include <random>
 #include <vector>
 
-// Creates a comaparator object that will help us with sorting using a
+// Creates a comparator object that will help us with sorting using a
 // non-static function
 struct compareFunctor {
    explicit compareFunctor(KNN *knn_current_object)
@@ -39,7 +38,7 @@ std::vector<int> get_permutation_vector(std::vector<cv::Mat> &sort_vector,
 
 template <typename T>
 void apply_permutation(std::vector<int> &permutation_vector,
-                       std::vector<T> my_vector) {
+                       std::vector<T> &my_vector) {
    std::vector<bool> done(permutation_vector.size());
 
    for (int i = 0; i < permutation_vector.size(); i++) {
@@ -87,13 +86,15 @@ bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
 }
 
 int KNN::classify(const cv::Mat &query) {
-   // first we store in the distance_to_query field of the struct the right
-   // distance
-
    this->query = query;
 
+   //we check if the query is too far off from our data
+    if (is_alienated(query)){
+        return -1;
+    }
+
    // now we want to sort the data in terms of the distance, O(nlogn),
-   // n-dimensional trees will maybe be implemented later (O(n))
+
 
    std::vector<int> permutation_numerical_faces =
        get_permutation_vector(num_reps, compareFunctor(this));

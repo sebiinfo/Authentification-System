@@ -8,10 +8,11 @@
 #include "classifier.hpp"
 
 class KNN : public Classifier {
+    //finds the kth nearest neighbours of the query in the dim dimensional space
  public:
    int k;
 
-   KNN():Classifier(){}
+   KNN() : Classifier() {}
    KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
        std::vector<int> &labels);
 
