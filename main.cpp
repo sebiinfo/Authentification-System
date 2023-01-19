@@ -14,7 +14,7 @@
 //Yassine = 0;
 //Romain = 1;
 
-#define test 1
+#define test 0
 
 #if test == 0
 //void testlocalizer()
@@ -108,7 +108,7 @@ int test_angle() {
 
 int test_conformity(){
 
-    Cascade_conformity Conform_faces=Cascade_conformity();
+
     DIR* dir;
     struct dirent* ent;
     std::string folder ="C:\\Authentification-System\\images\\Testing";
@@ -116,11 +116,17 @@ int test_conformity(){
     while ((ent = readdir(dir)) != nullptr) {
         std::string fileName = ent->d_name;
         if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
+            Cascade_conformity Conform_faces=Cascade_conformity();
             cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
-            double angle;
-            angle=rotate_face(frameclosed);
-            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
+            Conform_faces.Transform(frameclosed);
             cv::imshow(fileName,frameclosed);
+            cv::waitKey(0);
+            std::cout<< "Detected eyes:  "<<Conform_faces.isEye(frameclosed)<<std::endl;
+            double angle;
+            angle=Conform_faces.get_angle_from_eyes(frameclosed);
+            Conform_faces.rotate_face(frameclosed,angle);
+            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
+            cv::imshow(fileName+" modified",frameclosed);
             cv::waitKey(0);
         }
     }
@@ -128,7 +134,10 @@ int test_conformity(){
     return 0;
 
 }
+
+
 int main(){
+    test_conformity();
 //    testeyedetection();
     //testlocalizer();
 

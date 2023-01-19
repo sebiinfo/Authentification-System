@@ -81,7 +81,7 @@ double Cascade_conformity::get_angle_from_eyes(cv::Mat &image) {
     // Convert to grayscale
     cv::Mat gray;
     cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-    std::vector<cv::Mat> faces= detectFaces(gray);
+    std::vector<cv::Rect> faces= detectFaces(gray);
     int x, y, w, h;
     for (int i = 0; i < faces.size(); i++)
     {
@@ -188,11 +188,9 @@ void Cascade_conformity::detectMultiScale(cv::Mat image, std::vector<cv::Rect> &
 //    }
 
 }
-void Cascade_conformity::append_face(cv::Mat image){
-    vect_faces.push_back(image);
-}
 
-cv::Mat Cascade_conformity::get_face(int i) {
+
+cv::Rect Cascade_conformity::get_face(int i) {
     return vect_faces[i];
 }
 cv::Mat Cascade_conformity::convert_rect_to_mat(cv::Rect &rect) {

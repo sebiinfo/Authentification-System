@@ -24,7 +24,6 @@ public:
     bool isEye(cv::Mat image);
     double get_angle_from_eyes(cv::Mat &image);
     cv::Mat rotate_face(cv::Mat &image, double angle);
-    void append_face(cv::Mat image);
     cv::Mat convert_rect_to_mat(cv::Rect &rect);
     // gets the ith face
     cv::Rect get_face(int i);
