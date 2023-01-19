@@ -1,5 +1,5 @@
 #include "mail.hpp"
-#include "../Password/profile.hpp"
+//#include "../Password/profile.hpp"
 #include <iostream>
 #include "Poco/Net/MailMessage.h"
 #include "Poco/Net/MailRecipient.h"
@@ -15,8 +15,6 @@
 #include <cstring>
 #include <string>
 
-
-using namespace std;
 using Poco::Net::MailMessage;
 using Poco::Net::MailRecipient;
 using Poco::Net::SMTPClientSession;
@@ -88,7 +86,7 @@ std::string Mail::generatemessage(int random_generated){
 
 void Mail::send_mail(int random_generated, std::string adress, std::string messagecontent){
 
-    cout << "start" << endl;
+    std::cout << "start" << std::endl;
     SSLInitializer sslInitializer;
 
     Poco::Net::MailMessage msg;
@@ -103,7 +101,7 @@ void Mail::send_mail(int random_generated, std::string adress, std::string messa
     msg.setSubject ("Your password verification code");
     int x = 5;
     msg.setContent (messagecontent);
-    cout << "stop1" << endl;
+    std::cout << "stop1" << std::endl;
     std::string host = "smtp.google.com";
     int port = 465;
 //    Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Poco::Net::Context::CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
@@ -137,8 +135,8 @@ std::string Mail::mail(std::string adress){
             std::string messagecontent1 = generatemessage(random_generated);
             send_mail(random_generated,adress,messagecontent1);
             messagecontent=messagecontent1;
-        };
-        return messagecontent;
+    };
+    return std::to_string(random_generated);
 }
 
 
