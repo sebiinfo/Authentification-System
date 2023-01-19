@@ -13,7 +13,9 @@ public:
     /////////////////////////////( Input image ,
     void load(std::string path);
     virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
-    std::vector<cv::Rect> vect_faces;
+    void Special_transform();
+
+
 
 //    bool is_pad(cv::Mat image, cv::Rect face);
 //    void Crop(cv::Mat &image,cv::Rect face);

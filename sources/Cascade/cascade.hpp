@@ -16,13 +16,25 @@ Cascade(cv::Mat img); // Give image with default size
 private: // Private methods only used inside the class
 
 std::vector<cv::Rect> CoordCascade();
+
+
 cv::Mat Crop(cv::Rect rect); // Crops the image using coordinates given with padding
+bool is_pad (cv::Mat image, cv::Rect face,int pad); // Returns true if we can add a padding of pad %
+
+std::vector<cv::Mat> cropArray (cv::Mat image, std::vector<cv::Rect> faces_rect);
+
 void Tilt(); // Tilt the image so it is horizontal, it uses the eyes detection
+//double rotate_face(cv::Mat &image);
+//cv::Mat rotate_face_aux(cv::Mat &image, double angle);
+
 cv::Mat Resize(cv::Mat img); // Resizes the image given to the dimensions set by the class attribute
 
 public: // Methods that can be accessed from outside the class ( on the object )
 
 cv::Mat Transform(); // Transforms and returns the image attribute in the proper form for the algorithm
+
+//bool isFace(cv::Mat frame);
+//bool isEye(cv::Mat);
 bool Conform(); // Check if the image is in the proper format for transformation: if eyes are open, padding fits
 
 ////////////////////////////////////////////

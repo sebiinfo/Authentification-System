@@ -11,3 +11,8 @@ void cascade_Base::detectMultiScale(cv::Mat image, std::vector <cv::Rect> &faces
     assert(false);
 
 }
+
+
+void cascade_Base::Special_transform(){
+    assert(false);
+}
