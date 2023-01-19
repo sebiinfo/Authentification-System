@@ -19,7 +19,7 @@ char random_character() { return alphanum[rand() % stringLength]; }
 
 // Return true if the password satisfies certain conditions
 bool Profile::validate_password(std::string password) {
-    if (password.length() < 9) {
+    if (password.length() < 6) {
         return false;
     }
     std::set<char> special_characters = {'!', '@', '#', '$', '%', '^', '&', '*',
