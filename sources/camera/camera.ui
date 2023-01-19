@@ -85,7 +85,7 @@ face_recognition {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>10</number>
       </property>
       <widget class="QWidget" name="main">
        <widget class="QPushButton" name="register_2">
@@ -160,7 +160,7 @@ QPushButton#face_recognition:pressed {
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
-          <x>150</x>
+          <x>230</x>
           <y>100</y>
           <width>631</width>
           <height>51</height>
@@ -178,7 +178,7 @@ label {qproperty-alignment: AlignCenter;}
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>230</x>
+          <x>310</x>
           <y>160</y>
           <width>491</width>
           <height>41</height>
@@ -435,7 +435,7 @@ QPushButton#create_2:pressed {
        <widget class="QLabel" name="last_name_lbl_2">
         <property name="geometry">
          <rect>
-          <x>230</x>
+          <x>190</x>
           <y>430</y>
           <width>921</width>
           <height>20</height>
@@ -512,7 +512,7 @@ QPushButton#create_2:pressed {
        <widget class="QLabel" name="label_9">
         <property name="geometry">
          <rect>
-          <x>330</x>
+          <x>400</x>
           <y>50</y>
           <width>371</width>
           <height>51</height>
@@ -622,7 +622,7 @@ QPushButton#create_account:pressed {
        <widget class="QLabel" name="label_21">
         <property name="geometry">
          <rect>
-          <x>140</x>
+          <x>190</x>
           <y>70</y>
           <width>711</width>
           <height>51</height>
@@ -1122,8 +1122,8 @@ QPushButton#update_email:pressed {
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
-          <x>310</x>
-          <y>90</y>
+          <x>270</x>
+          <y>70</y>
           <width>521</width>
           <height>51</height>
          </rect>
@@ -1342,7 +1342,7 @@ QPushButton#back_8:pressed {
         <property name="geometry">
          <rect>
           <x>200</x>
-          <y>390</y>
+          <y>400</y>
           <width>921</width>
           <height>20</height>
          </rect>
@@ -1642,7 +1642,7 @@ QPushButton#back_10:pressed {
          <string>Hello, to change your password fill in your information below:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="old_password_2">
+       <widget class="QLineEdit" name="username_8">
         <property name="geometry">
          <rect>
           <x>520</x>
@@ -1655,7 +1655,7 @@ QPushButton#back_10:pressed {
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="old_password_3">
+       <widget class="QLineEdit" name="new_password_8">
         <property name="geometry">
          <rect>
           <x>520</x>
@@ -1668,7 +1668,7 @@ QPushButton#back_10:pressed {
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="old_password_4">
+       <widget class="QLineEdit" name="confirm_password_8">
         <property name="geometry">
          <rect>
           <x>520</x>
@@ -1827,6 +1827,29 @@ QPushButton#takeImageButton:pressed {
         <property name="icon">
          <iconset>
           <normaloff>:/images/shutter.svg</normaloff>:/images/shutter.svg</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="back_13">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>94</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#back_13 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#back_13:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Go back</string>
         </property>
        </widget>
       </widget>

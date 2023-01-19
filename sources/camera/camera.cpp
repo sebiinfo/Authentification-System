@@ -548,7 +548,7 @@ void Camera::on_back_4_clicked()
 void Camera::on_get_code_clicked()
 {
     std::string change_credentials = ui -> email_code -> text().toStdString();
-    std::cout <<change_credentials<<std::endl;
+//    std::string temp_password = ui -> database.forgotten_password(email_code);
     ui->stacked->setCurrentIndex(8);
 }
 
@@ -836,5 +836,29 @@ void Camera::on_back_11_clicked()
 void Camera::on_delete_account_clicked()
 {
     ui -> stacked -> setCurrentIndex(11);
+}
+
+
+void Camera::on_change_password_2_clicked()
+{
+    std::string username = ui -> username_8 -> text().toStdString();
+    std::string new_password = ui -> new_password_8 -> text().toStdString();
+    std::string confirm_password = ui -> confirm_password_8 -> text().toStdString();
+//    bool check = database.change_forgotten_password(username, new_password, confirm_password);
+//    if (check == TRUE) {
+//        ui->stacked->setCurrentIndex(5);
+//}
+}
+
+
+void Camera::on_back_12_clicked()
+{
+    ui -> stacked -> setCurrentIndex(5);
+}
+
+
+void Camera::on_back_13_clicked()
+{
+    ui -> stacked -> setCurrentIndex(0);
 }
 
