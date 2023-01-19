@@ -386,8 +386,6 @@ void Camera::on_login_2_clicked()
 {
     std::string username = ui -> username_input -> text().toStdString();
     std::string password = ui -> password_input -> text().toStdString();
-    std::cout <<username<<std::endl;
-    std::cout <<password<<std::endl;
 //    bool check = database.check_confirm_password(username, password);
 //    if (check == TRUE) {
 //        ui->stacked->setCurrentIndex(5);
@@ -407,13 +405,13 @@ void Camera::on_create_2_clicked()
     std::string pass = ui -> password_2 -> text().toStdString();
     std::string conf_pass = ui -> confirm_password -> text().toStdString();
 
-//    bool check = database.writeDataToFile(user, name, last_name, pass, conf_pass, email);
-//    if (check == TRUE) {
-//        ui->stacked->setCurrentIndex(10);
-//    }
-//    else {
-//        QMessageBox::about(this, "Error Creating Account", "There has been an error, make sure your information is valid and try again.");
-//    }
+    bool check = database.writeDataToFile(user, name, last_name, pass, conf_pass, email);
+    if (check == TRUE) {
+        ui->stacked->setCurrentIndex(10);
+    }
+    else {
+        QMessageBox::about(this, "Error Creating Account", "There has been an error, make sure your information is valid and try again.");
+    }
 }
 
 
@@ -423,13 +421,13 @@ void Camera::on_new_password_clicked()
     std::string new_pass = ui -> new_pass -> text().toStdString();
     std::string confirmation = ui -> confirm_new -> text().toStdString();
     std::string username = ui -> username_2 -> text().toStdString();
-//    bool check = database.change_password(username, old, new_pass, confirmation);
-//    if (check == TRUE) {
-//        ui->stacked->setCurrentIndex(5);
-//    }
-//    else {
-//        QMessageBox::about(this, "Error Changing Password", "There has been an error when changing password, make sure your information is valid and try again.");
-//    }
+    bool check = database.change_password(username, old, new_pass, confirmation);
+    if (check == TRUE) {
+        ui->stacked->setCurrentIndex(5);
+    }
+    else {
+        QMessageBox::about(this, "Error Changing Password", "There has been an error when changing password, make sure your information is valid and try again.");
+    }
 }
 
 

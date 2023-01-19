@@ -153,7 +153,7 @@ protected:
 
 private:
     Ui::Camera *ui;
-//    Database database;
+    Database database;
     QActionGroup *videoDevicesGroup = nullptr;
     QMediaDevices m_devices;
     QScopedPointer<QImageCapture> m_imageCapture;

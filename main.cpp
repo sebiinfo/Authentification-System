@@ -6,6 +6,7 @@
 #include <camera.h>
 #include <iostream>
 #include <QFile>
+#include <database.hpp>
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
