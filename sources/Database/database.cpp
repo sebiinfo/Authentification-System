@@ -130,37 +130,6 @@ Database ::readRecordFromFile(std::string username_search)
     return record;
 }
 
-// looking for a username in a csv file and returning all data about it
-std::vector<std::string>
-Database ::readRecordFromFile(std::string username_search)
-{
-    std::vector<std::string> record;
-    std::ifstream file;
-    file.open(file_name);
-
-    std::string id;
-    while (getline(file, id, ','))
-    {
-        getline(file, username, ',');
-        getline(file, name, ',');
-        getline(file, last_name, ',');
-        getline(file, password, ',');
-        getline(file, email, ',');
-        getline(file, salt, '\n');
-        if (username == username_search)
-        {
-            record.push_back(id);
-            record.push_back(username);
-            record.push_back(name);
-            record.push_back(last_name);
-            record.push_back(password);
-            record.push_back(email);
-            record.push_back(salt);
-        }
-    }
-    return record;
-}
-
 // check if the username is in the database and its password matches (for
 // logging in)
 bool Database::checkPasswordandUsername(std::string username_given,

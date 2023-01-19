@@ -405,12 +405,21 @@ void Camera::on_create_2_clicked()
     std::string pass = ui -> password_2 -> text().toStdString();
     std::string conf_pass = ui -> confirm_password -> text().toStdString();
 
-    bool check = database.writeDataToFile(user, name, last_name, pass, conf_pass, email);
-    if (check == TRUE) {
+    Database::Possible_Errors check = database.writeDataToFile(user, name, last_name, pass, conf_pass, email);
+    if (check == 0) {
         ui->stacked->setCurrentIndex(10);
     }
-    else {
-        QMessageBox::about(this, "Error Creating Account", "There has been an error, make sure your information is valid and try again.");
+    else if (check == 1) {
+        QMessageBox::about(this, "Error Creating Account", "There has been an error, your confirmed password does not match your password. Please input the right password and try again.");
+    }
+    else if (check == 2) {
+        QMessageBox::about(this, "Error Creating Account", "There has been an error, the email you have selected has already been taken. Please choose another and try again.");
+    }
+    else if (check == 3) {
+        QMessageBox::about(this, "Error Creating Account", "There has been an error, the username you have selected has already been taken. Please choose another and try again.");
+    }
+    else if (check == 4) {
+        QMessageBox::about(this, "Error Creating Account", "There has been an error, the password you chose is not strong enough. Take a look at the requirements below and try again.");
     }
 }
 
