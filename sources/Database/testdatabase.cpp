@@ -1,3 +1,4 @@
+
 #include "database.hpp"
 #include <fstream>
 #include <iostream>
@@ -7,7 +8,7 @@
 
 using namespace std;
 
-int main() {
+int test_database() {
     Database database("new.csv");
     // database.delete_data();
 
@@ -25,13 +26,15 @@ int main() {
                              "oskar.tyrone@yahtoo.com");
 
     //password requirements
-    database.writeDataToFile("oskarty", "Oskar", "Tyrone", "oskarisnice",
+    Database::Possible_Errors a = database.writeDataToFile("oskarty", "Oskar", "Tyrone", "oskarisnice",
                              "oskarisnice", "oskar.tyrone@yahoo.com");
+    std::cout << a <<std::endl;
     //taken username
-    database.writeDataToFile("emmax", "Emma", "Xavier", "Authentication567!", "Authentication567!", "emma.x@yahoo.com");
-
+    Database::Possible_Errors b = database.writeDataToFile("emmax", "Emma", "Xavier", "Authentication567!", "Authentication567!", "emma.x@yahoo.com");
+    std::cout << b <<std::endl;
     // taken email
-    database.writeDataToFile("johnana1", "Johnana", "Smirth", "Password546!", "Password546!","john@yahoo.com");
+    Database::Possible_Errors c = database.writeDataToFile("johnana1", "Johnana", "Smirth", "Password546!", "Password546!","john@yahoo.com");
+    std::cout << c <<std::endl;
 
 
 
