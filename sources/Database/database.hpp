@@ -15,26 +15,28 @@ class Database {
                          std::string last_name, std::string password,
                          std::string confirm_password,
                          std::string email); // Add information to the CSV file
-    bool check_confirm_password(std::string password,
-                                std::string confirm_password);
     std::vector<std::string> readRecordFromFile(
         std::string username_search); // Read information from the CSV file,
                                       // print all records
-    bool checkPasswordandUsername(std::string username_given,
+    bool checkPasswordandUsername(std::string username_given, // Check if the username and password are correct, matching
                                   std::string password_given);
+
     bool check_username(std::string username_given);
-    bool check_email(std::string email_given); // Check if the username and
-                                               // password are correct, matching
+    bool check_email(std::string email_given);
+
     bool change_email(
         std::string username_given, std::string password_given,
         std::string new_email); // change email account was registered with
     bool change_password(std::string username_given, std::string password_given,
-                         std::string new_password,
-                         std::string confirm_new_password);
+                         std::string new_password,std::string confirm_new_password);
+    bool change_forgotten_password(std::string username_given,std::string new_password,std::string confirm_new_password);
+
     void delete_data(); // Deletes information from the CSV file
-    bool delete_user(
-        std::string username_given,
-        std::string password_given); // Deletes one user from the CSV file
+    bool delete_user(std::string username_given,std::string password_given); // Deletes one user from the CSV file
+
+    bool forgotten_password(std::string username, std::string email);
+
+    bool verif_forgotten_password(std::string entered_code, std::string sent_code);
 
   private:
     std::string file_name;
