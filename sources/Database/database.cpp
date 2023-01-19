@@ -43,8 +43,10 @@ bool Database::check_if_empty()
 // (users are ordered), username, name, last name, password, email, salt (in
 // this order) checks the password twice whether the input is the same returns
 // true if the data was successfully added to the database
+
+
 bool Database ::writeDataToFile(
-    std::string file_name, std::string username, std::string name,
+    std::string username, std::string name,
     std::string last_name, std::string password, std::string confirm_password,
     std::string email)
 { // if password meets all length and character
@@ -77,8 +79,8 @@ bool Database ::writeDataToFile(
     // return true;
     // }
     if (profile.validate_password(password) &&
-        !(check_username(file_name, username)) &&
-        !(check_email(file_name, email)))
+        !(check_username(username)) &&
+        !(check_email(email)))
     {
 
         std::ifstream file;
@@ -137,8 +139,7 @@ bool Database ::writeDataToFile(
 
 // looking for a username in a csv file and returning all data about it
 std::vector<std::string>
-Database ::readRecordFromFile(std::string file_name,
-                              std::string username_search)
+Database ::readRecordFromFile(std::string username_search)
 {
     std::vector<std::string> record;
     std::ifstream file;
@@ -188,8 +189,7 @@ Database ::readRecordFromFile(std::string file_name,
 
 // check if the username is in the database and its password matches (for
 // logging in)
-bool Database::checkPasswordandUsername(std::string file_name,
-                                        std::string username_given,
+bool Database::checkPasswordandUsername(std::string username_given,
                                         std::string password_given)
 {
     std::vector<std::string> record;
@@ -233,7 +233,7 @@ bool Database::checkPasswordandUsername(std::string file_name,
 }
 
 // change an email when given a username
-bool Database::change_email(std::string file_name, std::string username_given,
+bool Database::change_email(std::string username_given,
                             std::string password_given, std::string new_email)
 {
 
@@ -288,8 +288,7 @@ bool Database::change_email(std::string file_name, std::string username_given,
 }
 
 // change password when given a username and a password
-bool Database::change_password(std::string file_name,
-                               std::string username_given,
+bool Database::change_password(std::string username_given,
                                std::string password_given,
                                std::string new_password,
                                std::string confirm_new_password)
@@ -348,8 +347,7 @@ bool Database::change_password(std::string file_name,
 }
 
 // check if username is taken
-bool Database::check_username(std::string file_name,
-                              std::string username_given)
+bool Database::check_username(std::string username_given)
 {
     std::vector<std::string> record;
     std::ifstream file;
@@ -386,7 +384,7 @@ bool Database::check_username(std::string file_name,
 }
 
 // check if email is taken
-bool Database::check_email(std::string file_name, std::string email_given)
+bool Database::check_email(std::string email_given)
 {
     std::vector<std::string> record;
     std::ifstream file;
@@ -421,7 +419,7 @@ bool Database::check_email(std::string file_name, std::string email_given)
     return found;
 }
 // delete one user when given username and password
-bool Database::delete_user(std::string file_name, std::string username_given,
+bool Database::delete_user(std::string username_given,
                            std::string password_given)
 {
     std::ofstream fout;
