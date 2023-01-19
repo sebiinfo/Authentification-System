@@ -12,3 +12,9 @@ void cascade_detect_cv::detectMultiScale(cv::Mat image, std::vector<cv::Rect> &f
 
     cascade.detectMultiScale(image,faces, scaleFactor, minNeighbors, flags, minSize);
 }
+
+cv::Mat cascade_detect_cv::Transform(cv::Mat image){
+    detectMultiScale(image,vect_faces,1,4,0,cv::Size(30,30));
+
+
+}
