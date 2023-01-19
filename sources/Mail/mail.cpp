@@ -1,4 +1,5 @@
 #include "mail.hpp"
+#include "../Password/profile.hpp"
 #include <iostream>
 #include "Poco/Net/MailMessage.h"
 #include "Poco/Net/MailRecipient.h"
@@ -13,6 +14,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+
 
 using namespace std;
 using Poco::Net::MailMessage;
@@ -45,13 +47,13 @@ public:
 };
 
 
-int generateRandomNumber() {
+int Mail::generateRandomNumber() {
     srand(time(0));
     int randomNumber = arc4random() % 99999 + 10000; // generates a random number between 10000 and 99999
     return randomNumber;
 }
 
-bool verifyNumber(int random_generated, int userInput) {
+bool Mail::verifyNumber(int random_generated, int userInput) {
     int randomNumber = random_generated;
     if (userInput == randomNumber) {
         return true;
@@ -61,7 +63,7 @@ bool verifyNumber(int random_generated, int userInput) {
     }
 }
 
-bool verification(int random_generated){
+bool Mail::verification(int random_generated){
     int userInput;
     std::cout << "Enter a 5-digit number: ";
     std::cin >> userInput;
@@ -75,7 +77,22 @@ bool verification(int random_generated){
     }
 }
 
-void mail(int random_generated, std::string adress){
+void Mail::generatemessage(int random_generated){
+    if (verification(random_generated)){
+        std::string messagecontent = "Hello!\nWe are happy to announce that you will be able to access your account using the following password.\n You can change your password once logged in.\nYour new password is: ";
+        Profile p;
+        std::string new_password = p.generate_random(12);
+        messagecontent += new_password;
+    }
+    else{
+        std::string messagecontent = "Hello!\nHere is the 5-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
+        messagecontent += std::to_string(random_generated);
+    }
+}
+
+
+
+void Mail::mail(int random_generated, std::string adress, std::string messagecontent){
 
     cout << "start" << endl;
     SSLInitializer sslInitializer;
@@ -91,22 +108,20 @@ void mail(int random_generated, std::string adress){
     msg.setSender ("Me <systemauthentifications@gmail.com>");
     msg.setSubject ("Your password verification code");
     int x = 5;
-    std::string messagecontent = "Hello!\nHere is the 5-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
-    messagecontent += std::to_string(random_generated);
     msg.setContent (messagecontent);
     cout << "stop1" << endl;
     std::string host = "smtp.google.com";
     int port = 465;
 //    Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Poco::Net::Context::CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
     Poco::Net::SecureSMTPClientSession smtp("smtp.gmail.com", 587);
-    cout << "stop2" << endl;
-        cout << "login" << endl;
+    std::cout << "stop2" << std::endl;
+        std::cout << "login" << std::endl;
         smtp.open();
         smtp.login();
-        cout << "startTLS" << endl;
+        std::cout << "startTLS" << std::endl;
         Poco::Net::initializeSSL();
         smtp.startTLS(pContext);
-        cout << "login 2" << endl;
+        std::cout << "login 2" << std::endl;
         smtp.login (    Poco::Net::SecureSMTPClientSession::LoginMethod::AUTH_LOGIN,
                         "systemauthentification@gmail.com",
                         "seqmqmkmyczkbhyz");
@@ -114,6 +129,6 @@ void mail(int random_generated, std::string adress){
 
 
     smtp.close ();
-    cout << "stop3" << endl;
+    std::cout << "stop3" << std::endl;
 
 }

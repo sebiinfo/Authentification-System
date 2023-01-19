@@ -1,7 +1,6 @@
 
 #include <iostream>
 #include "mail.cpp"
-#include "profile.hpp"
 
 using namespace std;
 
