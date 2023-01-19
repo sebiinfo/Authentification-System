@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "opencv2/opencv.hpp"
+//#include "opencv2/opencv.hpp"
 #include "cascade_detect_cv.hpp"
 #include <opencv2/objdetect/objdetect.hpp>
 #include "cascade_Base.hpp"
