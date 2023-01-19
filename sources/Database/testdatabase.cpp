@@ -7,7 +7,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     Database database("new.csv");
     // database.delete_data();
 
@@ -25,6 +26,16 @@ int main() {
     database.writeDataToFile("oskarttty", "Osktar", "Tyronte",
                              "Oskarisnice123?", "Oskarisnice123?",
                              "oskar.tyrone@yahtoo.com");
+    // password requirements
+    Database::Possible_Errors a = database.writeDataToFile("oskarty", "Oskar", "Tyrone", "oskarisnice",
+                                                           "oskarisnice", "oskar.tyrone@yahoo.com");
+    std::cout << a << std::endl;
+    // taken username
+    Database::Possible_Errors b = database.writeDataToFile("emmax", "Emma", "Xavier", "Authentication567!", "Authentication567!", "emma.x@yahoo.com");
+    std::cout << b << std::endl;
+    // taken email
+    Database::Possible_Errors c = database.writeDataToFile("johnana1", "Johnana", "Smirth", "Password546!", "Password546!", "john@yahoo.com");
+    std::cout << c << std::endl;
 
     // checking whether the username is in there and returning all the info,
     // last one says username not found
