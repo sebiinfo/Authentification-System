@@ -11,17 +11,15 @@ public:
     ~ cascade_Base();
 
     /////////////////////////////( Input image ,
-    virtual void detectMultiScale(cv::Mat image, std::vector<cv::Mat> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+    void load(std::string path);
+    virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
     std::vector<cv::Rect> vect_faces;
 
+//    bool is_pad(cv::Mat image, cv::Rect face);
+//    void Crop(cv::Mat &image,cv::Rect face);
+//    void Rescale(cv::Mat &image);
+//    cv::Mat Transform();
 
-    void Crop(cv::Mat &image);
-    void Rescale(cv::Mat &image);
-    cv::Mat Transform();
-
-int height;
-int width;
-int padding;
 };
 
 

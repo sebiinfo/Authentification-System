@@ -13,8 +13,17 @@ void cascade_detect_cv::detectMultiScale(cv::Mat image, std::vector<cv::Rect> &f
     cascade.detectMultiScale(image,faces, scaleFactor, minNeighbors, flags, minSize);
 }
 
-cv::Mat cascade_detect_cv::Transform(cv::Mat image){
-    detectMultiScale(image,vect_faces,1,4,0,cv::Size(30,30));
 
+std::vector<cv::Mat> cascade_detect_cv::Transform(cv::Mat image){
 
+    std::vector<cv::Rect> faces;
+    std::vector<cv::Mat> images;
+\
+    detectMultiScale(image,faces,1.0,4.0,0,cv::Size(30,30));
+
+    images = Crop(image,faces);
+
+    Rescale(images);
+
+    return images
 }

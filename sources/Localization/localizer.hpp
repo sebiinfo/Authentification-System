@@ -29,10 +29,11 @@ class Localizer {
     // Returns array of cv::Mat of faces from the image given
     std::vector<cv::Mat> localize(cv::Mat & image);
     
-  private:
     int width;
     int height;
-    int pad; // in percentage
+    int padding; // in percentage
+
+    private:
 };
 
 #endif

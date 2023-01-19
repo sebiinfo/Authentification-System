@@ -5,15 +5,16 @@
 #define AUTHENTICATION_SYSTEM_CASCADE_DETECT_CV_H
 
 
-class cascade_detect_cv: public cascade_Base
-        {
+class cascade_detect_cv: public cascade_Base{
+
 public:
     cascade_detect_cv();
     ~cascade_detect_cv();
     void load(std::string path);
     void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
-    void Crop(cv::Mat &image);
+    bool is_pad(cv::Mat image, cv::Rect face);
+    void Crop(cv::Mat &image,cv::Rect face);
     void Rescale(cv::Mat &image);
     std::vector<cv::Mat> Transform(cv::Mat image);
 private:

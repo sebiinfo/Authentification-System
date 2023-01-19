@@ -4,6 +4,7 @@
 #include "localizer.hpp"
 #include <opencv2/core/mat.hpp>
 #include <opencv2/objdetect.hpp>
+#include "../Cascade/cascade_Base.hpp"
 
 class Cascade_Localizer : public Localizer {
   public:
@@ -13,9 +14,20 @@ class Cascade_Localizer : public Localizer {
     ~Cascade_Localizer();
 
     void localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces);
+    bool is_pad(cv::Mat image, cv::Rect face);
+    std::vector<cv::Mat> Crop(cv::Mat image,std::vector<cv::Rect> faces);
+    void Rescale(std::vector<cv::Mat> &images);
+
+    std::vector<cv::Mat> Transform(cv::Mat image,std::vector<cv::Rect> faces);
 
   private:
-    cv::CascadeClassifier cascade;
+    cascade_Base cascade;
+    void Crop_(cv::Mat &image,cv::Rect face);
+    void Rescale(cv::Mat &image);
+
+
+
+
 };
 
 #endif // AUTHENTICATION_SYSTEM_CASCADE_CV_HPP

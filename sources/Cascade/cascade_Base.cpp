@@ -6,11 +6,8 @@
 cascade_Base::cascade_Base(){}
 cascade_Base::~ cascade_Base(){}
 
-void cascade_Base::detectMultiScale(cv::Mat image, std::vector <cv::Mat> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize){
-    //
-    assert(false);
-}
+void cascade_Base::detectMultiScale(cv::Mat image, std::vector <cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize){
 
-cv::Mat cascade_Base::Transform(){
     assert(false);
+
 }
