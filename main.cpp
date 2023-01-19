@@ -1,8 +1,6 @@
 #include <iostream>
-#include "sources/Database/main.cpp"
 
-int main (){
-    int a = test_database();
-    std::cout << "Hello world";
+int main(){
+    std::cout << "hello world" << std::endl;
     return 0;
 }
