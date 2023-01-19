@@ -75,7 +75,7 @@ bool verification(int random_generated){
     }
 }
 
-void mail(int random_generated){
+void mail(int random_generated, std::string adress){
 
     cout << "start" << endl;
     SSLInitializer sslInitializer;
@@ -87,11 +87,11 @@ void mail(int random_generated){
     std::cout << "SSLManager::instance()" << std::endl;
     SSLManager::instance().initializeClient(0, pCert, pContext);
 
-    msg.addRecipient (Poco::Net::MailRecipient(Poco::Net::MailRecipient::PRIMARY_RECIPIENT,"sophieclaireantoun0@gmail.com", "Sophie"));
-    msg.setSender ("Me <sophieclaireantoun0@gmail.com>");
+    msg.addRecipient (Poco::Net::MailRecipient(Poco::Net::MailRecipient::PRIMARY_RECIPIENT, adress, "Sophie"));
+    msg.setSender ("Me <systemauthentifications@gmail.com>");
     msg.setSubject ("Your password verification code");
     int x = 5;
-    std::string messagecontent = "Hello! Here is the 5-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
+    std::string messagecontent = "Hello!\nHere is the 5-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
     messagecontent += std::to_string(random_generated);
     msg.setContent (messagecontent);
     cout << "stop1" << endl;
@@ -108,8 +108,8 @@ void mail(int random_generated){
         smtp.startTLS(pContext);
         cout << "login 2" << endl;
         smtp.login (    Poco::Net::SecureSMTPClientSession::LoginMethod::AUTH_LOGIN,
-                        "sophieclaireantoun0@gmail.com",
-                        "tnofcyabsptdsqrc");
+                        "systemauthentification@gmail.com",
+                        "seqmqmkmyczkbhyz");
         smtp.sendMessage (msg);
 
 

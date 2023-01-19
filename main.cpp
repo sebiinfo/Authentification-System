@@ -9,9 +9,10 @@ using namespace std;
 int main(){
 
     int random_generated = generateRandomNumber();
-    mail(random_generated);
+    mail(random_generated, "sophieclaireantoun0@gmail.com");
     if (verification(random_generated)){
-        Profile::change_password();
+        std::cout<<"ok"<<std::endl;
+//        Profile::change_password();
     }
         ;
     return 0;
