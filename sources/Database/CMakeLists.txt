@@ -1,4 +1,4 @@
-add_library(Database database.cpp database.hpp)
+add_library(Database database.cpp database.hpp testdatabase.cpp)
 
 target_include_directories(Database INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 

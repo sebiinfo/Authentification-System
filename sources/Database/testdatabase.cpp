@@ -16,15 +16,24 @@ int main() {
     cout << "File is " << (empty ? "" : "not ") << "empty" << endl;
 
     // adding three users to the database
-    /* database.writeDataToFile("johnsmith", "Johna", "Smithe", "Giraffe13!!",
-                             "Giraffe13!!", "john@yahoo.com"); */
+    database.writeDataToFile("johnsmith", "Johna", "Smithe", "Giraffe13!!",
+                             "Giraffe13!!", "john@yahoo.com");
     database.writeDataToFile("emmax", "Emma", "Stone", "Peaceandlove567!",
                              "Peaceandlove567!", "emma.stone@yahoo.com");
-    database.writeDataToFile("oskarty", "Oskar", "Tyrone", "oskarisnice",
-                             "oskarisnice", "oskar.tyrone@yahoo.com");
     database.writeDataToFile("oskarttty", "Osktar", "Tyronte",
                              "Oskarisnice123?", "Oskarisnice123?",
                              "oskar.tyrone@yahtoo.com");
+
+    //password requirements
+    database.writeDataToFile("oskarty", "Oskar", "Tyrone", "oskarisnice",
+                             "oskarisnice", "oskar.tyrone@yahoo.com");
+    //taken username
+    database.writeDataToFile("emmax", "Emma", "Xavier", "Authentication567!", "Authentication567!", "emma.x@yahoo.com");
+
+    // taken email
+    database.writeDataToFile("johnana1", "Johnana", "Smirth", "Password546!", "Password546!","john@yahoo.com");
+
+
 
     // checking whether the username is in there and returning all the info,
     // last one says username not found

@@ -37,17 +37,32 @@ bool Database::check_if_empty()
 // (users are ordered), username, name, last name, password, email, salt (in
 // this order) checks the password twice whether the input is the same returns
 // true if the data was successfully added to the database
-bool Database::writeDataToFile(
+
+
+//0 = successful_login; 1 = password_confirm_password; 2 = email_taken; 3 = username_taken; 4 = password_requirements
+Database::Possible_Errors Database::writeDataToFile(
     std::string username, std::string name, std::string last_name,
     std::string password, std::string confirm_password,
     std::string email)
 { // if password meets all length and character
   // requirements, if username and email are not taken
   // and password and confirm_password matches
-    bool succeded = false;
 
-    if (profile.validate_password(password) && !(check_username(username)) &&
-        !(check_email(email)))
+
+    if (!profile.validate_password(password))
+    {
+        return password_requirements;
+    }
+    if((check_username(username)))
+    {
+        return username_taken;
+
+    }
+    if ((check_email(email)))
+    {
+        return email_taken;
+    }
+    else
     {
 
         std::ifstream file;
@@ -73,14 +88,19 @@ bool Database::writeDataToFile(
             profile.build_profile(username, password, confirm_password);
         if (!encrypted_password_salt.empty())
         {
-            succeded = true;
+
             file1 << id << ',' << username << ',' << name << ',' << last_name
                   << ',' << encrypted_password_salt[0] << ',' << email << ','
                   << encrypted_password_salt[1] << std::endl;
+            file1.close();
+
         }
-        file1.close();
+        else
+        {   file1.close();
+            return password_confirm_password;}
+
     }
-    return succeded;
+    return successful_login;
 }
 
 // looking for a username in a csv file and returning all data about it

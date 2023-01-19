@@ -11,8 +11,18 @@ class Database
 public:
     Database();
     Database(std::string file_name);
+    enum Possible_Errors{
+
+        successful_login,
+        password_confirm_password,
+        email_taken,
+        username_taken,
+        password_requirements
+
+    };
+
     bool check_if_empty(); // checks if the csv is empty // Access the CSV file
-    bool writeDataToFile(std::string username, std::string name,
+    Possible_Errors writeDataToFile(std::string username, std::string name,
                          std::string last_name, std::string password,
                          std::string confirm_password,
                          std::string email); // Add information to the CSV file
@@ -37,6 +47,8 @@ public:
         std::string username_given,
         std::string password_given); // Deletes one user from the CSV file
 
+
+
 private:
     std::string file_name;
     std::string username;
@@ -53,6 +65,8 @@ private:
     std::string salt;
     Profile profile;
 };
+
+
 
 /*
 class User_Input
