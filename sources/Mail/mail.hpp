@@ -5,7 +5,7 @@
 class Mail {
 public:
     int generateRandomNumber();
-    void send_mail(int random_generated, std::string adress);
+    void send_mail(int random_generated, std::string adress, std::string messagecontent);
     std::string generatemessage(int random_generated);
     int get_random(){return randomgenerated;};
     bool verification(int userInput);

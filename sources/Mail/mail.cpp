@@ -77,10 +77,16 @@ bool Mail::verification(int random_generated){
     }
 }
 
+std::string Mail::generatemessage(int random_generated){
+    std::string messagecontent;
+    messagecontent = "Hello!\nHere is the 5-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
+    messagecontent += std::to_string(random_generated);
+    return messagecontent;
+}
 
 
 
-void Mail::send_mail(int random_generated, std::string adress){
+void Mail::send_mail(int random_generated, std::string adress, std::string messagecontent){
 
     cout << "start" << endl;
     SSLInitializer sslInitializer;
@@ -96,10 +102,6 @@ void Mail::send_mail(int random_generated, std::string adress){
     msg.setSender ("Me <systemauthentifications@gmail.com>");
     msg.setSubject ("Your password verification code");
     int x = 5;
-
-    std::string messagecontent = "Hello!\nHere is the 5-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
-    messagecontent += std::to_string(random_generated);
-
     msg.setContent (messagecontent);
     cout << "stop1" << endl;
     std::string host = "smtp.google.com";
@@ -130,8 +132,13 @@ std::string Mail::mail(std::string adress){
     std::cout<<random_generated<<std::endl;
     std::string messagecontent = generatemessage(random_generated);
     std::cout<<messagecontent<<std::endl;
-    Mail::send_mail(random_generated, adress);
-    return to_string(random_generated);
+    Mail::send_mail(random_generated, adress, messagecontent);
+    if (verification(random_generated)){
+            std::string messagecontent1 = generatemessage(random_generated);
+            send_mail(random_generated,adress,messagecontent1);
+            messagecontent=messagecontent1;
+        };
+        return messagecontent;
 }
 
 
