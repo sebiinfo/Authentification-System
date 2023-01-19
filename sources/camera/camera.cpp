@@ -386,13 +386,13 @@ void Camera::on_login_2_clicked()
 {
     std::string username = ui -> username_input -> text().toStdString();
     std::string password = ui -> password_input -> text().toStdString();
-//    bool check = database.check_confirm_password(username, password);
-//    if (check == TRUE) {
-//        ui->stacked->setCurrentIndex(5);
-//    }
-//    else {
-//        QMessageBox::about(this, "Login Error", "Your username and password do not match.");
-//    }
+    bool check = database.checkPasswordandUsername(username, password);
+    if (check == TRUE) {
+        ui->stacked->setCurrentIndex(5);
+    }
+    else {
+        QMessageBox::about(this, "Login Error", "Your username and password do not match.");
+    }
 }
 
 
@@ -439,23 +439,36 @@ void Camera::on_update_password_clicked()
 
 void Camera::on_change_email_clicked()
 {
-    std::string old_email = ui -> old_email -> text().toStdString();
-    std::string new_email = ui -> new_email -> text().toStdString();
-    std::string confirm_email = ui -> confirm_email -> text().toStdString();
-//    bool check = database.change_email(
-//        username, password, new_email);
-//    if (check == TRUE) {
-//        ui->stacked->setCurrentIndex(5);
-//    }
-//    else {
-//        QMessageBox::about(this, "Error", "There has been an error, check your information and try again.");
-//    }
+    std::string username = ui -> usern -> text().toStdString();
+    std::string password = ui -> passw -> text().toStdString();
+    std::string new_email = ui -> confirm_email -> text().toStdString();
+    bool check = database.change_email(
+        username, password, new_email);
+    if (check == TRUE) {
+        ui->stacked->setCurrentIndex(5);
+    }
+    else {
+        QMessageBox::about(this, "Error", "There has been an error, check your information and try again.");
+    }
 }
 
+void Camera::on_delete_account_5_clicked()
+{
+    std::string username = ui -> username_5 -> text().toStdString();
+    std::string password = ui -> password_5 -> text().toStdString();
+    bool check = database.delete_user(
+        username, password);
+    if (check == TRUE) {
+        ui->stacked->setCurrentIndex(0);
+    }
+    else {
+        QMessageBox::about(this, "Error", "There has been an error, check your information and try again.");
+}
+}
 
 void Camera::on_update_email_clicked()
 {
-    ui->stacked->setCurrentIndex(6);
+    ui->stacked->setCurrentIndex(7);
 }
 
 
@@ -816,3 +829,12 @@ void Camera::on_back_11_clicked()
 //    }
 //    p_mediaRecorder->setMetaData(data);
 //}
+
+
+
+
+void Camera::on_delete_account_clicked()
+{
+    ui -> stacked -> setCurrentIndex(11);
+}
+

@@ -147,6 +147,10 @@ private slots:
 
     void on_back_11_clicked();
 
+    void on_delete_account_5_clicked();
+
+    void on_delete_account_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void closeEvent(QCloseEvent *event) override;

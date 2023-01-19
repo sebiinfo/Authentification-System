@@ -35,7 +35,7 @@ stacked {
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QStackedWidget" name="stacked">
       <property name="minimumSize">
        <size>
@@ -85,7 +85,7 @@ face_recognition {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>11</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="main">
        <widget class="QPushButton" name="register_2">
@@ -199,7 +199,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>80</y>
+          <y>70</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -212,7 +212,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>90</y>
+          <y>80</y>
           <width>63</width>
           <height>20</height>
          </rect>
@@ -228,7 +228,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>150</y>
+          <y>140</y>
           <width>111</width>
           <height>20</height>
          </rect>
@@ -245,7 +245,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>210</y>
+          <y>200</y>
           <width>91</width>
           <height>20</height>
          </rect>
@@ -261,7 +261,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>270</y>
+          <y>260</y>
           <width>63</width>
           <height>20</height>
          </rect>
@@ -277,7 +277,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>330</y>
+          <y>320</y>
           <width>111</width>
           <height>20</height>
          </rect>
@@ -293,7 +293,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>390</y>
+          <y>380</y>
           <width>161</width>
           <height>20</height>
          </rect>
@@ -309,7 +309,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>320</y>
+          <y>310</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -322,7 +322,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>260</y>
+          <y>250</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -335,7 +335,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>200</y>
+          <y>190</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -348,7 +348,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>140</y>
+          <y>130</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -361,7 +361,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>380</y>
+          <y>370</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -373,7 +373,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
        <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
-          <x>310</x>
+          <x>410</x>
           <y>0</y>
           <width>351</width>
           <height>51</height>
@@ -412,8 +412,8 @@ QPushButton#back:pressed {
        <widget class="QPushButton" name="create_2">
         <property name="geometry">
          <rect>
-          <x>650</x>
-          <y>450</y>
+          <x>660</x>
+          <y>470</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -430,6 +430,23 @@ QPushButton#create_2:pressed {
         </property>
         <property name="text">
          <string>Create Account</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="last_name_lbl_2">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>430</y>
+          <width>921</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: italic 12pt &quot;Times New Roman&quot;;
+</string>
+        </property>
+        <property name="text">
+         <string>Password needs at least six characters including one number, one capital letter, and one special character.</string>
         </property>
        </widget>
       </widget>
@@ -1037,7 +1054,7 @@ QPushButton#back_3:pressed {
         <property name="geometry">
          <rect>
           <x>350</x>
-          <y>260</y>
+          <y>240</y>
           <width>281</width>
           <height>51</height>
          </rect>
@@ -1060,7 +1077,7 @@ QPushButton#update_password:pressed {
         <property name="geometry">
          <rect>
           <x>350</x>
-          <y>180</y>
+          <y>170</y>
           <width>281</width>
           <height>51</height>
          </rect>
@@ -1083,7 +1100,7 @@ QPushButton#photo_library:pressed {
         <property name="geometry">
          <rect>
           <x>350</x>
-          <y>340</y>
+          <y>310</y>
           <width>281</width>
           <height>51</height>
          </rect>
@@ -1105,7 +1122,7 @@ QPushButton#update_email:pressed {
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
-          <x>230</x>
+          <x>310</x>
           <y>90</y>
           <width>521</width>
           <height>51</height>
@@ -1122,7 +1139,7 @@ QPushButton#update_email:pressed {
         <property name="geometry">
          <rect>
           <x>350</x>
-          <y>420</y>
+          <y>380</y>
           <width>281</width>
           <height>51</height>
          </rect>
@@ -1146,7 +1163,7 @@ QPushButton#delete_account:pressed {
        <widget class="QLabel" name="label_6">
         <property name="geometry">
          <rect>
-          <x>120</x>
+          <x>210</x>
           <y>60</y>
           <width>741</width>
           <height>51</height>
@@ -1250,7 +1267,7 @@ QPushButton#delete_account:pressed {
         <property name="geometry">
          <rect>
           <x>680</x>
-          <y>410</y>
+          <y>440</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -1321,6 +1338,23 @@ QPushButton#back_8:pressed {
          <string>Username:</string>
         </property>
        </widget>
+       <widget class="QLabel" name="last_name_lbl_3">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>390</y>
+          <width>921</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: italic 12pt &quot;Times New Roman&quot;;
+</string>
+        </property>
+        <property name="text">
+         <string>Password needs at least six characters including one number, one capital letter, and one special character.</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="email_change">
        <widget class="QLabel" name="label_11">
@@ -1375,7 +1409,7 @@ QPushButton#back_9:pressed {
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
         <property name="text">
-         <string>Old Email:</string>
+         <string>Username:</string>
         </property>
        </widget>
        <widget class="QLabel" name="password_lbl_6">
@@ -1391,7 +1425,7 @@ QPushButton#back_9:pressed {
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
         <property name="text">
-         <string>New Email:</string>
+         <string>Password:</string>
         </property>
        </widget>
        <widget class="QLabel" name="password_lbl_7">
@@ -1407,10 +1441,10 @@ QPushButton#back_9:pressed {
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
         <property name="text">
-         <string>Confirm Email:</string>
+         <string>New Email:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="old_email">
+       <widget class="QLineEdit" name="usern">
         <property name="geometry">
          <rect>
           <x>490</x>
@@ -1423,7 +1457,7 @@ QPushButton#back_9:pressed {
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="new_email">
+       <widget class="QLineEdit" name="passw">
         <property name="geometry">
          <rect>
           <x>490</x>
@@ -1800,8 +1834,8 @@ QPushButton#takeImageButton:pressed {
        <widget class="QLabel" name="label_33">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>40</y>
+          <x>210</x>
+          <y>70</y>
           <width>761</width>
           <height>51</height>
          </rect>
@@ -1817,7 +1851,7 @@ QPushButton#takeImageButton:pressed {
         <property name="geometry">
          <rect>
           <x>550</x>
-          <y>140</y>
+          <y>180</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -1826,11 +1860,11 @@ QPushButton#takeImageButton:pressed {
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="username_6">
+       <widget class="QLineEdit" name="password_5">
         <property name="geometry">
          <rect>
           <x>550</x>
-          <y>220</y>
+          <y>260</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -1843,7 +1877,7 @@ QPushButton#takeImageButton:pressed {
         <property name="geometry">
          <rect>
           <x>290</x>
-          <y>150</y>
+          <y>190</y>
           <width>131</width>
           <height>20</height>
          </rect>
@@ -1859,7 +1893,7 @@ QPushButton#takeImageButton:pressed {
         <property name="geometry">
          <rect>
           <x>290</x>
-          <y>230</y>
+          <y>270</y>
           <width>131</width>
           <height>20</height>
          </rect>
@@ -1869,6 +1903,52 @@ QPushButton#takeImageButton:pressed {
         </property>
         <property name="text">
          <string>Password:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="back_12">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>94</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#back_12 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#back_12:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Go back</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="delete_account_5">
+        <property name="geometry">
+         <rect>
+          <x>720</x>
+          <y>350</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#change_password_2 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#change_password_2:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Delete Account</string>
         </property>
        </widget>
       </widget>
@@ -1971,8 +2051,8 @@ QPushButton#takeImageButton:pressed {
   <tabstop>confirm_new</tabstop>
   <tabstop>new_password</tabstop>
   <tabstop>back_8</tabstop>
-  <tabstop>old_email</tabstop>
-  <tabstop>new_email</tabstop>
+  <tabstop>usern</tabstop>
+  <tabstop>passw</tabstop>
   <tabstop>confirm_email</tabstop>
   <tabstop>back_9</tabstop>
  </tabstops>
