@@ -29,14 +29,14 @@ class Database {
         std::string new_email); // change email account was registered with
     bool change_password(std::string username_given, std::string password_given,
                          std::string new_password,std::string confirm_new_password);
-    bool change_forgotten_password(std::string username_given,std::string new_password,std::string confirm_new_password);
+    bool change_forgotten_password(std::string username_given,int new_password, int confirm_new_password, std::string email_given);
 
     void delete_data(); // Deletes information from the CSV file
     bool delete_user(std::string username_given,std::string password_given); // Deletes one user from the CSV file
 
-    bool forgotten_password(std::string username, std::string email);
+    int forgotten_password(std::string username, std::string email);
 
-    bool verif_forgotten_password(std::string entered_code, std::string sent_code);
+    bool verif_forgotten_password(int entered_code, int sent_code);
 
   private:
     std::string file_name;

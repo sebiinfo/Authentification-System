@@ -5,13 +5,11 @@
 class Mail {
 public:
     int generateRandomNumber();
-    void send_mail(int random_generated, std::string adress, std::string messagecontent);
+    void send_mail(std::string adress, std::string messagecontent);
     std::string generatemessage(int random_generated);
     int get_random(){return randomgenerated;};
-    bool verification(int userInput);
-    bool verifyNumber(int random_generated, int userInput);
-    std::string mail(std::string adress);
+    bool verifyNumber(int code_sent, int code_entered);
+    int mail(std::string adress);
 private:
     int randomgenerated;
-
 };

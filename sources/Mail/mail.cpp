@@ -1,5 +1,4 @@
 #include "mail.hpp"
-//#include "../Password/profile.hpp"
 #include <iostream>
 #include "Poco/Net/MailMessage.h"
 #include "Poco/Net/MailRecipient.h"
@@ -44,33 +43,17 @@ public:
     }
 };
 
-
 int Mail::generateRandomNumber() {
     srand(time(0));
     int randomNumber = arc4random() % 99999 + 10000; // generates a random number between 10000 and 99999
     return randomNumber;
 }
 
-bool Mail::verifyNumber(int random_generated, int userInput) {
-    int randomNumber = random_generated;
-    if (userInput == randomNumber) {
+bool Mail::verifyNumber(int code_sent, int code_entered) {
+    if (code_sent == code_entered) {
         return true;
     }
     else {
-        return false;
-    }
-}
-
-bool Mail::verification(int random_generated){
-    int userInput;
-    std::cout << "Enter a 5-digit number: ";
-    std::cin >> userInput;
-    if (verifyNumber(random_generated, userInput)) {
-        std::cout << "Congratulations! You entered the correct number." << std::endl;
-        return true;
-    }
-    else {
-        std::cout << "Sorry, that is not the correct number." << std::endl;
         return false;
     }
 }
@@ -82,9 +65,7 @@ std::string Mail::generatemessage(int random_generated){
     return messagecontent;
 }
 
-
-
-void Mail::send_mail(int random_generated, std::string adress, std::string messagecontent){
+void Mail::send_mail(std::string adress, std::string messagecontent){
 
     std::cout << "start" << std::endl;
     SSLInitializer sslInitializer;
@@ -125,18 +106,13 @@ void Mail::send_mail(int random_generated, std::string adress, std::string messa
 
 }
 
-std::string Mail::mail(std::string adress){
+int Mail::mail(std::string adress){
     int random_generated = Mail::generateRandomNumber();
     std::cout<<random_generated<<std::endl;
     std::string messagecontent = generatemessage(random_generated);
     std::cout<<messagecontent<<std::endl;
-    Mail::send_mail(random_generated, adress, messagecontent);
-    if (verification(random_generated)){
-            std::string messagecontent1 = generatemessage(random_generated);
-            send_mail(random_generated,adress,messagecontent1);
-            messagecontent=messagecontent1;
-    };
-    return std::to_string(random_generated);
+    Mail::send_mail(adress, messagecontent);
+    return random_generated;
 }
 
 
