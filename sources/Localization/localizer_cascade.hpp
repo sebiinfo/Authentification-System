@@ -5,12 +5,12 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/objdetect.hpp>
 
-class Cascade_Detector_CV : public Localizer {
+class Cascade_Localizer : public Localizer {
   public:
-    Cascade_Detector_CV();
-    Cascade_Detector_CV(int h);
-    Cascade_Detector_CV(int w, int h);
-    ~Cascade_Detector_CV();
+    Cascade_Localizer();
+    Cascade_Localizer(int h);
+    Cascade_Localizer(int w, int h);
+    ~Cascade_Localizer();
 
     void localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces);
 

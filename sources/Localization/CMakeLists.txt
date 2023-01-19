@@ -1,6 +1,6 @@
 add_library(Localization
     localizer.hpp localizer.cpp
-    cascadecv.hpp cascadecv.cpp
+    localizer_cascade.hpp localizer_cascade.cpp
 )
 
 target_include_directories(Localization INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
