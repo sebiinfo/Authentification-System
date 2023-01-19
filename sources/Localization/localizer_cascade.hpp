@@ -17,7 +17,6 @@ class Cascade_Localizer : public Localizer {
     bool is_pad(cv::Mat image, cv::Rect face);
     std::vector<cv::Mat> Crop(cv::Mat image,std::vector<cv::Rect> faces);
     void Rescale(std::vector<cv::Mat> &images);
-
     std::vector<cv::Mat> Transform(cv::Mat image,std::vector<cv::Rect> faces);
 
   private:

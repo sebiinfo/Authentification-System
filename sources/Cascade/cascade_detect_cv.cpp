@@ -25,5 +25,5 @@ std::vector<cv::Mat> cascade_detect_cv::Transform(cv::Mat image){
 
     Rescale(images);
 
-    return images
+    return images;
 }

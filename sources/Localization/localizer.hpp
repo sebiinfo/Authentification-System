@@ -2,6 +2,7 @@
 #define AUTHENTICATION_SYSTEM_LOCALIZER_HPP
 
 #include <opencv2/core/mat.hpp>
+#include <opencv2/opencv.hpp>
 
 class Localizer {
   public:
@@ -28,6 +29,9 @@ class Localizer {
 
     // Returns array of cv::Mat of faces from the image given
     std::vector<cv::Mat> localize(cv::Mat & image);
+
+    // Rotate a face given an angle found by the cascade
+    cv::Mat rotate_face(cv::Mat &image, double angle);
     
     int width;
     int height;
