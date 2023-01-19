@@ -13,17 +13,17 @@ class KNN_Testing {
    void test_clasify(int number_faces, int size);
 
    template <typename T>
-   void print_vector(std::vector<T> my_vector) {
+   static void print_vector(std::vector<T> my_vector) {
       for (const auto &element : my_vector) {
          std::cout << element << " ";
       }
       std::cout << "\n";
    }
-   void print_vector_mat  (std::vector<cv::Mat> my_vector) {
+   static void print_vector_mat  (std::vector<cv::Mat> my_vector) {
 
       for(auto &face: my_vector) {
          const double *row_pointer = face.ptr<double>(0);
-         for(int i=0; i < dim; i++) {
+         for(int i=0; i < my_vector.size(); i++) {
             std::cout << row_pointer[i] << " ";
          }
 

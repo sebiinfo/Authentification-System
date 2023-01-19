@@ -13,7 +13,7 @@ void Vectorizer::train(std::vector<cv::Mat> &train_images, std::vector<int> &tra
     assert(false);
 }
 
-cv::Mat Vectorizer::vectorize(cv::Mat &image) { 
+cv::Mat Vectorizer::vectorize(const cv::Mat &image) {
     assert(false);
     return cv::Mat(); 
 }

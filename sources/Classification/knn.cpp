@@ -60,19 +60,22 @@ void apply_permutation(std::vector<int> &permutation_vector,
 
 // KNN_Testing Object for easy testing of fuctions
 
-KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
-         std::vector<int> &labels)
-    : Classifier(num_people, dim, num_reps, labels) {
-   this->dim = dim;
-   this->num_reps = num_reps;
-   this->num_people = num_people;
-   this->labels = labels;
-   this->k = int(sqrt(num_people));
-}
-
 KNN::KNN(int num_people, int dim) : Classifier(num_people, dim){
     this->num_people=num_people;
+    this->k = int(sqrt(num_people));
     this->dim=dim;
+}
+
+void KNN::train(std::vector<cv::Mat> &num_reps,
+                       std::vector<int> &labels) {
+    this->num_reps = num_reps;
+    this->labels = labels;
+}
+
+KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
+         std::vector<int> &labels)
+    : KNN(num_people, dim){
+   train(num_reps, labels);
 }
 
 double KNN::compute_distance(cv::Mat vect) const {
@@ -90,14 +93,13 @@ bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
    return (compute_distance(v1) < compute_distance(v2));
 }
 
+
 int KNN::classify(const cv::Mat &query) {
    this->query = query;
-
    //we check if the query is too far off from our data
     if (is_alienated(query)){
         return -1;
     }
-
    // now we want to sort the data in terms of the distance, O(nlogn),
 
 
@@ -106,7 +108,6 @@ int KNN::classify(const cv::Mat &query) {
 
    apply_permutation(permutation_numerical_faces, this->labels);
    apply_permutation(permutation_numerical_faces, this->num_reps);
-
    std::map<int, int> id_freq;
 
    for (int i = 0; i < k; ++i) {
@@ -119,7 +120,6 @@ int KNN::classify(const cv::Mat &query) {
          id_freq[labels[i]] = 1;
       }
    }
-
    int max_freq = 0, max_id;
 
    for (auto &it : id_freq) {
@@ -128,7 +128,6 @@ int KNN::classify(const cv::Mat &query) {
          max_freq = it.second;
       }
    }
-
    return max_id;
 }
 

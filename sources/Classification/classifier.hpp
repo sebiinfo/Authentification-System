@@ -46,13 +46,13 @@ class Classifier {
    //the function which is overwritten by the inherited algorithm class
    //it return the id of the person that it matches with the most
    //or -1 if it is too far away from all the people
-   virtual int classify(cv::Mat &image);
+   virtual int classify(const cv::Mat &image);
 
 
 
     //this is a function which checks weather the query is too far off from all the groups
     // returns true iff the person if too far off
-   bool is_alienated(const cv::Mat& query);
+    bool is_alienated(const cv::Mat& query);
 
    //helper function for is_alienated which checks alienation on people with label : id
     bool is_alienated_id (const cv::Mat& query, int id);

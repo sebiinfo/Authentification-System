@@ -1,5 +1,5 @@
 #include "classifier.hpp"
-
+#include "knn_testing.hpp"
 #include <bits/stdc++.h>
 #include <math.h>
 
@@ -36,11 +36,16 @@ void Classifier::train(std::vector<cv::Mat> &num_reps,
    this->labels = labels;
 }
 
-int Classifier::classify(cv::Mat &image) { return 0; }
+int Classifier::classify(const cv::Mat &image) { return 0; }
 
 Classifier::~Classifier() = default;
 
 bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
+    std:: cout<< std::endl << "id: " << id << "\n";
+    for (int i=0; i<dim ; ++i){
+        std::cout<<query.at<double>(0,i)<<" ";
+    }
+    std::cout<<"\n";
    // contains on position i the sum of the faces on coordinate i
    std::vector<double> averages;
    // contains the empirical variance of faces on coordinate i
@@ -52,6 +57,7 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
          num_people_id++;
       }
    }
+   std::cout<< "  num_poeple_id = "<<num_people_id<< "\n";
 
    if (num_people_id == 0) {
       throw std::invalid_argument(
@@ -88,6 +94,15 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
    // we keep count of the number of coordinates on which the query in alienated
    int count_alienated_id = 0;
 
+   std::cout<<" Averages are:\n";
+   for (auto a :averages){
+       std::cout<<" "<< a<< " ";
+   }
+    std::cout<<"\n Variances are:\n";
+    for (auto v :variances){
+        std::cout<<" "<< v<< " ";
+    }
+
    for (int entry = 0; entry < dim; ++entry) {
       if (query.at<double>(0, entry) <
               averages[entry] - 1.96 * sqrt(variances[entry]) ||
@@ -97,8 +112,9 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
          count_alienated_id++;
       }
    }
-
-   return double(count_alienated_id) / num_people_id > alienation_constant;
+    std::cout<<"\n"<<"count_alienated_id is: "<<count_alienated_id;
+    std::cout<<"\n The answer for this id is "<< (double(count_alienated_id) / dim > alienation_constant)<<"\n";
+   return double(count_alienated_id) / dim  > alienation_constant;
 }
 
 bool Classifier::is_alienated(const cv::Mat &query) {
@@ -110,6 +126,13 @@ bool Classifier::is_alienated(const cv::Mat &query) {
     * true
     */
 
+    std::cout << "num_people: "<< num_people<< " dim= "<<dim;
+
+    std::cout<<"\n num_reps is : \n";
+    KNN_Testing::print_vector_mat(num_reps);
+    std::cout<<"\n The labels are:  ";
+    KNN_Testing::print_vector(labels);
+    std::cout<<"\n";
    std::set<int> id_set;
 
    for (int i = 0; i < num_people; ++i) {

@@ -23,7 +23,7 @@ class Testing_Functions {
    static void print_vector_mat(std::vector<cv::Mat> my_vector) {
       for (auto &face : my_vector) {
          const double *row_pointer = face.ptr<double>(0);
-         for (int i = 0; i < my_vector.size(); i++) {
+         for (int i=0; i< face.size().width; ++i) {
             std::cout << row_pointer[i] << " ";
          }
 

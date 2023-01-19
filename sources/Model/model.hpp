@@ -37,7 +37,7 @@ class Model {
     std::vector<int> predict(cv::Mat & image, std::vector<cv::Rect> & faces);
     std::vector<int> predict(cv::Mat & image);
     int predict_most_likely(cv::Mat & image);
-
+    Classifier *classifier;
   private:
     void load_train_images();
 
@@ -49,7 +49,7 @@ class Model {
     std::vector<int> train_labels;
     Vectorizer *vectorizer;
     Localizer *localizer;
-    Classifier *classifier;
+
 };
 
 #endif // AUTHENTICATION_SYSTEM_MODEL_HPP

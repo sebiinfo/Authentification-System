@@ -16,8 +16,9 @@ class KNN : public Classifier {
    KNN(int num_people, int dim);
    KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
        std::vector<int> &labels);
-
-   bool compare(const cv::Mat &v1, const cv::Mat &v2);
+   void train(std::vector<cv::Mat> &num_reps,
+                           std::vector<int> &labels);
+    bool compare(const cv::Mat &v1, const cv::Mat &v2);
 
    virtual int classify(const cv::Mat &query);
 
