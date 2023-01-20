@@ -109,11 +109,20 @@ std::vector<int> Model::predict(cv::Mat &image) {
 }
 
 int Model::predict_most_likely(cv::Mat &image) {
-    std::vector<int> temp = predict(image);
+    std::vector<cv::Rect> faces;
+    std::vector<int> temp = predict(image, faces);
     if (temp.size() == 0) {
         return -1;
     } else {
-        return temp[0];
+        int score = -1e9;
+        int output = -1;
+        for (int i = 0; i<temp.size(); i++) {
+            if (calculate_score(image, faces[i]) > score) {
+                output = i;
+                score = calculate_score(image, faces[i]);
+            }
+        }
+        return temp[output];
     }
     // in future we need to use the rect and consider which face is the main
     // one.
@@ -135,4 +144,11 @@ void Model::load_train_images() {
         }
     }
     std::cout << "Finished Loading" << std::endl;
+}
+
+
+static int calculate_score(cv::Mat & image, cv::Rect & face) {
+    int x = abs(face.x+face.x+face.height-image.rows)
+    int y = abs(face.y+facey+face.width-image.columns)
+    return face.width*face.height*4 - pow(x, 2) - pow(y, 2);
 }
