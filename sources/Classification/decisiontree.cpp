@@ -7,7 +7,7 @@
 #include <utility>
 Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
            std::vector<int> &labels, const std::string &info_measure) {
-   std::cout<<"\nWe initialized  a Node \n";
+   //std::cout<<"\nWe initialized  a Node \n";
    this->left_child_pointer = nullptr;
    this->right_child_pointer = nullptr;
    this->dim = dim;
@@ -16,7 +16,7 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
    this->labels = labels;
    this->info_measure = info_measure;
    this->best_split = get_best_split();
-  std::cout<<"\n We finished initializing the Node";
+  //std::cout<<"\n We finished initializing the Node";
 }
 
 Node::~Node() {
@@ -150,7 +150,8 @@ int Node::is_pure() {
    if (labels.empty()) {
       return -1;
    }
-   const double limit = 0.9;
+   const double limit = 0.7;
+
    std::map<int, int> id_freq;
    for (int label : labels) {
       if (id_freq.count(label)) {
@@ -196,7 +197,7 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
    // we need to initialize a Node object containing all the data
    // when we de the initialization we already have the best split
    //  Node current_node=Node(num_people, dim, num_reps, labels);
-    std::cout<<"Starting build_tree";
+   // std::cout<<"Starting build_tree";
    // we initialize the node label: -1 if not pure, the label otherwise
    current_node_pointer->node_label = current_node_pointer->is_pure();
    // we only build a children of the Node if not pure
@@ -241,35 +242,34 @@ int DecisionTree::classify(const cv::Mat &query) {
 //   if (is_alienated(query)){
 //       return -1;
 //   }
-    std::cout<<"\n decision tree labels are \n";
-    for (auto i: labels){
-        std::cout<<i<<" ";
-    }
+//    std::cout<<"\n decision tree labels are \n";
+//    for (auto i: labels){
+//        std::cout<<i<<" ";
+//    }
    Node *parent_node = new Node(num_people, dim, num_reps, labels);
-    std::cout<<"\n First created node labels: \n";
-    for (auto i : parent_node->labels){
-        std::cout<<i<<" ";
-    }
+    DecisionTree::build_tree(parent_node);
+
+
    // while the node is not pure we go to the corresponding child
-   while (parent_node!= nullptr && parent_node->node_label == -1) {
-       std::cout<<"\n ----------- \n";
+   while ( parent_node->node_label == -1) {
+
       int split_entry = parent_node->best_split.entry;
-      std::cout<<"\n 2 \n";
+
       double split_threshold = parent_node->best_split.threshold;
-       std::cout<<"\n 3 \n";
+
       if (query.at<double>(0, split_entry) <= split_threshold) {
          parent_node = parent_node->left_child_pointer;
-          std::cout<<"\n 4 \n";
+
       } else {
          parent_node = parent_node->right_child_pointer;
-          std::cout<<"\n 4 \n";
+
       }
-       std::cout<<"\n 6 \n";
-      std::cout<<parent_node;
-      std::cout<<parent_node->node_label;
-       std::cout<<"\n 7 \n";
+
+//      std::cout<<parent_node;
+//      std::cout<<parent_node->node_label;
+
    }
-   std::cout<<"\n 5 \n";
+
    // when we exit the while we have a pure node
    return parent_node->node_label;
 }

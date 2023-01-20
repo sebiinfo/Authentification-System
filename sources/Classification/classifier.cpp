@@ -125,9 +125,9 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
 
     for (int entry = 0; entry < dim; ++entry) {
         if (query.at<double>(0, entry) <
-                averages[entry] - 1.96 * sqrt(variances[entry]) ||
+                averages[entry] - 1.96 * sqrt(variances[entry])*2 ||
             query.at<double>(0, entry) >
-                averages[entry] + 1.96 * sqrt(variances[entry])) {
+                averages[entry] + 1.96 * sqrt(variances[entry])*2) {
             // we increase the number of alienated coordinates
             count_alienated_id++;
         }

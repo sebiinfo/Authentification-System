@@ -19,8 +19,13 @@ int main() {
 
     int num_people = 15, dim = 14;
     std::cout << "Creating the Model\n";
-    Model model(num_people, dim, 0, 0, "", "Fisher", "KNN");
+    Model model(num_people, dim, 0, 0, "", "Fisher", "DecisionTree");
     std::cout << "Created the Model\n";
+
+       Testing_Decision_Tree::Testing_Build_Tree(num_people,dim) ;
+        Node *x=Testing_Node::create_node(num_people,dim);
+        Classifier *my_classifier =
+        Testing_Decision_Tree::build_tree(num_people, dim);
 
     cv::Mat image_test;
     int positives, obtained_label;
@@ -34,13 +39,14 @@ int main() {
             image_test = cv::imread(filename);
             image_test = image_test.reshape(1, 1);
             obtained_label = model.predict(image_test)[0];
-            /* std::cout << "The obtained label was: " << obtained_label
-                      << " while the expected was: " << label << std::endl; */
+             std::cout << "The obtained label was: " << obtained_label
+                      << " while the expected was: " << label << std::endl;
             positives += obtained_label == label;
         }
     }
     std::cout << "\n\n The final statistics are: " << positives << " out of "
               << 2 * num_people;
+
     //    cv::Mat image = cv::imread("./yalefaces/test/2/2.png");
     //    cv::Mat flat_image = image.reshape(1, 1);
     // std::cout << model.predict(flat_image)[0] << std::endl;
