@@ -8,6 +8,16 @@
 
 #include "vectorizer.cpp"
 
+static void debug_print(cv::Mat temp) {
+    std::cout << "temp.dims = " << temp.dims << " temp.size = [";
+    for (int i = 0; i < temp.dims; ++i) {
+        if (i)
+            std::cout << " X ";
+        std::cout << temp.size[i];
+    }
+    std::cout << "] temp.channels = " << temp.channels() << std::endl;
+}
+
 static cv::Mat formatImagesForPCA(const std::vector<cv::Mat> &data) {
     // cv::Mat dst(static_cast<int>(data.size()), data[0].rows * data[0].cols,
     // CV_32F);
@@ -50,15 +60,17 @@ void Fisher::train(std::vector<cv::Mat> &train_images,
               << pca.eigenvectors.empty() << " Rows-> " << pca.mean.rows
               << " Cols-> " << pca.mean.cols << std::endl; */
     // std::cout << "Created PCA" << std::endl;
-    std::cout << "This is the first projection I get " << pca.project(train_images[0])<<std::endl;
+    std::cout << "This is the first projection I get "
+              << pca.project(train_images[0]) << std::endl;
     train_data = pca.project(train_data);
-    debug_print(train_data);
     lda = cv::LDA(num_feature);
     lda.compute(train_data, train_labels);
     // std::cout << "Created LDA" << std::endl;
     for (auto &image : train_images) {
         image = vectorize(image);
     }
+    debug_print(train_images[0]);
+    std::cout << train_images[0] << std::endl;
     // vectorize_trainset();
 }
 
