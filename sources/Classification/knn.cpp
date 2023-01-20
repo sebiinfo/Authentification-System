@@ -103,9 +103,9 @@ int KNN::classify(const cv::Mat &query) {
     this->query = query;
 
     // we check if the query is too far off from our data
-    if (is_alienated(query)) {
-        return -1;
-    }
+//    if (is_alienated(query)) {
+//        return -1;
+//    }
 //    std::cout<<"labels are: \n";
 //    for (auto i: labels){
 //        std:: cout<< i<<" ";

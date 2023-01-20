@@ -163,7 +163,7 @@ bool Classifier::is_alienated(const cv::Mat &query) {
 //    std::cout << "\n";
     std::set<int> id_set;
 
-    for (int i = 0; i < num_reps.size(); ++i) {
+    for (int i = 0; i < labels.size(); ++i) {
         id_set.insert(labels[i]);
     }
     for (auto id : id_set) {
