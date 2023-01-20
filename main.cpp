@@ -26,7 +26,7 @@ int main() {
     int positives, obtained_label;
     std::string filename, base_filename;
     for (int label = 1; label <= num_people; label++) {
-        base_filename = "./yalefaces/test/" + std::to_string(label) + "/";
+        base_filename = "./resources/yalefaces/test/" + std::to_string(label) + "/";
         for (int i = 1; i <= 2; i++) {
             filename = base_filename + std::to_string(i);
             filename = filename + ".png";
@@ -34,7 +34,7 @@ int main() {
             image_test = image_test.reshape(1, 1);
             obtained_label = model.predict(image_test)[0];
             std::cout << "The obtained label was: " << obtained_label
-                      << " while the expected was: " << label;
+                      << " while the expected was: " << label << std::endl;
             positives += obtained_label == label;
         }
     }
