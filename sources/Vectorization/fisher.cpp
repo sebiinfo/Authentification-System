@@ -60,17 +60,16 @@ void Fisher::train(std::vector<cv::Mat> &train_images,
               << pca.eigenvectors.empty() << " Rows-> " << pca.mean.rows
               << " Cols-> " << pca.mean.cols << std::endl; */
     // std::cout << "Created PCA" << std::endl;
-    std::cout << "This is the first projection I get "
-              << pca.project(train_images[0]) << std::endl;
-    train_data = pca.project(train_data);
+    /* std::cout << "This is the first projection I get "
+              << pca.project(train_images[0]) << std::endl; */
+    cv::Mat projected_pca_data = pca.project(train_data);
     lda = cv::LDA(num_feature);
-    lda.compute(train_data, train_labels);
+    lda.compute(projected_pca_data, train_labels);
     // std::cout << "Created LDA" << std::endl;
+    std::cout << lda.project(projected_pca_data.row(0)) << std::endl;
     for (auto &image : train_images) {
         image = vectorize(image);
     }
-    debug_print(train_images[0]);
-    std::cout << train_images[0] << std::endl;
     // vectorize_trainset();
 }
 
