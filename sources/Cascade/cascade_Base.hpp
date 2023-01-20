@@ -11,17 +11,15 @@ public:
 
     void load(std::string path);
     virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
-    // virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces);
+	// virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces);
 
-
-    void Special_Transform(); // Transform Specific to the cascade.
-
-
+//	void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+	virtual void Special_Transform(); // Transform Specific to the cascade.
 
 // Attributes of the class
 public: // Shared with children
 
-    std::vector<cv::Rect> vect_faces;
+	std::vector<cv::Rect> vect_faces; // Should be gone
 
 
 private: // Kept for itself

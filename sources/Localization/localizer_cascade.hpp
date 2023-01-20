@@ -22,7 +22,7 @@ class Cascade_Localizer : public Localizer {
 
     std::vector<cv::Mat> Transform(cv::Mat image,std::vector<cv::Rect> faces);
 
-    cascade_Base cascade;
+	cascade_Base* cascade;
   private:
     void Crop_(cv::Mat &image,cv::Rect face);
     void Rescale(cv::Mat &image);

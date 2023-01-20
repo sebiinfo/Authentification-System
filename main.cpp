@@ -30,6 +30,10 @@ int main()
 
 	cv::Mat image = cv::imread(img_path);
 
+	cv::imshow(" image1",image);
+	// created the window by name image1
+	cv::waitKey(0);
+
 	Cascade_Localizer Loc = Cascade_Localizer();
 
 
@@ -39,11 +43,14 @@ int main()
 
 	std::vector<cv::Rect> faces;
 
-	Loc.cascade.detectMultiScale(image,faces,1,4,0,cv::Size(30,30));
+	Loc.cascade->detectMultiScale(image,faces,1.1,4,0,cv::Size(30,30));
 
 	std::vector<cv::Mat> images = Loc.Transform(image,faces);
 
-	std::cout << images.size() << std::endl;
+	cv::imshow(" image1",images[0]);
+	// created the window by name image1
+	cv::waitKey(0);
+
 
 }
 

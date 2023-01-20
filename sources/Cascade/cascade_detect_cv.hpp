@@ -12,7 +12,9 @@ public: // Public methods
     Cascade_detect_cv();
     ~Cascade_detect_cv();
     void load(std::string path);
-	virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+
+    void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+//	virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
     // void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces);
 	void Special_Transform();
 

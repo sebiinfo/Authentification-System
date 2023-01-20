@@ -16,8 +16,10 @@ Cascade_Localizer::Cascade_Localizer(int w,int pad) : Cascade_Localizer(w, w,pad
 
 
 Cascade_Localizer::Cascade_Localizer(int w, int h, int pad){ 
-    Localizer (w, h, pad);
-    cascade = Cascade_detect_cv();
+    height = h;
+    width = w;
+    padding = pad;
+	cascade = new Cascade_detect_cv();
 //   cascade.load("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
 }
 
@@ -26,7 +28,7 @@ Cascade_Localizer::~Cascade_Localizer() {}
 
 
 void Cascade_Localizer::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces) {
-    cascade.detectMultiScale(image, faces, 1.1, 2, 0, cv::Size(30, 30));
+	cascade->detectMultiScale(image, faces, 1.1, 2, 0, cv::Size(30, 30));
 }
 
 
@@ -145,7 +147,7 @@ std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image,std::vector<cv::
 {
     std::vector<cv::Mat> out;
 
-    cascade.Special_Transform();
+	cascade->Special_Transform();
 
     out = Crop(image,faces);
     Rescale(out);
