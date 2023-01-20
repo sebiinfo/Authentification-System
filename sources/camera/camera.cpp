@@ -117,7 +117,7 @@ void Camera::keyPressEvent(QKeyEvent *event)
 
     switch (event->key()) {
     case Qt::Key_CameraFocus:
-        displayViewfinder();
+//        displayViewfinder();
         event->accept();
         break;
     case Qt::Key_Camera:
@@ -151,8 +151,8 @@ void Camera::processCapturedImage(int requestId, const QImage &img)
     ui->lastImagePreviewLabel->setPixmap(QPixmap::fromImage(scaledImage));
 
     // Display captured image for 4 seconds.
-    displayCapturedImage();
-    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
+//    displayCapturedImage();
+//    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
 }
 
 void Camera::configureCaptureSettings()
@@ -263,15 +263,15 @@ void Camera::updateCameraDevice(QAction *action)
     setCamera(qvariant_cast<QCameraDevice>(action->data()));
 }
 
-void Camera::displayViewfinder()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
+//void Camera::displayViewfinder()
+//{
+//    m_camera -> displayViewfinder;
+//}
 
-void Camera::displayCapturedImage()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-}
+//void Camera::displayCapturedImage()
+//{
+//    m_camera -> displayCapturedImage;
+//}
 
 void Camera::readyForCapture(bool ready)
 {
@@ -355,6 +355,8 @@ void Camera::on_register_2_clicked()
 
 void Camera::on_face_recognition_clicked()
 {
+    ui->camera_stacked->setCurrentIndex(0);
+    ui->photo_button->setCurrentIndex(0);
     ui->stacked->setCurrentIndex(4);
 }
 
@@ -407,7 +409,10 @@ void Camera::on_create_2_clicked()
 
     Database::Possible_Errors check = database.writeDataToFile(user, name, last_name, pass, conf_pass, email);
     if (check == 0) {
-        ui->stacked->setCurrentIndex(10);
+        ui->camera_stacked->setCurrentIndex(1);
+        ui->photo_button->setCurrentIndex(1);
+        ui->stacked->setCurrentIndex(4);
+        QMessageBox::about(this, "Identification Photos", "Now you must take 10 pictures with different facial expressions in order to be able to use the facial recognition system to log in.");
     }
     else if (check == 1) {
         QMessageBox::about(this, "Error Creating Account", "There has been an error, your confirmed password does not match your password. Please input the right password and try again.");
@@ -561,17 +566,23 @@ void Camera::on_get_code_clicked()
     ui->stacked->setCurrentIndex(8);
 }
 
+int i = 0;
 
 void Camera::on_takeImageButton_clicked()
 {
-    QMessageBox::about(this, "Verification Result", "Using verification methods x, y, and Vectorization 1, your authentication accuracy was __%");
-    ui->stacked->setCurrentIndex(5);
+    i +=1;
+    if (i == 10) {
+        QMessageBox::about(this, "Successful Account Created", "Thank you, your account is now complete.");
+        ui->stacked->setCurrentIndex(5);
+    }
 }
 
 
 void Camera::on_photo_library_clicked()
 {
     ui->stacked->setCurrentIndex(4);
+    ui->camera_stacked->setCurrentIndex(1);
+    ui->photo_button->setCurrentIndex(2);
 }
 
 void Camera::on_resend_code_clicked()
@@ -596,250 +607,6 @@ void Camera::on_back_11_clicked()
 {
     ui->stacked->setCurrentIndex(0);
 }
-
-//Photo_Camera::Photo_Camera() : ui_2(new Ui::Camera)
-//{
-//    ui_2->setupUi(this);
-//    // Camera devices:
-//    updateCameras_2();
-//    connect(&p_devices, &::QMediaDevices::videoInputsChanged, this, &::Photo_Camera::updateCameras_2);
-//    setCamera_2(QMediaDevices::defaultVideoInput());
-//}
-
-//void Photo_Camera::setCamera_2(const QCameraDevice &cameraDevice)
-//{
-//    p_camera.reset(new QCamera(cameraDevice));
-//    p_captureSession.setCamera(p_camera.data());
-
-//    connect(p_camera.data(), &QCamera::activeChanged, this, &::Photo_Camera::updateCameraActive_2);
-//    connect(p_camera.data(), &QCamera::errorOccurred, this, &::Photo_Camera::displayCameraError);
-
-//    if (!p_mediaRecorder) {
-//        p_mediaRecorder.reset(new QMediaRecorder);
-//        p_captureSession.setRecorder(p_mediaRecorder.data());
-//        connect(p_mediaRecorder.data(), &QMediaRecorder::errorChanged, this,
-//                &::Photo_Camera::displayRecorderError);
-//    }
-
-//    if (!p_imageCapture) {
-//        p_imageCapture.reset(new QImageCapture);
-//        p_captureSession.setImageCapture(p_imageCapture.get());
-//        connect(p_imageCapture.get(), &QImageCapture::readyForCaptureChanged, this,
-//                &::Photo_Camera::readyForCapture_2);
-//        connect(p_imageCapture.get(), &::QImageCapture::imageCaptured, this,
-//                &::Photo_Camera::processCapturedImage_2);
-//        connect(p_imageCapture.get(), &::QImageCapture::imageSaved, this, &::Photo_Camera::imageSaved_2);
-//        connect(p_imageCapture.get(), &::QImageCapture::errorOccurred, this,
-//                &::Photo_Camera::displayCaptureError_2);
-//    }
-
-//    p_captureSession.setVideoOutput(ui_2->viewfinder);
-
-//    updateCameraActive_2(p_camera->isActive());
-//    readyForCapture_2(p_imageCapture->isReadyForCapture());
-
-//    if (p_camera->cameraFormat().isNull()) {
-//        auto formats = cameraDevice.videoFormats();
-//        if (!formats.isEmpty()) {
-//            // Choose a decent camera format: Maximum resolution of at least 30 FPS
-//            QCameraFormat bestFormat;
-//            for (const auto &fmt : formats) {
-//                if (bestFormat.maxFrameRate() < 29
-//                    && fmt.maxFrameRate() > bestFormat.maxFrameRate())
-//                    bestFormat = fmt;
-//                else if (bestFormat.maxFrameRate() == fmt.maxFrameRate()
-//                         && bestFormat.resolution().width() * bestFormat.resolution().height()
-//                                 < fmt.resolution().width() * fmt.resolution().height())
-//                    bestFormat = fmt;
-//            }
-
-//            p_camera->setCameraFormat(bestFormat);
-//            p_mediaRecorder->setVideoFrameRate(bestFormat.maxFrameRate());
-//        }
-//    }
-
-//    p_camera->start();
-//}
-
-//void Photo_Camera::keyPressEvent_2(QKeyEvent *event)
-//{
-//    if (event->isAutoRepeat())
-//        return;
-
-//    switch (event->key()) {
-//    case Qt::Key_CameraFocus:
-//        displayViewfinder_2();
-//        event->accept();
-//        break;
-//    case Qt::Key_Camera:
-//            takeImage_2();
-//        event->accept();
-//        break;
-//    default:
-//        QMainWindow::keyPressEvent(event);
-//    }
-//}
-
-//void Photo_Camera::processCapturedImage_2(int requestId, const QImage &img)
-//{
-//    Q_UNUSED(requestId);
-//    QImage scaledImage =
-//            img.scaled(ui_2->viewfinder->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-//    ui_2->lastImagePreviewLabel->setPixmap(QPixmap::fromImage(scaledImage));
-
-//    // Display captured image for 4 seconds.
-//    displayCapturedImage_2();
-//    QTimer::singleShot(4000, this, &Photo_Camera::displayViewfinder_2);
-//}
-
-//void Photo_Camera::configureCaptureSettings_2()
-//{
-//    if (p_doImageCapture)
-//        configureImageSettings_2();
-//    else
-//        configureImageSettings_2();
-//}
-
-//void Photo_Camera::configureImageSettings_2()
-//{
-//    VideoSettings settingsDialog(p_mediaRecorder.data());
-//    settingsDialog.setWindowFlags(settingsDialog.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-
-//    if (settingsDialog.exec())
-//        settingsDialog.applySettings();
-//}
-
-//void Photo_Camera::takeImage_2()
-//{
-//    p_isCapturingImage = true;
-//    p_imageCapture->captureToFile();
-//}
-
-//void Photo_Camera::displayCaptureError_2(int id, const QImageCapture::Error error,
-//                                 const QString &errorString)
-//{
-//    Q_UNUSED(id);
-//    Q_UNUSED(error);
-//    QMessageBox::warning(this, tr("Image Capture Error"), errorString);
-//    p_isCapturingImage = false;
-//}
-
-//void Photo_Camera::startCamera_2()
-//{
-//    p_camera->start();
-//}
-
-//void Photo_Camera::stopCamera_2()
-//{
-//    p_camera->stop();
-//}
-
-//void Photo_Camera::updateCameraActive_2(bool active)
-//{
-//    if (active) {
-//        ui_2->actionStartCamera->setEnabled(false);
-//        ui_2->actionStopCamera->setEnabled(true);
-//        ui_2->actionSettings->setEnabled(true);
-//    } else {
-//        ui_2->actionStartCamera->setEnabled(true);
-//        ui_2->actionStopCamera->setEnabled(false);
-//        ui_2->actionSettings->setEnabled(false);
-//    }
-//}
-
-//void Photo_Camera::setExposureCompensation_2(int index)
-//{
-//    p_camera->setExposureCompensation(index * 0.5);
-//}
-
-//void Photo_Camera::displayRecorderError()
-//{
-//    if (p_mediaRecorder->error() != QMediaRecorder::NoError)
-//        QMessageBox::warning(this, tr("Capture Error"), p_mediaRecorder->errorString());
-//}
-
-//void Photo_Camera::displayCameraError()
-//{
-//    if (p_camera->error() != QCamera::NoError)
-//        QMessageBox::warning(this, tr("Camera Error"), p_camera->errorString());
-//}
-
-//void Photo_Camera::updateCameraDevice_2(QAction *action)
-//{
-//    setCamera_2(qvariant_cast<QCameraDevice>(action->data()));
-//}
-
-//void Photo_Camera::displayViewfinder_2()
-//{
-//    ui_2->stackedWidget->setCurrentIndex(0);
-//}
-
-//void Photo_Camera::displayCapturedImage_2()
-//{
-//    ui_2->stackedWidget->setCurrentIndex(1);
-//}
-
-//void Photo_Camera::readyForCapture_2(bool ready)
-//{
-//    ui_2->takeImageButton->setEnabled(ready);
-//}
-
-//void Photo_Camera::imageSaved_2(int id, const QString &fileName)
-//{
-//    Q_UNUSED(id);
-//    ui_2->statusbar->showMessage(tr("Captured \"%1\"").arg(QDir::toNativeSeparators(fileName)));
-
-//    p_isCapturingImage = false;
-//    if (p_applicationExiting)
-//        close();
-//}
-
-//void Photo_Camera::closeEvent_2(QCloseEvent *event)
-//{
-//    if (p_isCapturingImage) {
-//        setEnabled(false);
-//        p_applicationExiting = true;
-//        event->ignore();
-//    } else {
-//        event->accept();
-//    }
-//}
-
-//void Photo_Camera::showMetaDataDialog_2()
-//{
-//    if (!p_metaDataDialog)
-//        p_metaDataDialog = new MetaDataDialog(this);
-//    p_metaDataDialog->setAttribute(Qt::WA_DeleteOnClose, false);
-//    if (p_metaDataDialog->exec() == QDialog::Accepted)
-//        saveMetaData();
-//}
-
-//void Photo_Camera::saveMetaData()
-//{
-//    QMediaMetaData data;
-//    for (int i = 0; i < QMediaMetaData::NumMetaData; i++) {
-//        QString val = p_metaDataDialog->p_metaDataFields[i]->text();
-//        if (!val.isEmpty()) {
-//            auto key = static_cast<QMediaMetaData::Key>(i);
-//            if (i == QMediaMetaData::CoverArtImage) {
-//                QImage coverArt(val);
-//                data.insert(key, coverArt);
-//            } else if (i == QMediaMetaData::ThumbnailImage) {
-//                QImage thumbnail(val);
-//                data.insert(key, thumbnail);
-//            } else if (i == QMediaMetaData::Date) {
-//                QDateTime date = QDateTime::fromString(val);
-//                data.insert(key, date);
-//            } else {
-//                data.insert(key, val);
-//            }
-//        }
-//    }
-//    p_mediaRecorder->setMetaData(data);
-//}
-
-
 
 
 void Camera::on_delete_account_clicked()
@@ -871,3 +638,18 @@ void Camera::on_back_13_clicked()
     ui -> stacked -> setCurrentIndex(0);
 }
 
+
+void Camera::on_localization_1_toggled(bool checked)
+{
+    if (checked == TRUE) {
+
+    }
+}
+
+//int count = 0;
+
+//void Camera::buttonClicked()
+//{
+//    count++;
+//    QLCDNumber display();.value(count);
+//}

@@ -13,7 +13,9 @@
 #include <QMediaCaptureSession>
 #include <QMediaDevices>
 #include <QMediaMetaData>
+#include <QPushButton>
 #include <QMediaRecorder>
+#include <QLCDNumber>
 #include <QGraphicsAnchorLayout>
 #include <QScopedPointer>
 
@@ -78,6 +80,7 @@ private slots:
     void displayCapturedImage();
 
     void readyForCapture(bool ready);
+
     void imageSaved(int id, const QString &fileName);
 
     void updateCameras();
@@ -138,7 +141,6 @@ private slots:
 
     void on_photo_library_clicked();
 
-
     void on_resend_code_clicked();
 
     void on_back_10_clicked();
@@ -157,6 +159,8 @@ private slots:
 
     void on_back_13_clicked();
 
+    void on_localization_1_toggled(bool checked);
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
@@ -171,68 +175,12 @@ private:
     QScopedPointer<QCamera> m_camera;
     QScopedPointer<QAudioInput> m_audioInput;
     QScopedPointer<QMediaRecorder> m_mediaRecorder;
-
     bool m_isCapturingImage = false;
     bool m_applicationExiting = false;
     bool m_doImageCapture = true;
 
     MetaDataDialog *m_metaDataDialog = nullptr;
+    void buttonClicked();
 };
-
-//class Photo_Camera : public QMainWindow
-//{
-//    Q_OBJECT
-
-//public:
-//    Photo_Camera();
-
-//public slots:
-//    void saveMetaData();
-
-//private slots:
-//    void setCamera_2(const QCameraDevice &cameraDevice);
-//    void startCamera_2();
-//    void stopCamera_2();
-//    void takeImage_2();
-//    void displayCaptureError_2(int, QImageCapture::Error, const QString &errorString);
-
-//    void configureCaptureSettings_2();
-//    void configureImageSettings_2();
-
-//    void displayRecorderError();
-//    void displayCameraError();
-//    void updateCameraDevice_2(QAction *action);
-
-//    void updateCameraActive_2(bool active);
-//    void setExposureCompensation_2(int index);
-//    void processCapturedImage_2(int requestId, const QImage &img);
-
-//    void displayViewfinder_2();
-//    void displayCapturedImage_2();
-
-//    void readyForCapture_2(bool ready);
-//    void imageSaved_2(int id, const QString &fileName);
-//    void updateCameras_2();
-
-//    void showMetaDataDialog_2();
-
-//protected:
-//    void keyPressEvent_2(QKeyEvent *event) ;
-//    void closeEvent_2(QCloseEvent *event) ;
-
-//private:
-//    Ui::Camera *ui_2;
-//    QMediaDevices p_devices;
-//    QScopedPointer<QImageCapture> p_imageCapture;
-//    QMediaCaptureSession p_captureSession;
-//    QScopedPointer<QCamera> p_camera;
-//    QScopedPointer<QMediaRecorder> p_mediaRecorder;
-
-//    bool p_isCapturingImage = false;
-//    bool p_applicationExiting = false;
-//    bool p_doImageCapture = true;
-
-//    MetaDataDialog *p_metaDataDialog = nullptr;
-//};
 
 #endif

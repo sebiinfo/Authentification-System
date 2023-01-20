@@ -85,7 +85,7 @@ face_recognition {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="main">
        <widget class="QPushButton" name="register_2">
@@ -199,7 +199,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>70</y>
+          <y>80</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -212,7 +212,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>80</y>
+          <y>90</y>
           <width>63</width>
           <height>20</height>
          </rect>
@@ -228,7 +228,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>140</y>
+          <y>150</y>
           <width>111</width>
           <height>20</height>
          </rect>
@@ -245,7 +245,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>200</y>
+          <y>210</y>
           <width>91</width>
           <height>20</height>
          </rect>
@@ -261,7 +261,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>260</y>
+          <y>270</y>
           <width>63</width>
           <height>20</height>
          </rect>
@@ -277,7 +277,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>320</y>
+          <y>330</y>
           <width>111</width>
           <height>20</height>
          </rect>
@@ -293,7 +293,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>270</x>
-          <y>380</y>
+          <y>390</y>
           <width>161</width>
           <height>20</height>
          </rect>
@@ -309,7 +309,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>310</y>
+          <y>320</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -322,7 +322,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>250</y>
+          <y>260</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -335,7 +335,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>190</y>
+          <y>200</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -348,7 +348,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>130</y>
+          <y>140</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -361,7 +361,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>370</y>
+          <y>380</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -374,7 +374,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
         <property name="geometry">
          <rect>
           <x>410</x>
-          <y>0</y>
+          <y>10</y>
           <width>351</width>
           <height>51</height>
          </rect>
@@ -389,8 +389,8 @@ font: italic 16pt &quot;Times New Roman&quot;;
        <widget class="QPushButton" name="back">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
+          <x>10</x>
+          <y>0</y>
           <width>94</width>
           <height>41</height>
          </rect>
@@ -413,7 +413,7 @@ QPushButton#back:pressed {
         <property name="geometry">
          <rect>
           <x>660</x>
-          <y>470</y>
+          <y>480</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -435,8 +435,8 @@ QPushButton#create_2:pressed {
        <widget class="QLabel" name="last_name_lbl_2">
         <property name="geometry">
          <rect>
-          <x>190</x>
-          <y>430</y>
+          <x>170</x>
+          <y>440</y>
           <width>921</width>
           <height>20</height>
          </rect>
@@ -454,8 +454,8 @@ QPushButton#create_2:pressed {
        <widget class="QLabel" name="label_7">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>140</y>
+          <x>280</x>
+          <y>180</y>
           <width>101</width>
           <height>20</height>
          </rect>
@@ -470,8 +470,8 @@ QPushButton#create_2:pressed {
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>210</y>
+          <x>280</x>
+          <y>250</y>
           <width>111</width>
           <height>20</height>
          </rect>
@@ -486,8 +486,8 @@ QPushButton#create_2:pressed {
        <widget class="QLineEdit" name="password_input">
         <property name="geometry">
          <rect>
-          <x>500</x>
-          <y>194</y>
+          <x>510</x>
+          <y>240</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -499,8 +499,8 @@ QPushButton#create_2:pressed {
        <widget class="QLineEdit" name="username_input">
         <property name="geometry">
          <rect>
-          <x>500</x>
-          <y>134</y>
+          <x>510</x>
+          <y>170</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -512,8 +512,8 @@ QPushButton#create_2:pressed {
        <widget class="QLabel" name="label_9">
         <property name="geometry">
          <rect>
-          <x>400</x>
-          <y>50</y>
+          <x>380</x>
+          <y>80</y>
           <width>371</width>
           <height>51</height>
          </rect>
@@ -551,8 +551,8 @@ QPushButton#back_2:pressed {
        <widget class="QPushButton" name="login_2">
         <property name="geometry">
          <rect>
-          <x>650</x>
-          <y>340</y>
+          <x>660</x>
+          <y>390</y>
           <width>131</width>
           <height>41</height>
          </rect>
@@ -574,8 +574,8 @@ QPushButton#login_2:pressed {
        <widget class="QPushButton" name="forgot_credentials">
         <property name="geometry">
          <rect>
-          <x>530</x>
-          <y>270</y>
+          <x>540</x>
+          <y>330</y>
           <width>201</width>
           <height>31</height>
          </rect>
@@ -597,8 +597,8 @@ QPushButton#forgot_credentials:pressed {
        <widget class="QPushButton" name="create_account">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>270</y>
+          <x>280</x>
+          <y>330</y>
           <width>211</width>
           <height>31</height>
          </rect>
@@ -623,7 +623,7 @@ QPushButton#create_account:pressed {
         <property name="geometry">
          <rect>
           <x>190</x>
-          <y>70</y>
+          <y>110</y>
           <width>711</width>
           <height>51</height>
          </rect>
@@ -638,9 +638,9 @@ QPushButton#create_account:pressed {
        <widget class="QLineEdit" name="email_code">
         <property name="geometry">
          <rect>
-          <x>460</x>
-          <y>164</y>
-          <width>231</width>
+          <x>470</x>
+          <y>210</y>
+          <width>251</width>
           <height>41</height>
          </rect>
         </property>
@@ -651,8 +651,8 @@ QPushButton#create_account:pressed {
        <widget class="QLabel" name="label_12">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>180</y>
+          <x>290</x>
+          <y>220</y>
           <width>121</width>
           <height>20</height>
          </rect>
@@ -668,9 +668,9 @@ QPushButton#create_account:pressed {
         <property name="geometry">
          <rect>
           <x>620</x>
-          <y>270</y>
-          <width>131</width>
-          <height>41</height>
+          <y>300</y>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -712,318 +712,37 @@ QPushButton#back_4:pressed {
        </widget>
       </widget>
       <widget class="QWidget" name="authentication">
-       <widget class="QPushButton" name="classification_1">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>340</y>
-          <width>131</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#classification_1 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#classification_1:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Classification 1</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="vectorization_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>280</y>
-          <width>131</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#vectorization_2 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#vectorization_2:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Vectorization 2</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="vectorization_1">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>220</y>
-          <width>131</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#vectorization_1 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#vectorization_1:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Vectorization 1</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="localization_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>160</y>
-          <width>131</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#localization_2 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#localization_2:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Localization 2</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="localization_1">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>131</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#localization_1 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#localization_1:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Localization 1</string>
-        </property>
-       </widget>
        <widget class="QVideoWidget" name="viewfinder" native="true">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>20</y>
-          <width>741</width>
-          <height>411</height>
+          <x>180</x>
+          <y>30</y>
+          <width>811</width>
+          <height>441</height>
          </rect>
         </property>
-        <widget class="QStackedWidget" name="stackedWidget">
+        <widget class="QLabel" name="lastImagePreviewLabel">
          <property name="geometry">
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>741</width>
-           <height>411</height>
+           <width>811</width>
+           <height>441</height>
           </rect>
          </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
+          <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="palette">
-          <palette>
-           <active>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>255</red>
-               <green>255</green>
-               <blue>255</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>145</red>
-               <green>145</green>
-               <blue>145</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </active>
-           <inactive>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>255</red>
-               <green>255</green>
-               <blue>255</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>145</red>
-               <green>145</green>
-               <blue>145</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </inactive>
-           <disabled>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>145</red>
-               <green>145</green>
-               <blue>145</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>145</red>
-               <green>145</green>
-               <blue>145</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </disabled>
-          </palette>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
          </property>
-         <property name="currentIndex">
-          <number>0</number>
+         <property name="text">
+          <string/>
          </property>
-         <widget class="QWidget" name="previewPage">
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0">
-            <widget class="QLabel" name="lastImagePreviewLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::Box</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
         </widget>
-       </widget>
-       <widget class="QPushButton" name="takeImageButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>440</x>
-          <y>450</y>
-          <width>181</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#takeImageButton {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#takeImageButton:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Authenticate</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>:/images/shutter.svg</normaloff>:/images/shutter.svg</iconset>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="classification_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>400</y>
-          <width>131</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#classification_2 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#classification_2:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Classification 2</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>111</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
-        </property>
-        <property name="text">
-         <string>Choose your</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_4">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>70</y>
-          <width>63</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
-        </property>
-        <property name="text">
-         <string>method:</string>
-        </property>
        </widget>
        <widget class="QPushButton" name="back_3">
         <property name="geometry">
@@ -1047,6 +766,411 @@ QPushButton#back_3:pressed {
         <property name="text">
          <string>Go back</string>
         </property>
+       </widget>
+       <widget class="QStackedWidget" name="camera_stacked">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>60</y>
+          <width>151</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="page">
+         <widget class="QPushButton" name="localization_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>110</y>
+            <width>131</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#localization_2 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#localization_2:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Localization 2</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="localization_1">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>60</y>
+            <width>131</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#localization_1 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#localization_1:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Localization 1</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vectorization_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>240</y>
+            <width>131</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#vectorization_2 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#vectorization_2:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Vectorization 2</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vectorization_1">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>190</y>
+            <width>131</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#vectorization_1 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#vectorization_1:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Vectorization 1</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="classification_1">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>320</y>
+            <width>131</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#classification_1 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#classification_1:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Classification 1</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="classification_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>370</y>
+            <width>131</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#classification_2 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#classification_2:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Classification 2</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_3">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>111</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Choose your</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_4">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>30</y>
+            <width>81</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>algorithm:</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_2">
+         <widget class="QLabel" name="label_16">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>150</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>- Smiling</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_17">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>190</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>- Serious</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_18">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>230</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>- Angry</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_19">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>30</y>
+            <width>151</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Change your facial</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_20">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>50</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>expression as </string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_22">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>70</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>much as you can</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_23">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>110</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>For example:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_24">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>270</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>- Sad</string>
+          </property>
+         </widget>
+         <widget class="QLCDNumber" name="lcd">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>340</y>
+            <width>121</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QStackedWidget" name="photo_button">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>480</y>
+          <width>281</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="page_3">
+         <widget class="QPushButton" name="takeImageButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>0</y>
+            <width>181</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#takeImageButton {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#takeImageButton:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Authenticate</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/images/shutter.svg</normaloff>:/images/shutter.svg</iconset>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_4">
+         <widget class="QPushButton" name="account_photos">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>0</y>
+            <width>181</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#account_photos {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#account_photos:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Take Picture</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/images/shutter.svg</normaloff>:/images/shutter.svg</iconset>
+          </property>
+         </widget>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="successful">
@@ -1267,7 +1391,7 @@ QPushButton#delete_account:pressed {
         <property name="geometry">
          <rect>
           <x>680</x>
-          <y>440</y>
+          <y>460</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -1342,7 +1466,7 @@ QPushButton#back_8:pressed {
         <property name="geometry">
          <rect>
           <x>200</x>
-          <y>400</y>
+          <y>410</y>
           <width>921</width>
           <height>20</height>
          </rect>
@@ -1511,8 +1635,8 @@ QPushButton#change_email:pressed {
        <widget class="QLabel" name="label_13">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>40</y>
+          <x>300</x>
+          <y>80</y>
           <width>481</width>
           <height>51</height>
          </rect>
@@ -1527,8 +1651,8 @@ QPushButton#change_email:pressed {
        <widget class="QLabel" name="label_14">
         <property name="geometry">
          <rect>
-          <x>260</x>
-          <y>100</y>
+          <x>310</x>
+          <y>150</y>
           <width>491</width>
           <height>41</height>
          </rect>
@@ -1545,9 +1669,9 @@ font: italic 12pt &quot;Times New Roman&quot;;
        <widget class="QLineEdit" name="confirm_email_2">
         <property name="geometry">
          <rect>
-          <x>420</x>
-          <y>180</y>
-          <width>141</width>
+          <x>430</x>
+          <y>230</y>
+          <width>131</width>
           <height>61</height>
          </rect>
         </property>
@@ -1558,8 +1682,8 @@ font: italic 12pt &quot;Times New Roman&quot;;
        <widget class="QPushButton" name="verify_code">
         <property name="geometry">
          <rect>
-          <x>520</x>
-          <y>290</y>
+          <x>530</x>
+          <y>330</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -1581,8 +1705,8 @@ QPushButton#verify_code:pressed {
        <widget class="QPushButton" name="resend_code">
         <property name="geometry">
          <rect>
-          <x>310</x>
-          <y>290</y>
+          <x>300</x>
+          <y>330</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -1629,8 +1753,8 @@ QPushButton#back_10:pressed {
        <widget class="QLabel" name="label_15">
         <property name="geometry">
          <rect>
-          <x>150</x>
-          <y>50</y>
+          <x>220</x>
+          <y>70</y>
           <width>741</width>
           <height>51</height>
          </rect>
@@ -1646,7 +1770,7 @@ QPushButton#back_10:pressed {
         <property name="geometry">
          <rect>
           <x>520</x>
-          <y>140</y>
+          <y>170</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -1659,7 +1783,7 @@ QPushButton#back_10:pressed {
         <property name="geometry">
          <rect>
           <x>520</x>
-          <y>220</y>
+          <y>250</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -1672,7 +1796,7 @@ QPushButton#back_10:pressed {
         <property name="geometry">
          <rect>
           <x>520</x>
-          <y>300</y>
+          <y>330</y>
           <width>231</width>
           <height>41</height>
          </rect>
@@ -1685,7 +1809,7 @@ QPushButton#back_10:pressed {
         <property name="geometry">
          <rect>
           <x>280</x>
-          <y>150</y>
+          <y>180</y>
           <width>131</width>
           <height>20</height>
          </rect>
@@ -1701,7 +1825,7 @@ QPushButton#back_10:pressed {
         <property name="geometry">
          <rect>
           <x>280</x>
-          <y>230</y>
+          <y>260</y>
           <width>131</width>
           <height>20</height>
          </rect>
@@ -1717,7 +1841,7 @@ QPushButton#back_10:pressed {
         <property name="geometry">
          <rect>
           <x>280</x>
-          <y>310</y>
+          <y>340</y>
           <width>181</width>
           <height>20</height>
          </rect>
@@ -1755,8 +1879,8 @@ QPushButton#back_11:pressed {
        <widget class="QPushButton" name="change_password_2">
         <property name="geometry">
          <rect>
-          <x>650</x>
-          <y>380</y>
+          <x>670</x>
+          <y>420</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -1776,67 +1900,12 @@ QPushButton#change_password_2:pressed {
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="photos">
-       <widget class="QPushButton" name="takeImageButton_5">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>390</x>
-          <y>470</y>
-          <width>181</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#takeImageButton {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#takeImageButton:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Authenticate</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>:/images/shutter.svg</normaloff>:/images/shutter.svg</iconset>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="back_13">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>94</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#back_13 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#back_13:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Go back</string>
-        </property>
-       </widget>
-      </widget>
       <widget class="QWidget" name="del_account">
        <widget class="QLabel" name="label_33">
         <property name="geometry">
          <rect>
           <x>210</x>
-          <y>70</y>
+          <y>90</y>
           <width>761</width>
           <height>51</height>
          </rect>
@@ -2120,22 +2189,6 @@ QPushButton#change_password_2:pressed {
     <hint type="destinationlabel">
      <x>333</x>
      <y>210</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>takeImageButton_5</sender>
-   <signal>clicked()</signal>
-   <receiver>Camera</receiver>
-   <slot>takeImage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>613</x>
-     <y>536</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>603</x>
-     <y>169</y>
     </hint>
    </hints>
   </connection>
