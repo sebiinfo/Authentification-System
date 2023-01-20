@@ -81,7 +81,7 @@ KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
     this->dim = dim;
     this->num_reps=num_reps;
     this->labels=labels;
-    this->k = int(sqrt(num_reps.size()));
+    this->k = int(sqrt(double(num_reps.size())));
 }
 
 double KNN::compute_distance(cv::Mat vect) const {
