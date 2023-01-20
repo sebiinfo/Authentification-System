@@ -84,8 +84,9 @@ std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces) {
     in_faces.push_back(image);
     std::vector<int> output;
     for (int i = 0; i < in_faces.size(); i++) {
-        std::cout << "Vectorizing\n";
+        std::cout << "\n\n\nVectorizing\n";
         cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);
+        std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
         // debug_print(numerical_reps);
         std::cout << "Classifying\n";
         output.push_back(classifier->classify(numerical_reps));
@@ -130,7 +131,7 @@ void Model::load_train_images() {
     std::cout << "Loading Training Images" << std::endl;
     std::string filename, base_filename;
     for (int label = 1; label <= num_people; label++) {
-        base_filename = "./yalefaces/train/" + std::to_string(label) + "/";
+        base_filename = "./resources/yalefaces/train/" + std::to_string(label) + "/";
         for (int i = 1; i <= 9; i++) {
             filename = base_filename + std::to_string(i);
             filename = filename + ".png";
