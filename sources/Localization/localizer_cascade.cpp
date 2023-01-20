@@ -6,21 +6,27 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
 #include "../Cascade/cascade_detect_cv.hpp"
+#include "../Cascade/cascade_conformity.hpp"
 #include <string>
 const double pi = 3.14159265358979323846;
 
-Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer(224) {}
+Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer(224,224,10,"nameofcascade") {}
 
-Cascade_Localizer::Cascade_Localizer(int w) : Cascade_Localizer(w, 10) {}
+Cascade_Localizer::Cascade_Localizer(int w) : Cascade_Localizer(w,w, 10,"nameofcascade") {}
 
-Cascade_Localizer::Cascade_Localizer(int w,int pad) : Cascade_Localizer(w, w,pad) {}
+Cascade_Localizer::Cascade_Localizer(int w,int pad) : Cascade_Localizer(w, w,pad,"nameofcascade") {}
 
 
-Cascade_Localizer::Cascade_Localizer(int w, int h, int pad){ 
+Cascade_Localizer::Cascade_Localizer(int w, int h, int pad, std::string cascade_chosen){
     height = h;
     width = w;
     padding = pad;
-	cascade = new Cascade_detect_cv();
+    if (cascade_chosen == "conformity" || cascade_chosen == "Conformity"){
+        cascade = new Cascade_conformity();
+    }
+    else {
+        cascade = new Cascade_detect_cv();
+    }
 //   cascade.load("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
 }
 

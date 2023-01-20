@@ -132,6 +132,9 @@ int test_angle() {
         std::string fileName = ent->d_name;
         if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
             cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
+            Cascade_Localizer loc= Cascade_Localizer();
+
+
             //normalizeIntensities(frameclosed);
             double angle;
             angle=rotate_face(frameclosed);
@@ -173,33 +176,7 @@ int test_conformity(){
 }
 
 
-int test_loc(){
-    {
-        int w = 244;
-        int h = 244;
-        int pad = 10;
 
-        std::string img_path = "../images/Team/yassine.jpg";
-
-        cv::Mat image = cv::imread(img_path);
-
-        Cascade_Localizer Loc = Cascade_Localizer();
-
-
-        std::cout << Loc.height << std::endl;
-        std::cout << Loc.width << std::endl;
-        std::cout << Loc.padding << std::endl;
-
-        std::vector<cv::Rect> faces;
-
-        Loc.cascade.detectMultiScale(image,faces,1,4,0,cv::Size(30,30));
-
-        std::vector<cv::Mat> images = Loc.Transform(image,faces);
-
-        std::cout << images.size() << std::endl;
-
-    }
-}
 
 int main(){
     test_conformity();

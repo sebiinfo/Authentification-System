@@ -30,9 +30,6 @@ public:
     void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
 private:
-
-
-
 	cv::CascadeClassifier cascade_face;
 	cv::CascadeClassifier cascade_eyes;
 };
