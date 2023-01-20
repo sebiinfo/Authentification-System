@@ -86,6 +86,7 @@ std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces) {
     for (int i = 0; i < in_faces.size(); i++) {
         std::cout << "Vectorizing\n";
         cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);
+        std::cout << "\nNumerical rep is" << numerical_reps << std::endl;
         // debug_print(numerical_reps);
         std::cout << "Classifying\n";
         output.push_back(classifier->classify(numerical_reps));
