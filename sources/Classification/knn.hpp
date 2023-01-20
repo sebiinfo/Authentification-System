@@ -8,30 +8,31 @@
 #include "classifier.hpp"
 
 class KNN : public Classifier {
-    //finds the kth nearest neighbours of the query in the dim dimensional space
- public:
-   int k{};
+    // finds the kth nearest neighbours of the query in the dim dimensional
+    // space
+  public:
+    int k{};
 
-   KNN() : Classifier() {}
-   KNN(int num_people, int dim);
-   KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
-       std::vector<int> &labels);
-   void train(std::vector<cv::Mat> &num_reps,
-                           std::vector<int> &labels);
+    KNN() : Classifier() {}
+    KNN(int num_people, int dim);
+    KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
+        std::vector<int> &labels);
+    /* void train(std::vector<cv::Mat> &num_reps,
+                            std::vector<int> &labels); */
     bool compare(const cv::Mat &v1, const cv::Mat &v2);
 
-   virtual int classify(const cv::Mat &query);
+    virtual int classify(const cv::Mat &query);
 
-   // computes Euclidian distance between a
-   double compute_distance(cv::Mat vect) const;
+    // computes Euclidian distance between a
+    double compute_distance(cv::Mat vect) const;
 
-   int dim{};
-   int num_people{};
-   cv::Mat query;
-   std::vector<cv::Mat> num_reps;
-   std::vector<int> labels;
-   ~KNN();
-   // query and ith vector in data
+    int dim{};
+    int num_people{};
+    cv::Mat query;
+    std::vector<cv::Mat> num_reps;
+    std::vector<int> labels;
+    ~KNN();
+    // query and ith vector in data
 };
 
 #endif

@@ -41,28 +41,28 @@ void Fisher::train(std::vector<cv::Mat> &train_images,
                    std::vector<int> &train_labels) {
     int dim = images.size();
     cv::Mat train_data = formatImagesForPCA(train_images);
+    /* std::cout << "R (python)  = " << std::endl
+              << format(train_data, cv::Formatter::FMT_PYTHON) << std::endl
+              << std::endl; */
     pca =
         cv::PCA(train_data, cv::Mat(), cv::PCA::DATA_AS_ROW, dim - num_people);
-    std::cout << "Created PCA" << std::endl;
+    /* std::cout << "Mean->" << pca.mean.empty() << " Eigen-> "
+              << pca.eigenvectors.empty() << " Rows-> " << pca.mean.rows
+              << " Cols-> " << pca.mean.cols << std::endl; */
+    // std::cout << "Created PCA" << std::endl;
     train_data = pca.project(train_data);
-    print_dims(train_data);
     lda = cv::LDA(num_feature);
     lda.compute(train_data, train_labels);
-    std::cout << "Created LDA" << std::endl;
-    vectorized_images = lda.project(train_data);
+    // std::cout << "Created LDA" << std::endl;
+    for (auto &image : train_images) {
+        image = vectorize(image);
+    }
     // vectorize_trainset();
 }
 
 cv::Mat Fisher::vectorize(const cv::Mat &image) {
     cv::Mat output = pca.project(image);
     return lda.project(output);
-}
-
-void Fisher::vectorize_trainset() {
-    for (int i = 0; i < num_people; i++) {
-        std::cout << i << std::endl;
-        vectorized_images.push_back(vectorize(images[i]));
-    }
 }
 
 int Fisher::predict_label(const cv::Mat &projection) {
@@ -105,7 +105,8 @@ void test_fisher(Fisher &F) {
     std::vector<int> expected_labels;
     load_tests(images_test, expected_labels, F.num_people);
     cv::Mat formated_images_test = formatImagesForPCA(images_test);
-    // print_dims(formated_images_test);
+    print_dims(formated_images_test);
+    // Breaks here.
     cv::Mat projection = F.pca.project(formated_images_test);
     projection = F.lda.project(projection);
     int guess;
@@ -118,6 +119,29 @@ void test_fisher(Fisher &F) {
         }
         std::cout << std::endl;
     }
+}
+
+void full_test_fisher() {
+    int num_people = 15, dim = 14;
+    std::vector<cv::Mat> train_images;
+    std::vector<int> train_labels;
+    std::cout << "Loading Training Images" << std::endl;
+    std::string filename, base_filename;
+    for (int label = 1; label <= num_people; label++) {
+        base_filename = "./yalefaces/train/" + std::to_string(label) + "/";
+        for (int i = 1; i <= 9; i++) {
+            filename = base_filename + std::to_string(i);
+            filename = filename + ".png";
+            cv::Mat image = cv::imread(filename);
+            cv::Mat flat_image = image.reshape(1, 1);
+            train_images.push_back(flat_image);
+            train_labels.push_back(label);
+        }
+    }
+    std::cout << "Finished Loading" << std::endl;
+    Fisher f(num_people, dim);
+    f.train(train_images, train_labels);
+    test_fisher(f);
 }
 
 /* int main() {

@@ -34,10 +34,13 @@ class Model {
           std::string classifier);
     ~Model();
 
-    std::vector<int> predict(cv::Mat & image, std::vector<cv::Rect> & faces);
-    std::vector<int> predict(cv::Mat & image);
-    int predict_most_likely(cv::Mat & image);
+    std::vector<int> predict(cv::Mat &image, std::vector<cv::Rect> &faces);
+    std::vector<int> predict(cv::Mat &image);
+    int predict_most_likely(cv::Mat &image);
     Classifier *classifier;
+    Vectorizer *vectorizer;
+    Localizer *localizer;
+
   private:
     void load_train_images();
 
@@ -47,9 +50,6 @@ class Model {
     int height;
     std::vector<cv::Mat> train_images;
     std::vector<int> train_labels;
-    Vectorizer *vectorizer;
-    Localizer *localizer;
-
 };
 
 #endif // AUTHENTICATION_SYSTEM_MODEL_HPP

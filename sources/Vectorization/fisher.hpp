@@ -22,12 +22,13 @@ class Fisher : public Vectorizer {
 
   private:
     cv::Mat normalize(cv::InputArray &src);
-    void vectorize_trainset();
-    void load_images();
     std::vector<cv::Mat> images;
     std::vector<int> labels;
     cv::Mat vectorized_images;
     int num_components;
     int dim;
 };
+
+void full_test_fisher();
+
 #endif // AUTHENTICATION_SYSTEM_FISHER_HPP
