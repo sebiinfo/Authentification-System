@@ -9,6 +9,8 @@ class Localizer {
     // Initialize localiser with height = 244, width = 244
     Localizer();
 
+    Localizer(int w);
+
     // Initialize localiser with height = w, width = w
     Localizer(int w,int padd);
 
@@ -29,6 +31,8 @@ class Localizer {
 
     // Returns array of cv::Mat of faces from the image given
     std::vector<cv::Mat> localize(cv::Mat & image);
+
+    std::vector<cv::Mat> Transform(cv::Mat image,std::vector<cv::Rect> faces);
 
     // Rotate a face given an angle found by the cascade
     cv::Mat rotate_face(cv::Mat &image, double angle);

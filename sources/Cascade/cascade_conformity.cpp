@@ -170,7 +170,7 @@ cv::Rect Cascade_conformity::get_face(int i) {
 cv::Mat Cascade_conformity::convert_rect_to_mat(cv::Rect &rect) {
     cv::Mat rec_to_mat;
     rec_to_mat= rec_to_mat(rect);
-
+	return cv::Mat();
 }
 
 //bool Cascade_conformity::isEyeOpen(cv::Mat frame)

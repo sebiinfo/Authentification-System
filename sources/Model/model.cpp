@@ -1,6 +1,6 @@
 #include "model.hpp"
 #include "../Localization/localizer.hpp"
-#include "../Localization/cascadecv.hpp"
+#include "../Localization/localizer_cascade.hpp"
 #include "../Vectorization/vectorizer.hpp"
 #include "../Vectorization/fisher.hpp"
 #include "../Classification/classifier.hpp"
@@ -19,7 +19,7 @@ Model::Model(int num_people, int num_feature, int width, int height,
     this->width = width;
     this->height = height;
 
-    if (localizer == "Cascade") {this->localizer = new Cascade_Detector_CV(width, height);}
+	if (localizer == "Cascade") {this->localizer = new Cascade_Localizer(width, height);}
     else {assert(false);}
 
     if (vectorizer == "Fisher") {this->vectorizer = new Fisher(num_people, num_feature);}

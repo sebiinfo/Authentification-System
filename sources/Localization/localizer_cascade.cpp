@@ -5,15 +5,22 @@
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
+#include "../Cascade/cascade_detect_cv.hpp"
 #include <string>
 
-Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer(224, 224) {}
+Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer(224) {}
 
-Cascade_Localizer::Cascade_Localizer(int w) : Cascade_Localizer(w, w) {}
+Cascade_Localizer::Cascade_Localizer(int w) : Cascade_Localizer(w, 10) {}
 
-Cascade_Localizer::Cascade_Localizer(int w,int h) : Localizer(w, h) {
-    cascade.load("/usr/local/share/opencv4/haarcascades/haarcascade_frontalcatface.xml");
+Cascade_Localizer::Cascade_Localizer(int w,int pad) : Cascade_Localizer(w, w,pad) {}
+
+
+Cascade_Localizer::Cascade_Localizer(int w, int h, int pad){ 
+    Localizer (w, h, pad);
+    cascade = Cascade_detect_cv();
+//   cascade.load("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
 }
+
 
 Cascade_Localizer::~Cascade_Localizer() {}
 
@@ -136,7 +143,14 @@ void Cascade_Localizer::Rescale(std::vector<cv::Mat> &images)
 
 std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image,std::vector<cv::Rect> faces)
 {
-    assert(false);
+    std::vector<cv::Mat> out;
+
+    cascade.Special_Transform();
+
+    out = Crop(image,faces);
+    Rescale(out);
+
+    return out;
 
 }
 
