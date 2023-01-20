@@ -325,8 +325,7 @@ void Database::delete_data() {
 // change password when given a username and a password
 bool Database::change_forgotten_password(std::string username_given,
                                int new_password,
-                               int confirm_new_password,
-                               std::string email_given) {
+                               int confirm_new_password) {
 
     std::ofstream fout;
     fout.open("new1.csv", std::ios::out | std::ios::app);
@@ -343,7 +342,7 @@ bool Database::change_forgotten_password(std::string username_given,
         getline(file, email, ',');
         getline(file, salt, '\n');
 
-        if ((username_given == username) && (email_given == email)){
+        if (username_given == username){
             found = true;
             std::vector<std::string> new_vector = profile.change_password(
                 username, std::to_string(new_password), std::to_string(confirm_new_password));
@@ -366,14 +365,10 @@ bool Database::change_forgotten_password(std::string username_given,
     return found;
 }
 
-int Database::forgotten_password(std::string username, std::string email){
+int Database::forgotten_password(std::string email){
     Mail m;
     int temp_password = m.mail(email);
-    bool changed = change_forgotten_password(username, temp_password, temp_password, email);
-    if (changed){
-        return temp_password;
-    }
-    return 0;
+    return temp_password;
 }
 
 bool Database::verif_forgotten_password(int entered_code, int sent_code){
