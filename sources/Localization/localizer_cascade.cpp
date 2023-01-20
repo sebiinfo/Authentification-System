@@ -7,6 +7,7 @@
 #include <opencv2/core/matx.hpp>
 #include "../Cascade/cascade_detect_cv.hpp"
 #include <string>
+const double pi = 3.14159265358979323846;
 
 Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer(224) {}
 
@@ -140,6 +141,95 @@ void Cascade_Localizer::Rescale(std::vector<cv::Mat> &images)
         }
 }
 
+double Cascade_Localizer::get_angle_from_eyes(cv::Mat image, std::vector<cv::Rect> &faces, std::vector<cv::Rect> eyes) {
+
+    int x, y, w, h;
+    for (int i = 0; i < faces.size(); i++)
+    {
+        x = faces[i].x;
+        y = faces[i].y;
+        w = faces[i].width;
+        h = faces[i].height;
+//        cv::rectangle(image, cv::Point(x, y), cv::Point(x + w, y + h), cv::Scalar(0, 255, 0), 2);
+//        cv::circle(image, cv::Point(x + int(w * 0.5), y + int(h * 0.5)), 4, cv::Scalar(0, 255, 0), -1);
+    }
+    int index = 0;
+    cv::Rect eye_1(0, 0, 0, 0);
+    cv::Rect eye_2(0, 0, 0, 0);
+    for (int i = 0; i < eyes.size(); i++)
+    {
+        if (index == 0)
+        {
+            eye_1 = eyes[i];
+        }
+        else if (index == 1)
+        {
+            eye_2 = eyes[i];
+        }
+        index++;
+    }
+    if (eye_1.x != 0 && eye_2.x != 0)
+    {
+        cv::Rect left_eye;
+        cv::Rect right_eye;
+        if (eye_1.x < eye_2.x)
+        {
+            left_eye = eye_1;
+            right_eye = eye_2;
+        }
+        else
+        {
+            left_eye = eye_2;
+            right_eye = eye_1;
+        }
+        cv::Point left_eye_center = cv::Point(left_eye.x + (left_eye.width / 2),
+                                              left_eye.y + (left_eye.height / 2));
+        cv::Point right_eye_center = cv::Point(right_eye.x + (right_eye.width / 2),
+                                               right_eye.y + (right_eye.height / 2));
+        double left_eye_x = left_eye_center.x;
+        double left_eye_y = left_eye_center.y;
+        double right_eye_x = right_eye_center.x;
+        double right_eye_y = right_eye_center.y;
+        double delta_x, delta_y;
+        delta_x = right_eye_x - left_eye_x;
+        delta_y = right_eye_y - left_eye_y;
+        double angle;
+        if (delta_x==0 || delta_y==0){
+            angle=0;
+        }
+        else {
+            double angle_rad = std::atan(delta_y / delta_x);
+            angle = (angle_rad * 180) / pi;
+        }
+        return angle;
+    }
+    return 0;
+}
+
+cv::Mat Cascade_Localizer::rotate_face(cv::Mat image, std::vector<cv::Rect> &faces, double angle)
+{
+    //    cv::Size s= image.size();
+    //    double height =s.height;
+    //    double width = s.width;
+    if(-10<angle<10){
+        return image;
+    }
+    int height, width;
+    height = image.rows;
+    width = image.cols;
+    cv::Point2f image_center = cv::Point(height / 2, width / 2);
+    cv::Mat rotation_mat = cv::getRotationMatrix2D(image_center, angle, 1);
+    double abs_cos = abs(cos(angle));
+    double abs_sin = abs(sin(angle));
+    int bound_w = height * abs_sin + width * abs_cos;
+    int bound_h = height * abs_cos + width * abs_sin;
+    rotation_mat.at<double>(0, 2) += bound_w / 2 - image_center.x;
+    rotation_mat.at<double>(1, 2) += bound_h / 2 - image_center.y;
+    cv::warpAffine(image, image, rotation_mat, cv::Size(bound_w, bound_h));
+    cascade.detectMultiScale(image, faces,  1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+
+}
+
 
 std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image,std::vector<cv::Rect> faces)
 {
@@ -153,12 +243,6 @@ std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image,std::vector<cv::
     return out;
 
 }
-
-
-
-
-
-
 
 
 
