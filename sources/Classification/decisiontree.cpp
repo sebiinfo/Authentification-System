@@ -7,6 +7,7 @@
 #include <utility>
 Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
            std::vector<int> &labels, const std::string &info_measure) {
+  //  std::cout<<"\nWe initialized  a Node \n";
    this->left_child_pointer = nullptr;
    this->right_child_pointer = nullptr;
    this->dim = dim;
@@ -15,6 +16,7 @@ Node::Node(int num_people, int dim, std::vector<cv::Mat> &num_reps,
    this->labels = labels;
    this->info_measure = info_measure;
    this->best_split = get_best_split();
+  // std::cout<<"\n We finished initializing the Node";
 }
 
 Node::~Node() {
