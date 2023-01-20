@@ -23,6 +23,12 @@ static void debug_print(cv::Mat temp) {
     std::cout << "] temp.channels = " << temp.channels() << std::endl;
 }
 
+static int calculate_score(cv::Mat &image, cv::Rect &face) {
+    int x = abs(face.x + face.x + face.height - image.rows);
+    int y = abs(face.y + face.y + face.width - image.cols);
+    return face.width * face.height * 4 - pow(x, 2) - pow(y, 2);
+}
+
 Model::Model(int num_people, int num_feature, int width, int height,
              std::string localizer, std::string vectorizer,
              std::string classifier) {
@@ -116,7 +122,7 @@ int Model::predict_most_likely(cv::Mat &image) {
     } else {
         int score = -1e9;
         int output = -1;
-        for (int i = 0; i<temp.size(); i++) {
+        for (int i = 0; i < temp.size(); i++) {
             if (calculate_score(image, faces[i]) > score) {
                 output = i;
                 score = calculate_score(image, faces[i]);
@@ -144,11 +150,4 @@ void Model::load_train_images() {
         }
     }
     std::cout << "Finished Loading" << std::endl;
-}
-
-
-static int calculate_score(cv::Mat & image, cv::Rect & face) {
-    int x = abs(face.x+face.x+face.height-image.rows)
-    int y = abs(face.y+facey+face.width-image.columns)
-    return face.width*face.height*4 - pow(x, 2) - pow(y, 2);
 }
