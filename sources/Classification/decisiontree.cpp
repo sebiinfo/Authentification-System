@@ -82,7 +82,7 @@ double Node::get_information_gain(std::vector<int> id_vector) const {
 
 double Node::split_and_give_information(int entry, double threshold) {
    std::vector<int> labels_group1, labels_group2;
-   for (int i = 0; i < num_people; ++i) {
+   for (int i = 0; i < num_reps.size(); ++i) {
       if (num_reps[i].at<double>(0, entry) <= threshold) {
          labels_group1.push_back(labels[i]);
       } else {
@@ -94,8 +94,8 @@ double Node::split_and_give_information(int entry, double threshold) {
    double entropy_group1 = Node::get_information_gain(labels_group1);
    double entropy_group2 = Node::get_information_gain(labels_group2);
 
-   return entropy_group1 * double(double(labels_group1.size() )/ num_people) +
-          entropy_group2 * double(double(labels_group2.size() )/ num_people);
+   return entropy_group1 * double(double(labels_group1.size() )/  double(num_reps.size())) +
+          entropy_group2 * double(double(labels_group2.size() )/  double(num_reps.size()));
    //}
    // I believe that for both gini impurity and entropy the combined information
    // is a linear sum
@@ -158,7 +158,7 @@ int Node::is_pure() {
       }
    }
    for (auto &it : id_freq) {
-      if (it.second > limit * num_people) {
+      if (it.second > limit * double(num_reps.size())) {
          return it.first;
       }
    }
@@ -210,7 +210,7 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
    int split_entry = current_node_pointer->best_split.entry;
    double split_threshold = current_node_pointer->best_split.threshold;
 
-   for (int i = 0; i < current_node_pointer->num_people; ++i) {
+   for (int i = 0; i < current_node_pointer->num_reps.size(); ++i) {
       if (current_node_pointer->num_reps[i].at<double>(0, split_entry) <=
           split_threshold) {
          num_reps_left.push_back(current_node_pointer->num_reps[i]);

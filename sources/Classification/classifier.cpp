@@ -19,9 +19,7 @@ static void debug_print(cv::Mat temp) {
 }
 
 Classifier::Classifier(int num_people, int dim) {
-    // if (data[0].entries.rows > 1) {
-    //   throw "data has wrong dimensions";
-    //}
+
     this->num_people = num_people;
     this->dim = dim;
 }
@@ -52,25 +50,33 @@ int Classifier::classify(const cv::Mat &image) { return 0; }
 Classifier::~Classifier() = default;
 
 bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
-    std::cout << std::endl << "id: " << id << "\n";
-    for (int i = 0; i < dim; ++i) {
-        std::cout << query.at<double>(0, i) << " ";
-    }
-    std::cout << "\n";
+//    std::cout << std::endl << "id: " << id << "\n";
+//    for (int i = 0; i < dim; ++i) {
+//        std::cout << query.at<double>(0, i) << " ";
+//    }
+//    std::cout << "\n";
     // contains on position i the sum of the faces on coordinate i
     std::vector<double> averages;
     // contains the empirical variance of faces on coordinate i
     std::vector<double> variances;
     // hold the number of people with id
     int num_people_id = 0;
-    for (int i = 0; i < num_people; ++i) {
+    for (int i = 0; i < labels.size(); ++i) {
         if (labels[i] == id) {
             num_people_id++;
         }
     }
-    std::cout << "  num_poeple_id = " << num_people_id << "\n";
+//    std::cout << "  num_poeple_id = " << num_people_id << "\n";
 
     if (num_people_id == 0) {
+        std::cout<<"\n Labels for which the function is_alienated id was called wrongfully: \n";
+        for (auto i: labels){
+            std::cout<<i<<" ";
+        }
+        std::cout<<"\n the id is: "<<id<<"\n";
+        std::cout<<"num_people is "<<num_people<<"\n";
+        std::cout<<"labels size is "<<labels.size()<<"\n";
+        std::cout<<"num_reps size is "<<num_reps.size()<<"\n";
         throw std::invalid_argument(
             "function is_alienated_id called for a non-existent id");
     }
@@ -80,7 +86,7 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
         double average_entry = 0;
         double variance_entry = 0;
 
-        for (int i = 0; i < num_people; ++i) {
+        for (int i = 0; i < num_reps.size(); ++i) {
             if (labels[i] == id) { // check if the person has label id
                 average_entry += num_reps[i].at<double>(0, entry);
                 variance_entry += pow(num_reps[i].at<double>(0, entry), 2);
@@ -93,14 +99,14 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
         variances.push_back(variance_entry / num_people_id -
                             (pow(averages[entry], 2)));
     }
-    std::cout << " Averages are:\n";
-    for (auto a : averages) {
-        std::cout << " " << a << " ";
-    }
-    std::cout << "\n Variances are:\n";
-    for (auto v : variances) {
-        std::cout << " " << v << " ";
-    }
+//    std::cout << " Averages are:\n";
+//    for (auto a : averages) {
+//        std::cout << " " << a << " ";
+//    }
+//    std::cout << "\n Variances are:\n";
+//    for (auto v : variances) {
+//        std::cout << " " << v << " ";
+//    }
 
     for (double var : variances) {
         if (var < -pow(10,-4)) {
@@ -126,11 +132,11 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
             count_alienated_id++;
         }
     }
-    std::cout << "\n"
-              << "count_alienated_id is: " << count_alienated_id;
-    std::cout << "\n The answer for this id is "
-              << (double(count_alienated_id) / dim > alienation_constant)
-              << "\n";
+//    std::cout << "\n"
+//              << "count_alienated_id is: " << count_alienated_id;
+//    std::cout << "\n The answer for this id is "
+//              << (double(count_alienated_id) / dim > alienation_constant)
+//              << "\n";
     return double(count_alienated_id) / dim > alienation_constant;
 }
 
@@ -144,18 +150,20 @@ bool Classifier::is_alienated(const cv::Mat &query) {
      */
 
     cv::Size s;
-    std::cout << "num_people: " << num_people << " dim= " << dim;
-
-    s = num_reps[0].size();
-    std::cout << "\n num_reps is : \n" << &s;
-    debug_print(num_reps[0]);
-    // KNN_Testing::print_vector_mat(num_reps);
-    std::cout << "\n The labels are:  ";
-    KNN_Testing::print_vector(labels);
-    std::cout << "\n";
+//    std::cout << "num_people: " << num_people << " dim= " << dim;
+////    s = num_reps[0].size();
+////    std::cout << "\n num_reps is : \n" << &s;
+////    debug_print(num_reps[0]);
+//    // KNN_Testing::print_vector_mat(num_reps);
+//    std::cout << "\n The labels are:  ";
+//    for (auto i:labels){
+//        std::cout<<i<<" ";
+//    }
+//    KNN_Testing::print_vector(labels);
+//    std::cout << "\n";
     std::set<int> id_set;
 
-    for (int i = 0; i < num_people; ++i) {
+    for (int i = 0; i < num_reps.size(); ++i) {
         id_set.insert(labels[i]);
     }
     for (auto id : id_set) {

@@ -61,6 +61,8 @@ void apply_permutation(std::vector<int> &permutation_vector,
 // KNN_Testing Object for easy testing of fuctions
 
 KNN::KNN(int num_people, int dim) : Classifier(num_people, dim) {
+
+    //!!!! DOES NOT INITIALIZE k HERE THE RIGHT WAY
     this->num_people = num_people;
     this->k = int(sqrt(num_people));
     this->dim = dim;
@@ -74,10 +76,12 @@ KNN::KNN(int num_people, int dim) : Classifier(num_people, dim) {
 
 KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
          std::vector<int> &labels)
-    : KNN(num_people, dim) {
-
+    : Classifier(num_people,dim,num_reps, labels) {
+    this->num_people = num_people;
+    this->dim = dim;
     this->num_reps=num_reps;
     this->labels=labels;
+    this->k = int(sqrt(num_reps.size()));
 }
 
 double KNN::compute_distance(cv::Mat vect) const {
@@ -99,9 +103,9 @@ int KNN::classify(const cv::Mat &query) {
     this->query = query;
 
     // we check if the query is too far off from our data
-//    if (is_alienated(query)) {
-//        return -1;
-//    }
+    if (is_alienated(query)) {
+        return -1;
+    }
 //    std::cout<<"labels are: \n";
 //    for (auto i: labels){
 //        std:: cout<< i<<" ";
@@ -133,6 +137,11 @@ int KNN::classify(const cv::Mat &query) {
             max_id = it.first;
             max_freq = it.second;
         }
+    }
+
+    //Now we check if we have a false positive
+    if (is_alienated_id(query, max_id)){
+        return -1;
     }
     return max_id;
 }
