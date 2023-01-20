@@ -1,5 +1,6 @@
 #include "model.hpp"
 #include "../Classification/classifier.hpp"
+#include "../Classification/decisiontree.hpp"
 #include "../Classification/knn.hpp"
 #include "../Localization/cascadecv.hpp"
 #include "../Localization/localizer.hpp"
@@ -11,7 +12,6 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
 #include <string>
-#include "../Classification/decisiontree.hpp"
 
 static void debug_print(cv::Mat temp) {
     std::cout << "temp.dims = " << temp.dims << " temp.size = [";
@@ -37,39 +37,40 @@ Model::Model(int num_people, int num_feature, int width, int height,
     this->load_train_images();
     debug_print(train_images[0]);
 
-    std::cout<<"\n";
+    std::cout << "\n";
 
     std::cout << "Training the Vectorizer" << std::endl;
     if (vectorizer == "Fisher") {
-        this->vectorizer = new Fisher(num_people, num_feature, train_images, train_labels);
+        this->vectorizer =
+            new Fisher(num_people, num_feature, train_images, train_labels);
     } else {
         assert(false);
     }
-//    std::cout<<"training labels are \n";
-//    for (auto i: train_labels){
-//        std::cout<<i<<" ";
-//    }
+    //    std::cout<<"training labels are \n";
+    //    for (auto i: train_labels){
+    //        std::cout<<i<<" ";
+    //    }
 
     std::cout << "Training the Classifier" << std::endl;
 
     if (classifier == "KNN") {
-        this->classifier = new KNN(num_people, num_feature, train_images, train_labels);
-    } else if(classifier=="DecisionTree"){
-        this->classifier = new DecisionTree(num_people, num_feature, train_images, train_labels);
-    } else{
+        this->classifier =
+            new KNN(num_people, num_feature, train_images, train_labels);
+    } else if (classifier == "DecisionTree") {
+        this->classifier = new DecisionTree(num_people, num_feature,
+                                            train_images, train_labels);
+    } else {
         assert(false);
     }
     // KNN constructor has 4 arguments. For the moment leave this commented.
-//    std::cout<<"trained labels are \n";
-//    for (auto i: this->classifier->labels){
-//        std::cout<<i<<" ";
-//    }
+    //    std::cout<<"trained labels are \n";
+    //    for (auto i: this->classifier->labels){
+    //        std::cout<<i<<" ";
+    //    }
 
+    //    this->vectorizer->train(train_images, train_labels);
 
-
-//    this->vectorizer->train(train_images, train_labels);
-
-//    this->classifier->train(train_images, train_labels);
+    //    this->classifier->train(train_images, train_labels);
 }
 
 Model::~Model() {
@@ -84,14 +85,14 @@ std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces) {
     in_faces.push_back(image);
     std::vector<int> output;
     for (int i = 0; i < in_faces.size(); i++) {
-        std::cout << "\n\n\nVectorizing\n";
+        // std::cout << "\n\n\nVectorizing\n";
         cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);
-        std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
+        // std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
         // debug_print(numerical_reps);
-        std::cout << "Classifying\n";
+        // std::cout << "Classifying\n";
         output.push_back(classifier->classify(numerical_reps));
     }
-    std::cout << "Finished\n";
+    // std::cout << "Finished\n";
     return output;
 
     /* localizer.localize_update(
@@ -122,7 +123,8 @@ void Model::load_train_images() {
     std::cout << "Loading Training Images" << std::endl;
     std::string filename, base_filename;
     for (int label = 1; label <= num_people; label++) {
-        base_filename = "./resources/yalefaces/train/" + std::to_string(label) + "/";
+        base_filename =
+            "./resources/yalefaces/train/" + std::to_string(label) + "/";
         for (int i = 1; i <= 9; i++) {
             filename = base_filename + std::to_string(i);
             filename = filename + ".png";
