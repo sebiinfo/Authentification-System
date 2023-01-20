@@ -1,14 +1,14 @@
 #include <iostream>
-//#include <filesystem>
+#include <filesystem>
 #include <opencv2/opencv.hpp>
-//#include <dirent.h>
+#include <dirent.h>
 //#include "tests.cpp"
 #include "detect.hpp"
-//#include "rescale.hpp"
-//#include "cascade_conformity.hpp"
+#include "rescale.hpp"
+#include "cascade_conformity.hpp"
 //#include "cropimage.hpp"
 #include <string>
-//#include "localizer.hpp"
+#include "localizer.hpp"
 
 #include "localizer_cascade.hpp"
 
@@ -16,7 +16,7 @@
 //Yassine = 0;
 //Romain = 1;
 
-#define test 2
+#define test 0
 
 #if test==2
 
@@ -146,7 +146,6 @@ int test_angle() {
 
 int test_conformity(){
 
-
     DIR* dir;
     struct dirent* ent;
     std::string folder ="C:\\Authentification-System\\images\\Testing";
@@ -173,6 +172,34 @@ int test_conformity(){
 
 }
 
+
+int test_loc(){
+    {
+        int w = 244;
+        int h = 244;
+        int pad = 10;
+
+        std::string img_path = "../images/Team/yassine.jpg";
+
+        cv::Mat image = cv::imread(img_path);
+
+        Cascade_Localizer Loc = Cascade_Localizer();
+
+
+        std::cout << Loc.height << std::endl;
+        std::cout << Loc.width << std::endl;
+        std::cout << Loc.padding << std::endl;
+
+        std::vector<cv::Rect> faces;
+
+        Loc.cascade.detectMultiScale(image,faces,1,4,0,cv::Size(30,30));
+
+        std::vector<cv::Mat> images = Loc.Transform(image,faces);
+
+        std::cout << images.size() << std::endl;
+
+    }
+}
 
 int main(){
     test_conformity();

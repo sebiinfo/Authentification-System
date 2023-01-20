@@ -35,11 +35,13 @@ class Localizer {
     std::vector<cv::Mat> Transform(cv::Mat image,std::vector<cv::Rect> faces);
 
     // Rotate a face given an angle found by the cascade
-    cv::Mat rotate_face(cv::Mat &image, double angle);
+    virtual cv::Mat rotate_face(cv::Mat image, std::vector<cv::Rect> &faces, double angle);
+    virtual double get_angle_from_eyes(cv::Mat image, std::vector<cv::Rect> &faces);
     
     int width;
     int height;
     int padding; // in percentage
+    std::vector<cv::Rect> vect_faces;
 
     private:
 };

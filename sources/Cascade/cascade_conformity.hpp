@@ -20,10 +20,8 @@ public:
     // Returns an array of cv::Mat corresponding to coordinates of eyes recognized in the image
     std::vector<cv::Rect> detectEyes(cv::Mat image);
     // Returns ture if an eye was detected, else false
-    bool isFace(cv::Mat image);
-    bool isEye(cv::Mat image);
-    double get_angle_from_eyes(cv::Mat &image);
-    cv::Mat rotate_face(cv::Mat &image, double angle);
+    bool isFace(cv::Mat image, std::vector<cv::Rect> &faces);
+    void isEye(cv::Mat image, std::vector<cv::Rect> &faces);
     cv::Mat convert_rect_to_mat(cv::Rect &rect);
     // gets the ith face
     cv::Rect get_face(int i);

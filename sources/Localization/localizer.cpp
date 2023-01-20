@@ -45,7 +45,12 @@ std::vector<cv::Mat> Localizer::Transform(cv::Mat image,std::vector<cv::Rect> fa
     assert(false);
 }
 
-cv::Mat Localizer::rotate_face(cv::Mat &image, double angle)
+
+double get_angle_from_eyes(cv::Mat image, std::vector<cv::Rect> &faces){
+    assert(false);
+}
+
+cv::Mat Localizer::rotate_face(cv::Mat image, std::vector<cv::Rect> &faces, double angle)
 {
     //    cv::Size s= image.size();
     //    double height =s.height;
