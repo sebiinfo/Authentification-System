@@ -93,9 +93,17 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
         variances.push_back(variance_entry / num_people_id -
                             (pow(averages[entry], 2)));
     }
+    std::cout << " Averages are:\n";
+    for (auto a : averages) {
+        std::cout << " " << a << " ";
+    }
+    std::cout << "\n Variances are:\n";
+    for (auto v : variances) {
+        std::cout << " " << v << " ";
+    }
 
     for (double var : variances) {
-        if (var < 0) {
+        if (var < -pow(10,-4)) {
             throw std::domain_error(
                 "all the variances should have been positive");
         }
@@ -107,14 +115,7 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
     // alienated
     int count_alienated_id = 0;
 
-    std::cout << " Averages are:\n";
-    for (auto a : averages) {
-        std::cout << " " << a << " ";
-    }
-    std::cout << "\n Variances are:\n";
-    for (auto v : variances) {
-        std::cout << " " << v << " ";
-    }
+
 
     for (int entry = 0; entry < dim; ++entry) {
         if (query.at<double>(0, entry) <

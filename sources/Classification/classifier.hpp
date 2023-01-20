@@ -62,7 +62,7 @@ class Classifier {
 
     // the alienation constant is the percentage of admissible alienated
     // coordinates
-    double alienation_constant = 0.35;
+    double alienation_constant = 0.75;
     int num_people{};
     int dim{};
     std::vector<cv::Mat> num_reps; // numerical representations of the faces

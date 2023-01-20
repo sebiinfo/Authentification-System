@@ -80,6 +80,6 @@ class DecisionTree : public Classifier {
    Node *root{};
    void build_tree(Node *node_pointer);
 
-   int classify(cv::Mat query);
+   int classify(const cv::Mat &query);
    // int max_depth;    it is a choice weather we do it
 };

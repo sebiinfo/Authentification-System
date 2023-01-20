@@ -18,10 +18,30 @@
 int main() {
 
     int num_people = 15, dim = 14;
+    std::cout << "Creating the Model\n";
     Model model(num_people, dim, 0, 0, "", "Fisher", "KNN");
-    cv::Mat image = cv::imread("./yalefaces/test/11/2.png");
-    cv::Mat flat_image = image.reshape(1, 1);
-    std::cout << model.predict(flat_image)[0] << std::endl;
+    std::cout << "Created the Model\n";
+
+    cv::Mat image_test;
+    int positives, obtained_label;
+    std::string filename, base_filename;
+    for (int label = 1; label <= num_people; label++) {
+        base_filename = "./yalefaces/test/" + std::to_string(label) + "/";
+        for (int i = 1; i <= 2; i++) {
+            filename = base_filename + std::to_string(i);
+            filename = filename + ".png";
+            image_test = cv::imread(filename);
+            image_test = image_test.reshape(1, 1);
+            obtained_label = model.predict(image_test)[0];
+            std::cout << "The obtained label was: " << obtained_label
+                      << " while the expected was: " << label;
+            positives += obtained_label == label;
+        }
+    }
+    std::cout << "\n\n The final statistics are: " << positives << " out of " << 2 * num_people;
+//    cv::Mat image = cv::imread("./yalefaces/test/2/2.png");
+//    cv::Mat flat_image = image.reshape(1, 1);
+    //std::cout << model.predict(flat_image)[0] << std::endl;
 
     // full_test_fisher();
     //   KNN_Testing test_obj = KNN_Testing(num_people, dim);

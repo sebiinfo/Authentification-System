@@ -11,6 +11,7 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
 #include <string>
+#include "../Classification/decisiontree.hpp"
 
 static void debug_print(cv::Mat temp) {
     std::cout << "temp.dims = " << temp.dims << " temp.size = [";
@@ -33,30 +34,42 @@ Model::Model(int num_people, int num_feature, int width, int height,
     //    if (localizer == "Cascade") {this->localizer = new
     //    Cascade_Detector_CV(width, height);}
     //  else {assert(false);}
-
-    if (vectorizer == "Fisher") {
-        this->vectorizer = new Fisher(num_people, num_feature);
-    } else {
-        assert(false);
-    }
-
-    if (classifier == "KNN") {
-        this->classifier = new KNN(num_people, num_feature);
-    } else {
-        assert(false);
-    }
-    // KNN constructor has 4 arguments. For the moment leave this commented.
-
     this->load_train_images();
     debug_print(train_images[0]);
 
-    std::cout << "Training the Vectorizer" << std::endl;
-    this->vectorizer->train(train_images, train_labels);
+    std::cout<<"\n";
 
-    debug_print(train_images[0]);
+    std::cout << "Training the Vectorizer" << std::endl;
+    if (vectorizer == "Fisher") {
+        this->vectorizer = new Fisher(num_people, num_feature, train_images, train_labels);
+    } else {
+        assert(false);
+    }
+//    std::cout<<"training labels are \n";
+//    for (auto i: train_labels){
+//        std::cout<<i<<" ";
+//    }
 
     std::cout << "Training the Classifier" << std::endl;
-    this->classifier->train(train_images, train_labels);
+
+    if (classifier == "KNN") {
+        this->classifier = new KNN(num_people, num_feature, train_images, train_labels);
+    } else if(classifier=="DecisionTree"){
+        this->classifier = new DecisionTree(num_people, num_feature, train_images, train_labels);
+    } else{
+        assert(false);
+    }
+    // KNN constructor has 4 arguments. For the moment leave this commented.
+//    std::cout<<"trained labels are \n";
+//    for (auto i: this->classifier->labels){
+//        std::cout<<i<<" ";
+//    }
+
+
+
+//    this->vectorizer->train(train_images, train_labels);
+
+//    this->classifier->train(train_images, train_labels);
 }
 
 Model::~Model() {
@@ -73,7 +86,7 @@ std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces) {
     for (int i = 0; i < in_faces.size(); i++) {
         std::cout << "Vectorizing\n";
         cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);
-        debug_print(numerical_reps);
+        // debug_print(numerical_reps);
         std::cout << "Classifying\n";
         output.push_back(classifier->classify(numerical_reps));
     }

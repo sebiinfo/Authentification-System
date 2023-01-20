@@ -173,6 +173,11 @@ DecisionTree::DecisionTree(int num_people, int dim,
                            std::vector<cv::Mat> &num_reps,
                            std::vector<int> &labels)
     : Classifier(num_people, dim, num_reps, labels) {
+    std::cout<<"I started decision tree";
+    this->dim=dim;
+    this->num_reps=num_reps;
+    this->num_people=num_people;
+    this->labels=labels;
    root = new Node(num_people, dim, num_reps, labels);
    build_tree(root);
 }
@@ -229,12 +234,15 @@ void DecisionTree::build_tree(Node *current_node_pointer) {
    DecisionTree::build_tree(current_node_pointer->left_child_pointer);
    DecisionTree::build_tree(current_node_pointer->right_child_pointer);
 }
-int DecisionTree::classify(cv::Mat query) {
+int DecisionTree::classify(const cv::Mat &query) {
    // we initialize the node with the faces
-   if (is_alienated(query)){
-       return -1;
-   }
-
+//   if (is_alienated(query)){
+//       return -1;
+//   }
+    std::cout<<"\n decision tree labels are \n";
+    for (auto i: labels){
+        std::cout<<i<<" ";
+    }
    Node *parent_node = new Node(num_people, dim, num_reps, labels);
 
    // while the node is not pure we go to the corresponding child

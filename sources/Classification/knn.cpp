@@ -75,7 +75,9 @@ KNN::KNN(int num_people, int dim) : Classifier(num_people, dim) {
 KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
          std::vector<int> &labels)
     : KNN(num_people, dim) {
-    train(num_reps, labels);
+
+    this->num_reps=num_reps;
+    this->labels=labels;
 }
 
 double KNN::compute_distance(cv::Mat vect) const {
@@ -95,10 +97,16 @@ bool KNN::compare(const cv::Mat &v1, const cv::Mat &v2) {
 
 int KNN::classify(const cv::Mat &query) {
     this->query = query;
+
     // we check if the query is too far off from our data
-    if (is_alienated(query)) {
-        return -1;
-    }
+//    if (is_alienated(query)) {
+//        return -1;
+//    }
+//    std::cout<<"labels are: \n";
+//    for (auto i: labels){
+//        std:: cout<< i<<" ";
+//    }
+//    std::cout<<"\n";
     // now we want to sort the data in terms of the distance, O(nlogn),
 
     std::vector<int> permutation_numerical_faces =
