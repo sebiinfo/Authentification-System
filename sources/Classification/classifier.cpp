@@ -49,7 +49,15 @@ int Classifier::classify(const cv::Mat &image) { return 0; }
 
 Classifier::~Classifier() = default;
 
-bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
+double Classifier::compute_distance(const cv::Mat &mat1, const cv::Mat &mat2) const {
+    double sum=0;
+    for (int cont = 0; cont < dim; ++cont) {
+        sum += pow(mat1.at<double>(0, cont) - mat2.at<double>(0, cont), 2);
+    }
+    return sqrt(sum);
+}
+
+bool Classifier::is_alienated_id_normal(const cv::Mat &query, int id) {
 //    std::cout << std::endl << "id: " << id << "\n";
 //    for (int i = 0; i < dim; ++i) {
 //        std::cout << query.at<double>(0, i) << " ";
@@ -140,6 +148,33 @@ bool Classifier::is_alienated_id(const cv::Mat &query, int id) {
     return double(count_alienated_id) / dim > alienation_constant;
 }
 
+bool Classifier::is_alienated_id_linear(const cv::Mat &query, int id) {
+    //we want to compute the max distance between any two reps of label id
+    std::vector<cv::Mat> num_reps_id;
+    for (int i=0; i<labels.size(); ++i){
+        if (labels[i]==id){
+            num_reps_id.push_back(num_reps[i]);
+        }
+    }
+    double max_distance=0;
+    for (int i=0; i<num_reps_id.size(); ++i){
+        for(int j=i+1; j<num_reps_id.size(); ++j){
+            double distance_ij=compute_distance(num_reps_id[i], num_reps_id[j]);
+            if (distance_ij>max_distance){
+                max_distance=distance_ij;
+            }
+        }
+    }
+    int count_alienated=0;
+    for (auto & rep : num_reps_id){
+        if (compute_distance(query, rep)>2*max_distance){
+            count_alienated++;
+        }
+    }
+    return double(count_alienated)/double (num_reps_id.size())>alienation_constant;
+}
+
+
 bool Classifier::is_alienated(const cv::Mat &query) {
     /*We assume that the distribution of the numerical representations of a
      * person are a random variable distributed around a point in the dim
@@ -167,7 +202,7 @@ bool Classifier::is_alienated(const cv::Mat &query) {
         id_set.insert(labels[i]);
     }
     for (auto id : id_set) {
-        if (!is_alienated_id(query, id)) {
+        if (!is_alienated_id_normal(query, id)) {
             // if it is not alienated by the faces with label id, then it is not
             // alienated in general, so the query might be the person with the
             // label id

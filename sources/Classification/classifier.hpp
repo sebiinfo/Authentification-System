@@ -50,7 +50,7 @@ class Classifier {
     // it return the id of the person that it matches with the most
     // or -1 if it is too far away from all the people
     virtual int classify(const cv::Mat &image);
-
+    double compute_distance(const cv::Mat &mat1, const cv::Mat &mat2) const;
     // this is a function which checks weather the query is too far off from all
     // the groups
     //  returns true iff the person if too far off
@@ -58,11 +58,12 @@ class Classifier {
 
     // helper function for is_alienated which checks alienation on people with
     // label : id
-    bool is_alienated_id(const cv::Mat &query, int id);
+    bool is_alienated_id_normal(const cv::Mat &query, int id);
+    bool is_alienated_id_linear(const cv::Mat &query, int id);
 
     // the alienation constant is the percentage of admissible alienated
     // coordinates
-    double alienation_constant = 2; //above 1 not doing the feature
+    double alienation_constant = 0.1; //above 1 not doing the feature
     int num_people{};
     int dim{};
     std::vector<cv::Mat> num_reps; // numerical representations of the faces

@@ -140,7 +140,7 @@ int KNN::classify(const cv::Mat &query) {
     }
 
     //Now we check if we have a false positive
-    if (is_alienated_id(query, max_id)){
+    if (is_alienated_id_linear(query, max_id)){
         return -1;
     }
     return max_id;

@@ -19,7 +19,7 @@ int main() {
 
     int num_people = 15, dim = 14;
     std::cout << "Creating the Model\n";
-    Model model(num_people, dim, 0, 0, "", "Fisher", "DecisionTree");
+    Model model(num_people, dim, 0, 0, "", "Fisher", "KNN");
     std::cout << "Created the Model\n";
 
        Testing_Decision_Tree::Testing_Build_Tree(num_people,dim) ;
