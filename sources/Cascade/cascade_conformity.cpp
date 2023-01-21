@@ -59,7 +59,7 @@ void Cascade_conformity::detectMultiScale(cv::Mat image, std::vector<cv::Rect> &
 void Cascade_conformity::EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize) {
     cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
     cv::equalizeHist(image, image);
-    cascade_face.detectMultiScale(image, eyes, scaleFactor, minNeighbors, flags, minSize);
+	cascade_eyes.detectMultiScale(image, eyes, scaleFactor, minNeighbors, flags, minSize);
 }
 
 

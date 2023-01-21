@@ -39,7 +39,7 @@ int main()
 
 	std::vector<cv::Rect> faces;
 
-	Loc.cascade->detectMultiScale(image,faces,1.1,4,0,cv::Size(30,30));
+	Loc.cascade->detectMultiScale(image,faces,1.06,2,0,cv::Size(30,30));
 
 	std::vector<cv::Mat> images = Loc.Transform(image);
 
