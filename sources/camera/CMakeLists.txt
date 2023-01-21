@@ -66,5 +66,6 @@ qt_add_resources(camera "camera"
         ${camera_resource_files}
 )
 target_include_directories(camera INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(camera PUBLIC sources)
 qt_finalize_executable(camera)
 
