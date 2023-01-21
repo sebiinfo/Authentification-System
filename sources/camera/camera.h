@@ -64,8 +64,8 @@ private slots:
     void updateCameraDevice(QAction *action);
 
     void updateCameraActive(bool active);
-    void updateCaptureMode();
-    void updateRecorderState(QMediaRecorder::RecorderState state);
+    // void updateCaptureMode();
+    // void updateRecorderState(QMediaRecorder::RecorderState state);
     void setExposureCompensation(int index);
 
     // void updateRecordTime();
@@ -156,7 +156,7 @@ private slots:
 
     void on_localization_1_toggled(bool checked);
 
-    void on_account_button_clicked();
+    // void on_account_button_clicked();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

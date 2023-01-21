@@ -5,9 +5,10 @@
 #include <QApplication>
 #include <QFile>
 #include <camera.h>
-// #include <database.hpp>
+#include <database.hpp>
 #include <iostream>
 int main(int argc, char *argv[]) {
+    std::cerr << "oi" << std::endl;
     QApplication app(argc, argv);
 
     Camera camera;

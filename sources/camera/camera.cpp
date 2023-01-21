@@ -195,7 +195,7 @@ void Camera::stop() { m_mediaRecorder->stop(); } */
 
 void Camera::takeImage() {
     m_isCapturingImage = true;
-    std::string path = "C:/Users/paula/OneDrive/Desktop/";
+    std::string path = "/home/fcomoreira/desktop/";
     m_imageCapture->captureToFile(QString::fromStdString(path));
 }
 
@@ -242,15 +242,9 @@ void Camera::updateCameraDevice(QAction *action) {
     setCamera(qvariant_cast<QCameraDevice>(action->data()));
 }
 
-void Camera::displayViewfinder()
-{
-    ui->stacked->setCurrentIndex(0);
-}
+void Camera::displayViewfinder() { ui->stacked->setCurrentIndex(0); }
 
-void Camera::displayCapturedImage()
-{
-    ui->stacked->setCurrentIndex(1);
-}
+void Camera::displayCapturedImage() { ui->stacked->setCurrentIndex(1); }
 
 void Camera::readyForCapture(bool ready) {
     ui->takeImageButton->setEnabled(ready);
@@ -492,18 +486,15 @@ void Camera::on_get_code_clicked() {
 
 int i = 0;
 
-void Camera::on_takeImageButton_clicked()
-{
+void Camera::on_takeImageButton_clicked() {
     takeImage();
-    i +=1;
+    i += 1;
     if (i == 10) {
         QMessageBox::about(this, "Successful Account Created",
                            "Thank you, your account is now complete.");
         ui->stacked->setCurrentIndex(5);
     }
 }
-
-void Camera::on_takeImageButton_clicked() {}
 
 void Camera::on_photo_library_clicked() {
     ui->stacked->setCurrentIndex(4);

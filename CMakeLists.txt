@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(Authentication-System)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(GXX_COVERAGE_COMPILE_FLAGS "-fPIC")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
