@@ -48,7 +48,7 @@ private slots:
     void setExposureCompensation(int index);
     void processCapturedImage(int requestId, const QImage &img);
     void displayViewfinder();
-    void displayCapturedImage();
+//    void displayCapturedImage();
     void readyForCapture(bool ready);
     void imageSaved(int id, const QString &fileName);
     void updateCameras();
@@ -87,9 +87,6 @@ private slots:
     void on_back_12_clicked();
     void on_back_13_clicked();
     void on_log_out_clicked();
-
-    void on_account_photos_clicked();
-
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
