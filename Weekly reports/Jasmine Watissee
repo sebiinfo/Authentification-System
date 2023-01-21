@@ -1,8 +1,0 @@
-Jasmine Watissee
-
-Week 1 (21/11/2022 - 27/11/2022):
-- This week, I took some time installing openCV, for the moment it still doesn't work so I will try to fix it next week.
-- I worked on the password: I created a class Password with different functionalities. The class can : set a password, change it, show the hash, 
-create a random password, ... For the moment, it is in the branch: Encryption-Password. 
-- The only thing missing is the encryption of the password which I will work on next week. I need to decide on an algorithm to encrypt the password 
-and code it. This will probably be done by next week.
