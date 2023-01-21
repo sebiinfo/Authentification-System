@@ -48,6 +48,11 @@
 // Testing_Node::get_information_gain(x, {1,2,3});
 
 #define test 0
+// Everyone = 0
+// Sebi & Bogdan = 1
+// Romain = 2
+// Yassine = 3
+// Momo = 4
 
 #if test == 0
 
