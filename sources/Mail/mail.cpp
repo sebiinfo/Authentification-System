@@ -78,7 +78,7 @@ void Mail::send_mail(std::string adress, std::string messagecontent){
     SSLManager::instance().initializeClient(0, pCert, pContext);
 
     msg.addRecipient (Poco::Net::MailRecipient(Poco::Net::MailRecipient::PRIMARY_RECIPIENT, adress, "Sophie"));
-    msg.setSender ("Me <systemauthentifications@gmail.com>");
+    msg.setSender ("AuthentificationSystem <systemauthentifications@gmail.com>");
     msg.setSubject ("Your password verification code");
     int x = 5;
     msg.setContent (messagecontent);
