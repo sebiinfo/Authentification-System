@@ -6,30 +6,30 @@
 #include <string>
 #include "localizer_cascade.hpp"
 
-
-//Yassine = 0;
-//Romain = 1,2,3,4;
+// Yassine = 0;
+// Romain = 1,2,3,4;
 
 #define test 4
 
- #if test == 4
+#if test == 4
 
-
-void test_dir(std::string folder) {
-	DIR* dir;
-	struct dirent* ent;
+void test_dir(std::string folder)
+{
+	DIR *dir;
+	struct dirent *ent;
 	dir = opendir(folder.c_str());
-	Cascade_Localizer loc= Cascade_Localizer();
-	while ((ent = readdir(dir)) != nullptr) {
+	Cascade_Localizer loc = Cascade_Localizer();
+	while ((ent = readdir(dir)) != nullptr)
+	{
 		std::string fileName = ent->d_name;
 		if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg")
 		{
-			cv::Mat frameclosed = cv::imread(folder+"/"+fileName);
+			cv::Mat frameclosed = cv::imread(folder + "/" + fileName);
 			std::vector<cv::Mat> images = loc.Transform(frameclosed);
 
-			for(int i=0; i<images.size();i++)
+			for (int i = 0; i < images.size(); i++)
 			{
-				cv::imshow(fileName,images[i]);
+				cv::imshow(fileName, images[i]);
 				cv::waitKey(0);
 			}
 		}
@@ -37,109 +37,108 @@ void test_dir(std::string folder) {
 	closedir(dir);
 }
 
-
-int main(){
+int main()
+{
 
 	std::string folder = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/";
 	std::string name = "Groups/";
 
-	test_dir(folder+name);
+	test_dir(folder + name);
 	return 0;
 }
 
-#elif test ==3
-
-int main(){
-
-	std::string path = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/";
-	std::string folder = "Testing/";
-	std::string name= "agatha";
-	std::string open = "open.jpg";
-	std::string closed = "closed.jpg";
-
-	std::string img_open = path+folder+name+open;
-
-	cv::Mat image_open = cv::imread(img_open);
-
-	int h,w;
-	w = image_open.cols;
-	h = image_open.rows;
-
-	cv::imshow(" image1",image_open);
-
-	cv::waitKey(0);
-
-	cv::Rect crop_region(0,20,w-200,h-400);
-
-	image_open =image_open(crop_region);
-
-	cv::imshow(" image1",image_open);
-
-	cv::waitKey(0);
-
-
-	return 0;
-}
-
-#elif test==2
+#elif test == 3
 
 int main()
 {
 
-
 	std::string path = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/";
 	std::string folder = "Testing/";
-	std::string name= "sophie";
+	std::string name = "agatha";
 	std::string open = "open.jpg";
 	std::string closed = "closed.jpg";
 
-	std::string img_open = path+folder+name+open;
-	std::string img_closed = path+folder+name+closed;
+	std::string img_open = path + folder + name + open;
+
+	cv::Mat image_open = cv::imread(img_open);
+
+	int h, w;
+	w = image_open.cols;
+	h = image_open.rows;
+
+	cv::imshow(" image1", image_open);
+
+	cv::waitKey(0);
+
+	cv::Rect crop_region(0, 20, w - 200, h - 400);
+
+	image_open = image_open(crop_region);
+
+	cv::imshow(" image1", image_open);
+
+	cv::waitKey(0);
+
+	return 0;
+}
+
+#elif test == 2
+
+int main()
+{
+
+	std::string path = "./images/";
+	std::string folder = "Testing/";
+	std::string name = "sophie";
+	std::string open = "open.jpg";
+	std::string closed = "closed.jpg";
+
+	std::string img_open = path + folder + name + open;
+	std::string img_closed = path + folder + name + closed;
 
 	cv::Mat image_open = cv::imread(img_open);
 	cv::Mat image_closed = cv::imread(img_closed);
 
-	Cascade_Localizer Loc = Cascade_Localizer("no_name",244,244,20);
+	Cascade_Localizer Loc = Cascade_Localizer("no_name", 244, 244, 20);
 
 	std::vector<cv::Mat> images_open = Loc.Transform(image_open);
 	std::vector<cv::Mat> images_closed = Loc.Transform(image_closed);
 
-	for (int i=0;i<images_open.size();i++){
-		cv::imshow(" image1",images_open[i]);
+	for (int i = 0; i < images_open.size(); i++)
+	{
+		cv::imshow(" image1", images_open[i]);
 
 		cv::waitKey(0);
 	}
 
-	for (int i=0;i<images_closed.size();i++){
-		cv::imshow(" image1",images_closed[i]);
+	for (int i = 0; i < images_closed.size(); i++)
+	{
+		cv::imshow(" image1", images_closed[i]);
 
 		cv::waitKey(0);
 	}
-
-
 }
 
 #elif test == 0
-//void testlocalizer()
+// void testlocalizer()
 //{
 //
-//    std::string folder ="C:\\Authentification-System\\images\\Testing\\agathaopen.jpg";
+//     std::string folder ="C:\\Authentification-System\\images\\Testing\\agathaopen.jpg";
 //
-//    cv::Mat image;
-//    image = cv::imread(folder);
+//     cv::Mat image;
+//     image = cv::imread(folder);
 //
-//    Localizer loc = Localizer();
+//     Localizer loc = Localizer();
 //
-//    std::vector<cv::Mat> arr = loc.localize(image);
+//     std::vector<cv::Mat> arr = loc.localize(image);
 //
-//    while (true){
-//        cv::imshow("img",arr[0]);
-//    }
+//     while (true){
+//         cv::imshow("img",arr[0]);
+//     }
 //
-//}
+// }
 
 //
-//int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
+// int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
 //    //Please name every picture you add with the word closed or open.
 //    DIR* dir;
 //    struct dirent* ent;
@@ -188,30 +187,45 @@ int main()
 //    return 0;
 //}
 
-int test_angle() {
-    DIR* dir;
-    struct dirent* ent;
-    std::string folder ="C:\\Authentification-System\\images\\Testing";
-    dir = opendir(folder.c_str());
-    while ((ent = readdir(dir)) != nullptr) {
-        std::string fileName = ent->d_name;
-        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
-            cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
-            Cascade_Localizer loc= Cascade_Localizer("fancy");
-            std::vector<cv::Mat> images = loc.Transform(frameclosed);
-//            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
-for(int i=0; i<images.size();i++){
+int test_angle()
+{
+	DIR *dir;
+	struct dirent *ent;
+	std::string folder = "C:\\Authentification-System\\images\\Testing";
+	dir = opendir(folder.c_str());
+	while ((ent = readdir(dir)) != nullptr)
+	{
+		std::string fileName = ent->d_name;
+		if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg")
+		{
+			cv::Mat image_open = cv::imread(folder + "//" + fileName);
+			Cascade_Localizer loc = Cascade_Localizer("fancy");
+			std::vector<cv::Mat> images = loc.Transform(image_open);
+			for (int i = 0; i < images.size(); i++)
+			{
+				std::vector<cv::Rect> eyes;
+				loc.cascade->detectMultiScale(images[i], eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+				double angle = loc.get_angle_from_eyes(eyes);
+				std::cout <<
+					//              loc.rotate_face(images[i],angle);
+					cv::imshow(fileName, images[i]);
+				std::cout << fileName;
+				cv::waitKey(0);
+			}
 
-            cv::imshow(fileName,images[i]);
-            cv::waitKey(0);
-}
-        }
-    }
-    closedir(dir);
-    return 0;
+			//            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
+			// for(int i=0; i<images.size();i++){
+			//
+			//            cv::imshow(fileName,images[i]);
+			//            cv::waitKey(0);
+			//}
+		}
+	}
+	closedir(dir);
+	return 0;
 }
 //
-//int test_conformity(){
+// int test_conformity(){
 //
 //    DIR* dir;
 //    struct dirent* ent;
@@ -239,34 +253,32 @@ for(int i=0; i<images.size();i++){
 //
 //}
 
+int main()
+{
+	test_angle();
+	//    testeyedetection();
+	// testlocalizer();
 
+	//  test_angle();
+	//    cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
+	//    Localizer loc = Localizer();
+	//    std::vector<cv::Mat> crops = loc.localize(image);
+	//    cv::Mat out = crops[0];
+	//    cv::Mat rotate =rotate_face(out);
+	//    cv::imshow("img",rotate);
+	//    cv::waitKey(0);
 
-
-int main(){
-    test_angle();
-//    testeyedetection();
-    //testlocalizer();
-
-   //  test_angle();
-//    cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
-//    Localizer loc = Localizer();
-//    std::vector<cv::Mat> crops = loc.localize(image);
-//    cv::Mat out = crops[0];
-//    cv::Mat rotate =rotate_face(out);
-//    cv::imshow("img",rotate);
-//    cv::waitKey(0);
-
-//    std::string image_path = "Authentification_System/images/Team/yassine.jpg";
-//    std::string path2 = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team/yassine.jpg";
-//    cv::Mat image = cv::imread(image_path);
-//    while (true){
-//           cv::imshow("img",image);
-//    }
-    return 0;
+	//    std::string image_path = "Authentification_System/images/Team/yassine.jpg";
+	//    std::string path2 = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team/yassine.jpg";
+	//    cv::Mat image = cv::imread(image_path);
+	//    while (true){
+	//           cv::imshow("img",image);
+	//    }
+	return 0;
 }
 
 //
-//void test_open_eye(std::string image_path)
+// void test_open_eye(std::string image_path)
 //{
 //    cv::Mat image = cv::imread(image_path);
 //    if (conform(image)){
@@ -277,16 +289,14 @@ int main(){
 //}
 //
 
-
-///Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team
+/// Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team
 //    test_open_eye(image_path);
 
-#elif test ==1
+#elif test == 1
 int main()
 {
 
-
-    return 0;
+	return 0;
 }
 
 #endif
