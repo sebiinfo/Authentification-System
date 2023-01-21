@@ -5,27 +5,47 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/objdetect.hpp>
 #include "../Cascade/cascade_Base.hpp"
+#include <string>
 
 class Cascade_Localizer : public Localizer {
   public:
+
     Cascade_Localizer();
-    Cascade_Localizer(int w);
-    Cascade_Localizer(int w, int pad);
-    Cascade_Localizer(int w, int h, int pad,std::string cascade_chosen);
+    Cascade_Localizer(std::string cascade_chosen);
+    Cascade_Localizer(std::string cascade_chosen, int w);
+    Cascade_Localizer(std::string cascade_chosen, int w, int pad);
+    Cascade_Localizer(std::string cascade_chosen, int w, int h, int pad);
     ~Cascade_Localizer();
 
-    void localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces);
-    bool is_pad(cv::Mat image, cv::Rect face);
+    void change_Cascade_name(std::string cascade_chosen);
+    std::string get_Cascade_name();
+    void reload_cascade();
 
-    std::vector<cv::Mat> Crop(cv::Mat image,std::vector<cv::Rect> faces);
-    void Rescale(std::vector<cv::Mat> &images);
-    double get_angle_from_eyes(cv::Mat image,std::vector<cv::Rect> &faces,std::vector<cv::Rect> eyes);
-    cv::Mat rotate_face(cv::Mat image, std::vector<cv::Rect> &faces, double angle);
-    std::vector<cv::Mat>Transform(cv::Mat image, std::vector<cv::Rect> faces);
-	cascade_Base* cascade;
+    void localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces);
+
+
+
+
+    std::vector<cv::Mat> Transform(cv::Mat image);
+
+
+	Cascade_base* cascade;
+
   private:
+    std::string Cascade_name;
+
+	  bool is_pad(cv::Mat image, cv::Rect face);
+
     void Crop_(cv::Mat &image,cv::Rect face);
+    std::vector<cv::Mat> Crop(cv::Mat image,std::vector<cv::Rect> faces);
+
+    void Rescale(std::vector<cv::Mat> &images);
     void Rescale(cv::Mat &image);
+
+
+    double get_angle_from_eyes(std::vector<cv::Rect> eyes);
+    void rotate_face(cv::Mat &image, double angle);
+
 
 
 };

@@ -2,21 +2,17 @@
 #include <filesystem>
 #include <opencv2/opencv.hpp>
 #include <dirent.h>
-//#include "tests.cpp"
-#include "detect.hpp"
-#include "rescale.hpp"
 #include "cascade_conformity.hpp"
 //#include "cropimage.hpp"
 #include <string>
 #include "localizer.hpp"
-
 #include "localizer_cascade.hpp"
 
 
 //Yassine = 0;
 //Romain = 1;
 
-#define test 0
+#define test 2
 
 #if test==2
 
@@ -30,9 +26,9 @@ int main()
 
 	cv::Mat image = cv::imread(img_path);
 
-	cv::imshow(" image1",image);
-	// created the window by name image1
-	cv::waitKey(0);
+//	cv::imshow(" image1",image);
+//	// created the window by name image1
+//	cv::waitKey(0);
 
 	Cascade_Localizer Loc = Cascade_Localizer();
 
@@ -45,7 +41,7 @@ int main()
 
 	Loc.cascade->detectMultiScale(image,faces,1.1,4,0,cv::Size(30,30));
 
-	std::vector<cv::Mat> images = Loc.Transform(image,faces);
+	std::vector<cv::Mat> images = Loc.Transform(image);
 
 	cv::imshow(" image1",images[0]);
 	// created the window by name image1

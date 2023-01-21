@@ -32,16 +32,16 @@ class Localizer {
     // Returns array of cv::Mat of faces from the image given
     std::vector<cv::Mat> localize(cv::Mat & image);
 
-    std::vector<cv::Mat> Transform(cv::Mat image,std::vector<cv::Rect> faces);
+    std::vector<cv::Mat> Transform(cv::Mat image);
 
     // Rotate a face given an angle found by the cascade
-    virtual cv::Mat rotate_face(cv::Mat image, std::vector<cv::Rect> &faces, double angle);
-    virtual double get_angle_from_eyes(cv::Mat image, std::vector<cv::Rect> &faces);
+    void rotate_face(cv::Mat &image, double angle);
+
+    double get_angle_from_eyes(std::vector<cv::Rect> eyes);
     
     int width;
     int height;
     int padding; // in percentage
-    std::vector<cv::Rect> vect_faces;
 
     private:
 };

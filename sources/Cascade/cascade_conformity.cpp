@@ -1,10 +1,12 @@
 #include "cascade_conformity.hpp"
+#include <vector>
+
 const double pi = 3.14159265358979323846;
 
 // Yassine = 0
 // Romain = 1
 // Other = 2
-#define test 0 // To load correct haarcascade
+#define test 1 // To load correct haarcascade
 
 #if test == 0
 std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_eye.xml";
@@ -12,24 +14,18 @@ std::string path_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcasca
 
 #elif test == 1
 
-std::string path_face = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/sources/Detect/haarcascades/haarcascade_frontalface_default.xml";
-std::string path_eye = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/sources/Detect/haarcascades/haarcascade_eye.xml";
+std::string path_face = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
+std::string path_eye = "/usr/local/share/opencv4/haarcascades/haarcascade_eye.xml";
+
 #endif
 
 
-Cascade_conformity::Cascade_conformity() {
-    //Empty vector
-    vect_faces=std::vector<cv::Rect>();
-    cascade_face.load(path_face);
-    cascade_eyes.load(path_eye);
+Cascade_conformity::Cascade_conformity()
+{
+cascade_face.load(path_face);
+cascade_eyes.load(path_eye);
 }
 
-Cascade_conformity::Cascade_conformity(std::vector<cv::Rect> &input_faces) {
-
-    vect_faces=input_faces;
-    cascade_face.load(path_face);
-    cascade_eyes.load(path_eye);
-}
 Cascade_conformity::~Cascade_conformity(){}
 
 void Cascade_conformity::load_cascade_face(std::string path_f){
@@ -39,27 +35,7 @@ void Cascade_conformity::load_cascade_eyes(std::string path_e){
     cascade_eyes.load(path_e);
 }
 
-//std::vector<cv::Rect> Cascade_conformity::detectFaces(cv::Mat &image)
-//{
-//    std::vector <cv::Rect> tempfaces;
-//    cascade_face.detectMultiScale(image, tempfaces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-//    vect_faces=tempfaces;
-//    return tempfaces;
-//}
 
-//std::vector<cv::Rect> Cascade_conformity::detectEyes(cv::Mat image)
-//{
-//    std::vector<cv::Rect> tempfaces;
-//    cascade_eyes.detectMultiScale(image, tempfaces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-//    vect_faces=tempfaces;
-//    return tempfaces;
-//}
-
-//bool Cascade_conformity::isFace(cv::Mat image)
-//{
-//    vect_faces = detectFaces(image);
-//    return vect_faces.size() > 0;
-//}
 void Cascade_conformity::isEye(cv::Mat image, std::vector<cv::Rect> &faces)
 {
     for(cv::Rect &face:faces){
@@ -80,15 +56,22 @@ void Cascade_conformity::detectMultiScale(cv::Mat image, std::vector<cv::Rect> &
     isEye(image, faces);
 }
 
+void Cascade_conformity::EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize) {
+    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+    cv::equalizeHist(image, image);
+    cascade_face.detectMultiScale(image, eyes, scaleFactor, minNeighbors, flags, minSize);
+}
 
-cv::Rect Cascade_conformity::get_face(int i) {
-    return vect_faces[i];
-}
-cv::Mat Cascade_conformity::convert_rect_to_mat(cv::Rect &rect) {
-    cv::Mat rec_to_mat;
-    rec_to_mat= rec_to_mat(rect);
-	return rec_to_mat;
-}
+
+
+//cv::Rect Cascade_conformity::get_face(int i) {
+//    return vect_faces[i];
+//}
+//cv::Mat Cascade_conformity::convert_rect_to_mat(cv::Rect &rect) {
+//    cv::Mat rec_to_mat;
+//    rec_to_mat= rec_to_mat(rect);
+//	return rec_to_mat;
+//}
 
 //bool Cascade_conformity::isEyeOpen(cv::Mat frame)
 //{

@@ -4,25 +4,17 @@
 #ifndef AUTHENTICATION_SYSTEM_CASCADE_OBJECT_DETECTOR_H
 #define AUTHENTICATION_SYSTEM_CASCADE_OBJECT_DETECTOR_H
 
-class cascade_Base {
+class Cascade_base {
 public:
-    cascade_Base();
-    ~ cascade_Base();
 
-    void load(std::string path);
+	Cascade_base();
+	~ Cascade_base();
+
     virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
-	// virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces);
-
-//	void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
-	virtual void Special_Transform(); // Transform Specific to the cascade.
-
-// Attributes of the class
-public: // Shared with children
-
-	std::vector<cv::Rect> vect_faces; // Should be gone
+	virtual void EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
 
-private: // Kept for itself
+private:
 	int heigth;
 	int width;
 	int padding;

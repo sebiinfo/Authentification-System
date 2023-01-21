@@ -31,7 +31,5 @@ target_link_libraries(${PROJECT_NAME}
         PUBLIC ${INCLUDE_QT}
         PUBLIC OpenCVExternalLibrary
         PUBLIC sources
-#       PUBLIC images
         )
 
-#set_target_properties(images PROPERTIES LINKER_LANGUAGE CXX)

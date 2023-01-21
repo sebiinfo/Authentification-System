@@ -10,28 +10,50 @@
 #include <string>
 const double pi = 3.14159265358979323846;
 
-Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer(224,224,10,"nameofcascade") {}
+Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer("no_name") {}
 
-Cascade_Localizer::Cascade_Localizer(int w) : Cascade_Localizer(w,w, 10,"nameofcascade") {}
+Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen) : Cascade_Localizer(cascade_chosen,244) {}
 
-Cascade_Localizer::Cascade_Localizer(int w,int pad) : Cascade_Localizer(w, w,pad,"nameofcascade") {}
+Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen,int w) : Cascade_Localizer(cascade_chosen,w,10) {}
+
+Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen,int w,int pad) : Cascade_Localizer(cascade_chosen,w,w,pad) {}
 
 
-Cascade_Localizer::Cascade_Localizer(int w, int h, int pad, std::string cascade_chosen){
+Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen, int w, int h, int pad){
     height = h;
     width = w;
     padding = pad;
-    if (cascade_chosen == "conformity" || cascade_chosen == "Conformity"){
-        cascade = new Cascade_conformity();
-    }
-    else {
-        cascade = new Cascade_detect_cv();
-    }
-//   cascade.load("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
+    change_Cascade_name(cascade_chosen);
+    reload_cascade();
+
 }
 
 
 Cascade_Localizer::~Cascade_Localizer() {}
+
+
+void Cascade_Localizer::change_Cascade_name(std::string cascade_chosen)
+{
+    Cascade_name = cascade_chosen;
+}
+
+std::string Cascade_Localizer::get_Cascade_name()
+{
+    return Cascade_name;
+}
+
+
+void Cascade_Localizer::reload_cascade()
+{
+if (Cascade_name == "conformity" || Cascade_name == "Conformity"){
+    cascade = new Cascade_conformity();}
+
+else if(Cascade_name=="fancy" || Cascade_name=="Fancy"){
+    cascade = new Cascade_conformity();}
+
+else{
+    cascade = new Cascade_basic();}
+}
 
 
 void Cascade_Localizer::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces) {
@@ -149,18 +171,8 @@ void Cascade_Localizer::Rescale(std::vector<cv::Mat> &images)
         }
 }
 
-double Cascade_Localizer::get_angle_from_eyes(cv::Mat image, std::vector<cv::Rect> &faces, std::vector<cv::Rect> eyes) {
+double Cascade_Localizer::get_angle_from_eyes(std::vector<cv::Rect> eyes) {
 
-    int x, y, w, h;
-    for (int i = 0; i < faces.size(); i++)
-    {
-        x = faces[i].x;
-        y = faces[i].y;
-        w = faces[i].width;
-        h = faces[i].height;
-//        cv::rectangle(image, cv::Point(x, y), cv::Point(x + w, y + h), cv::Scalar(0, 255, 0), 2);
-//        cv::circle(image, cv::Point(x + int(w * 0.5), y + int(h * 0.5)), 4, cv::Scalar(0, 255, 0), -1);
-    }
     int index = 0;
     cv::Rect eye_1(0, 0, 0, 0);
     cv::Rect eye_2(0, 0, 0, 0);
@@ -214,41 +226,61 @@ double Cascade_Localizer::get_angle_from_eyes(cv::Mat image, std::vector<cv::Rec
     return 0;
 }
 
-cv::Mat Cascade_Localizer::rotate_face(cv::Mat image, std::vector<cv::Rect> &faces, double angle)
+void Cascade_Localizer::rotate_face(cv::Mat &image, double angle)
 {
-    //    cv::Size s= image.size();
-    //    double height =s.height;
-    //    double width = s.width;
-    if(-10<angle<10){
-        return image;
+
+	if(-10<angle && angle<10){
+		return;
     }
     int height, width;
     height = image.rows;
     width = image.cols;
+
     cv::Point2f image_center = cv::Point(height / 2, width / 2);
     cv::Mat rotation_mat = cv::getRotationMatrix2D(image_center, angle, 1);
+
     double abs_cos = abs(cos(angle));
     double abs_sin = abs(sin(angle));
     int bound_w = height * abs_sin + width * abs_cos;
     int bound_h = height * abs_cos + width * abs_sin;
+
     rotation_mat.at<double>(0, 2) += bound_w / 2 - image_center.x;
     rotation_mat.at<double>(1, 2) += bound_h / 2 - image_center.y;
-    cv::warpAffine(image, image, rotation_mat, cv::Size(bound_w, bound_h));
-    cascade.detectMultiScale(image, faces,  1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
+    cv::warpAffine(image, image, rotation_mat, cv::Size(bound_w, bound_h));
+	// cascade->detectMultiScale(image, faces,  1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+
+	return;
 }
 
 
-std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image,std::vector<cv::Rect> faces)
+std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image)
 {
-    std::vector<cv::Mat> out;
 
-	cascade->Special_Transform();
+	std::vector<cv::Rect> faces = std::vector<cv::Rect>();
+    cascade->detectMultiScale(image, faces,  1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
-    out = Crop(image,faces);
-    Rescale(out);
 
-    return out;
+    std::vector<cv::Mat> images = Crop(image,faces);
+    
+
+	if(Cascade_name=="Fancy" || Cascade_name=="fancy"){
+
+    std::vector<cv::Rect> eyes;
+
+    double angle;
+
+		for (int i=0;i<images.size();i++){
+			cascade->EyedetectMultiScale(images[i],eyes,1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+            angle = get_angle_from_eyes(eyes);
+			rotate_face(images[i],angle);
+		}
+
+    }
+
+	Rescale(images);
+
+	return images;
 
 }
 
