@@ -23,18 +23,18 @@ void Localizer::localize_rect(cv::Mat &image, std::vector<cv::Rect> &faces)
     assert(false);
 }
 
-std::vector<cv::Mat> Localizer::localize(cv::Mat &image, std::vector<cv::Rect> &faces_rect)
-{
-    localize_rect(image, faces_rect);
-    std::vector<cv::Mat> faces;
-    for (int i = 0; i < faces_rect.size(); i++)
-    {
-        cv::Mat temp;
-        cv::resize(cv::Mat(image, faces_rect[i]), temp, cv::Size(width, height), 0, 0, cv::INTER_LINEAR);
-        faces.push_back(temp);
-    }
-    return faces;
-}
+//std::vector<cv::Mat> Localizer::localize(cv::Mat &image, std::vector<cv::Rect> &faces_rect)
+//{
+//    localize_rect(image, faces_rect);
+//    std::vector<cv::Mat> faces;
+//    for (int i = 0; i < faces_rect.size(); i++)
+//    {
+//        cv::Mat temp;
+//        cv::resize(cv::Mat(image, faces_rect[i]), temp, cv::Size(width, height), 0, 0, cv::INTER_LINEAR);
+//        faces.push_back(temp);
+//    }
+//    return faces;
+//}
 
 std::vector<cv::Rect> Localizer::localize_rect(cv::Mat &image)
 {

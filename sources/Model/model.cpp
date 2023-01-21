@@ -3,7 +3,6 @@
 #include "../Classification/classifier.hpp"
 #include "../Classification/decisiontree.hpp"
 #include "../Classification/knn.hpp"
-#include "../Localization/cascadecv.hpp"
 #include "../Localization/localizer.hpp"
 #include "../Vectorization/fisher.hpp"
 #include "../Vectorization/vectorizer.hpp"
@@ -42,7 +41,7 @@ Model::Model(int num_people, int num_feature, int width, int height,
     this->width = width;
     this->height = height;
 
-    if (localizer == "Cascade")
+	if (localizer == "Basic" || localizer == "conformity" || localizer == "Conformity" || localizer=="Fancy" || localizer=="fancy")
     {
         this->localizer = new Cascade_Localizer(localizer, width, height, 10);
     }
@@ -120,8 +119,7 @@ Model::~Model()
 
 std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces)
 {
-    // std::vector<cv::Mat> in_faces = localizer->localize(image, faces);
-    std::vector<cv::Mat> in_faces;
+	std::vector<cv::Mat> in_faces = localizer->Transform(image);
     in_faces.push_back(image);
     std::vector<int> output;
     for (int i = 0; i < in_faces.size(); i++)

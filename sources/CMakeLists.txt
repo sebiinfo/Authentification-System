@@ -1,6 +1,5 @@
 
 add_library(sources INTERFACE Liveness/liveness.cpp)
-add_library(sources INTERFACE)
 add_subdirectory(Cropimage)
 add_subdirectory(Cascade)
 add_subdirectory(Detect)
