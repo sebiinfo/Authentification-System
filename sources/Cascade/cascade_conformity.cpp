@@ -9,8 +9,8 @@ const double pi = 3.14159265358979323846;
 #define test 0 // To load correct haarcascade
 
 #if test == 0
-std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_eye.xml";
-std::string path_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_eye.xml";
+std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_lefteye_2splits.xml";
+std::string path_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_lefteye_2splits.xml";
 
 #elif test == 1
 
@@ -43,7 +43,7 @@ void Cascade_conformity::isEye(cv::Mat image, std::vector<cv::Rect> &faces)
     for(cv::Rect &face:faces){
         tempfaces.clear(); //Reinitialize tempfaces
         faceImage = image(face);
-        cascade_eyes.detectMultiScale(faceImage, tempfaces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+        cascade_eyes.detectMultiScale(faceImage, tempfaces, 1.06, 5, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(40, 40));
         if (tempfaces.size()==0){
             faces.erase(std::remove(faces.begin(),faces.end(),face),faces.end());
         }

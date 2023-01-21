@@ -10,7 +10,7 @@
 //Yassine = 0;
 //Romain = 1;
 
-#define test 2
+#define test 0
 
 #if test ==3
 
@@ -51,12 +51,12 @@ int main(){
 int main()
 {
 
-
-	std::string path = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/";
+	std::string path = "./images/";
 	std::string folder = "Testing/";
 	std::string name= "sophie";
 	std::string open = "open.jpg";
 	std::string closed = "closed.jpg";
+
 
 	std::string img_open = path+folder+name+open;
 	std::string img_closed = path+folder+name+closed;
@@ -163,15 +163,27 @@ int test_angle() {
     while ((ent = readdir(dir)) != nullptr) {
         std::string fileName = ent->d_name;
         if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
-            cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
+            cv::Mat image_open = cv::imread(folder + "//" + fileName);
             Cascade_Localizer loc= Cascade_Localizer("fancy");
-            std::vector<cv::Mat> images = loc.Transform(frameclosed);
-//            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
-for(int i=0; i<images.size();i++){
-
-            cv::imshow(fileName,images[i]);
+          std::vector<cv::Mat> images = loc.Transform(image_open);
+          for (int i=0;i<images.size();i++)
+          {
+              std::vector<cv::Rect> eyes;
+              loc.cascade->detectMultiScale(images[i], eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+              double angle=loc.get_angle_from_eyes(eyes);
+              std::cout<<
+//              loc.rotate_face(images[i],angle);
+              cv::imshow(fileName, images[i]);
+            std::cout<<fileName;
             cv::waitKey(0);
-}
+          }
+
+//            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
+//for(int i=0; i<images.size();i++){
+//
+//            cv::imshow(fileName,images[i]);
+//            cv::waitKey(0);
+//}
         }
     }
     closedir(dir);
