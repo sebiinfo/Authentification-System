@@ -52,6 +52,9 @@ Camera::Camera() : ui(new Ui::Camera)
 
     setCamera(QMediaDevices::defaultVideoInput());
     ui->stacked->setCurrentIndex(0);
+    ui->localization_1->setChecked(true);
+    ui->vectorization->setChecked(true);
+    ui->classification_1->setChecked(true);
 }
 
 void Camera::setCamera(const QCameraDevice &cameraDevice)
