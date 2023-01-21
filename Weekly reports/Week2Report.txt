@@ -1,0 +1,84 @@
+Francisco Moreira Machado:
+    Helped setup OpenCV on the machines of all the members of the Algorithm Development team. (GTK missing libraries on Linux, multiple types of error on Windows)  
+    Continued the study of possible approaches to the development of the algorithms and coordinated with the team for a initial division of the team into three parts that work separately and agreed on how to connect all parts. Focused especially on the implementation of conventional algorithms (FisherFaces and EigenFaces) and how to make the general divison in a way that would be easy to slowly incorporate a more complicated DNN algorithm. 
+    Focused on testing and making basic modification to sample OpenCV code (taken from the official tutorials) to better understand the functionalities of the library.
+
+Yassine Turki:
+    I finished implementing the Password, Username and Profile class with Jasmine Watissee. We created our own hashing function and used a Password-Based Key Derivation Function ( by creating a salt, ensuring it is unique, appending the salt to the password and hash it multiple times). 
+    I finished installing OpenCV on Windows.
+    We will focus on debugging at the lecture, and then help the ML team to start getting as much as possible independent from openCV and maximize efficiency of the authentication.
+
+Sebi Simon:
+Week2:
+    -I built the general framework of the project on the main and facial recognition branch, added doc, libs souces, gitignore and cooperated with Budura Bogdan on the 
+    general CMake files of the project
+    -managed to run opensource code on opencv to work with camera and run the facial recognition using haarcascades already implemented in git
+    -started planning the classification algorithms together with Santorin Yu and Budura Bogdan, which will take the vector containing important information and classify it in multiple classes according to the specific face of the user
+    -next week I will implement the data class which stores the vectors and write the first algorithm to separate the nodes into classes
+
+Budura Bogdan:
+Second Week:
+	-I have written the cmake files for the project in cooperation with Sebi Simon.
+	-Managed to test the code and finally installed all the necessary dependencies for opencv. 
+	-Managed to fix the problem with harcascades path issue as well as the missing gtk libraries required for opencv.
+	-Did research on the Classification Algorithm with Sebi Simon which we will start to implement this week.
+
+Sophie-Claire Antoun:
+    As I found issues on monday when testing if OpenCV worked for me, one of the main goals achieved this week was finally setting it up completely, testing it & its connection to my webcam, and configuring the structure of my code more deeply. 
+    I then found some Useful APIs from mongodb c driver and adapted them to our accounts, however, I still have some issues with one library that could jeopardize the whole access to the mongodb database. 
+    Therefore, we thought about a way to keep on advancing on the project, while we try to solve the mongodb issue that my colleague Mija mainly looked into: CSV files. 
+    The next step is for us to coordinate the outputs of the password class with the inputs of the CSV files (or potentially MySQL) while trying to get the mongo c driver to work, so that we don’t lose time. 
+
+
+Santorin Yu:
+   - I finally uploaded OpenCV using the IDE Clion (instead of QT), which will fluidify the access of different builds (notably debugging) for the project. 
+   - On OpenCV, I familiarized myself with the Haar Cascade object detection.
+   - I also started to plan with two of our members how to implement our multi-class classifier algorithm. The idea is to identify the category of the given dataset        depending on certain aspects of the detected face. Then, the classification algorithm will classify the input vector into different classes.
+   - Hence, next week I will be focusing on the implementation of those classes by splitting the data structures.
+
+
+jasmine watissee:
+- This week, I worked on the encryption on the password together with Yassine. We finished it.
+- I also created a function to test the encryption (make sure the hashes are unique). The function is implemented but we haven't tested it yet. We have some problems when running the code.
+- Next week, I will test the encryption thanks to the test function I created and I will work together with other groups to link my code with them.
+
+Romain Poggi:
+ Week2:
+    I have managed to setup opencv and build it on my computer. I have started working on a cpp and hpp file which gives basic functions to show face, get coordinates of the face and a function that crops an image based on given coordinates, along with other functions.
+
+Paula Gonzalez Alvarez:
+Week 2
+    - Finally finished setting up OpenCV on windows (which took at least 6 hours)
+    - Explored QT design studio and created a login page there and tried to see how compatible it is with github and with other people's programs
+    - Created a first template for the camera for the UI that still gives some errors which I am trying to fix (with softwares for photos and videos)
+    - Thought about how to adapt everything together, like the things on QT creator, with the things on DS, with functions other already implemented (it's very
+      complicated so I'll have to do some research and spend more time on this next week)
+
+Cezara Petrui:
+    I put in a lot of effort to install OpenCV and after many hours, I eventually manage to install it on my machine (on Windows). I collaborated with my colleagues Alexandru Serban and Francisco Moreira to analyze the Fisherfaces algorithm, understand the input and the output that the algorithm should give (together with the rest of the team that focuses on the machine learning implementation). More specifically, I looked into the performance of different particularities of the algorithm, into the already built-in library of opencv for Fisherfaces, as well as into how to make use of Local Binary Patterns Histograms. 
+
+Alexandru Serban:
+    I spent a lot of time trying to install OpenCV and I finally managed to install it on Windows. 
+    I analyzed together with my colleagues Cezara Petrui and Francisco Moreira the particularities of the Fisherfaces algorithm that I am going to start implementing next week. I also did some research about the input and the output of the algorithm in order to better explain to my colleagues what I would expect for the input of the algorithm and what they should expect to receive from me.  
+
+Do Bach Khoa:
+    I installed opencv and got used to some of the library’s basic objects and functions.
+    I did my research about Deep Learning and Object Detection Technique, such as DeepMultiBox, R-CNN, fast-faster RCNN, YOLO …
+    I looked into classical and more modern Facial recognition algorithms and methodologies, such as FisherFaces, Facenet and DeepFace, together with some other members of the team.
+    Task for next week: I hope to put together with other members a baseline (based on classical methodologies) and obtain solid performance on certain (easier) datasets.
+
+Mija Pilkaite:
+    I spent the majority of the week setting up my MongoDB driver, which unfortunately just does not want to work. I looked for other solutions, which right now is a virtual machine with Linux, but my computer doesn't have a lot of memory. 
+    Because of the struggles, I decided to store the information into a csv file to have some kind of information storage. 
+    I wrote functions to add data and to find a username. Tomorrow I am checking whether the username is in the database and if its password matches. 
+    MongoDB is postponed until the break when I find either a computer with different OS or figure out the memory issue and how to connect the package from vm to my qt. 
+    
+Victor Lasocki
+	This week: 
+	- Finished setting up OpenCV on my computer
+	- Tried linking the test interface with temporary classes, faced quite a few issues so not final yet
+	Next week: 
+	- Implement 'create profile' page using classes created by the password team and using what I learned from the issues I faced last week 
+	- Look into adding more complex UI elements to the QT Design Studio (main one being the camera feed)
+
+

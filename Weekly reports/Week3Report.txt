@@ -1,0 +1,73 @@
+Jasmine Watissee:
+    This week, I finished the testing of the password. I had to debug a lot of things. The testing works, the hashes are all unique. I submitted the pull request to merge on main.
+    Next week, Yassine or I will solve the problems from the pull request while the other one will help Romain with image rescalling, …
+
+Sebastian Simon:
+    I made a source and header files called Classification which will take as input the input data after the fisher faces algorithm and classify a query to a specific person. I worked together with Santorin Yu
+    Next week I will implement the decision tree algorithm, continuing towards reaching the goal of having one no ML, one ML and one DeepLearning implementation of facial recognition
+
+Santorin Yu:
+    At the beginning of the week, my laptop stopped working, and I had to repair it… fortunately, I did not have to reinstall OpenCV. 
+    I collaborated with Sebastian Simon (and on his machine) on two header files and a source, called Classification. It will take the input data of the classifier algorithm and decides to which class of vectors it is closer.
+    Next week, I will start my research on implementing either the decision tree algorithm or the random forest one.
+
+Bogdan Budura
+    Continued working on the cmake structure for the project and managed to link all subdirectories as well as their dependencies.
+    Worked on the Classification class where we will implement a variety of classification algorithms.
+    Looked over the documentation of OpenCv to be able to implement the algorithms we researched on.
+
+Romain Poggi:
+    This week, I have finished the file that is in charge of cropping images in the right format so that the recognition algorithms work.
+    Had to do a lot of testing to make sure the function was accurate, leading to a lot of debugging
+    Next week, will work on scaling the images so that every image is standardized, with a face being the same dimension ( say 50x100 pixels ).
+
+Sophie-Claire Antoun 
+    This week I implemented the hash function for the password, and did some structure arrangements concerning the csv file.
+    I then started doing some research on resizing of images, to join Romain in his part of the project, while not giving up on my mongodb implementation.
+    Next week I will work on an attribute that would send a user a certain code by email if they forgot their password. (find API - adapt it, implement the platform). 
+
+Francisco Moreira Machado Neto
+    Helped set up OpenCV on the last machines of the Algorithms Team.
+    Worked on the general interfaces for the Models so that the front-end team knows what to expect as a final result. Worked on Interface for Vectorization Algorithm and one of its implementations being the Fisher class.
+    For the next week I expect to finish implementing the FisherFaces algorithm.
+
+Do Bach Khoa
+    Worked on the structure and classes that connect different blocks of the face recognizer. I committed my first lines of code.
+    Worked on the FisherFaces algorithm.
+    Next week: I hope to work with the team to come up with an algorithm/model that can perform actual facial recognition on some dataset and would act as a baseline
+
+Victor
+    This week, I looked into joining the work done by the password team
+    I also started working on the looks of the app and how to fin tune the design
+    However, I faced an issue when my computer crashed and qt creator and opencv stopped working and I lost some of my work
+    This week, I will reset qt and opencv in the hopes of getting them to work again so I can get back on track
+
+Paula
+    This week, I finally managed to connect QT Design Studio with QT Creator and so now the application (the login part so far) is fully functional on QT Creator and is ready to incorporate the hpp and cpp files from the password encryption team.
+    Worked with all of the different teams to get an idea of what each person is doing and expecting from the UI. For example, how they want to incorporate facial recognition into the app or what will happen once people log in.
+    Managed to create functional buttons that switch between the states of the UI interfaces.
+    Next week I will merge the QT Creator interface with the password encryption team’s work and create more of the UI.
+
+
+Yassine: 
+    This week I finalized the password class with Jasmine along with the tests in order to make sure the code is impeccable to merge into main. We submitted a pull request in order for the team to coordinate on formats of code for optimal compiling.
+    I had a power issue with my computer so I could not commit too much this week. It is fixed today so I will push  more code next week.
+    Next week, either Jasmine or I will take care of updating the password files to make them compliant with the other branches, and join Romain into image processing and linear scaling.
+
+
+Cezara Petrui:
+    I worked with OpenCV, got familiar with the existing libraries that can be useful for the implementation of the main algorithm of the ML part that I’m doing with my colleagues (namely, Fischerfaces). I had some troubles but with the help of my colleague Francisco Moreira I used OpenCV with qmake instead of cmake (I will further work on solving this issue before the holiday).
+    I focused on doing research for the algorithm in collaboration with Alexandru Serban. One specific thing we noticed is that, for an average of 6 pictures, Fischerfaces proves more efficient than Eigenfaces (however, for other numbers, Eigenfaces is very efficient, with 97% accuracy rate). Hence, we decided to focus on Fischerfaces and correctly adapt the number of photos. We also selected the main functions that we need to implement for the algorithm in order to have everything organized
+    Next week, I plan to finalize the implementation of Fischerfaces and solve optimization problems that might arise.
+
+Alexandru Serban 
+    I got accustomed to the OpenCV library since I had issues installing it in the previous weeks
+    I discussed together with Cezara Petrui a paper about the differences between the different possible algorithms for ML, focusing on the efficiency of the FisherFaces algorithm in terms of the number of pictures of each person in the database. The interesting finding was the higher efficiency of an input of 6 images per person than with 7 or 8.
+    Next week I will start implementing the algorithm together with the members from the ML team
+
+Mija Pilkaite
+    This week I continued my development of the csv file and added various functions for logging in, accessing and modifying user data in our 'database'. 
+    I collaborated from UI to adapt my functions accordingly, had to change many things. 
+    I also created a new class to store the functions and ease the adding of the database use to UI and password hashing. 
+    Next week, I'm going to finish writing some more functions, add some more features for modifying the data (in collaboration with other project parts, so that it would function together). 
+    Also, as we started brainstorming about the content after logging in, I will add a new class that takes user input and can store more data about the user that is put in. 
