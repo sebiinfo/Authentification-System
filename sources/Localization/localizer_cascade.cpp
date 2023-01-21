@@ -1,13 +1,11 @@
-#include "localizer_cascade.hpp"
-#include "localizer.hpp"
 #include <iostream>
+#include <string>
 #include <opencv2/core.hpp>
-#include <opencv2/core/base.hpp>
-#include <opencv2/core/mat.hpp>
-#include <opencv2/core/matx.hpp>
+
+#include "localizer_cascade.hpp"
 #include "../Cascade/cascade_detect_cv.hpp"
 #include "../Cascade/cascade_conformity.hpp"
-#include <string>
+
 const double pi = 3.14159265358979323846;
 
 Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer("no_name") {}
@@ -45,10 +43,14 @@ std::string Cascade_Localizer::get_Cascade_name()
 void Cascade_Localizer::reload_cascade()
 {
 if (Cascade_name == "conformity" || Cascade_name == "Conformity"){
-    cascade = new Cascade_conformity();}
+	cascade = new Cascade_basic();
+	// cascade = new Cascade_conformity(); Not yet implemented
+}
 
 else if(Cascade_name=="fancy" || Cascade_name=="Fancy"){
-    cascade = new Cascade_conformity();}
+	cascade = new Cascade_basic();
+	// cascade = new Cascade_conformity(); Not yet implemented
+}
 
 else{
     cascade = new Cascade_basic();}
@@ -56,7 +58,7 @@ else{
 
 
 void Cascade_Localizer::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces) {
-	cascade->detectMultiScale(image, faces, 1.06, 2, 0, cv::Size(30, 30));
+	cascade->detectMultiScale(image, faces, 1.06, 4, 0, cv::Size(30, 30));
 }
 
 
@@ -73,19 +75,19 @@ bool Cascade_Localizer::is_pad(cv::Mat image, cv::Rect face)
 	pady = round ( (h * padding)/100 );
 
 	if(face.x-padx <= 0){
-		std::cout << "left" << std::endl;
+//		std::cout << "left" << std::endl;
 		return false;} // Left side
 
 	if(face.x+w+padx >= boundx){
-		std::cout << "right" << std::endl;
+//		std::cout << "right" << std::endl;
 		return false;} // Right side
 
 	if(face.y-pady <= 0){
-		std::cout << "bot" << std::endl;
+//		std::cout << "bot" << std::endl;
 		return false;} // Bottom side
 
 	if(face.y+h+2*pady >= boundy){
-		std::cout << "top" << std::endl;
+//		std::cout << "top" << std::endl;
 		return false;} // Top side
 
     return true;
@@ -277,7 +279,7 @@ void Cascade_Localizer::recheck(std::vector<cv::Mat> &images)
     for(int i=0;i<images.size();i++)
     {
 		img = images[i];
-		cascade->detectMultiScale(img,faces,1.06, 2, 0| cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+		cascade->detectMultiScale(img,faces,1.06, 4, 0| cv::CASCADE_SCALE_IMAGE, cv::Size(20, 20));
 		if (faces.size() == 0){
 			images.erase( images.begin() + i);
         }
@@ -291,7 +293,7 @@ std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image)
 {
 
 	std::vector<cv::Rect> faces = std::vector<cv::Rect>();
-    cascade->detectMultiScale(image, faces,  1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+	cascade->detectMultiScale(image, faces,  1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(20, 20));
 
 
 

@@ -6,7 +6,7 @@ const double pi = 3.14159265358979323846;
 // Yassine = 0
 // Romain = 1
 // Other = 2
-#define test 0 // To load correct haarcascade
+#define test 1 // To load correct haarcascade
 
 #if test == 0
 std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_frontalface_default.xml";
