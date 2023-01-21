@@ -6,7 +6,7 @@ const double pi = 3.14159265358979323846;
 // Yassine = 0
 // Romain = 1
 // Other = 2
-#define test 1 // To load correct haarcascade
+#define test 0 // To load correct haarcascade
 
 #if test == 0
 std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_eye.xml";
@@ -38,9 +38,11 @@ void Cascade_conformity::load_cascade_eyes(std::string path_e){
 
 void Cascade_conformity::isEye(cv::Mat image, std::vector<cv::Rect> &faces)
 {
+    std::vector <cv::Rect> tempfaces;
+    cv::Mat faceImage;
     for(cv::Rect &face:faces){
-        std::vector <cv::Rect> tempfaces;
-        cv::Mat faceImage = image(face);
+        tempfaces.clear(); //Reinitialize tempfaces
+        faceImage = image(face);
         cascade_eyes.detectMultiScale(faceImage, tempfaces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
         if (tempfaces.size()==0){
             faces.erase(std::remove(faces.begin(),faces.end(),face),faces.end());
@@ -61,67 +63,6 @@ void Cascade_conformity::EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect
     cv::equalizeHist(image, image);
 	cascade_eyes.detectMultiScale(image, eyes, scaleFactor, minNeighbors, flags, minSize);
 }
-
-
-
-//cv::Rect Cascade_conformity::get_face(int i) {
-//    return vect_faces[i];
-//}
-//cv::Mat Cascade_conformity::convert_rect_to_mat(cv::Rect &rect) {
-//    cv::Mat rec_to_mat;
-//    rec_to_mat= rec_to_mat(rect);
-//	return rec_to_mat;
-//}
-
-//bool Cascade_conformity::isEyeOpen(cv::Mat frame)
-//{
-//    // Load the Haar cascade classifier for eye detection
-//    cv::CascadeClassifier eyeCascade;
-//    eyeCascade.load(path_face);
-//
-//    // Detect eyes in the image using the Haar cascade classifier
-//    std::vector<cv::Rect> eyes;
-//    eyeCascade.detectMultiScale(frame, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-//    return eyes.size() > 0;
-//}
-//
-//
-//bool Cascade_conformity::conform(cv::Mat image, bool smartcascade/*=true*/) {
-//    // if smartcascade==true, we only take the images that are conform into the conformity vector faces.
-//
-//    if (smartcascade == true) {
-//        if (isFace(image)) {
-//            if (isEye(image)) {
-//                double angle = get_angle_from_eyes(image);
-//                rotate_face(image, angle);
-//                return true;
-//            } else {
-//                std::cout << "Face was found but eyes were closed";
-//                return false;
-//            }
-//        } else {
-//            std::cout << "No face was found";
-//            return false;
-//        }
-//    }
-//}
-
-//
-//std::vector<cv::Mat> Cascade_conformity::conformArray(std::vector<cv::Mat> faces)
-//{
-//    std::vector<cv::Mat> conformArray;
-//    for (int i = 0; i < faces.size(); i++)
-//    {
-//        if (conform(faces[i]))
-//        {
-//            conformArray.push_back(faces[i]);
-//        }
-//    }
-//    return conformArray;
-//}
-
-//cv::Mat rotate_face(cv::Mat &image)
-
 
 //
 //void Cascade_conformity::normalizeIntensities(cv::Mat &image)
