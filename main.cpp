@@ -155,6 +155,33 @@ int main()
 //    return 0;
 //}
 
+int test_angle_single_image(){
+    cv::Mat image = cv::imread("C:\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
+    Cascade_Localizer loc = Cascade_Localizer("fancy");
+    std::vector<cv::Rect> eyes;
+    loc.cascade->EyedetectMultiScale(image, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));if (eyes.size() > 0) { // check if there are any detected eyes
+//        for (int i=0; i<eyes.size(); i++){
+//        cv::Rect eyeRect = eyes[i]; // get the first detected eye
+//        cv::Mat eyeMat = image(eyeRect); // extract the area of the image corresponding to the eyeRect
+//        cv::imshow("Eye", eyeMat); // display the eye
+//        cv::waitKey(0);
+//        }
+        std::vector<cv::Mat> mats =loc.Transform(image);
+
+        for(int i=0; i<mats.size();i++){// check if there are any detected eyes
+        cv::imshow("img", mats[i]);
+        cv::waitKey(0);
+    }
+        return eyes.size();
+    }}
+
+//    std::vector<cv::Mat> mats =loc.Transform(image);
+//    std::cout<<mats.size();
+//    for (int i=0; i<mats.size();i++){
+//        cv::imshow("img",mats[i]);
+//        cv::waitKey(0);
+//    }
+
 int test_angle() {
     DIR* dir;
     struct dirent* ent;
@@ -169,12 +196,13 @@ int test_angle() {
           for (int i=0;i<images.size();i++)
           {
               std::vector<cv::Rect> eyes;
-              loc.cascade->detectMultiScale(images[i], eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+              std::vector<cv::Rect> faces;
+              loc.cascade->detectMultiScale(images[i], faces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+              loc.cascade->EyedetectMultiScale(images[i], eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
               double angle=loc.get_angle_from_eyes(eyes);
-              std::cout<<
 //              loc.rotate_face(images[i],angle);
               cv::imshow(fileName, images[i]);
-            std::cout<<fileName;
+            std::cout<<fileName<<"    angle: "<<angle<<std::endl;
             cv::waitKey(0);
           }
 
@@ -222,7 +250,8 @@ int test_angle() {
 
 
 int main(){
-    test_angle();
+    test_angle_single_image();
+//    test_angle();
 //    testeyedetection();
     //testlocalizer();
 
