@@ -3,23 +3,20 @@
 #if CAMERA == 1
 
 #include <QApplication>
+#include <QFile>
 #include <camera.h>
 #include <iostream>
-#include <QFile>
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     Camera camera;
     camera.show();
-    QFile styleSheetFile("C:\\Users\\paula\\Downloads\\Telegram Desktop\\stylesheet.qss");
+    QFile styleSheetFile("../resources/stylesheet.qss");
     styleSheetFile.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(styleSheetFile.readAll());
     app.setStyleSheet(styleSheet);
     return app.exec();
-
 };
-
-
 
 #elif CAMERA == 0
 
