@@ -42,7 +42,7 @@ public:
     Camera();
 
 public slots:
-    void saveMetaData();
+    // void saveMetaData();
 
 private slots:
     void setCamera(const QCameraDevice &cameraDevice);
@@ -50,19 +50,19 @@ private slots:
     void startCamera();
     void stopCamera();
 
-    void record();
+    /* void record();
     void pause();
     void stop();
-    void setMuted(bool);
+    void setMuted(bool); */
 
     void takeImage();
     void displayCaptureError(int, QImageCapture::Error, const QString &errorString);
 
     void configureCaptureSettings();
-    void configureVideoSettings();
+    // void configureVideoSettings();
     void configureImageSettings();
 
-    void displayRecorderError();
+    // void displayRecorderError();
     void displayCameraError();
 
     void updateCameraDevice(QAction *action);
@@ -72,7 +72,7 @@ private slots:
     // void updateRecorderState(QMediaRecorder::RecorderState state);
     void setExposureCompensation(int index);
 
-    void updateRecordTime();
+    // void updateRecordTime();
 
     void processCapturedImage(int requestId, const QImage &img);
 
@@ -85,7 +85,7 @@ private slots:
 
     void updateCameras();
 
-    void showMetaDataDialog();
+    // void showMetaDataDialog();
 
     void on_register_2_clicked();
 
@@ -161,6 +161,8 @@ private slots:
 
     void on_localization_1_toggled(bool checked);
 
+    void on_account_button_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
@@ -180,7 +182,7 @@ private:
     bool m_doImageCapture = true;
 
     MetaDataDialog *m_metaDataDialog = nullptr;
-    void buttonClicked();
+    // void buttonClicked();
 };
 
 #endif
