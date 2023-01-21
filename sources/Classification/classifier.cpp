@@ -1,6 +1,5 @@
 #include "classifier.hpp"
 #include "knn_testing.hpp"
-#include <bits/stdc++.h>
 #include <math.h>
 
 #include <algorithm>
