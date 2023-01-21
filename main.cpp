@@ -8,6 +8,7 @@
 #include <database.hpp>
 #include <iostream>
 int main(int argc, char *argv[]) {
+    std::cerr << "oi" << std::endl;
     QApplication app(argc, argv);
 
     Camera camera;

@@ -23,9 +23,10 @@ endif()
 qt_add_library(camera
     MANUAL_FINALIZATION
     camera.cpp camera.h ${camera_form}
+    asmOpenCV.h
     imagesettings.cpp imagesettings.h imagesettings.ui
-    videosettings.cpp videosettings.h ${videosettings_form}
-    metadatadialog.cpp metadatadialog.h
+    # videosettings.cpp videosettings.h ${videosettings_form}
+    # metadatadialog.cpp metadatadialog.h
 )
 
 set_target_properties(camera PROPERTIES
@@ -66,6 +67,6 @@ qt_add_resources(camera "camera"
         ${camera_resource_files}
 )
 target_include_directories(camera INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(camera PUBLIC sources)
+target_link_libraries(camera INTERFACE sources)
+target_link_libraries(camera PRIVATE OpenCVExternalLibrary PRIVATE ${INCLUDE_QT})
 qt_finalize_executable(camera)
-
