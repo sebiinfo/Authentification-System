@@ -41,10 +41,7 @@ std::vector<cv::Rect> Localizer::localize_rect(cv::Mat &image)
     assert(false);
 }
 
-std::vector<cv::Mat> Localizer::localize(cv::Mat &image, std::vector<cv::Rect> &faces_rect)
-{
-    assert(false);
-}
+
 
 std::vector<cv::Mat> Localizer::localize(cv::Mat &image)
 {

@@ -155,22 +155,35 @@ bool Classifier::is_alienated_id_linear(const cv::Mat &query, int id) {
             num_reps_id.push_back(num_reps[i]);
         }
     }
-    double max_distance=0;
+    double distance=0;
     for (int i=0; i<num_reps_id.size(); ++i){
         for(int j=i+1; j<num_reps_id.size(); ++j){
             double distance_ij=compute_distance(num_reps_id[i], num_reps_id[j]);
-            if (distance_ij>max_distance){
-                max_distance=distance_ij;
-            }
+//            if (distance_ij>max_distance){
+//                max_distance=distance_ij;
+//            }
+            distance+=distance_ij;
         }
     }
-    int count_alienated=0;
-    for (auto & rep : num_reps_id){
-        if (compute_distance(query, rep)>2*max_distance){
-            count_alienated++;
-        }
+    distance=distance/double(num_reps_id.size());
+    std::vector <double> gravity_center;
+    for (int i=0; i<dim; ++i){
+        double coord_i=0;
+    for (auto rep:num_reps_id) {
+        coord_i+=rep.at<double>(0,i);
     }
-    return double(count_alienated)/double (num_reps_id.size())>alienation_constant;
+    gravity_center.push_back(coord_i/double(num_reps_id.size()));
+    }
+
+    return compute_distance(cv::Mat(gravity_center, true), query)>distance*1.5;
+
+//    for (auto & rep : num_reps_id){
+//        if (compute_distance(query, rep)>0.8*max_distance){
+//            return true; //it is alienated
+//        }
+//    }
+    //return double(count_alienated)/double (num_reps_id.size())>alienation_constant;
+    return false;
 }
 
 

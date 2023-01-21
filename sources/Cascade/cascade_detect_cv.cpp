@@ -10,7 +10,7 @@
 Cascade_basic::Cascade_basic()
 {
 
-std::string face = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_alt.xml";
+std::string face = "../../resources/haarcascades/haarcascade_frontalface_alt.xml";
 
 	cascade = cv::CascadeClassifier();
 	cascade.load(face);
