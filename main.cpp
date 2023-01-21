@@ -3,49 +3,85 @@
 #include <opencv2/opencv.hpp>
 #include <dirent.h>
 #include "cascade_conformity.hpp"
-//#include "cropimage.hpp"
 #include <string>
-#include "localizer.hpp"
 #include "localizer_cascade.hpp"
 
 
 //Yassine = 0;
 //Romain = 1;
 
-#define test 0
+#define test 2
 
-#if test==2
+#if test ==3
+
+int main(){
+
+	std::string path = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/";
+	std::string folder = "Testing/";
+	std::string name= "agatha";
+	std::string open = "open.jpg";
+	std::string closed = "closed.jpg";
+
+	std::string img_open = path+folder+name+open;
+
+	cv::Mat image_open = cv::imread(img_open);
+
+	int h,w;
+	w = image_open.cols;
+	h = image_open.rows;
+
+	cv::imshow(" image1",image_open);
+
+	cv::waitKey(0);
+
+	cv::Rect crop_region(0,20,w-200,h-400);
+
+	image_open =image_open(crop_region);
+
+	cv::imshow(" image1",image_open);
+
+	cv::waitKey(0);
+
+
+	return 0;
+}
+
+#elif test==2
 
 int main()
 {
-	int w = 244;
-	int h = 244;
-	int pad = 10;
-
-	std::string img_path = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team/yassine.jpg";
-
-	cv::Mat image = cv::imread(img_path);
-
-//	cv::imshow(" image1",image);
-//	// created the window by name image1
-//	cv::waitKey(0);
-
-	Cascade_Localizer Loc = Cascade_Localizer();
 
 
-	std::cout << Loc.height << std::endl;
-	std::cout << Loc.width << std::endl;
-	std::cout << Loc.padding << std::endl;
+	std::string path = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/";
+	std::string folder = "Testing/";
+	std::string name= "sophie";
+	std::string open = "open.jpg";
+	std::string closed = "closed.jpg";
 
-	std::vector<cv::Rect> faces;
+	std::string img_open = path+folder+name+open;
+	std::string img_closed = path+folder+name+closed;
 
-	Loc.cascade->detectMultiScale(image,faces,1.06,2,0,cv::Size(30,30));
+	cv::Mat image_open = cv::imread(img_open);
+	cv::Mat image_closed = cv::imread(img_closed);
 
-	std::vector<cv::Mat> images = Loc.Transform(image);
+	Cascade_Localizer Loc = Cascade_Localizer("no_name",244,244,10);
 
-	cv::imshow(" image1",images[0]);
-	// created the window by name image1
-	cv::waitKey(0);
+	std::vector<cv::Mat> images_open = Loc.Transform(image_open);
+	std::vector<cv::Mat> images_closed = Loc.Transform(image_closed);
+
+	for (int i=0;i<images_open.size();i++){
+		cv::imshow(" image1",images_open[i]);
+
+		cv::waitKey(0);
+	}
+
+	for (int i=0;i<images_closed.size();i++){
+		cv::imshow(" image1",images_closed[i]);
+
+		cv::waitKey(0);
+	}
+
+
 
 
 }

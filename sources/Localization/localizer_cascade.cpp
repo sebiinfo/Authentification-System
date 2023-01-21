@@ -25,7 +25,6 @@ Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen, int w, int h, i
     padding = pad;
     change_Cascade_name(cascade_chosen);
     reload_cascade();
-
 }
 
 
@@ -57,7 +56,7 @@ else{
 
 
 void Cascade_Localizer::localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces) {
-	cascade->detectMultiScale(image, faces, 1.1, 2, 0, cv::Size(30, 30));
+	cascade->detectMultiScale(image, faces, 1.06, 2, 0, cv::Size(30, 30));
 }
 
 
@@ -66,25 +65,34 @@ bool Cascade_Localizer::is_pad(cv::Mat image, cv::Rect face)
     int padx, pady,boundx, boundy;
     int w,h;
     boundx = image.cols;
-    boundy = image.dims;
+	boundy = image.rows;
 
     w = face.width;
     h = face.height;
-    padx = round ( (1+padding/100) * w);
-    pady = round ( (1+padding/100) * h);
+	padx = round ( (w * padding)/100 );
+	pady = round ( (h * padding)/100 );
 
-    if(face.x-padx < 0){return false;} // Left side
+	if(face.x-padx <= 0){
+		std::cout << "left" << std::endl;
+		return false;} // Left side
 
-    if(face.x+w+padx > boundx){return false;} // Right side
+	if(face.x+w+padx >= boundx){
+		std::cout << "right" << std::endl;
+		return false;} // Right side
 
-    if(face.y-pady < 0){return false;} // Bottom side
+	if(face.y-pady <= 0){
+		std::cout << "bot" << std::endl;
+		return false;} // Bottom side
 
-    if(face.y+h+pady > boundy){return false;} // Top side
+	if(face.y+h+2*pady >= boundy){
+		std::cout << "top" << std::endl;
+		return false;} // Top side
 
     return true;
 }
 void Cascade_Localizer::Crop_(cv::Mat &image,cv::Rect face)
 {
+
     int w,h,x,y;
             w = face.width;
             h = face.height;
@@ -92,29 +100,37 @@ void Cascade_Localizer::Crop_(cv::Mat &image,cv::Rect face)
             y = face.y;
         if (!is_pad(image,face))
             {
-                image = image(cv::Range(y,y+h), cv::Range(x,x+h));
+
+				cv::Rect crop_region(x,y,w,h);
+				image = image(crop_region);
                 return;
             }
 
-            int padx = round(w *(1+ padding / 100));
-            int pady = round(h *(1+ padding / 100));
+	int padx = round((w * padding) / 100);
+	int pady = round((h * padding) / 100);
 
-            image = image(cv::Range(y-pady,y+h+pady), cv::Range(x-padx,x+h+padx));
+
+	cv::Rect crop_region(x-padx,y-2*pady,w+2*padx,h+2*pady);
+
+	image = image(crop_region);
 
 }
 
 std::vector<cv::Mat> Cascade_Localizer::Crop(cv::Mat image,std::vector<cv::Rect> faces)
 {
-    std::vector<cv::Mat> face_array;
-        cv::Mat face;
+        std::vector<cv::Mat> face_array;
+        cv::Mat img;
+        cv::Rect face;
 
-        for (size_t i = 0; i < faces.size(); i++)
+
+		for (int i = 0; i < faces.size(); i++)
         {
+            face = faces[i];
 
-            face = image.clone();
-            Crop_(face,faces[i]);
+            img = image.clone();
+            Crop_(img,face);
 
-            face_array.push_back(face.clone());
+            face_array.push_back(img.clone());
 
         };
         return face_array;
@@ -253,6 +269,23 @@ void Cascade_Localizer::rotate_face(cv::Mat &image, double angle)
 	return;
 }
 
+void Cascade_Localizer::recheck(std::vector<cv::Mat> &images)
+{
+    std::vector<cv::Rect> faces;
+	cv::Mat img;
+
+    for(int i=0;i<images.size();i++)
+    {
+		img = images[i];
+		cascade->detectMultiScale(img,faces,1.06, 2, 0| cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+		if (faces.size() == 0){
+			images.erase( images.begin() + i);
+        }
+    }
+}
+
+
+
 
 std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image)
 {
@@ -279,6 +312,8 @@ std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image)
     }
 
 	Rescale(images);
+
+    recheck(images);
 
 	return images;
 

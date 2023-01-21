@@ -23,21 +23,27 @@ class Cascade_Localizer : public Localizer {
 
     void localize_rect(cv::Mat & image, std::vector<cv::Rect> & faces);
 
-
-
-
     std::vector<cv::Mat> Transform(cv::Mat image);
 
 
 	Cascade_base* cascade;
 
+	void Crop_(cv::Mat &image,cv::Rect face);
+	std::vector<cv::Mat> Crop(cv::Mat image,std::vector<cv::Rect> faces);
+
   private:
+
+    int height;
+    int width;
+    int padding;
+
+
     std::string Cascade_name;
 
-	  bool is_pad(cv::Mat image, cv::Rect face);
+	bool is_pad(cv::Mat image, cv::Rect face);
 
-    void Crop_(cv::Mat &image,cv::Rect face);
-    std::vector<cv::Mat> Crop(cv::Mat image,std::vector<cv::Rect> faces);
+//    void Crop_(cv::Mat &image,cv::Rect face);
+//    std::vector<cv::Mat> Crop(cv::Mat image,std::vector<cv::Rect> faces);
 
     void Rescale(std::vector<cv::Mat> &images);
     void Rescale(cv::Mat &image);
@@ -46,7 +52,7 @@ class Cascade_Localizer : public Localizer {
     double get_angle_from_eyes(std::vector<cv::Rect> eyes);
     void rotate_face(cv::Mat &image, double angle);
 
-
+    void recheck(std::vector<cv::Mat> &images);
 
 };
 

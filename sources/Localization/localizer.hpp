@@ -38,12 +38,13 @@ class Localizer {
     void rotate_face(cv::Mat &image, double angle);
 
     double get_angle_from_eyes(std::vector<cv::Rect> eyes);
-    
+
+    private:
+
+          
     int width;
     int height;
     int padding; // in percentage
-
-    private:
 };
 
 #endif
