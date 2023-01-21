@@ -37,6 +37,7 @@
 Camera::Camera() : ui(new Ui::Camera)
 {
     ui->setupUi(this);
+
     m_audioInput.reset(new QAudioInput);
     m_captureSession.setAudioInput(m_audioInput.get());
 
@@ -90,7 +91,8 @@ void Camera::setCamera(const QCameraDevice &cameraDevice)
     if (m_camera->cameraFormat().isNull()) {
         auto formats = cameraDevice.videoFormats();
         if (!formats.isEmpty()) {
-            // Choose a decent camera format: Maximum resolution of at least 30 FPS
+            // Choose a decent camera format: Maximum resolution at at least 30 FPS
+            // we use 29 FPS to compare against as some cameras report 29.97 FPS...
             QCameraFormat bestFormat;
             for (const auto &fmt : formats) {
                 if (bestFormat.maxFrameRate() < 29
@@ -117,7 +119,7 @@ void Camera::keyPressEvent(QKeyEvent *event)
 
     switch (event->key()) {
     case Qt::Key_CameraFocus:
-//        displayViewfinder();
+        displayViewfinder();
         event->accept();
         break;
     case Qt::Key_Camera:
@@ -151,8 +153,8 @@ void Camera::processCapturedImage(int requestId, const QImage &img)
     ui->lastImagePreviewLabel->setPixmap(QPixmap::fromImage(scaledImage));
 
     // Display captured image for 4 seconds.
-//    displayCapturedImage();
-//    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
+    displayCapturedImage();
+    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
 }
 
 void Camera::configureCaptureSettings()
@@ -206,7 +208,8 @@ void Camera::setMuted(bool muted)
 void Camera::takeImage()
 {
     m_isCapturingImage = true;
-    m_imageCapture->captureToFile();
+    std::string path = "C:/Users/paula/OneDrive/Desktop/";
+    m_imageCapture->captureToFile(QString::fromStdString(path));
 }
 
 void Camera::displayCaptureError(int id, const QImageCapture::Error error,
@@ -263,15 +266,15 @@ void Camera::updateCameraDevice(QAction *action)
     setCamera(qvariant_cast<QCameraDevice>(action->data()));
 }
 
-//void Camera::displayViewfinder()
-//{
-//    m_camera -> displayViewfinder;
-//}
+void Camera::displayViewfinder()
+{
+    ui->stacked->setCurrentIndex(0);
+}
 
-//void Camera::displayCapturedImage()
-//{
-//    m_camera -> displayCapturedImage;
-//}
+void Camera::displayCapturedImage()
+{
+    ui->stacked->setCurrentIndex(1);
+}
 
 void Camera::readyForCapture(bool ready)
 {
@@ -570,6 +573,7 @@ int i = 0;
 
 void Camera::on_takeImageButton_clicked()
 {
+    takeImage();
     i +=1;
     if (i == 10) {
         QMessageBox::about(this, "Successful Account Created", "Thank you, your account is now complete.");

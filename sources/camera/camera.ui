@@ -777,7 +777,7 @@ QPushButton#back_3:pressed {
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page">
          <widget class="QPushButton" name="localization_2">
@@ -1105,7 +1105,7 @@ QPushButton#classification_2:pressed {
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page_3">
          <widget class="QPushButton" name="takeImageButton">
