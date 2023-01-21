@@ -42,7 +42,7 @@ void Cascade_conformity::isEye(cv::Mat image, std::vector<cv::Rect> &faces)
         std::vector <cv::Rect> tempfaces;
         cv::Mat faceImage = image(face);
         cascade_eyes.detectMultiScale(faceImage, tempfaces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-        if (tempfaces.size()>0){
+        if (tempfaces.size()==0){
             faces.erase(std::remove(faces.begin(),faces.end(),face),faces.end());
         }
     }
