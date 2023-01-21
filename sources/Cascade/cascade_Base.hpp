@@ -13,14 +13,6 @@ public:
     virtual void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 	virtual void EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
-
-private:
-	int heigth;
-	int width;
-	int padding;
-
-
-
 };
 
 

@@ -39,12 +39,13 @@ class Localizer {
 
     double get_angle_from_eyes(std::vector<cv::Rect> eyes);
 
+	int width;
+	int height;
+	int padding; // in percentage
+
     private:
 
-          
-    int width;
-    int height;
-    int padding; // in percentage
+
 };
 
 #endif

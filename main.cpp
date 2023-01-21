@@ -8,11 +8,46 @@
 
 
 //Yassine = 0;
-//Romain = 1;
+//Romain = 1,2,3,4;
 
-#define test 2
+#define test 4
 
-#if test ==3
+ #if test == 4
+
+
+void test_dir(std::string folder) {
+	DIR* dir;
+	struct dirent* ent;
+	dir = opendir(folder.c_str());
+	Cascade_Localizer loc= Cascade_Localizer();
+	while ((ent = readdir(dir)) != nullptr) {
+		std::string fileName = ent->d_name;
+		if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg")
+		{
+			cv::Mat frameclosed = cv::imread(folder+"/"+fileName);
+			std::vector<cv::Mat> images = loc.Transform(frameclosed);
+
+			for(int i=0; i<images.size();i++)
+			{
+				cv::imshow(fileName,images[i]);
+				cv::waitKey(0);
+			}
+		}
+	}
+	closedir(dir);
+}
+
+
+int main(){
+
+	std::string folder = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/";
+	std::string name = "Groups/";
+
+	test_dir(folder+name);
+	return 0;
+}
+
+#elif test ==3
 
 int main(){
 
@@ -64,7 +99,7 @@ int main()
 	cv::Mat image_open = cv::imread(img_open);
 	cv::Mat image_closed = cv::imread(img_closed);
 
-	Cascade_Localizer Loc = Cascade_Localizer("no_name",244,244,10);
+	Cascade_Localizer Loc = Cascade_Localizer("no_name",244,244,20);
 
 	std::vector<cv::Mat> images_open = Loc.Transform(image_open);
 	std::vector<cv::Mat> images_closed = Loc.Transform(image_closed);
@@ -80,8 +115,6 @@ int main()
 
 		cv::waitKey(0);
 	}
-
-
 
 
 }
