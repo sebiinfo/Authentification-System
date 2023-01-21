@@ -85,7 +85,7 @@ face_recognition {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="main">
        <widget class="QPushButton" name="register_2">
@@ -295,7 +295,7 @@ font: italic 16pt &quot;Times New Roman&quot;;
           <x>270</x>
           <y>390</y>
           <width>161</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -316,6 +316,9 @@ font: italic 16pt &quot;Times New Roman&quot;;
         </property>
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
         </property>
        </widget>
        <widget class="QLineEdit" name="email">
@@ -368,6 +371,9 @@ font: italic 16pt &quot;Times New Roman&quot;;
         </property>
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
         </property>
        </widget>
        <widget class="QLabel" name="label_10">
@@ -495,6 +501,9 @@ QPushButton#create_2:pressed {
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
        </widget>
        <widget class="QLineEdit" name="username_input">
         <property name="geometry">
@@ -575,7 +584,7 @@ QPushButton#login_2:pressed {
         <property name="geometry">
          <rect>
           <x>540</x>
-          <y>330</y>
+          <y>320</y>
           <width>201</width>
           <height>31</height>
          </rect>
@@ -598,7 +607,7 @@ QPushButton#forgot_credentials:pressed {
         <property name="geometry">
          <rect>
           <x>280</x>
-          <y>330</y>
+          <y>320</y>
           <width>211</width>
           <height>31</height>
          </rect>
@@ -743,29 +752,6 @@ QPushButton#back_4:pressed {
           <string/>
          </property>
         </widget>
-       </widget>
-       <widget class="QPushButton" name="back_3">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>94</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#back_3 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#back_3:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Go back</string>
-        </property>
        </widget>
        <widget class="QStackedWidget" name="camera_stacked">
         <property name="geometry">
@@ -1058,7 +1044,7 @@ QPushButton#back_3:pressed {
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="page_3">
          <widget class="QPushButton" name="takeImageButton">
@@ -1121,6 +1107,69 @@ QPushButton#account_photos:pressed {
           <property name="icon">
            <iconset>
             <normaloff>:/images/shutter.svg</normaloff>:/images/shutter.svg</iconset>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QStackedWidget" name="logout">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>-10</y>
+          <width>151</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="page_5">
+         <widget class="QPushButton" name="back_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>10</y>
+            <width>94</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#back_3 {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#back_3:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Go back</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_6">
+         <widget class="QPushButton" name="log_out">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>10</y>
+            <width>94</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton#log_out {
+font: 12pt &quot;Times New Roman&quot;;
+min-width: 80px;
+}
+QPushButton#log_out:pressed {
+    background-color: rgb(224, 224, 224);
+    border-style: inset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Log out</string>
           </property>
          </widget>
         </widget>
@@ -1265,6 +1314,9 @@ QPushButton#delete_account:pressed {
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
        </widget>
        <widget class="QLabel" name="password_lbl_2">
         <property name="geometry">
@@ -1294,6 +1346,9 @@ QPushButton#delete_account:pressed {
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
        </widget>
        <widget class="QLineEdit" name="confirm_new">
         <property name="geometry">
@@ -1306,6 +1361,9 @@ QPushButton#delete_account:pressed {
         </property>
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
         </property>
        </widget>
        <widget class="QLabel" name="password_lbl_3">
@@ -1546,6 +1604,9 @@ QPushButton#back_9:pressed {
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
        </widget>
        <widget class="QLineEdit" name="confirm_email">
         <property name="geometry">
@@ -1558,6 +1619,9 @@ QPushButton#back_9:pressed {
         </property>
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Normal</enum>
         </property>
        </widget>
        <widget class="QPushButton" name="change_email">
@@ -1744,6 +1808,9 @@ QPushButton#back_10:pressed {
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
         </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
        </widget>
        <widget class="QLineEdit" name="confirm_password_8">
         <property name="geometry">
@@ -1756,6 +1823,9 @@ QPushButton#back_10:pressed {
         </property>
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
         </property>
        </widget>
        <widget class="QLabel" name="password_lbl_8">
@@ -1894,6 +1964,9 @@ QPushButton#change_password_2:pressed {
         </property>
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
         </property>
        </widget>
        <widget class="QLabel" name="password_lbl_23">
