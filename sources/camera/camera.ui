@@ -413,7 +413,7 @@ QPushButton#back:pressed {
         <property name="geometry">
          <rect>
           <x>660</x>
-          <y>480</y>
+          <y>470</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -715,9 +715,9 @@ QPushButton#back_4:pressed {
        <widget class="QVideoWidget" name="viewfinder" native="true">
         <property name="geometry">
          <rect>
-          <x>180</x>
+          <x>210</x>
           <y>30</y>
-          <width>811</width>
+          <width>781</width>
           <height>441</height>
          </rect>
         </property>
@@ -770,7 +770,7 @@ QPushButton#back_3:pressed {
        <widget class="QStackedWidget" name="camera_stacked">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>60</y>
           <width>151</width>
           <height>411</height>
@@ -780,155 +780,17 @@ QPushButton#back_3:pressed {
          <number>0</number>
         </property>
         <widget class="QWidget" name="page">
-         <widget class="QPushButton" name="localization_2">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>110</y>
-            <width>131</width>
-            <height>29</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton#localization_2 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#localization_2:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-          </property>
-          <property name="text">
-           <string>Localization 2</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="localization_1">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>60</y>
-            <width>131</width>
-            <height>29</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton#localization_1 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#localization_1:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-          </property>
-          <property name="text">
-           <string>Localization 1</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="vectorization_2">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>240</y>
-            <width>131</width>
-            <height>29</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton#vectorization_2 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#vectorization_2:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-          </property>
-          <property name="text">
-           <string>Vectorization 2</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="vectorization_1">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>190</y>
-            <width>131</width>
-            <height>29</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton#vectorization_1 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#vectorization_1:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-          </property>
-          <property name="text">
-           <string>Vectorization 1</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="classification_1">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>320</y>
-            <width>131</width>
-            <height>29</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton#classification_1 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#classification_1:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-          </property>
-          <property name="text">
-           <string>Classification 1</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="classification_2">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>370</y>
-            <width>131</width>
-            <height>29</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton#classification_2 {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#classification_2:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-          </property>
-          <property name="text">
-           <string>Classification 2</string>
-          </property>
-         </widget>
          <widget class="QLabel" name="label_3">
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>10</y>
-            <width>111</width>
-            <height>20</height>
+            <width>141</width>
+            <height>31</height>
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+           <string notr="true">font: 14pt &quot;Times New Roman&quot;;</string>
           </property>
           <property name="text">
            <string>Choose your</string>
@@ -939,16 +801,107 @@ QPushButton#classification_2:pressed {
            <rect>
             <x>20</x>
             <y>30</y>
-            <width>81</width>
-            <height>21</height>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 14pt &quot;Times New Roman&quot;;</string>
+          </property>
+          <property name="text">
+           <string>algorithm:</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="verticalLayoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>80</y>
+            <width>160</width>
+            <height>80</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QRadioButton" name="localization_1">
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Localization 1</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="localization_2">
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Localization 2</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="verticalLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>298</y>
+            <width>160</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2"/>
+         </widget>
+         <widget class="QRadioButton" name="vectorization">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>300</y>
+            <width>158</width>
+            <height>27</height>
            </rect>
           </property>
           <property name="styleSheet">
            <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
           </property>
           <property name="text">
-           <string>algorithm:</string>
+           <string>Vectorization </string>
           </property>
+         </widget>
+         <widget class="QWidget" name="verticalLayoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>180</y>
+            <width>158</width>
+            <height>91</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QRadioButton" name="classification_1">
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Classification 1</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="classification_2">
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Classification 2</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
         <widget class="QWidget" name="page_2">
@@ -2105,12 +2058,6 @@ QPushButton#change_password_2:pressed {
   <tabstop>email_code</tabstop>
   <tabstop>get_code</tabstop>
   <tabstop>back_4</tabstop>
-  <tabstop>localization_1</tabstop>
-  <tabstop>localization_2</tabstop>
-  <tabstop>vectorization_1</tabstop>
-  <tabstop>vectorization_2</tabstop>
-  <tabstop>classification_1</tabstop>
-  <tabstop>classification_2</tabstop>
   <tabstop>takeImageButton</tabstop>
   <tabstop>back_3</tabstop>
   <tabstop>photo_library</tabstop>
