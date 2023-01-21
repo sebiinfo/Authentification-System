@@ -25,10 +25,6 @@ QT_BEGIN_NAMESPACE
 namespace Ui {
 class Camera;
 }
-
-//namespace Ui {
-//class Photo_Camera;
-//}
 class QActionGroup;
 QT_END_NAMESPACE
 
@@ -68,8 +64,8 @@ private slots:
     void updateCameraDevice(QAction *action);
 
     void updateCameraActive(bool active);
-    // void updateCaptureMode();
-    // void updateRecorderState(QMediaRecorder::RecorderState state);
+    void updateCaptureMode();
+    void updateRecorderState(QMediaRecorder::RecorderState state);
     void setExposureCompensation(int index);
 
     // void updateRecordTime();
@@ -80,7 +76,6 @@ private slots:
     void displayCapturedImage();
 
     void readyForCapture(bool ready);
-
     void imageSaved(int id, const QString &fileName);
 
     void updateCameras();
@@ -171,18 +166,19 @@ private:
     Ui::Camera *ui;
     Database database;
     QActionGroup *videoDevicesGroup = nullptr;
+
     QMediaDevices m_devices;
     QScopedPointer<QImageCapture> m_imageCapture;
     QMediaCaptureSession m_captureSession;
     QScopedPointer<QCamera> m_camera;
     QScopedPointer<QAudioInput> m_audioInput;
     QScopedPointer<QMediaRecorder> m_mediaRecorder;
+
     bool m_isCapturingImage = false;
     bool m_applicationExiting = false;
     bool m_doImageCapture = true;
 
     MetaDataDialog *m_metaDataDialog = nullptr;
-    // void buttonClicked();
 };
 
 #endif

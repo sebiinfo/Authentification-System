@@ -37,6 +37,7 @@
 
 Camera::Camera() : ui(new Ui::Camera) {
     ui->setupUi(this);
+
     m_audioInput.reset(new QAudioInput);
     m_captureSession.setAudioInput(m_audioInput.get());
 
@@ -151,8 +152,8 @@ void Camera::processCapturedImage(int requestId, const QImage &img) {
     ui->lastImagePreviewLabel->setPixmap(QPixmap::fromImage(scaledImage));
 
     // Display captured image for 4 seconds.
-    //    displayCapturedImage();
-    //    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
+    displayCapturedImage();
+    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
 }
 
 void Camera::configureCaptureSettings() {
@@ -194,7 +195,8 @@ void Camera::stop() { m_mediaRecorder->stop(); } */
 
 void Camera::takeImage() {
     m_isCapturingImage = true;
-    m_imageCapture->captureToFile();
+    std::string path = "C:/Users/paula/OneDrive/Desktop/";
+    m_imageCapture->captureToFile(QString::fromStdString(path));
 }
 
 void Camera::displayCaptureError(int id, const QImageCapture::Error error,
@@ -240,12 +242,15 @@ void Camera::updateCameraDevice(QAction *action) {
     setCamera(qvariant_cast<QCameraDevice>(action->data()));
 }
 
-void Camera::displayViewfinder() {
-    // m_camera -> displayViewfinder;
+void Camera::displayViewfinder()
+{
     ui->stacked->setCurrentIndex(0);
 }
 
-void Camera::displayCapturedImage() { ui->stacked->setCurrentIndex(1); }
+void Camera::displayCapturedImage()
+{
+    ui->stacked->setCurrentIndex(1);
+}
 
 void Camera::readyForCapture(bool ready) {
     ui->takeImageButton->setEnabled(ready);
@@ -487,8 +492,10 @@ void Camera::on_get_code_clicked() {
 
 int i = 0;
 
-void Camera::on_account_button_clicked() {
-    i += 1;
+void Camera::on_takeImageButton_clicked()
+{
+    takeImage();
+    i +=1;
     if (i == 10) {
         QMessageBox::about(this, "Successful Account Created",
                            "Thank you, your account is now complete.");
