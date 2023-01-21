@@ -37,6 +37,7 @@ private:
   void Crop_(cv::Mat &image, cv::Rect face);
   std::vector<cv::Mat> Crop(cv::Mat image, std::vector<cv::Rect> faces);
 
+  void Rescale(cv::Mat &image);
   void Rescale(std::vector<cv::Mat> &images);
 
   double get_angle_from_eyes(std::vector<cv::Rect> eyes);

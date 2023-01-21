@@ -9,9 +9,15 @@
 // Yassine = 0;
 // Romain = 1,2,3,4;
 
-#define test 4
+#define test 0
 
-#if test == 4
+#if test==0
+
+int main(){
+	std::cout << "Hello world" << std::endl;
+}
+
+#elif test == 4
 
 void test_dir(std::string folder)
 {
@@ -41,7 +47,7 @@ int main()
 {
 
 	std::string folder = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/";
-	std::string name = "Groups/";
+	std::string name = "Testing/";
 
 	test_dir(folder + name);
 	return 0;
