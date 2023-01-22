@@ -1,2 +1,49 @@
-Romain Poggi -
-This week, I have come up with new features and functionalities that could be added. So I started working on it along with Yassine. I have set up a new branch with all the new source files and created the makes. I also came across a big issue I had with my github, which I have fixed now. I have also created a simple Flowchart of what the final main function should consist of. I am also working on splitting Cropimage more accurately, and will add eye detection functionality.
+Francisco Moreira Machado:
+
+Worked to make ajustments to the Password functionality pull request. Finished the implementation of the main interfaces that will be used to connect the multiple parts of the code. Worked on the final parts of FisherFaces algorithm.
+
+Yassine Turki:
+
+Since we finished the Profile class last week, I decided to help Romain with image processing, particularly on image resizing. I added a new function, rescaleImage, to the project. We agreed on resizing all the images given as inputs to a new image of 224 x 224 pixels. The function uses bilinear interpolation to rescale an image and returns the resulting image as a new Mat object.
+
+Next week, I will start working with the machine learning team to finalize the facial recognition part of the project.
+
+Romain Poggi
+As the cropping image part finished last week, I and Yassine worked on scaling down images to the correct dimensions for the Machine Learning to work, doing some research. I have done some research, had some bug fixing to do with my installation, made some changes in the organisation of files and on cmake files, and cleaned up the code already made, and finally collected images to put in the project directory for testing.
+Next week, I will join the Machine Learning team in more detail and help in what they are doing.
+
+Mija Pilkaite
+
+This week I continued on my CSV file implementation, added more functions and started the user input class. 
+Also, started brainstorming ideas for potential features of the app after authenticating. 
+
+Sebastian Simon
+
+I did my research on Decision Trees and started implementing some of the functions it requires. Read further about regression models and possible implementations, and discussed with the vectorizer team about the type of the input the algorithms would be getting to see if it was feasible in the running time of decision trees (we are planning to check all possible thresholds to find the optimal one).
+
+Santorin Yu
+
+This week I started the decision tree implementation, mainly working on the architecture of the hpp file and thinking about the inheritance hierarchy. I defined two classes, Node and Define Class. I also implemented a few methods for the construction of the tree. I also worked on vector_id which contains the dataset of a detected face. 
+
+Jasmine Watissee
+
+This week, I worked on correcting my code from the pull request to merge on main. I corrected little errors and also added a function that checks if the password respects certain conditions. 
+
+Cezara Petrui
+
+This week, I did research on the Linear Discriminant Analysis and started to sketch its implementation in order to use our own algorithms instead of the ones already implemented in the opencv libraries. I also researched the functions for the LDA class implemented in opencv in order to understand exactly what each of them does and how we can use them for the project.
+
+
+Alexandru Serban
+
+I conducted research on LDA and started the first implementations of the algorithm for the LDA compute function that we need for the implementation of the FisherFaces algorithm. 
+
+
+Sophie-Claire Antoun:
+This week I did one last try to be able to make the mongodb c++ driver but it seems to not be free. I also some research on the implementation of an automated  email sender, using the boost library and started the first implementations and set-up of libraries. 
+
+Paula Gonzalez Alvarez:
+This week, I talked with the professor on Monday and he told me that it would be better if instead of using qml files I used C++ files so I did some research on how to transfer from one to the other and managed to create a UI solely using C++ and .ui files.
+I also did research on exposing attributes of C++ types to QML through signals and parameters to merge the other groups things into the UI because it is showing to be more difficult than expected since not everything is compatible and it gives a lot of errors of missing files when downloading the information and trying to compile it.
+I will keep on working on this during the break to catch up and hopefully have it more functional in January, including the working camera widget on the UI.
+
