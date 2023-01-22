@@ -89,7 +89,7 @@ int main()
 	std::cout << "\n\n The final statistics are: " << positives << " out of "
 			  << 2 * num_people;
 
-
+	std::cout << "Hello world" << std::endl;
 }
 
 #elif test == 4
