@@ -45,7 +45,7 @@ public:
 
 int Mail::generateRandomNumber() {
     srand(time(0));
-    int randomNumber = arc4random() % 99999 + 10000; // generates a random number between 10000 and 99999
+    int randomNumber = arc4random() % 999999 + 100000; // generates a random number between 10000 and 99999
     return randomNumber;
 }
 
@@ -60,7 +60,7 @@ bool Mail::verifyNumber(int code_sent, int code_entered) {
 
 std::string Mail::generatemessage(int random_generated){
     std::string messagecontent;
-    messagecontent = "Hello!\nHere is the 5-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
+    messagecontent = "Hello!\nHere is the 6-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
     messagecontent += std::to_string(random_generated);
     return messagecontent;
 }

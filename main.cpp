@@ -3,7 +3,7 @@
 
 int main() {
     Mail m;
-    m.mail("moreiramachadoneto@gmail.com");
+    m.mail("sophieclaireantoun0@gmail.com");
     std::cout << "Hello world!" << std::endl;
     return 0;
 }
