@@ -71,9 +71,11 @@ Database::Possible_Errors Database::writeDataToFile(
         std::string base_path = "./resources/";
         std::cout << (base_path + id) << std::endl;
         const char *ccx = (base_path + id).c_str();
-#if (WIN_32)
+#if WIN_32
+        std::cout << "pula" << std::endl;
         mkdir(ccx);
 #else
+        // std::cout << "pula 2" << std::endl;
         mkdir(ccx, 0777);
 #endif
         std::ofstream file1;
