@@ -118,7 +118,7 @@ Model::~Model()
     delete classifier;
 }
 
-std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces)
+std::vector<int> Model::predict(cv::Mat &image)
 {
 	std::vector<cv::Mat> in_faces = localizer->Transform(image);
     in_faces.push_back(image);
@@ -135,6 +135,7 @@ std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces)
     // std::cout << "Finished\n";
     return output;
 }
+
 
 //int Model::predict_most_likely(cv::Mat &image)
 //{
