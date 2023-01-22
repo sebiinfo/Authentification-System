@@ -43,6 +43,7 @@ elseif(IOS)
     )
 endif()
 
+set(PATH_TO_RESOURCES ${CMAKE_BINARY_DIR})
 set_property(TARGET camera APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
              ${CMAKE_CURRENT_SOURCE_DIR}/android)
 
@@ -66,6 +67,9 @@ qt_add_resources(camera "camera"
         ${camera_resource_files}
 )
 target_include_directories(camera INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(camera PRIVATE Database)
+target_link_libraries(camera INTERFACE Database)
 target_link_libraries(camera PRIVATE OpenCVExternalLibrary PRIVATE ${INCLUDE_QT})
+configure_file(config.h.in config.h @ONLY)
+target_include_directories(camera PUBLIC "${CMAKE_BINARY_DIR}/sources/camera")
+add_compile_options(-fPIC)
 qt_finalize_executable(camera)

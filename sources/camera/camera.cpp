@@ -7,6 +7,7 @@
 #else
 #include "ui_camera.h"
 #endif
+#include "config.h"
 #include "imagesettings.h"
 #include <QAction>
 #include <QActionGroup>
@@ -30,8 +31,8 @@
 #include <QtWidgets>
 #include <iostream>
 #include <string>
-//#define PATH_TO_RESOURCES "./"
 
+// #define PATH_TO_RESOURCES "./"
 
 Camera::Camera() : ui(new Ui::Camera) {
     ui->setupUi(this);
@@ -166,10 +167,11 @@ void Camera::takeImage(std::string button_clicked) {
         path = path + extension;
 
         std::cout << button_clicked << " path-> " << path << std::endl;
-        //path = std::string(PATH_TO_RESOURCES) + path;
+        std::cout << PATH_TO_RESOURCES;
+        path = std::string(PATH_TO_RESOURCES) + path;
     } else {
         path = "/resources/temp.jpg";
-        //path = std::string(PATH_TO_RESOURCES) + path;
+        path = std::string(PATH_TO_RESOURCES) + path;
     }
     m_isCapturingImage = true;
     m_imageCapture->captureToFile(QString::fromStdString(path));
