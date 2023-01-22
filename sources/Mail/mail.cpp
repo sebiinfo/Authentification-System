@@ -83,7 +83,7 @@ void Mail::send_mail(std::string adress, std::string messagecontent){
     int x = 5;
     msg.setContent (messagecontent);
     std::cout << "stop1" << std::endl;
-    std::string host = "smtp.google.com";
+    std::string host = "smtp.gmail.com";
     int port = 465;
 //    Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Poco::Net::Context::CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
     Poco::Net::SecureSMTPClientSession smtp("smtp.gmail.com", 587);
@@ -97,7 +97,7 @@ void Mail::send_mail(std::string adress, std::string messagecontent){
         std::cout << "login 2" << std::endl;
         smtp.login (    Poco::Net::SecureSMTPClientSession::LoginMethod::AUTH_LOGIN,
                         "systemauthentification@gmail.com",
-                        "seqmqmkmyczkbhyz");
+                        "qjdyfemuqzneuogb");
         smtp.sendMessage (msg);
 
 
