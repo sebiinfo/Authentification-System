@@ -13,7 +13,17 @@
 
 
 class HOG{
-
+/* This class performs the Histograms of Oriented Gradients algorithm
+ * The class has as attributes an image given as a Mat type; the
+ * number_of_bins which the represents the number of different gradient
+ * orientations that are considered when calculating the descriptor
+ * and which is initialised by default as 9; the cell_size which
+ * stores the width and the height of the cells that we form;
+ * it is initialised as Size(8,8) since the division in 8x8 pixels
+ * seems to be most efficient one - larger cell size will increase
+ * spatial resolution but decrease the orientation resolution,
+ * while smaller cell size will do the opposite
+*/
     public:
 
         HOG(cv::Mat image, int number_of_bins, int cell_width, int cell_height);
