@@ -30,6 +30,6 @@ void Cascade_basic::detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces
     cascade.detectMultiScale(image,faces, scaleFactor, minNeighbors, flags, minSize);
 }
 
-void Cascade_basic::EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize){
-    return;
+bool Cascade_basic::EyedetectMultiScale(cv::Mat &image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize){
+    return 0;
 }

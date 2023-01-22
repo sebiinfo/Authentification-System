@@ -106,74 +106,85 @@ int main()
 //}
 
 //
-//int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
-//    //Please name every picture you add with the word closed or open.
-//    DIR* dir;
-//    struct dirent* ent;
-//    std::string folder ="C:\\Authentification-System\\images\\Testing";
-//    dir = opendir(folder.c_str());
-//    double trueclosed=0;
-//    double falseclosed=0;
-//    double falseopen=0;
-//    double trueopen=0;
-//    double count=0;
-//    while ((ent = readdir(dir)) != nullptr) {
-//        std::string fileName = ent->d_name;
-//        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
-//            count+=1;
-//            cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
-//            //normalizeIntensities(frameclosed);
+int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
+    //Please name every picture you add with the word closed or open.
+    DIR* dir;
+    struct dirent* ent;
+    std::string folder ="C:\\Authentification-System\\images\\Testing";
+    dir = opendir(folder.c_str());
+    double trueclosed=0;
+    double falseclosed=0;
+    double falseopen=0;
+    double trueopen=0;
+    double count=0;
+    while ((ent = readdir(dir)) != nullptr) {
+        std::string fileName = ent->d_name;
+        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
+            count+=1;
+            Cascade_Localizer loc = Cascade_Localizer("fancy");
+            cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
+            std::vector<cv::Rect> eyes;
+            loc.Rescale(frameclosed);
+            bool eyeOpen0=loc.cascade->EyedetectMultiScale(frameclosed,eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+            for (int i = 0; i < eyes.size(); i++)
+            {
+                cv::Mat eyeROI = frameclosed(eyes[i]);
+                cv::imshow("eyeROI", eyeROI);
+                cv::waitKey(0);
+            }
+//            std::vector<cv::Mat> vectmats= loc.Transform(frameclosed);
+            //normalizeIntensities(frameclosed);
 //            frameclosed=rescaleImage(frameclosed, 224,224);
-//            bool eyeOpen0 = isEyeOpen(frameclosed);
-//            if (fileName.find("closed") != std::string::npos) {
-//                if(eyeOpen0==0){
-//                    trueclosed+=1;
-//                }
-//                else{
-//                    falseclosed+=1;
-//                }
-//            }
-//            if (fileName.find("open") != std::string::npos) {
-//                if(eyeOpen0==1){
-//                    trueopen+=1;
-//                }
-//                else{
-//                    falseopen+=1;
-//                }
-//            }
-//            std::cout<<"file: "<<fileName<< "   status: " << eyeOpen0<<std::endl;
-//        }
-//    }
-//    closedir(dir);
-//    std::cout<<std::endl;
-//    std::cout<<"Total number of test images:   "<<count<<std::endl;
-//    std::cout<<"True openeyes: "<<trueopen<<std::endl;
-//    std::cout<<"Non detected openeyes: "<<falseopen<<std::endl;
-//    std::cout<<"True closedeyes:  "<<trueclosed<<std::endl;
-//    std::cout<<"Non detected closedeyes: "<<falseclosed<<std::endl;
-//    std::cout << "Total correct cases:  "<<trueopen+trueclosed<<"/"<<count<<" = "<<((trueopen+trueclosed)/count)*100<<"%"<<std::endl;
-//    return 0;
-//}
-
-int test_angle_single_image(){
-    cv::Mat image = cv::imread("C:\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
-    Cascade_Localizer loc = Cascade_Localizer("fancy");
-    std::vector<cv::Rect> eyes;
-    loc.cascade->EyedetectMultiScale(image, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));if (eyes.size() > 0) { // check if there are any detected eyes
-//        for (int i=0; i<eyes.size(); i++){
-//        cv::Rect eyeRect = eyes[i]; // get the first detected eye
-//        cv::Mat eyeMat = image(eyeRect); // extract the area of the image corresponding to the eyeRect
-//        cv::imshow("Eye", eyeMat); // display the eye
-//        cv::waitKey(0);
-//        }
-        std::vector<cv::Mat> mats =loc.Transform(image);
-
-        for(int i=0; i<mats.size();i++){// check if there are any detected eyes
-        cv::imshow("img", mats[i]);
-        cv::waitKey(0);
+//            bool eyeOpen0 = ;
+            if (fileName.find("closed") != std::string::npos) {
+                if(eyeOpen0==0){
+                    trueclosed+=1;
+                }
+                else{
+                    falseclosed+=1;
+                }
+            }
+            if (fileName.find("open") != std::string::npos) {
+                if(eyeOpen0==1){
+                    trueopen+=1;
+                }
+                else{
+                    falseopen+=1;
+                }
+            }
+            std::cout<<"file: "<<fileName<< "   status: " << eyeOpen0<<std::endl;
+        }
     }
-        return eyes.size();
-    }}
+    closedir(dir);
+    std::cout<<std::endl;
+    std::cout<<"Total number of test images:   "<<count<<std::endl;
+    std::cout<<"True openeyes: "<<trueopen<<std::endl;
+    std::cout<<"Non detected openeyes: "<<falseopen<<std::endl;
+    std::cout<<"True closedeyes:  "<<trueclosed<<std::endl;
+    std::cout<<"Non detected closedeyes: "<<falseclosed<<std::endl;
+    std::cout << "Total correct cases:  "<<trueopen+trueclosed<<"/"<<count<<" = "<<((trueopen+trueclosed)/count)*100<<"%"<<std::endl;
+    return 0;
+}
+
+//int test_angle_single_image(){
+//    cv::Mat image = cv::imread("C:\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
+//    Cascade_Localizer loc = Cascade_Localizer("fancy");
+//    std::vector<cv::Rect> eyes;
+//    loc.cascade->EyedetectMultiScale(image, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));if (eyes.size() > 0) { // check if there are any detected eyes
+////        for (int i=0; i<eyes.size(); i++){
+////        cv::Rect eyeRect = eyes[i]; // get the first detected eye
+////        cv::Mat eyeMat = image(eyeRect); // extract the area of the image corresponding to the eyeRect
+////        cv::imshow("Eye", eyeMat); // display the eye
+////        cv::waitKey(0);
+////        }
+//        std::vector<cv::Mat> mats =loc.Transform(image);
+//
+//        for(int i=0; i<mats.size();i++){// check if there are any detected eyes
+//        cv::imshow("img", mats[i]);
+//        cv::waitKey(0);
+//    }
+//        return eyes.size();
+//    }}
 
 //    std::vector<cv::Mat> mats =loc.Transform(image);
 //    std::cout<<mats.size();
@@ -182,41 +193,41 @@ int test_angle_single_image(){
 //        cv::waitKey(0);
 //    }
 
-int test_angle() {
-    DIR* dir;
-    struct dirent* ent;
-    std::string folder ="C:\\Authentification-System\\images\\Testing";
-    dir = opendir(folder.c_str());
-    while ((ent = readdir(dir)) != nullptr) {
-        std::string fileName = ent->d_name;
-        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
-            cv::Mat image_open = cv::imread(folder + "//" + fileName);
-            Cascade_Localizer loc= Cascade_Localizer("fancy");
-          std::vector<cv::Mat> images = loc.Transform(image_open);
-          for (int i=0;i<images.size();i++)
-          {
-              std::vector<cv::Rect> eyes;
-              std::vector<cv::Rect> faces;
-              loc.cascade->detectMultiScale(images[i], faces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-              loc.cascade->EyedetectMultiScale(images[i], eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-              double angle=loc.get_angle_from_eyes(eyes);
-//              loc.rotate_face(images[i],angle);
-              cv::imshow(fileName, images[i]);
-            std::cout<<fileName<<"    angle: "<<angle<<std::endl;
-            cv::waitKey(0);
-          }
-
-//            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
-//for(int i=0; i<images.size();i++){
-//
-//            cv::imshow(fileName,images[i]);
+//int test_angle() {
+//    DIR* dir;
+//    struct dirent* ent;
+//    std::string folder ="C:\\Authentification-System\\images\\Testing";
+//    dir = opendir(folder.c_str());
+//    while ((ent = readdir(dir)) != nullptr) {
+//        std::string fileName = ent->d_name;
+//        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
+//            cv::Mat image_open = cv::imread(folder + "//" + fileName);
+//            Cascade_Localizer loc= Cascade_Localizer("fancy");
+//          std::vector<cv::Mat> images = loc.Transform(image_open);
+//          for (int i=0;i<images.size();i++)
+//          {
+//              std::vector<cv::Rect> eyes;
+//              std::vector<cv::Rect> faces;
+//              loc.cascade->detectMultiScale(images[i], faces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+//              loc.cascade->EyedetectMultiScale(images[i], eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+//              double angle=loc.get_angle_from_eyes(eyes);
+////              loc.rotate_face(images[i],angle);
+//              cv::imshow(fileName, images[i]);
+//            std::cout<<fileName<<"    angle: "<<angle<<std::endl;
 //            cv::waitKey(0);
+//          }
+//
+////            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
+////for(int i=0; i<images.size();i++){
+////
+////            cv::imshow(fileName,images[i]);
+////            cv::waitKey(0);
+////}
+//        }
+//    }
+//    closedir(dir);
+//    return 0;
 //}
-        }
-    }
-    closedir(dir);
-    return 0;
-}
 //
 //int test_conformity(){
 //
@@ -250,9 +261,9 @@ int test_angle() {
 
 
 int main(){
-    test_angle_single_image();
+//    test_angle_single_image();
 //    test_angle();
-//    testeyedetection();
+    testeyedetection();
     //testlocalizer();
 
    //  test_angle();

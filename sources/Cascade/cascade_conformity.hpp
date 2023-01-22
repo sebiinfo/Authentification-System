@@ -18,7 +18,7 @@ public:
     // // Normalize Intensities of the pixels (efficiency to be tested)
     // void normalizeIntensities(cv::Mat &image);
     void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
-    void EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+    bool EyedetectMultiScale(cv::Mat &image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 private:
 	cv::CascadeClassifier cascade_face;
     cv::CascadeClassifier cascade_eyes;

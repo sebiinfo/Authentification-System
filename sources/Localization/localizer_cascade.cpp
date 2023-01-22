@@ -48,8 +48,7 @@ if (Cascade_name == "conformity" || Cascade_name == "Conformity"){
 }
 
 else if(Cascade_name=="fancy" || Cascade_name=="Fancy"){
-	cascade = new Cascade_basic();
-	// cascade = new Cascade_conformity(); Not yet implemented
+	 cascade = new Cascade_conformity();
 }
 
 else{

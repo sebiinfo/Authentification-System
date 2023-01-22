@@ -17,7 +17,7 @@ public: // Public methods
     void detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
 
-void EyedetectMultiScale(cv::Mat image, std::vector <cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
+bool EyedetectMultiScale(cv::Mat &image, std::vector <cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
 
 private: // Private attributes

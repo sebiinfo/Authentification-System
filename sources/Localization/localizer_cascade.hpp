@@ -24,6 +24,7 @@ public:
   void localize_rect(cv::Mat &image, std::vector<cv::Rect> &faces);
 
   std::vector<cv::Mat> Transform(cv::Mat image);
+    void Rescale(cv::Mat &image);
 
   // Attribute //
 
@@ -37,7 +38,7 @@ private:
   void Crop_(cv::Mat &image, cv::Rect face);
   std::vector<cv::Mat> Crop(cv::Mat image, std::vector<cv::Rect> faces);
 
-  void Rescale(cv::Mat &image);
+
   void Rescale(std::vector<cv::Mat> &images);
 
   double get_angle_from_eyes(std::vector<cv::Rect> eyes);
