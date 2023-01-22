@@ -798,70 +798,43 @@ QPushButton#back_4:pressed {
            <string>algorithm:</string>
           </property>
          </widget>
-         <widget class="QWidget" name="verticalLayoutWidget">
+         <widget class="QWidget" name="verticalLayoutWidget_2">
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>80</y>
+            <y>200</y>
             <width>160</width>
-            <height>80</height>
+            <height>91</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout">
+          <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="QRadioButton" name="localization_1">
+            <widget class="QLabel" name="label_26">
              <property name="styleSheet">
               <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
              </property>
              <property name="text">
-              <string>Localization 1</string>
+              <string>+ Localization</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QRadioButton" name="localization_2">
+            <widget class="QLabel" name="label_27">
              <property name="styleSheet">
               <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
              </property>
              <property name="text">
-              <string>Localization 2</string>
+              <string>+ Fisher Faces</string>
              </property>
             </widget>
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="verticalLayoutWidget_2">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>298</y>
-            <width>160</width>
-            <height>31</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2"/>
-         </widget>
-         <widget class="QRadioButton" name="vectorization">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>300</y>
-            <width>158</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
-          </property>
-          <property name="text">
-           <string>Fisher Faces</string>
-          </property>
-         </widget>
          <widget class="QWidget" name="verticalLayoutWidget_3">
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>180</y>
+            <y>90</y>
             <width>158</width>
             <height>91</height>
            </rect>

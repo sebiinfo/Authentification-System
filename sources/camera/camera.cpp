@@ -54,8 +54,6 @@ Camera::Camera() : ui(new Ui::Camera) {
 
     setCamera(QMediaDevices::defaultVideoInput());
     ui->stacked->setCurrentIndex(0);
-    ui->localization_1->setChecked(true);
-    ui->vectorization->setChecked(true);
     ui->classification_1->setChecked(true);
 }
 
@@ -431,12 +429,7 @@ void Camera::on_back_7_clicked() { ui->stacked->setCurrentIndex(5); }
 
 void Camera::on_back_8_clicked() { ui->stacked->setCurrentIndex(5); }
 
-std::string localization = "localization_1";
 std::string classification = "KNN";
-
-void Camera::on_localization_1_clicked() { localization = "localization_1"; }
-
-void Camera::on_localization_2_clicked() { localization = "localization_2"; }
 
 void Camera::on_classification_1_clicked() { classification = "KNN"; }
 

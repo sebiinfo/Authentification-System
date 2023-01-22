@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 
     Camera camera;
     camera.show();
-    QFile styleSheetFile("../resources/stylesheet.qss");
+    QFile styleSheetFile("./resources/stylesheet.qss");
     styleSheetFile.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(styleSheetFile.readAll());
     app.setStyleSheet(styleSheet);
