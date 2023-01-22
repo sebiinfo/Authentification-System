@@ -6,12 +6,12 @@ const double pi = 3.14159265358979323846;
 // Yassine = 0
 // Romain = 1
 // Other = 2
-#define test 1 // To load correct haarcascade
+#define test 0 // To load correct haarcascade
 
 #if test == 0
 std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_frontalface_default.xml";
 std::string path_left_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_lefteye_2splits.xml";
-std::string path_right_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_righteye_2splits.xml";
+std::string path_right_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_eye.xml";
 
 #elif test == 1
 
@@ -79,18 +79,59 @@ std::vector<cv::Rect> eyes;
 //    isEye(image, faces);
 }
 
-void Cascade_conformity::EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize) {
-    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
-    cv::equalizeHist(image, image);
+bool Cascade_conformity::EyedetectMultiScale(cv::Mat &image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize) {
     std::vector<cv::Rect>templeft;
     std::vector<cv::Rect>tempright;
-//	cascade_left_eye.detectMultiScale(image, templeft, scaleFactor, minNeighbors, flags, minSize);
+    cascade_left_eye.detectMultiScale(image, templeft, scaleFactor, minNeighbors, flags, minSize);
     cascade_right_eye.detectMultiScale(image, tempright, scaleFactor, minNeighbors, flags, minSize);
-    for (int i=0; i<tempright.size();i++){
+    for (int i=0; i<(tempright.size());i++) {
 //        eyes.push_back(templeft[i]);
         eyes.push_back(tempright[i]);
     }
+    return eyes.size();
+//    }
+//    int open_eye = 0;
+//    for (int i = 0; i < eyes.size(); i++)
+//    {
+//        cv::Mat eyeROI = image(eyes[i]);
+//        cv::cvtColor(eyeROI, eyeROI, cv::COLOR_BGR2GRAY);
+//        cv::equalizeHist(eyeROI, eyeROI);
+//
+//        // Threshold for the pixel intensity
+//        int threshold = 100  ;
+//
+//        // Count the number of pixels above the threshold
+//        int count = 0;
+//        for (int y = 0; y < eyeROI.rows; y++)
+//        {
+//            for (int x = 0; x < eyeROI.cols; x++)
+//            {
+//                if (eyeROI.at<uchar>(y, x) > threshold)
+//                {
+//                    count++;
+//                }
+//            }
+//        }
+//
+//        // Percentage of pixels above the threshold
+//        double percentage = (double)count / (eyeROI.rows * eyeROI.cols) * 100;
+//        if (percentage > 53.5)
+//        {
+//            open_eye++;
+//        }
+//    }
+//    if (open_eye > 0) {
+//        std::cout << "At least one eye is open" << std::endl;
+//        return true;
+//    }
+//    else {
+//        std::cout << "All eyes are closed" << std::endl;
+//        return false;
+//    }
 }
+
+
+
 
 //
 //void Cascade_conformity::normalizeIntensities(cv::Mat &image)

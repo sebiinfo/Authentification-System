@@ -125,13 +125,13 @@ int testeyedetection(){ //Tests isEyeOpen function on the folder "Testing"
             cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
             std::vector<cv::Rect> eyes;
             loc.Rescale(frameclosed);
-            bool eyeOpen0=loc.cascade->EyedetectMultiScale(frameclosed,eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-            for (int i = 0; i < eyes.size(); i++)
-            {
-                cv::Mat eyeROI = frameclosed(eyes[i]);
-                cv::imshow("eyeROI", eyeROI);
-                cv::waitKey(0);
-            }
+            bool eyeOpen0=loc.cascade->EyedetectMultiScale(frameclosed,eyes, 1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+//            for (int i = 0; i < eyes.size(); i++)
+//            {
+//                cv::Mat eyeROI = frameclosed(eyes[i]);
+//                cv::imshow("eyeROI", eyeROI);
+//                cv::waitKey(0);
+//            }
 //            std::vector<cv::Mat> vectmats= loc.Transform(frameclosed);
             //normalizeIntensities(frameclosed);
 //            frameclosed=rescaleImage(frameclosed, 224,224);
