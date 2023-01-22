@@ -8,7 +8,7 @@ const double pi = 3.14159265358979323846;
 // Other = 2
 #define test 1 // To load correct haarcascade
 
-#if test == 0
+#if test == 1
 std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_lefteye_2splits.xml";
 std::string path_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_lefteye_2splits.xml";
 
