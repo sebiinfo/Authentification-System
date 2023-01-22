@@ -67,7 +67,11 @@ qt_add_resources(camera "camera"
         ${camera_resource_files}
 )
 target_include_directories(camera INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+if(WIN32)
+target_link_libraries(camera PUBLIC Database)
+else()
 target_link_libraries(camera INTERFACE Database)
+endif()
 target_link_libraries(camera PRIVATE OpenCVExternalLibrary PRIVATE ${INCLUDE_QT})
 configure_file(config.h.in config.h @ONLY)
 target_include_directories(camera PUBLIC "${CMAKE_BINARY_DIR}/sources/camera")
