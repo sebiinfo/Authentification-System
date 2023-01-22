@@ -3,10 +3,10 @@ add_library(sources INTERFACE)
 add_subdirectory(Database)
 add_subdirectory(Password)
 add_subdirectory(camera)
+add_subdirectory(Mail)
 # target_link_libraries(sources INTERFACE Mail)
 
 target_link_libraries(sources INTERFACE Database INTERFACE Password INTERFACE camera)
-add_subdirectory(Mail)
 
 
 target_link_libraries(sources

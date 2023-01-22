@@ -154,8 +154,8 @@ void Camera::configureImageSettings() {
 }
 
 void Camera::takeImage(std::string button_clicked) {
-    std::string path = "../resources/";
-    std::string extension = ".png";
+    std::string path = "/resources/";
+    std::string extension = ".jpg";
     std::string bar = "/";
     std::string aux;
     if (button_clicked == "account_photos") {
@@ -164,6 +164,10 @@ void Camera::takeImage(std::string button_clicked) {
         path = path + std::to_string(num_pics);
         path = path + extension;
     }
+    char resolved_path[PATH_MAX];
+    realpath("./", resolved_path);
+    printf("\n%s\n", resolved_path);
+    path = std::string(resolved_path) + path;
     std::cout << button_clicked << " path-> " << path << std::endl;
     m_isCapturingImage = true;
     m_imageCapture->captureToFile(QString::fromStdString(path));
