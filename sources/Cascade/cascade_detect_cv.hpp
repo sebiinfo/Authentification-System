@@ -8,7 +8,7 @@
 
 class Cascade_basic: public Cascade_base{
 
-public: // Public methods
+public:
 	Cascade_basic();
 	~Cascade_basic();
 
@@ -20,7 +20,7 @@ public: // Public methods
 void EyedetectMultiScale(cv::Mat image, std::vector <cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize);
 
 
-private: // Private attributes
+private:
 	cv::CascadeClassifier cascade;
 };
 

@@ -10,7 +10,7 @@
 Cascade_basic::Cascade_basic()
 {
 
-std::string face = "..\\resources/haarcascades/haarcascade_frontalcatface.xml";
+std::string face = "./resources/haarcascades/haarcascade_frontalface_alt.xml";
 
 	cascade = cv::CascadeClassifier();
 	cascade.load(face);
