@@ -18,7 +18,7 @@ include_directories(${OpenSSL_INCLUDE_DIRS})
 
 if(${Qt6_FOUND})
   add_subdirectory(libs/qt)
-  qt_standard_project_setup()
+#  qt_standard_project_setup()
 endif()
 
 if(${OpenCV_FOUND})

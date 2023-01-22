@@ -67,6 +67,6 @@ qt_add_resources(camera "camera"
         ${camera_resource_files}
 )
 target_include_directories(camera INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(camera INTERFACE Database)
+target_link_libraries(camera PRIVATE sources)
 target_link_libraries(camera PRIVATE OpenCVExternalLibrary PRIVATE ${INCLUDE_QT})
 qt_finalize_executable(camera)

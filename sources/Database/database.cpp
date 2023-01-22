@@ -1,5 +1,5 @@
 #include "database.hpp"
-#include "../Mail/mail.cpp"
+#include "../Mail/mail.hpp"
 #include <fstream>
 #include <iostream>
 #include <sstream>
