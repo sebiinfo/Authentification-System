@@ -66,8 +66,6 @@ private slots:
     void on_update_email_clicked();
     void on_back_7_clicked();
     void on_back_8_clicked();
-    void on_localization_1_clicked();
-    void on_localization_2_clicked();
     void on_classification_1_clicked();
     void on_classification_2_clicked();
     void on_create_account_clicked();
