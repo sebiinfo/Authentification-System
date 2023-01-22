@@ -315,7 +315,7 @@ std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image)
 
 	Rescale(images);
 
-    recheck(images);
+    //recheck(images);
 
 	return images;
 

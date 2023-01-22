@@ -119,7 +119,8 @@ Model::~Model()
 
 std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces)
 {
-	std::vector<cv::Mat> in_faces = localizer->Transform(image);
+	//std::vector<cv::Mat> in_faces = localizer->Transform(image);
+    std::vector<cv::Mat> in_faces;
     in_faces.push_back(image);
     std::vector<int> output;
     for (int i = 0; i < in_faces.size(); i++)
