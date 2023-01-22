@@ -1,0 +1,6 @@
+/home/johnnyventuras/Desktop/Authentification-System/sources/TestCameraCapture/bogdan/build/CMakeFiles/Authentication-System.dir
+/home/johnnyventuras/Desktop/Authentification-System/sources/TestCameraCapture/bogdan/build/CMakeFiles/edit_cache.dir
+/home/johnnyventuras/Desktop/Authentification-System/sources/TestCameraCapture/bogdan/build/CMakeFiles/rebuild_cache.dir
+/home/johnnyventuras/Desktop/Authentification-System/sources/TestCameraCapture/bogdan/build/build/CMakeFiles/OpenCVExternalLibrary.dir
+/home/johnnyventuras/Desktop/Authentification-System/sources/TestCameraCapture/bogdan/build/build/CMakeFiles/edit_cache.dir
+/home/johnnyventuras/Desktop/Authentification-System/sources/TestCameraCapture/bogdan/build/build/CMakeFiles/rebuild_cache.dir

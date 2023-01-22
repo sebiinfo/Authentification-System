@@ -11,4 +11,7 @@ message(STATUS "    libraries: ${OpenCV_LIBRARIES}")
 message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 message(STATUS "    install path: ${OpenCV_INSTALL_PATH}")
 
-target_link_libraries(OpenCVExternalLibrary INTERFACE ${OpenCV_LIBRARIES})
+target_link_libraries(OpenCVExternalLibrary
+    INTERFACE ${OpenCV_LIBS}
+    )
+target_include_directories(OpenCVExternalLibrary INTERFACE ${OpenCV_INCLUDE_DIRS})
