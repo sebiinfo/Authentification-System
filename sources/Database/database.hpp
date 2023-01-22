@@ -6,13 +6,11 @@
 #include <vector>
 
 // right now to include functions of csv file
-class Database
-{
-public:
+class Database {
+  public:
     Database();
     Database(std::string file_name);
-    enum Possible_Errors
-    {
+    enum Possible_Errors {
 
         successful_login,
         password_confirm_password,
@@ -22,10 +20,11 @@ public:
 
     };
     bool check_if_empty(); // checks if the csv is empty // Access the CSV file
-    Possible_Errors writeDataToFile(std::string username, std::string name,
-                                    std::string last_name, std::string password,
-                                    std::string confirm_password,
-                                    std::string email); // Add information to the CSV file
+    Possible_Errors
+    writeDataToFile(std::string username, std::string name,
+                    std::string last_name, std::string password,
+                    std::string confirm_password,
+                    std::string email); // Add information to the CSV file
     bool check_confirm_password(std::string password,
                                 std::string confirm_password);
     std::vector<std::string> readRecordFromFile(
@@ -47,7 +46,7 @@ public:
         std::string username_given,
         std::string password_given); // Deletes one user from the CSV file
 
-private:
+  private:
     std::string file_name;
     std::string username;
     std::string username_search;
