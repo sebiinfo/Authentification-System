@@ -43,7 +43,8 @@ Model::Model(int num_people, int num_feature, int width, int height,
 
 	if (localizer == "Basic" || localizer == "conformity" || localizer == "Conformity" || localizer=="Fancy" || localizer=="fancy")
     {
-        this->localizer = new Cascade_Localizer(localizer, width, height, 10);
+//		this->localizer = new Cascade_Localizer(localizer);
+		this->localizer = new Cascade_Localizer(localizer, width, height, 10);
     }
     else
     {
@@ -112,7 +113,7 @@ Model::Model(int num_people, int num_feature, int width, int height,
 
 Model::~Model()
 {
-    // delete localizer;
+	delete localizer;
     delete vectorizer;
     delete classifier;
 }
@@ -134,46 +135,33 @@ std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces)
     }
     // std::cout << "Finished\n";
     return output;
-
-    /* localizer.localize_update(
-        image, faces); // hopefully this loads up faces with faces :)
-    vectorizer.vectorize_update(image, faces[i], numerical_reps);
-    for (int i = 0; i < faces.size(); i++) {
-        ids.push_back(classifier.classify(numerical_reps[i]));
-    } */
 }
 
-std::vector<int> Model::predict(cv::Mat &image)
-{
-    std::vector<cv::Rect> faces;
-    return predict(image, faces);
-}
-
-int Model::predict_most_likely(cv::Mat &image)
-{
-    std::vector<cv::Rect> faces;
-    std::vector<int> temp = predict(image, faces);
-    if (temp.size() == 0)
-    {
-        return -1;
-    }
-    else
-    {
-        int score = -1e9;
-        int output = -1;
-        for (int i = 0; i < temp.size(); i++)
-        {
-            if (calculate_score(image, faces[i]) > score)
-            {
-                output = i;
-                score = calculate_score(image, faces[i]);
-            }
-        }
-        return temp[output];
-    }
-    // in future we need to use the rect and consider which face is the main
-    // one.
-}
+//int Model::predict_most_likely(cv::Mat &image)
+//{
+//    std::vector<cv::Rect> faces;
+//    std::vector<int> temp = predict(image, faces);
+//    if (temp.size() == 0)
+//    {
+//        return -1;
+//    }
+//    else
+//    {
+//        int score = -1e9;
+//        int output = -1;
+//        for (int i = 0; i < temp.size(); i++)
+//        {
+//            if (calculate_score(image, faces[i]) > score)
+//            {
+//                output = i;
+//                score = calculate_score(image, faces[i]);
+//            }
+//        }
+//        return temp[output];
+//    }
+//    // in future we need to use the rect and consider which face is the main
+//    // one.
+//}
 
 void Model::load_train_images()
 {
@@ -188,8 +176,8 @@ void Model::load_train_images()
             filename = base_filename + std::to_string(i);
             filename = filename + ".png";
             cv::Mat image = cv::imread(filename);
-            cv::Mat flat_image = image.reshape(1, 1);
-            train_images.push_back(flat_image);
+			cv::Mat flat_image = image.reshape(1, 1);
+			train_images.push_back(flat_image);
             train_labels.push_back(label);
         }
     }

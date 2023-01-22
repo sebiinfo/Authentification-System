@@ -34,9 +34,8 @@ class Model {
           std::string classifier);
     ~Model();
 
-    std::vector<int> predict(cv::Mat &image, std::vector<cv::Rect> &faces);
-    std::vector<int> predict(cv::Mat &image);
-    int predict_most_likely(cv::Mat &image);
+	int predict(cv::Mat &image);
+//    int predict_most_likely(cv::Mat &image);
     Classifier *classifier;
     Vectorizer *vectorizer;
     Localizer *localizer;

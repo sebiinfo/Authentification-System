@@ -8,14 +8,14 @@ const double pi = 3.14159265358979323846;
 // Other = 2
 #define test 1 // To load correct haarcascade
 
-#if test == 1
+#if test == 0
 std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_lefteye_2splits.xml";
 std::string path_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_lefteye_2splits.xml";
 
 #elif test == 1
 
-std::string path_face = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
-std::string path_eye = "/usr/local/share/opencv4/haarcascades/haarcascade_eye.xml";
+std::string path_face = "./resources/haarcascades/haarcascade_frontalface_default.xml";
+std::string path_eye = "./resources/haarcascades/haarcascade_eye.xml";
 
 #endif
 
@@ -63,23 +63,5 @@ void Cascade_conformity::EyedetectMultiScale(cv::Mat image, std::vector<cv::Rect
     cv::equalizeHist(image, image);
 	cascade_eyes.detectMultiScale(image, eyes, scaleFactor, minNeighbors, flags, minSize);
 }
-
-//
-//void Cascade_conformity::normalizeIntensities(cv::Mat &image)
-//{
-//    // Convert image to grayscale
-//    cv::Mat gray;
-//    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-//
-//    // Compute mean and standard deviation of pixel intensities
-//    cv::Scalar mean, stddev;
-//    cv::meanStdDev(gray, mean, stddev);
-//
-//    // Normalize the pixel intensities
-//    image = (image - mean[0]) / stddev[0];
-//}
-//
-//
-//
 
 
