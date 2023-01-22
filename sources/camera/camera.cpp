@@ -447,9 +447,8 @@ void Camera::on_forgot_credentials_clicked() {
 void Camera::on_back_4_clicked() { ui->stacked->setCurrentIndex(2); }
 
 void Camera::on_get_code_clicked() {
-    std::string change_credentials = ui->email_code->text().toStdString();
-    //    std::string temp_password = ui ->
-    //    database.forgotten_password(email_code);
+    std::string address = ui->email_code->text().toStdString();
+    int temp_password = database.forgotten_password(address);
     ui->stacked->setCurrentIndex(8);
     ui->email_code->clear();
 }
