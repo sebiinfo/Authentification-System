@@ -8,6 +8,7 @@
 #else
 #include "ui_camera.h"
 #endif
+#include "../Model/model.hpp"
 #include "config.h"
 #include "imagesettings.h"
 #include <QAction>
@@ -31,9 +32,8 @@
 #include <QVideoWidget>
 #include <QtWidgets>
 #include <iostream>
-#include <model.h>
 #include <opencv2/core.hpp>
-#include <opencv2/mat.hpp>
+#include <opencv2/core/mat.hpp>
 #include <string>
 
 // #define PATH_TO_RESOURCES "./"
@@ -438,13 +438,9 @@ void Camera::on_localization_1_clicked() { localization = "localization_1"; }
 
 void Camera::on_localization_2_clicked() { localization = "localization_2"; }
 
-void Camera::on_classification_1_clicked() {
-    classification = "KNN";
-}
+void Camera::on_classification_1_clicked() { classification = "KNN"; }
 
-void Camera::on_classification_2_clicked() {
-    classification = "DecisionTree";
-}
+void Camera::on_classification_2_clicked() { classification = "DecisionTree"; }
 
 void Camera::on_back_9_clicked() { ui->stacked->setCurrentIndex(5); }
 

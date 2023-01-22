@@ -4,7 +4,6 @@
 #include "../Classification/classifier.hpp"
 #include "../Localization/localizer.hpp"
 #include "../Vectorization/vectorizer.hpp"
-#include "Facedata.hpp"
 #include <opencv2/core.hpp>
 #include <opencv2/core/mat.hpp>
 #include <string>
@@ -33,9 +32,9 @@ class Model {
           std::string localizer, std::string vectorizer,
           std::string classifier);
     ~Model();
-    //std::vector<int> predict(cv::Mat &image, std::vector<cv::Rect> &faces);
-	std::vector<int> predict(cv::Mat &image);
-//    int predict_most_likely(cv::Mat &image);
+    // std::vector<int> predict(cv::Mat &image, std::vector<cv::Rect> &faces);
+    std::vector<int> predict(cv::Mat &image);
+    //    int predict_most_likely(cv::Mat &image);
     Classifier *classifier;
     Vectorizer *vectorizer;
     Localizer *localizer;
