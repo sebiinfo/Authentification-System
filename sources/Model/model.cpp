@@ -110,7 +110,6 @@ std::vector<int> Model::predict(cv::Mat &image) {
     std::cout << "\n\n\nVectorizing\n" << std::endl;
 
     cv::imshow("pula", image);
-    image = image.reshape(1, 1);
     std::cout << "Italia suge pula" << std::endl;
     cv::Mat numerical_reps = vectorizer->vectorize(image);
     std::cout << "Maldive suge pula" << std::endl;

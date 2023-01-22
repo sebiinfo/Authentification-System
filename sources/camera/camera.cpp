@@ -37,6 +37,15 @@
 #include <string>
 
 // #define PATH_TO_RESOURCES "./"
+static void debug_print(cv::Mat temp) {
+    std::cout << "temp.dims = " << temp.dims << " temp.size = [";
+    for (int i = 0; i < temp.dims; ++i) {
+        if (i)
+            std::cout << " X ";
+        std::cout << temp.size[i];
+    }
+    std::cout << "] temp.channels = " << temp.channels() << std::endl;
+}
 
 Camera::Camera() : ui(new Ui::Camera) {
     ui->setupUi(this);
@@ -466,11 +475,19 @@ void Camera::on_takeImageButton_clicked() {
         std::string path = "/resources/temp.jpg";
         path = std::string(PATH_TO_RESOURCES) + path;
         int num_people = database.get_max_ids();
+        // cv::imshow("abcd", (cv::imread(path)));
+        std::cout << path << std::endl;
+
         model = Model(num_people, num_people - 1, 0, 0, "", "Fisher",
                       classification);
-        cv::Mat image = cv::imread(path).reshape(1, 1);
 
+        cv::Mat image = cv::imread(path);
+        debug_print(image);
+        // cv::imwrite("/home/fcomoreira/desktop/", image);
+        image = image.reshape(1, 1);
+        debug_print(image);
         authenticate = model.predict(image)[0];
+
         if (authenticate == -1) {
             QMessageBox::about(
                 this, "Authentication Error",
