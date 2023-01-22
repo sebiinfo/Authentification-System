@@ -72,7 +72,7 @@ void Mail::send_mail(std::string adress, std::string messagecontent){
 
     Poco::Net::MailMessage msg;
     Poco::SharedPtr< Poco::Net::InvalidCertificateHandler> pCert = new ConsoleCertificateHandler(false);
-    Context::Ptr pContext = new Context(Context::CLIENT_USE, "", "", "", Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+    Context::Ptr pContext = new Context(Context::SERVER_USE, "", "", "", Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
 
     std::cout << "SSLManager::instance()" << std::endl;
     SSLManager::instance().initializeClient(0, pCert, pContext);
@@ -85,32 +85,27 @@ void Mail::send_mail(std::string adress, std::string messagecontent){
     std::cout << "stop1" << std::endl;
     std::string host = "smtp.google.com";
     int port = 465;
-//    Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Poco::Net::Context::CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
     Poco::Net::SecureSMTPClientSession smtp("smtp.gmail.com", 587);
-    std::cout << "stop2" << std::endl;
-        std::cout << "login" << std::endl;
-        smtp.open();
-        smtp.login();
-        std::cout << "startTLS" << std::endl;
-        Poco::Net::initializeSSL();
-        smtp.startTLS(pContext);
-        std::cout << "login 2" << std::endl;
-        smtp.login (    Poco::Net::SecureSMTPClientSession::LoginMethod::AUTH_LOGIN,
-                        "systemauthentification@gmail.com",
-                        "seqmqmkmyczkbhyz");
-        smtp.sendMessage (msg);
-
-
-    smtp.close ();
+    std::cout << "login" << std::endl;
+    smtp.open();
+    smtp.login();
+    std::cout << "startTLS" << std::endl;
+    Poco::Net::initializeSSL();
+    smtp.startTLS(pContext);
+    std::cout << "login 2" << std::endl;
+    smtp.login(Poco::Net::SecureSMTPClientSession::LoginMethod::AUTH_LOGIN,
+               "systemauthentification@gmail.com",
+               "rdazvlndgdbwdyuy");
+    std::cout << "sending..." << std::endl;
+    smtp.sendMessage(msg);
+    smtp.close();
     std::cout << "stop3" << std::endl;
 
 }
 
 int Mail::mail(std::string adress){
     int random_generated = Mail::generateRandomNumber();
-    std::cout<<random_generated<<std::endl;
     std::string messagecontent = generatemessage(random_generated);
-    std::cout<<messagecontent<<std::endl;
     Mail::send_mail(adress, messagecontent);
     return random_generated;
 }
