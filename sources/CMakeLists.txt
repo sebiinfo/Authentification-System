@@ -10,7 +10,8 @@ add_subdirectory(Localization)
 add_subdirectory(Interfaces)
 add_subdirectory(Rescale)
 add_subdirectory(Model)
-
+add_subdirectory(Database)
+add_subdirectory(camera)
 target_link_libraries(sources
      INTERFACE Cropimage
      INTERFACE Detect
@@ -24,10 +25,8 @@ target_link_libraries(sources
      INTERFACE Cascade
  )
 
-add_library(sources INTERFACE)
-add_subdirectory(Database)
-add_subdirectory(Password)
-add_subdirectory(camera)
+
+
 #add_subdirectory(Mail)
 # target_link_libraries(sources INTERFACE Mail)
 

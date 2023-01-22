@@ -4,7 +4,7 @@ add_library(Cascade
     cascade_conformity.hpp cascade_conformity.cpp
 #    cascade.cpp cascade.hpp
 )
-
+set (PATH_TO_RESOURCES ${CMAKE_BINARY_DIR})
 target_include_directories(Cascade INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(Cascade PRIVATE OpenCVExternalLibrary PRIVATE ${INCLUDE_QT})
