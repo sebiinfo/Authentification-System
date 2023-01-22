@@ -45,7 +45,7 @@ public:
 
 int Mail::generateRandomNumber() {
     srand(time(0));
-    int randomNumber = arc4random() % 999999 + 100000; // generates a random number between 10000 and 99999
+    int randomNumber = arc4random() % 99999 + 10000; // generates a random number between 10000 and 99999
     return randomNumber;
 }
 
@@ -60,24 +60,28 @@ bool Mail::verifyNumber(int code_sent, int code_entered) {
 
 std::string Mail::generatemessage(int random_generated){
     std::string messagecontent;
-    messagecontent = "Hello!\nHere is the 6-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
+    messagecontent = "Hello!\nHere is the 5-digits code that you will need in order to reinitialize your password!\nDo not share is with anyone.\nYour code is: ";
     messagecontent += std::to_string(random_generated);
     return messagecontent;
 }
 
 void Mail::send_mail(std::string adress, std::string messagecontent){
 
-    std::cout << "start" << std::endl;
+    std::cout << "sslInitializer" << std::endl;
     SSLInitializer sslInitializer;
 
     Poco::Net::MailMessage msg;
-    Poco::SharedPtr< Poco::Net::InvalidCertificateHandler> pCert = new ConsoleCertificateHandler(false);
-    Context::Ptr pContext = new Context(Context::CLIENT_USE, "", "", "", Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+    std::cout << "pCert" << std::endl;
 
+    Poco::SharedPtr< Poco::Net::InvalidCertificateHandler> pCert = new ConsoleCertificateHandler(false);
+    std::cout << "pContext" << std::endl;
+    Context::Ptr pContext = new Context(Context::CLIENT_USE, "", "", "", Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+    std::cout << "start" << std::endl;
     std::cout << "SSLManager::instance()" << std::endl;
     SSLManager::instance().initializeClient(0, pCert, pContext);
-
+    std::cout << "start" << std::endl;
     msg.addRecipient (Poco::Net::MailRecipient(Poco::Net::MailRecipient::PRIMARY_RECIPIENT, adress, "Sophie"));
+    msg.setSender ("Me <systemauthentifications@gmail.com>");
     msg.setSender ("AuthentificationSystem <systemauthentifications@gmail.com>");
     msg.setSubject ("Your password verification code");
     int x = 5;
@@ -85,9 +89,10 @@ void Mail::send_mail(std::string adress, std::string messagecontent){
     std::cout << "stop1" << std::endl;
     std::string host = "smtp.gmail.com";
     int port = 465;
-//    Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Poco::Net::Context::CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+    //    Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Poco::Net::Context::CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
     Poco::Net::SecureSMTPClientSession smtp("smtp.gmail.com", 587);
     std::cout << "stop2" << std::endl;
+<<<<<<< Updated upstream
         std::cout << "login" << std::endl;
         smtp.open();
         smtp.login();
@@ -99,6 +104,19 @@ void Mail::send_mail(std::string adress, std::string messagecontent){
                         "systemauthentification@gmail.com",
                         "qjdyfemuqzneuogb");
         smtp.sendMessage (msg);
+=======
+    std::cout << "login" << std::endl;
+    smtp.open();
+    smtp.login();
+    std::cout << "startTLS" << std::endl;
+    Poco::Net::initializeSSL();
+    smtp.startTLS(pContext);
+    std::cout << "login 2" << std::endl;
+    smtp.login (    Poco::Net::SecureSMTPClientSession::LoginMethod::AUTH_LOGIN,
+                    "systemauthentification@gmail.com",
+                    "qjdyfemuqzneuogb");
+    smtp.sendMessage (msg);
+>>>>>>> Stashed changes
 
 
     smtp.close ();
@@ -110,9 +128,7 @@ int Mail::mail(std::string adress){
     int random_generated = Mail::generateRandomNumber();
     std::cout<<random_generated<<std::endl;
     std::string messagecontent = generatemessage(random_generated);
-    std::cout<<messagecontent<<std::endl;
     Mail::send_mail(adress, messagecontent);
     return random_generated;
 }
-
 

@@ -4,6 +4,8 @@
 
 class Mail {
 public:
+    Mail() = default;
+
     int generateRandomNumber();
     void send_mail(std::string adress, std::string messagecontent);
     std::string generatemessage(int random_generated);
