@@ -10,18 +10,18 @@ const double pi = 3.14159265358979323846;
 
 Cascade_Localizer::Cascade_Localizer() : Cascade_Localizer("no_name") {}
 
-Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen) : Cascade_Localizer(cascade_chosen,244) {}
+Cascade_Localizer::Cascade_Localizer(std::string localizer) : Cascade_Localizer(localizer,244) {}
 
-Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen,int w) : Cascade_Localizer(cascade_chosen,w,10) {}
+Cascade_Localizer::Cascade_Localizer(std::string localizer,int w) : Cascade_Localizer(localizer,w,10) {}
 
-Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen,int w,int pad) : Cascade_Localizer(cascade_chosen,w,w,pad) {}
+Cascade_Localizer::Cascade_Localizer(std::string localizer,int w,int pad) : Cascade_Localizer(localizer,w,w,pad) {}
 
 
-Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen, int w, int h, int pad){
-    height = h;
-    width = w;
-    padding = pad;
-    change_Cascade_name(cascade_chosen);
+Cascade_Localizer::Cascade_Localizer(std::string localizer, int w, int h, int pad){
+	this->height = h;
+	this->width = w;
+	this->padding = pad;
+	change_Cascade_name(localizer);
     reload_cascade();
 }
 
@@ -29,9 +29,9 @@ Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen, int w, int h, i
 Cascade_Localizer::~Cascade_Localizer() {}
 
 
-void Cascade_Localizer::change_Cascade_name(std::string cascade_chosen)
+void Cascade_Localizer::change_Cascade_name(std::string localizer)
 {
-    Cascade_name = cascade_chosen;
+	this->Cascade_name = localizer;
 }
 
 std::string Cascade_Localizer::get_Cascade_name()
@@ -43,17 +43,17 @@ std::string Cascade_Localizer::get_Cascade_name()
 void Cascade_Localizer::reload_cascade()
 {
 if (Cascade_name == "conformity" || Cascade_name == "Conformity"){
-	cascade = new Cascade_basic();
+	this->cascade = new Cascade_basic();
 	// cascade = new Cascade_conformity(); Not yet implemented
 }
 
 else if(Cascade_name=="fancy" || Cascade_name=="Fancy"){
-	cascade = new Cascade_basic();
+	this->cascade = new Cascade_basic();
 	// cascade = new Cascade_conformity(); Not yet implemented
 }
 
 else{
-    cascade = new Cascade_basic();}
+	this->cascade = new Cascade_basic();}
 }
 
 
@@ -266,7 +266,7 @@ void Cascade_Localizer::rotate_face(cv::Mat &image, double angle)
     rotation_mat.at<double>(1, 2) += bound_h / 2 - image_center.y;
 
     cv::warpAffine(image, image, rotation_mat, cv::Size(bound_w, bound_h));
-	// cascade->detectMultiScale(image, faces,  1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+	// cascade->detectMultiScale(image, faces,  1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
 	return;
 }
@@ -279,7 +279,7 @@ void Cascade_Localizer::recheck(std::vector<cv::Mat> &images)
     for(int i=0;i<images.size();i++)
     {
 		img = images[i];
-		cascade->detectMultiScale(img,faces,1.06, 4, 0| cv::CASCADE_SCALE_IMAGE, cv::Size(20, 20));
+		cascade->detectMultiScale(img,faces,1.06, 4, 0| cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 		if (faces.size() == 0){
 			images.erase( images.begin() + i);
         }
@@ -293,7 +293,7 @@ std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image)
 {
 
 	std::vector<cv::Rect> faces = std::vector<cv::Rect>();
-	cascade->detectMultiScale(image, faces,  1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(20, 20));
+	cascade->detectMultiScale(image, faces,  1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
 
     std::vector<cv::Mat> images = Crop(image,faces);
@@ -315,7 +315,7 @@ std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image)
 
 	Rescale(images);
 
-    recheck(images);
+	recheck(images);
 
 	return images;
 

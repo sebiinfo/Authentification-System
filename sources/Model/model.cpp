@@ -43,7 +43,8 @@ Model::Model(int num_people, int num_feature, int width, int height,
 
 	if (localizer == "Basic" || localizer == "conformity" || localizer == "Conformity" || localizer=="Fancy" || localizer=="fancy")
     {
-        this->localizer = new Cascade_Localizer(localizer, width, height, 10);
+		this->localizer = new Cascade_Localizer(localizer);
+//        this->localizer = new Cascade_Localizer(localizer, width, height, 10);
     }
     else
     {
@@ -112,18 +113,22 @@ Model::Model(int num_people, int num_feature, int width, int height,
 
 Model::~Model()
 {
-    // delete localizer;
+	delete localizer;
     delete vectorizer;
     delete classifier;
 }
 
 std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces)
-{
+	{
+//	cv::imshow("images",image);
+//	cv::waitKey(0);
 	std::vector<cv::Mat> in_faces = localizer->Transform(image);
-    in_faces.push_back(image);
+	in_faces.push_back(image);
     std::vector<int> output;
     for (int i = 0; i < in_faces.size(); i++)
     {
+//		cv::imshow("images",in_faces[i]);
+//		cv::waitKey(0);
         // std::cout << "\n\n\nVectorizing\n";
         cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);
         // std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
@@ -187,8 +192,8 @@ void Model::load_train_images()
             filename = base_filename + std::to_string(i);
             filename = filename + ".png";
             cv::Mat image = cv::imread(filename);
-            cv::Mat flat_image = image.reshape(1, 1);
-            train_images.push_back(flat_image);
+			cv::Mat flat_image = image.reshape(1, 1);
+			train_images.push_back(flat_image);
             train_labels.push_back(label);
         }
     }
