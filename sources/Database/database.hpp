@@ -41,10 +41,16 @@ class Database {
     bool change_password(std::string username_given, std::string password_given,
                          std::string new_password,
                          std::string confirm_new_password);
+    bool change_forgotten_password(std::string username_given, int new_password,
+                                   int confirm_new_password);
     void delete_data(); // Deletes information from the CSV file
     bool delete_user(
         std::string username_given,
         std::string password_given); // Deletes one user from the CSV file
+
+    int forgotten_password(std::string email);
+
+    bool verif_forgotten_password(int entered_code, int sent_code);
 
   private:
     std::string file_name;
