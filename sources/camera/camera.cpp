@@ -428,18 +428,18 @@ void Camera::on_back_7_clicked() { ui->stacked->setCurrentIndex(5); }
 void Camera::on_back_8_clicked() { ui->stacked->setCurrentIndex(5); }
 
 std::string localization = "localization_1";
-std::string classification = "classification_1";
+std::string classification = "KNN";
 
 void Camera::on_localization_1_clicked() { localization = "localization_1"; }
 
 void Camera::on_localization_2_clicked() { localization = "localization_2"; }
 
 void Camera::on_classification_1_clicked() {
-    classification = "classification_1";
+    classification = "KNN";
 }
 
 void Camera::on_classification_2_clicked() {
-    classification = "classification_2";
+    classification = "DecisionTree";
 }
 
 void Camera::on_back_9_clicked() { ui->stacked->setCurrentIndex(5); }
