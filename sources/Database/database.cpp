@@ -382,7 +382,7 @@ bool Database::change_forgotten_password(std::string username_given,
 
     return found;
 }
-
+/*
 int Database::forgotten_password(std::string email) {
     Mail m;
     int temp_password = m.mail(email);
@@ -392,7 +392,7 @@ int Database::forgotten_password(std::string email) {
 bool Database::verif_forgotten_password(int entered_code, int sent_code) {
     Mail m;
     return m.verifyNumber(entered_code, sent_code);
-}
+} */
 
 //....................................................User_Input
 // class.......................................................

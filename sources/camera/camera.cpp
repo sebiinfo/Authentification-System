@@ -7,7 +7,6 @@
 #else
 #include "ui_camera.h"
 #endif
-#include "asmOpenCV.h"
 #include "imagesettings.h"
 #include <QAction>
 #include <QActionGroup>
@@ -163,12 +162,17 @@ void Camera::takeImage(std::string button_clicked) {
         path = path + bar;
         path = path + std::to_string(num_pics);
         path = path + extension;
+        char resolved_path[PATH_MAX];
+        realpath("./", resolved_path);
+        printf("\n%s\n", resolved_path);
+        path = std::string(resolved_path) + path;
+        std::cout << button_clicked << " path-> " << path << std::endl;
+    } else {
+        path = "/resources/temp.jpg";
+        char resolved_path[PATH_MAX];
+        realpath("./", resolved_path);
+        path = std::string(resolved_path) + path;
     }
-    char resolved_path[PATH_MAX];
-    realpath("./", resolved_path);
-    printf("\n%s\n", resolved_path);
-    path = std::string(resolved_path) + path;
-    std::cout << button_clicked << " path-> " << path << std::endl;
     m_isCapturingImage = true;
     m_imageCapture->captureToFile(QString::fromStdString(path));
 }
@@ -447,10 +451,10 @@ void Camera::on_forgot_credentials_clicked() {
 void Camera::on_back_4_clicked() { ui->stacked->setCurrentIndex(2); }
 
 void Camera::on_get_code_clicked() {
-    std::string address = ui->email_code->text().toStdString();
+    /* std::string address = ui->email_code->text().toStdString();
     int temp_password = database.forgotten_password(address);
     ui->stacked->setCurrentIndex(8);
-    ui->email_code->clear();
+    ui->email_code->clear(); */
 }
 void Camera::on_takeImageButton_clicked() {
     if (num_pics == 10) {

@@ -1,5 +1,4 @@
 add_library(sources INTERFACE)
-add_subdirectory(Mail)
 add_subdirectory(Database)
 add_subdirectory(Password)
 add_subdirectory(camera)

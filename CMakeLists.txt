@@ -9,8 +9,8 @@ add_executable(${PROJECT_NAME}
 )
 
 find_package(OpenCV REQUIRED)
-find_package(Poco REQUIRED Net NetSSL)
-find_package(OpenSSL REQUIRED)
+# find_package(Poco REQUIRED Net NetSSL)
+# find_package(OpenSSL REQUIRED)
 find_package(Qt6 OPTIONAL_COMPONENTS Core)
 
 add_subdirectory(sources)
@@ -18,15 +18,15 @@ include_directories(${OpenSSL_INCLUDE_DIRS})
 
 if(${Qt6_FOUND})
   add_subdirectory(libs/qt)
-#  qt_standard_project_setup()
+  qt_standard_project_setup()
 endif()
 
 if(${OpenCV_FOUND})
     add_subdirectory(libs/opencv)
 endif()
 
-add_subdirectory(libs/Poco)
-add_subdirectory(libs/openssl)
+# add_subdirectory(libs/Poco)
+# add_subdirectory(libs/openssl)
 
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E make_directory 
@@ -39,6 +39,6 @@ add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
 target_link_libraries(${PROJECT_NAME} 
         PUBLIC ${INCLUDE_QT}
         PUBLIC ${OpenSSL_LIBRARY_DIRS}
-        PUBLIC PocoExternalLibrary
+        # PUBLIC PocoExternalLibrary
         PUBLIC OpenCVExternalLibrary
         PUBLIC sources)
