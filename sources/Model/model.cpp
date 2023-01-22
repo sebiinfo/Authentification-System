@@ -37,14 +37,14 @@ Model::Model(int num_people, int num_feature, int width, int height,
     this->width = width;
     this->height = height;
 
-    if (localizer == "Basic" || localizer == "conformity" ||
+    /* if (localizer == "Basic" || localizer == "conformity" ||
         localizer == "Conformity" || localizer == "Fancy" ||
         localizer == "fancy") {
         //		this->localizer = new Cascade_Localizer(localizer);
         this->localizer = new Cascade_Localizer(localizer, width, height, 10);
     } else {
         assert(false);
-    }
+    } */
 
     if (vectorizer == "Fisher") {
         this->vectorizer = new Fisher(num_people, num_feature);
@@ -147,9 +147,8 @@ void Model::load_train_images() {
     std::cout << "Loading Training Images" << std::endl;
     std::string filename, base_filename;
     for (int label = 1; label <= num_people; label++) {
-        base_filename =
-            "./resources/yalefaces/train/" + std::to_string(label) + "/";
-        for (int i = 1; i <= 9; i++) {
+        base_filename = "./resources/" + std::to_string(label) + "/";
+        for (int i = 1; i <= 10; i++) {
             filename = base_filename + std::to_string(i);
             filename = filename + ".png";
             cv::Mat image = cv::imread(filename);

@@ -431,9 +431,15 @@ void Camera::on_back_8_clicked() { ui->stacked->setCurrentIndex(5); }
 
 std::string classification = "KNN";
 
-void Camera::on_classification_1_clicked() { classification = "KNN"; }
+void Camera::on_classification_1_clicked() {
+    classification = "KNN";
+    Model model(10, 9, 0, 0, "", "Fisher", classification);
+}
 
-void Camera::on_classification_2_clicked() { classification = "DecisionTree"; }
+void Camera::on_classification_2_clicked() {
+    classification = "DecisionTree";
+    Model model(10, 9, 0, 0, "", "Fisher", classification);
+}
 
 void Camera::on_back_9_clicked() { ui->stacked->setCurrentIndex(5); }
 
@@ -456,7 +462,6 @@ void Camera::on_takeImageButton_clicked() {
         std::string path = "/resources/temp.jpg";
         path = std::string(PATH_TO_RESOURCES) + path;
         cv::Mat image = cv::imread(path);
-        Model model(10, 9, 0, 0, "", "Fisher", classification);
         if (authenticate == 0) {
             QMessageBox::about(
                 this, "Authentication Error",
