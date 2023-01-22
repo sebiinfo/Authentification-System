@@ -7,7 +7,6 @@
 #else
 #include "ui_camera.h"
 #endif
-
 #include "asmOpenCV.h"
 #include "imagesettings.h"
 #include <QAction>
@@ -135,8 +134,8 @@ void Camera::processCapturedImage(int requestId, const QImage &img) {
     ui->lastImagePreviewLabel->setPixmap(QPixmap::fromImage(scaledImage));
 
     // Display captured image for 4 seconds.
-    displayCapturedImage();
-    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
+//    displayCapturedImage();
+//    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
 }
 
 void Camera::configureCaptureSettings() {
@@ -199,7 +198,7 @@ void Camera::updateCameraDevice(QAction *action) {
 
 void Camera::displayViewfinder() { ui->stacked->setCurrentIndex(0); }
 
-void Camera::displayCapturedImage() { ui->stacked->setCurrentIndex(1); }
+//void Camera::displayCapturedImage() { ui->stacked->setCurrentIndex(1); }
 
 void Camera::readyForCapture(bool ready) {
     ui->takeImageButton->setEnabled(ready);
@@ -239,14 +238,15 @@ void Camera::updateCameras() {
         ui->menuDevices->addAction(videoDeviceAction);
     }
 }
+int currentIndex = 0;
 
 void Camera::on_register_2_clicked() { ui->stacked->setCurrentIndex(1); }
 
 void Camera::on_face_recognition_clicked() {
-    ui->camera_stacked->setCurrentIndex(0);
-    ui->photo_button->setCurrentIndex(0);
+    ui->camera->setCurrentIndex(0);
     ui->stacked->setCurrentIndex(4);
     ui->logout->setCurrentIndex(0);
+    currentIndex = 0;
 
 }
 
@@ -314,8 +314,8 @@ void Camera::on_create_2_clicked() {
         }
         else {
             if (check == 0) {
-                ui->camera_stacked->setCurrentIndex(1);
-                ui->photo_button->setCurrentIndex(1);
+                currentIndex = 1;
+                ui->camera->setCurrentIndex(1);
                 ui->stacked->setCurrentIndex(4);
                 ui->logout->setCurrentIndex(0);
                 QMessageBox::about(this, "Identification Photos",
@@ -433,8 +433,6 @@ void Camera::on_classification_2_clicked() {
     classification = "classification_2";
 }
 
-void Camera::on_create_account_clicked() { ui->stacked->setCurrentIndex(1); }
-
 void Camera::on_back_9_clicked() { ui->stacked->setCurrentIndex(5); }
 
 void Camera::on_forgot_credentials_clicked() {
@@ -450,16 +448,27 @@ void Camera::on_get_code_clicked() {
     ui->stacked->setCurrentIndex(8);
     ui->email_code->clear();
 }
-
+int i = 0;
 void Camera::on_takeImageButton_clicked() {
+    if (i == 10) {
+        QMessageBox::about(this, "Successful Account Created", "Thank you, your account is now complete.");
+        ui->stacked->setCurrentIndex(5);
+    }
+    else if (currentIndex == 0) {
     takeImage("take_image");
     }
+    else if (currentIndex == 1) {
+            takeImage("account_photos");
+            i += 1;
+        }
+    }
+
 
 void Camera::on_photo_library_clicked() {
     ui->stacked->setCurrentIndex(4);
-    ui->camera_stacked->setCurrentIndex(0);
-    ui->photo_button->setCurrentIndex(0);
+    ui->camera->setCurrentIndex(0);
     ui->logout->setCurrentIndex(1);
+    currentIndex = 0;
 }
 
 void Camera::on_resend_code_clicked() { ui->stacked->setCurrentIndex(3); }
@@ -503,15 +512,8 @@ void Camera::on_log_out_clicked()
     ui->stacked->setCurrentIndex(0);
 }
 
-int i = 0;
-void Camera::on_account_photos_clicked()
+void Camera::on_create_account_clicked()
 {
-    takeImage("account_photos");
-    i += 1;
-    if (i == 10) {
-        QMessageBox::about(this, "Successful Account Created",
-                           "Thank you, your account is now complete.");
-        ui->stacked->setCurrentIndex(5);
-    }
+    ui->stacked->setCurrentIndex(1);
 }
 
