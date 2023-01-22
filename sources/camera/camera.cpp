@@ -134,8 +134,8 @@ void Camera::processCapturedImage(int requestId, const QImage &img) {
     ui->lastImagePreviewLabel->setPixmap(QPixmap::fromImage(scaledImage));
 
     // Display captured image for 4 seconds.
-//    displayCapturedImage();
-//    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
+    //    displayCapturedImage();
+    //    QTimer::singleShot(4000, this, &Camera::displayViewfinder);
 }
 
 void Camera::configureCaptureSettings() {
@@ -153,8 +153,18 @@ void Camera::configureImageSettings() {
     }
 }
 
-void Camera::takeImage(std::string path) {
-    std::cout<<path<<std::endl;
+void Camera::takeImage(std::string button_clicked) {
+    std::string path = "../resources/";
+    std::string extension = ".png";
+    std::string bar = "/";
+    std::string aux;
+    if (button_clicked == "account_photos") {
+        path = path + currentIndex;
+        path = path + bar;
+        path = path + std::to_string(num_pics);
+        path = path + extension;
+    }
+    std::cout << button_clicked << " path-> " << path << std::endl;
     m_isCapturingImage = true;
     m_imageCapture->captureToFile(QString::fromStdString(path));
 }
@@ -198,7 +208,7 @@ void Camera::updateCameraDevice(QAction *action) {
 
 void Camera::displayViewfinder() { ui->stacked->setCurrentIndex(0); }
 
-//void Camera::displayCapturedImage() { ui->stacked->setCurrentIndex(1); }
+// void Camera::displayCapturedImage() { ui->stacked->setCurrentIndex(1); }
 
 void Camera::readyForCapture(bool ready) {
     ui->takeImageButton->setEnabled(ready);
@@ -238,7 +248,6 @@ void Camera::updateCameras() {
         ui->menuDevices->addAction(videoDeviceAction);
     }
 }
-int currentIndex = 0;
 
 void Camera::on_register_2_clicked() { ui->stacked->setCurrentIndex(1); }
 
@@ -246,8 +255,7 @@ void Camera::on_face_recognition_clicked() {
     ui->camera->setCurrentIndex(0);
     ui->stacked->setCurrentIndex(4);
     ui->logout->setCurrentIndex(0);
-    currentIndex = 0;
-
+    currentIndex = "";
 }
 
 void Camera::on_password_clicked() { ui->stacked->setCurrentIndex(2); }
@@ -282,75 +290,72 @@ void Camera::on_create_2_clicked() {
 
     Database::Possible_Errors check =
         database.writeDataToFile(user, name, last_name, pass, conf_pass, email);
-        if (name.empty()) {
+    if (name.empty()) {
+        QMessageBox::about(this, "Error Creating Account",
+                           "There has been an error, you must fill out all "
+                           "fields in order to create an account.");
+    } else if (user.empty()) {
+        QMessageBox::about(this, "Error Creating Account",
+                           "There has been an error, you must fill out all "
+                           "fields in order to create an account.");
+    } else if (last_name.empty()) {
+        QMessageBox::about(this, "Error Creating Account",
+                           "There has been an error, you must fill out all "
+                           "fields in order to create an account.");
+    } else if (pass.empty()) {
+        QMessageBox::about(this, "Error Creating Account",
+                           "There has been an error, you must fill out all "
+                           "fields in order to create an account.");
+    } else if (conf_pass.empty()) {
+        QMessageBox::about(this, "Error Creating Account",
+                           "There has been an error, you must fill out all "
+                           "fields in order to create an account.");
+    } else if (email.empty()) {
+        QMessageBox::about(this, "Error Creating Account",
+                           "There has been an error, you must fill out all "
+                           "fields in order to create an account.");
+    } else {
+        if (check == 0) {
+            currentIndex = database.readRecordFromFile(user)[0];
+            std::cout << "This is the new id:" << currentIndex << std::endl;
+            ui->camera->setCurrentIndex(1);
+            ui->stacked->setCurrentIndex(4);
+            ui->logout->setCurrentIndex(0);
+            QMessageBox::about(
+                this, "Identification Photos",
+                "Now you must take 10 pictures with different "
+                "facial expressions in order to be able to use the "
+                "facial recognition system to log in.");
+            ui->name->clear();
+            ui->last_name->clear();
+            ui->username->clear();
+            ui->email->clear();
+            ui->password_2->clear();
+            ui->confirm_password->clear();
+        } else if (check == 1) {
+            QMessageBox::about(this, "Error Creating Account",
+                               "There has been an error, your confirmed "
+                               "password does not match "
+                               "your password. Please input the right password "
+                               "and try again.");
+        } else if (check == 2) {
             QMessageBox::about(
                 this, "Error Creating Account",
-                "There has been an error, you must fill out all fields in order to create an account.");
-        }
-        else if (user.empty()) {
+                "There has been an error, the email you have selected has "
+                "already "
+                "been taken. Please choose another and try again.");
+        } else if (check == 3) {
             QMessageBox::about(
                 this, "Error Creating Account",
-                "There has been an error, you must fill out all fields in order to create an account.");
-        }
-        else if (last_name.empty()) {
+                "There has been an error, the username you have selected has "
+                "already been taken. Please choose another and try again.");
+        } else if (check == 4) {
             QMessageBox::about(
                 this, "Error Creating Account",
-                "There has been an error, you must fill out all fields in order to create an account.");
+                "There has been an error, the password you chose is not strong "
+                "enough. Take a look at the requirements below and try again.");
         }
-        else if (pass.empty()) {
-            QMessageBox::about(
-                this, "Error Creating Account",
-                "There has been an error, you must fill out all fields in order to create an account.");
-        }
-        else if (conf_pass.empty()) {
-            QMessageBox::about(
-                this, "Error Creating Account",
-                "There has been an error, you must fill out all fields in order to create an account.");
-        }
-        else if (email.empty()) {
-            QMessageBox::about(
-                this, "Error Creating Account",
-                "There has been an error, you must fill out all fields in order to create an account.");
-        }
-        else {
-            if (check == 0) {
-                currentIndex = 1;
-                ui->camera->setCurrentIndex(1);
-                ui->stacked->setCurrentIndex(4);
-                ui->logout->setCurrentIndex(0);
-                QMessageBox::about(this, "Identification Photos",
-                                   "Now you must take 10 pictures with different "
-                                   "facial expressions in order to be able to use the "
-                                   "facial recognition system to log in.");
-                ui->name->clear();
-                ui->last_name->clear();
-                ui->username->clear();
-                ui->email->clear();
-                ui->password_2->clear();
-                ui->confirm_password->clear();
-            }
-              else if (check == 1) {
-                QMessageBox::about(
-                    this, "Error Creating Account",
-                    "There has been an error, your confirmed password does not match "
-                    "your password. Please input the right password and try again.");
-            } else if (check == 2) {
-                QMessageBox::about(
-                    this, "Error Creating Account",
-                    "There has been an error, the email you have selected has already "
-                    "been taken. Please choose another and try again.");
-            } else if (check == 3) {
-                QMessageBox::about(
-                    this, "Error Creating Account",
-                    "There has been an error, the username you have selected has "
-                    "already been taken. Please choose another and try again.");
-            } else if (check == 4) {
-                QMessageBox::about(
-                    this, "Error Creating Account",
-                    "There has been an error, the password you chose is not strong "
-                    "enough. Take a look at the requirements below and try again.");
-            }
-}
+    }
 }
 
 void Camera::on_new_password_clicked() {
@@ -417,13 +422,9 @@ void Camera::on_back_8_clicked() { ui->stacked->setCurrentIndex(5); }
 std::string localization = "localization_1";
 std::string classification = "classification_1";
 
-void Camera::on_localization_1_clicked() {
-    localization = "localization_1";
-}
+void Camera::on_localization_1_clicked() { localization = "localization_1"; }
 
-void Camera::on_localization_2_clicked() {
-    localization = "localization_2";
-}
+void Camera::on_localization_2_clicked() { localization = "localization_2"; }
 
 void Camera::on_classification_1_clicked() {
     classification = "classification_1";
@@ -448,27 +449,24 @@ void Camera::on_get_code_clicked() {
     ui->stacked->setCurrentIndex(8);
     ui->email_code->clear();
 }
-int i = 0;
 void Camera::on_takeImageButton_clicked() {
-    if (i == 10) {
-        QMessageBox::about(this, "Successful Account Created", "Thank you, your account is now complete.");
+    if (num_pics == 10) {
+        QMessageBox::about(this, "Successful Account Created",
+                           "Thank you, your account is now complete.");
         ui->stacked->setCurrentIndex(5);
+    } else if (currentIndex == "") {
+        takeImage("take_image");
+    } else if (currentIndex != "") {
+        takeImage("account_photos");
+        num_pics += 1;
     }
-    else if (currentIndex == 0) {
-    takeImage("take_image");
-    }
-    else if (currentIndex == 1) {
-            takeImage("account_photos");
-            i += 1;
-        }
-    }
-
+}
 
 void Camera::on_photo_library_clicked() {
     ui->stacked->setCurrentIndex(4);
     ui->camera->setCurrentIndex(0);
     ui->logout->setCurrentIndex(1);
-    currentIndex = 0;
+    currentIndex = "";
 }
 
 void Camera::on_resend_code_clicked() { ui->stacked->setCurrentIndex(3); }
@@ -498,7 +496,6 @@ void Camera::on_back_12_clicked() { ui->stacked->setCurrentIndex(5); }
 
 void Camera::on_back_13_clicked() { ui->stacked->setCurrentIndex(0); }
 
-
 // int count = 0;
 
 // void Camera::buttonClicked()
@@ -507,13 +504,6 @@ void Camera::on_back_13_clicked() { ui->stacked->setCurrentIndex(0); }
 //     QLCDNumber display();.value(count);
 // }
 
-void Camera::on_log_out_clicked()
-{
-    ui->stacked->setCurrentIndex(0);
-}
+void Camera::on_log_out_clicked() { ui->stacked->setCurrentIndex(0); }
 
-void Camera::on_create_account_clicked()
-{
-    ui->stacked->setCurrentIndex(1);
-}
-
+void Camera::on_create_account_clicked() { ui->stacked->setCurrentIndex(1); }

@@ -92,6 +92,8 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
+    std::string currentIndex = "";
+    int num_pics = 0;
     Ui::Camera *ui;
     Database database;
     QActionGroup *videoDevicesGroup = nullptr;
