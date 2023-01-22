@@ -47,6 +47,7 @@ class Database {
     bool delete_user(
         std::string username_given,
         std::string password_given); // Deletes one user from the CSV file
+    int get_max_ids();
 
     /* int forgotten_password(std::string email);
 

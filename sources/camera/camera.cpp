@@ -55,6 +55,8 @@ Camera::Camera() : ui(new Ui::Camera) {
     setCamera(QMediaDevices::defaultVideoInput());
     ui->stacked->setCurrentIndex(0);
     ui->classification_1->setChecked(true);
+    classification = "KNN";
+    int num_people = database.get_max_ids();
 }
 
 void Camera::setCamera(const QCameraDevice &cameraDevice) {
@@ -433,12 +435,14 @@ std::string classification = "KNN";
 
 void Camera::on_classification_1_clicked() {
     classification = "KNN";
-    Model model(10, 9, 0, 0, "", "Fisher", classification);
+    int num_people = database.get_max_ids();
+    Model model(num_people, num_people - 1, 0, 0, "", "Fisher", classification);
 }
 
 void Camera::on_classification_2_clicked() {
     classification = "DecisionTree";
-    Model model(10, 9, 0, 0, "", "Fisher", classification);
+    int num_people = database.get_max_ids();
+    Model model(num_people, num_people - 1, 0, 0, "", "Fisher", classification);
 }
 
 void Camera::on_back_9_clicked() { ui->stacked->setCurrentIndex(5); }
@@ -461,8 +465,13 @@ void Camera::on_takeImageButton_clicked() {
         takeImage("take_image");
         std::string path = "/resources/temp.jpg";
         path = std::string(PATH_TO_RESOURCES) + path;
-        cv::Mat image = cv::imread(path);
-        if (authenticate == 0) {
+        int num_people = database.get_max_ids();
+        model = Model(num_people, num_people - 1, 0, 0, "", "Fisher",
+                      classification);
+        cv::Mat image = cv::imread(path).reshape(1, 1);
+
+        authenticate = model.predict(image)[0];
+        if (authenticate == -1) {
             QMessageBox::about(
                 this, "Authentication Error",
                 "Your face has not been recognized, try again or go back to "

@@ -6,7 +6,7 @@
 #include <opencv2/core/matx.hpp>
 #include <string>
 
-#include "vectorizer.cpp"
+#include "vectorizer.hpp"
 
 static void debug_print(cv::Mat temp) {
     std::cout << "temp.dims = " << temp.dims << " temp.size = [";
