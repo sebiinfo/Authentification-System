@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "camera.h"
+#include <opencv2/imgcodecs.hpp>
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS)
 #include "ui_camera_mobile.h"
 #else
@@ -30,6 +31,9 @@
 #include <QVideoWidget>
 #include <QtWidgets>
 #include <iostream>
+#include <model.h>
+#include <opencv2/core.hpp>
+#include <opencv2/mat.hpp>
 #include <string>
 
 // #define PATH_TO_RESOURCES "./"
@@ -458,22 +462,30 @@ void Camera::on_get_code_clicked() {
 }
 int authenticate = 0;
 void Camera::on_takeImageButton_clicked() {
-    if (num_pics == 10) {
-        QMessageBox::about(this, "Successful Account Created",
-                           "Thank you, your account is now complete.");
-        ui->stacked->setCurrentIndex(5);
-    } else if (currentIndex == "") {
+    if (currentIndex == "") {
         takeImage("take_image");
+        std::string path = "/resources/temp.jpg";
+        path = std::string(PATH_TO_RESOURCES) + path;
+        cv::Mat image = cv::imread(path);
+        Model model(10, 9, 0, 0, "", "Fisher", classification);
         if (authenticate == 0) {
-            QMessageBox::about(this, "Authentication Error",
-                               "Your face has not been recognized, try again or go back to try logging in with password or create an account.");
-        }
-        else {
+            QMessageBox::about(
+                this, "Authentication Error",
+                "Your face has not been recognized, try again or go back to "
+                "try logging in with password or create an account.");
+        } else {
             ui->stacked->setCurrentIndex(5);
         }
-    } else if (currentIndex != "") {
-        takeImage("account_photos");
-        num_pics += 1;
+    } else {
+        if (num_pics == 10) {
+            num_pics = 11;
+            QMessageBox::about(this, "Successful Account Created",
+                               "Thank you, your account is now complete.");
+            ui->stacked->setCurrentIndex(5);
+        } else {
+            takeImage("account_photos");
+            num_pics += 1;
+        }
     }
 }
 
