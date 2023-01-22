@@ -854,7 +854,7 @@ QPushButton#back_4:pressed {
            <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
           </property>
           <property name="text">
-           <string>Vectorization </string>
+           <string>Fisher Faces</string>
           </property>
          </widget>
          <widget class="QWidget" name="verticalLayoutWidget_3">
@@ -873,7 +873,7 @@ QPushButton#back_4:pressed {
               <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
              </property>
              <property name="text">
-              <string>Classification 1</string>
+              <string>Decision Tree</string>
              </property>
             </widget>
            </item>
@@ -883,7 +883,7 @@ QPushButton#back_4:pressed {
               <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
              </property>
              <property name="text">
-              <string>Classification 2</string>
+              <string>KNN</string>
              </property>
             </widget>
            </item>
