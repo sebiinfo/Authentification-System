@@ -456,6 +456,7 @@ void Camera::on_get_code_clicked() {
     ui->stacked->setCurrentIndex(8);
     ui->email_code->clear(); */
 }
+int authenticate = 0;
 void Camera::on_takeImageButton_clicked() {
     if (num_pics == 10) {
         QMessageBox::about(this, "Successful Account Created",
@@ -463,6 +464,13 @@ void Camera::on_takeImageButton_clicked() {
         ui->stacked->setCurrentIndex(5);
     } else if (currentIndex == "") {
         takeImage("take_image");
+        if (authenticate == 0) {
+            QMessageBox::about(this, "Authentication Error",
+                               "Your face has not been recognized, try again or go back to try logging in with password or create an account.");
+        }
+        else {
+            ui->stacked->setCurrentIndex(5);
+        }
     } else if (currentIndex != "") {
         takeImage("account_photos");
         num_pics += 1;
