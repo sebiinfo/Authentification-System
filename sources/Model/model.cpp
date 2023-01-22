@@ -43,8 +43,8 @@ Model::Model(int num_people, int num_feature, int width, int height,
 
 	if (localizer == "Basic" || localizer == "conformity" || localizer == "Conformity" || localizer=="Fancy" || localizer=="fancy")
     {
-		this->localizer = new Cascade_Localizer(localizer);
-//        this->localizer = new Cascade_Localizer(localizer, width, height, 10);
+//		this->localizer = new Cascade_Localizer(localizer);
+		this->localizer = new Cascade_Localizer(localizer, width, height, 10);
     }
     else
     {
@@ -118,66 +118,44 @@ Model::~Model()
     delete classifier;
 }
 
-std::vector<int> Model::predict(cv::Mat &image, std::vector<cv::Rect> &faces)
+int Model::predict(cv::Mat &image)
 	{
 //	cv::imshow("images",image);
 //	cv::waitKey(0);
-	std::vector<cv::Mat> in_faces = localizer->Transform(image);
-	in_faces.push_back(image);
-    std::vector<int> output;
-    for (int i = 0; i < in_faces.size(); i++)
-    {
-//		cv::imshow("images",in_faces[i]);
-//		cv::waitKey(0);
-        // std::cout << "\n\n\nVectorizing\n";
-        cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);
-        // std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
-        // debug_print(numerical_reps);
-        // std::cout << "Classifying\n";
-        output.push_back(classifier->classify(numerical_reps));
-    }
+	cv::Mat in_faces = localizer->Transform(image)[0];
+	// in_faces.push_back(image);
+	int output;
+	cv::Mat numerical_reps = vectorizer->vectorize(in_faces);
+	output = classifier->classify(numerical_reps);
     // std::cout << "Finished\n";
     return output;
-
-    /* localizer.localize_update(
-        image, faces); // hopefully this loads up faces with faces :)
-    vectorizer.vectorize_update(image, faces[i], numerical_reps);
-    for (int i = 0; i < faces.size(); i++) {
-        ids.push_back(classifier.classify(numerical_reps[i]));
-    } */
 }
 
-std::vector<int> Model::predict(cv::Mat &image)
-{
-    std::vector<cv::Rect> faces;
-    return predict(image, faces);
-}
-
-int Model::predict_most_likely(cv::Mat &image)
-{
-    std::vector<cv::Rect> faces;
-    std::vector<int> temp = predict(image, faces);
-    if (temp.size() == 0)
-    {
-        return -1;
-    }
-    else
-    {
-        int score = -1e9;
-        int output = -1;
-        for (int i = 0; i < temp.size(); i++)
-        {
-            if (calculate_score(image, faces[i]) > score)
-            {
-                output = i;
-                score = calculate_score(image, faces[i]);
-            }
-        }
-        return temp[output];
-    }
-    // in future we need to use the rect and consider which face is the main
-    // one.
-}
+//int Model::predict_most_likely(cv::Mat &image)
+//{
+//    std::vector<cv::Rect> faces;
+//    std::vector<int> temp = predict(image, faces);
+//    if (temp.size() == 0)
+//    {
+//        return -1;
+//    }
+//    else
+//    {
+//        int score = -1e9;
+//        int output = -1;
+//        for (int i = 0; i < temp.size(); i++)
+//        {
+//            if (calculate_score(image, faces[i]) > score)
+//            {
+//                output = i;
+//                score = calculate_score(image, faces[i]);
+//            }
+//        }
+//        return temp[output];
+//    }
+//    // in future we need to use the rect and consider which face is the main
+//    // one.
+//}
 
 void Model::load_train_images()
 {
