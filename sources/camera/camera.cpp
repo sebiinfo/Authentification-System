@@ -297,7 +297,6 @@ void Camera::on_create_2_clicked() {
     std::string email = ui->email->text().toStdString();
     std::string pass = ui->password_2->text().toStdString();
     std::string conf_pass = ui->confirm_password->text().toStdString();
-
     Database::Possible_Errors check =
         database.writeDataToFile(user, name, last_name, pass, conf_pass, email);
     if (name.empty()) {
@@ -327,10 +326,9 @@ void Camera::on_create_2_clicked() {
     } else {
         if (check == 0) {
             currentIndex = database.readRecordFromFile(user)[0];
-            std::cout << "This is the new id:" << currentIndex << std::endl;
             ui->camera->setCurrentIndex(1);
             ui->stacked->setCurrentIndex(4);
-            ui->logout->setCurrentIndex(0);
+            ui->logout->setCurrentIndex(2);
             QMessageBox::about(
                 this, "Identification Photos",
                 "Now you must take 10 pictures with different "
@@ -444,7 +442,7 @@ void Camera::on_classification_2_clicked() {
 void Camera::on_back_9_clicked() { ui->stacked->setCurrentIndex(5); }
 
 void Camera::on_forgot_credentials_clicked() {
-    ui->stacked->setCurrentIndex(3);
+    ui->stacked->setCurrentIndex(9);
 }
 
 void Camera::on_back_4_clicked() { ui->stacked->setCurrentIndex(2); }

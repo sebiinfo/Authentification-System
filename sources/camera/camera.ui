@@ -85,7 +85,7 @@ face_recognition {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="main">
        <widget class="QPushButton" name="register_2">
@@ -560,10 +560,10 @@ QPushButton#back_2:pressed {
        <widget class="QPushButton" name="login_2">
         <property name="geometry">
          <rect>
-          <x>660</x>
-          <y>390</y>
-          <width>131</width>
-          <height>41</height>
+          <x>530</x>
+          <y>320</y>
+          <width>211</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -578,29 +578,6 @@ QPushButton#login_2:pressed {
         </property>
         <property name="text">
          <string>Login</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="forgot_credentials">
-        <property name="geometry">
-         <rect>
-          <x>540</x>
-          <y>320</y>
-          <width>201</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#forgot_credentials {
-font: 12pt &quot;Times New Roman&quot;;
-min-width: 80px;
-}
-QPushButton#forgot_credentials:pressed {
-    background-color: rgb(224, 224, 224);
-    border-style: inset;
-}</string>
-        </property>
-        <property name="text">
-         <string>Forgot Credentials</string>
         </property>
        </widget>
        <widget class="QPushButton" name="create_account">
@@ -786,7 +763,7 @@ QPushButton#back_4:pressed {
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>30</y>
+            <y>40</y>
             <width>101</width>
             <height>31</height>
            </rect>
@@ -843,7 +820,8 @@ QPushButton#back_4:pressed {
            <item>
             <widget class="QRadioButton" name="classification_1">
              <property name="styleSheet">
-              <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+              <string notr="true">font: 12pt &quot;Times New Roman&quot;;
+color: #717e87</string>
              </property>
              <property name="text">
               <string>Decision Tree</string>
@@ -853,7 +831,8 @@ QPushButton#back_4:pressed {
            <item>
             <widget class="QRadioButton" name="classification_2">
              <property name="styleSheet">
-              <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+              <string notr="true">font: 12pt &quot;Times New Roman&quot;;
+color: #717e87</string>
              </property>
              <property name="text">
               <string>KNN</string>
@@ -1004,7 +983,7 @@ QPushButton#back_4:pressed {
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="page_5">
          <widget class="QPushButton" name="back_3">
@@ -1056,6 +1035,7 @@ QPushButton#log_out:pressed {
           </property>
          </widget>
         </widget>
+        <widget class="QWidget" name="page_3"/>
        </widget>
        <widget class="QPushButton" name="takeImageButton">
         <property name="enabled">
@@ -2038,7 +2018,6 @@ QPushButton#change_password_2:pressed {
   <tabstop>username_input</tabstop>
   <tabstop>password_input</tabstop>
   <tabstop>create_account</tabstop>
-  <tabstop>forgot_credentials</tabstop>
   <tabstop>login_2</tabstop>
   <tabstop>back_2</tabstop>
   <tabstop>email_code</tabstop>
