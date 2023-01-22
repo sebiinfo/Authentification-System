@@ -1,4 +1,5 @@
 #include "database.hpp"
+#include "../Mail/mail.cpp"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -336,6 +337,60 @@ void Database::delete_data() {
     std::ofstream ofs;
     ofs.open("new.csv", std::ofstream::out | std::ofstream::trunc);
     ofs.close();
+}
+
+// change password when given a username and a password
+bool Database::change_forgotten_password(std::string username_given,
+                               int new_password,
+                               int confirm_new_password) {
+
+    std::ofstream fout;
+    fout.open("new1.csv", std::ios::out | std::ios::app);
+    std::ifstream file;
+    file.open(file_name);
+    std::string id;
+
+    bool found = false;
+    while (getline(file, id, ',')) {
+        getline(file, username, ',');
+        getline(file, name, ',');
+        getline(file, last_name, ',');
+        getline(file, password, ',');
+        getline(file, email, ',');
+        getline(file, salt, '\n');
+
+        if (username_given == username){
+            found = true;
+            std::vector<std::string> new_vector = profile.change_password(
+                username, std::to_string(new_password), std::to_string(confirm_new_password));
+            fout << id << ',' << username << ',' << name << ',' << last_name
+                 << ',' << new_vector[0] << ',' << email << ',' << new_vector[1]
+                 << std::endl;
+        } else {
+            fout << id << ',' << username << ',' << name << ',' << last_name
+                 << ',' << password << ',' << email << ',' << salt << std::endl;
+        }
+    }
+    fout.close();
+    file.close();
+
+    // removing the existing file
+    remove("new.csv");
+    // renaming the updated file with the existing file name
+    rename("new1.csv", "new.csv");
+
+    return found;
+}
+
+int Database::forgotten_password(std::string email){
+    Mail m;
+    int temp_password = m.mail(email);
+    return temp_password;
+}
+
+bool Database::verif_forgotten_password(int entered_code, int sent_code){
+    Mail m;
+    return m.verifyNumber(entered_code, sent_code);
 }
 
 //....................................................User_Input

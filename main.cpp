@@ -22,39 +22,13 @@ int main(int argc, char *argv[]) {
 
 #elif CAMERA == 0
 
-#include "mail.hpp"
-#include <Poco/Net/HTTPServer.h>
-#include <Poco/Net/MailMessage.h>
-#include <Poco/Net/MailRecipient.h>
-#include <Poco/Net/NetException.h>
-#include <Poco/Net/SMTPClientSession.h>
-#include <Poco/Net/SecureSMTPClientSession.h>
-
-using namespace std;
+#include <iostream>
+#include <mail.hpp>
 
 int main() {
-    cout << "start" << endl;
-    Poco::Net::MailMessage msg;
-    msg.addRecipient(
-        Poco::Net::MailRecipient(Poco::Net::MailRecipient::PRIMARY_RECIPIENT,
-                                 "sophieclaireantoun0@gmail.com", "Sophie"));
-    msg.setSender("Me <sophieclaireantoun0@gmail.com>");
-    msg.setSubject("Test");
-    msg.setContent("Content");
-
-    Poco::Net::SMTPClientSession smtp("smtp-relay.gmail.com", 465);
-    try {
-        smtp.login(Poco::Net::SMTPClientSession::LoginMethod::AUTH_LOGIN,
-                   "sophieclaireantoun0@gmail.com", "tnofcyabsptdsqrc");
-        smtp.sendMessage(msg);
-    } catch (Poco::Net::SMTPException e) {
-        cout << e.message() << endl;
-    }
-
-    //                "tnofcyabsptdsqrc");
-
-    smtp.close();
-    cout << "stop" << endl;
+    Mail m;
+    m.mail("moreiramachadoneto@gmail.com");
+    std::cout << "Hello world!" << std::endl;
     return 0;
 }
 
