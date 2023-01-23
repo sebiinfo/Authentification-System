@@ -28,6 +28,7 @@ class Model {
     */
 
   public:
+    Model(){};
     Model(int num_people, int num_feature, int width, int height,
           std::string localizer, std::string vectorizer,
           std::string classifier);

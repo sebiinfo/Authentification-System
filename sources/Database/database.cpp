@@ -73,7 +73,6 @@ Database::Possible_Errors Database::writeDataToFile(
         const char *ccx = (base_path + id).c_str();
 
 #if WIN32
-        std::cout << "pula" << std::endl;
         mkdir(ccx);
 #else
         // std::cout << "pula 2" << std::endl;
@@ -301,6 +300,22 @@ bool Database::check_email(std::string email_given) {
     return found;
 }
 // delete one user when given username and password
+int Database::get_max_ids() {
+    std::ifstream file;
+    file.open(file_name);
+    int number = 0;
+    std::string id1;
+    std::string id;
+    std::string line;
+
+    while (getline(file, line)) {
+        id1 = line.substr(0, line.find(','));
+        std::stringstream ss(id1);
+        ss >> number;
+    }
+    return number;
+}
+
 bool Database::delete_user(std::string username_given,
                            std::string password_given) {
     std::ofstream fout;

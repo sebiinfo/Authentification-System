@@ -6,7 +6,7 @@
 #include <opencv2/core/matx.hpp>
 #include <string>
 
-#include "vectorizer.cpp"
+#include "vectorizer.hpp"
 
 static void debug_print(cv::Mat temp) {
     std::cout << "temp.dims = " << temp.dims << " temp.size = [";
@@ -74,6 +74,7 @@ void Fisher::train(std::vector<cv::Mat> &train_images,
 }
 
 cv::Mat Fisher::vectorize(const cv::Mat &image) {
+    std::cout << "I am vectorizing with vimasdnasd" << std::endl;
     cv::Mat output = pca.project(image);
     return lda.project(output);
 }

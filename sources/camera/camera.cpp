@@ -37,6 +37,15 @@
 #include <string>
 
 // #define PATH_TO_RESOURCES "./"
+static void debug_print(cv::Mat temp) {
+    std::cout << "temp.dims = " << temp.dims << " temp.size = [";
+    for (int i = 0; i < temp.dims; ++i) {
+        if (i)
+            std::cout << " X ";
+        std::cout << temp.size[i];
+    }
+    std::cout << "] temp.channels = " << temp.channels() << std::endl;
+}
 
 Camera::Camera() : ui(new Ui::Camera) {
     ui->setupUi(this);
@@ -55,6 +64,8 @@ Camera::Camera() : ui(new Ui::Camera) {
     setCamera(QMediaDevices::defaultVideoInput());
     ui->stacked->setCurrentIndex(0);
     ui->classification_1->setChecked(true);
+    classification = "KNN";
+    int num_people = database.get_max_ids();
 }
 
 void Camera::setCamera(const QCameraDevice &cameraDevice) {
@@ -431,12 +442,14 @@ std::string classification = "KNN";
 
 void Camera::on_classification_1_clicked() {
     classification = "KNN";
-    Model model(10, 9, 0, 0, "", "Fisher", classification);
+    int num_people = database.get_max_ids();
+    Model model(num_people, num_people - 1, 0, 0, "", "Fisher", classification);
 }
 
 void Camera::on_classification_2_clicked() {
     classification = "DecisionTree";
-    Model model(10, 9, 0, 0, "", "Fisher", classification);
+    int num_people = database.get_max_ids();
+    Model model(num_people, num_people - 1, 0, 0, "", "Fisher", classification);
 }
 
 void Camera::on_back_9_clicked() { ui->stacked->setCurrentIndex(5); }
@@ -459,8 +472,21 @@ void Camera::on_takeImageButton_clicked() {
         takeImage("take_image");
         std::string path = "/resources/temp.jpg";
         path = std::string(PATH_TO_RESOURCES) + path;
+        int num_people = database.get_max_ids();
+        // cv::imshow("abcd", (cv::imread(path)));
+        std::cout << path << std::endl;
+
+        model = Model(num_people, num_people - 1, 0, 0, "", "Fisher",
+                      classification);
+
         cv::Mat image = cv::imread(path);
-        if (authenticate == 0) {
+        debug_print(image);
+        // cv::imwrite("/home/fcomoreira/desktop/", image);
+        image = image.reshape(1, 1);
+        debug_print(image);
+        authenticate = model.predict(image)[0];
+
+        if (authenticate == -1) {
             QMessageBox::about(
                 this, "Authentication Error",
                 "Your face has not been recognized, try again or go back to "

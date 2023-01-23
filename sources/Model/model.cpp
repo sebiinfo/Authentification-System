@@ -11,6 +11,7 @@
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
+#include <opencv2/highgui.hpp>
 #include <string>
 
 static void debug_print(cv::Mat temp) {
@@ -75,6 +76,11 @@ Model::Model(int num_people, int num_feature, int width, int height,
 
     std::cout << "Training the Classifier" << std::endl;
 
+    std::cout << num_people << " " << num_feature;
+    for (auto v : train_images) {
+        std::cout << v << std::endl;
+    }
+
     if (classifier == "KNN") {
         this->classifier =
             new KNN(num_people, num_feature, train_images, train_labels);
@@ -90,29 +96,28 @@ Model::Model(int num_people, int num_feature, int width, int height,
     //        std::cout<<i<<" ";
     //    }
 
-    //    this->vectorizer->train(train_images, train_labels);
-
     //    this->classifier->train(train_images, train_labels);
 }
 
 Model::~Model() {
-    delete localizer;
     delete vectorizer;
     delete classifier;
 }
 
 std::vector<int> Model::predict(cv::Mat &image) {
-    std::vector<cv::Mat> in_faces = localizer->Transform(image);
-    in_faces.push_back(image);
+    // std::vector<cv::Mat> in_faces = localizer->Transform(image);
     std::vector<int> output;
-    for (int i = 0; i < in_faces.size(); i++) {
-        // std::cout << "\n\n\nVectorizing\n";
-        cv::Mat numerical_reps = vectorizer->vectorize(in_faces[i]);
-        // std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
-        // debug_print(numerical_reps);
-        // std::cout << "Classifying\n";
-        output.push_back(classifier->classify(numerical_reps));
-    }
+    std::cout << "\n\n\nVectorizing\n" << std::endl;
+
+    cv::imshow("pula", image);
+    std::cout << "Italia suge pula" << std::endl;
+    cv::Mat numerical_reps = vectorizer->vectorize(image);
+    std::cout << "Maldive suge pula" << std::endl;
+
+    std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
+    // debug_print(numerical_reps);
+    std::cout << "Classifying\n";
+    output.push_back(classifier->classify(numerical_reps));
     // std::cout << "Finished\n";
     return output;
 }
@@ -148,9 +153,10 @@ void Model::load_train_images() {
     std::string filename, base_filename;
     for (int label = 1; label <= num_people; label++) {
         base_filename = "./resources/" + std::to_string(label) + "/";
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 0; i <= 9; i++) {
             filename = base_filename + std::to_string(i);
-            filename = filename + ".png";
+            filename = filename + ".jpg";
+            // std::cout << filename << std::endl;
             cv::Mat image = cv::imread(filename);
             cv::Mat flat_image = image.reshape(1, 1);
             train_images.push_back(flat_image);

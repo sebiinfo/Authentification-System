@@ -19,6 +19,7 @@
 #include <QGraphicsAnchorLayout>
 #include <QScopedPointer>
 #include <QMainWindow>
+#include "../Model/model.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -92,6 +93,8 @@ protected:
 private:
     std::string currentIndex = "";
     int num_pics = 0;
+    std::string classification = "KNN";
+    Model model;
     Ui::Camera *ui;
     Database database;
     QActionGroup *videoDevicesGroup = nullptr;

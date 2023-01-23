@@ -9,8 +9,8 @@
 #include <iostream>
 int main(int argc, char *argv[]) {
     std::cout << "oiiiii" << std::endl;
-    std::cout << "po" << std::endl;
     QApplication app(argc, argv);
+    std::cout << "po" << std::endl;
 
     Camera camera;
     camera.show();
