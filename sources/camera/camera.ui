@@ -85,7 +85,7 @@ face_recognition {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="main">
        <widget class="QPushButton" name="register_2">
@@ -824,7 +824,7 @@ QPushButton#back_4:pressed {
 color: #717e87</string>
              </property>
              <property name="text">
-              <string>Decision Tree</string>
+              <string>KNN</string>
              </property>
             </widget>
            </item>
@@ -835,7 +835,7 @@ color: #717e87</string>
 color: #717e87</string>
              </property>
              <property name="text">
-              <string>KNN</string>
+              <string>Decision Tree</string>
              </property>
             </widget>
            </item>
