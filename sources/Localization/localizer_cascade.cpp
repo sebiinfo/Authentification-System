@@ -18,9 +18,9 @@ Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen,int w,int pad) :
 
 
 Cascade_Localizer::Cascade_Localizer(std::string cascade_chosen, int w, int h, int pad){
-    height = h;
-    width = w;
-    padding = pad;
+	this->height = h;
+	this->width = w;
+	this->padding = pad;
     change_Cascade_name(cascade_chosen);
     reload_cascade();
 }
@@ -52,7 +52,7 @@ else if(Cascade_name=="fancy" || Cascade_name=="Fancy"){
 }
 
 else{
-    cascade = new Cascade_basic();}
+	cascade = new Cascade_basic();}
 }
 
 

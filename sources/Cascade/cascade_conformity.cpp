@@ -6,7 +6,8 @@ const double pi = 3.14159265358979323846;
 // Yassine = 0
 // Romain = 1
 // Other = 2
-#define test 0 // To load correct haarcascade
+#define test 1
+// To load correct haarcascade
 
 #if test == 0
 std::string path_face = "..\\sources\\Cascade\\haarcascades\\haarcascade_frontalface_default.xml";
@@ -15,8 +16,9 @@ std::string path_right_eye = "..\\sources\\Cascade\\haarcascades\\haarcascade_ey
 
 #elif test == 1
 
-std::string path_face = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
-std::string path_eye = "/usr/local/share/opencv4/haarcascades/haarcascade_eye.xml";
+std::string path_face = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/sources/Detect/haarcascades/haarcascade_frontalface_default.xml";
+std::string path_left_eye = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/sources/Detect/haarcascades/haarcascade_righteye_2splits.xml";
+std::string path_right_eye = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/sources/Detect/haarcascades/haarcascade_eye.xml";
 
 #endif
 
