@@ -13,6 +13,7 @@ find_package(OpenCV REQUIRED)
 #find_package(Qt6 OPTIONAL_COMPONENTS Core)
 
 add_subdirectory(sources)
+add_subdirectory(config)
 #add_subdirectory(images)
 
 add_subdirectory(libs/opencv)
@@ -35,11 +36,12 @@ add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    "${CMAKE_SOURCE_DIR}/resources/" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/resources")
 
-
 target_link_libraries(${PROJECT_NAME} 
         PUBLIC ${INCLUDE_QT}
         PUBLIC OpenCVExternalLibrary
         PUBLIC sources
+        PUBLIC Config
         )
 
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_BINARY_DIR})
 

@@ -7,6 +7,7 @@
 #include "../Vectorization/fisher.hpp"
 #include "../Vectorization/vectorizer.hpp"
 #include <cassert>
+#include <config.h>
 #include <opencv2/core.hpp>
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/mat.hpp>
@@ -37,30 +38,8 @@ Model::Model(int num_people, int num_feature, int width, int height,
     this->num_feature = num_feature;
     this->width = width;
     this->height = height;
-
-    /* if (localizer == "Basic" || localizer == "conformity" ||
-        localizer == "Conformity" || localizer == "Fancy" ||
-        localizer == "fancy") {
-        //		this->localizer = new Cascade_Localizer(localizer);
-        this->localizer = new Cascade_Localizer(localizer, width, height, 10);
-    } else {
-        assert(false);
-    } */
-
-    if (vectorizer == "Fisher") {
-        this->vectorizer = new Fisher(num_people, num_feature);
-    } else {
-        assert(false);
-    }
-
-    // if (classifier == "KNN") {this->classifier = new KNN(num_people,
-    // num_feature);} else {assert(false);} KNN constructor has 4 arguments. For
-    // the moment leave this commented.
-
     this->load_train_images();
     debug_print(train_images[0]);
-
-    std::cout << "\n";
 
     std::cout << "Training the Vectorizer" << std::endl;
     if (vectorizer == "Fisher") {
@@ -69,13 +48,9 @@ Model::Model(int num_people, int num_feature, int width, int height,
     } else {
         assert(false);
     }
-    //    std::cout<<"training labels are \n";
-    //    for (auto i: train_labels){
-    //        std::cout<<i<<" ";
-    //    }
 
-    std::cout << "Training the Classifier" << std::endl;
-
+    std::cout << "Training the Classifier"
+              << " " << classifier << std::endl;
     std::cout << num_people << " " << num_feature;
     for (auto v : train_images) {
         std::cout << v << std::endl;
@@ -90,7 +65,22 @@ Model::Model(int num_people, int num_feature, int width, int height,
     } else {
         assert(false);
     }
-    // KNN constructor has 4 arguments. For the moment leave this commented.
+    std::string path = "/resources/temp.jpg";
+    path = std::string(PATH_TO_RESOURCES) + path;
+    cv::Mat image =
+        cv::imread(path);
+    image = image.reshape(1, 1);
+    // debug_print(image);
+    std::cout << "trying to predict\n\n"<<std::endl;
+    cv::Mat num_rep = this->vectorizer->vectorize(image);
+    std::cout << num_rep << std::endl;
+    predicted_label =
+        this->classifier->classify(this->vectorizer->vectorize(image));
+    std::cout << "This is the output of first img " << predicted_label
+              << std::endl;
+
+    // KNN constructor has 4
+    // arguments. For the moment leave this commented.
     //    std::cout<<"trained labels are \n";
     //    for (auto i: this->classifier->labels){
     //        std::cout<<i<<" ";
@@ -105,20 +95,21 @@ Model::~Model() {
 }
 
 std::vector<int> Model::predict(cv::Mat &image) {
+    cv::Mat new_image = image.clone();
+    // image.copyTo(new_image);
     // std::vector<cv::Mat> in_faces = localizer->Transform(image);
     std::vector<int> output;
     std::cout << "\n\n\nVectorizing\n" << std::endl;
-
-    cv::imshow("pula", image);
     std::cout << "Italia suge pula" << std::endl;
-    cv::Mat numerical_reps = vectorizer->vectorize(image);
+    // cv::Mat numerical_reps = vectorizer->vectorize(image);
     std::cout << "Maldive suge pula" << std::endl;
 
-    std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
+    // std::cout << "Numerical rep is\n" << numerical_reps << std::endl;
     // debug_print(numerical_reps);
     std::cout << "Classifying\n";
-    output.push_back(classifier->classify(numerical_reps));
-    // std::cout << "Finished\n";
+    output.push_back(
+        this->classifier->classify(this->vectorizer->vectorize(new_image)));
+    std::cout << "Finished\n" << std::endl;
     return output;
 }
 

@@ -8,7 +8,7 @@
 #include <iostream>
 #include <opencv2/core/mat.hpp>
 
-#include "../Interfaces/Facedata.hpp"
+// #include "../Interfaces/Facedata.hpp"
 #include "../Interfaces/best_split_type.hpp"
 
 /*
@@ -63,7 +63,7 @@ class Classifier {
 
     // the alienation constant is the percentage of admissible alienated
     // coordinates
-    double alienation_constant = 0.1; //above 1 not doing the feature
+    double alienation_constant = 0.5; // above 1 not doing the feature
     int num_people{};
     int dim{};
     std::vector<cv::Mat> num_reps; // numerical representations of the faces

@@ -39,10 +39,10 @@ class Model {
     Classifier *classifier;
     Vectorizer *vectorizer;
     Localizer *localizer;
+    int predicted_label = -1;
 
   private:
     void load_train_images();
-
     int num_people;
     int num_feature;
     int width;

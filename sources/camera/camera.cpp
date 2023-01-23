@@ -9,7 +9,6 @@
 #include "ui_camera.h"
 #endif
 #include "../Model/model.hpp"
-#include "config.h"
 #include "imagesettings.h"
 #include <QAction>
 #include <QActionGroup>
@@ -31,6 +30,7 @@
 #include <QTimer>
 #include <QVideoWidget>
 #include <QtWidgets>
+#include <config.h>
 #include <iostream>
 #include <opencv2/core.hpp>
 #include <opencv2/core/mat.hpp>
@@ -443,13 +443,15 @@ std::string classification = "KNN";
 void Camera::on_classification_1_clicked() {
     classification = "KNN";
     int num_people = database.get_max_ids();
-    Model model(num_people, num_people - 1, 0, 0, "", "Fisher", classification);
+    // Model model(num_people, num_people - 1, 0, 0, "", "Fisher",
+    // classification);
 }
 
 void Camera::on_classification_2_clicked() {
     classification = "DecisionTree";
     int num_people = database.get_max_ids();
-    Model model(num_people, num_people - 1, 0, 0, "", "Fisher", classification);
+    // Model model(num_people, num_people - 1, 0, 0, "", "Fisher",
+    // classification);
 }
 
 void Camera::on_back_9_clicked() { ui->stacked->setCurrentIndex(5); }
@@ -479,12 +481,15 @@ void Camera::on_takeImageButton_clicked() {
         model = Model(num_people, num_people - 1, 0, 0, "", "Fisher",
                       classification);
 
-        cv::Mat image = cv::imread(path);
-        debug_print(image);
-        // cv::imwrite("/home/fcomoreira/desktop/", image);
+        authenticate = model.predicted_label;
+        std::string auth_string = "Your face has been recognized to be " + std::to_string(authenticate);
+        model.predicted_label = -1;
+        // std::cout << "authenticateeeeeeeee " << authenticate << std::endl;
+        /* cv::Mat image =
+            cv::imread("/home/fcomoreira/bachelor/current/CSE201/"
+                       "Authentification-System/build/resources/temp.jpg");
         image = image.reshape(1, 1);
-        debug_print(image);
-        authenticate = model.predict(image)[0];
+        authenticate = model.predict(image)[0]; */
 
         if (authenticate == -1) {
             QMessageBox::about(
@@ -492,6 +497,9 @@ void Camera::on_takeImageButton_clicked() {
                 "Your face has not been recognized, try again or go back to "
                 "try logging in with password or create an account.");
         } else {
+            QMessageBox::about(
+                this, "Authentication Successful",
+                QString::fromStdString(auth_string));
             ui->stacked->setCurrentIndex(5);
         }
     } else {

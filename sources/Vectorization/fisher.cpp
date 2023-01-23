@@ -66,7 +66,7 @@ void Fisher::train(std::vector<cv::Mat> &train_images,
     lda = cv::LDA(num_feature);
     lda.compute(projected_pca_data, train_labels);
     // std::cout << "Created LDA" << std::endl;
-    std::cout << lda.project(projected_pca_data.row(0)) << std::endl;
+    // std::cout << lda.project(projected_pca_data.row(0)) << std::endl;
     for (auto &image : train_images) {
         image = vectorize(image);
     }
@@ -74,7 +74,6 @@ void Fisher::train(std::vector<cv::Mat> &train_images,
 }
 
 cv::Mat Fisher::vectorize(const cv::Mat &image) {
-    std::cout << "I am vectorizing with vimasdnasd" << std::endl;
     cv::Mat output = pca.project(image);
     return lda.project(output);
 }

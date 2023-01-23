@@ -76,11 +76,11 @@ KNN::KNN(int num_people, int dim) : Classifier(num_people, dim) {
 
 KNN::KNN(int num_people, int dim, std::vector<cv::Mat> &num_reps,
          std::vector<int> &labels)
-    : Classifier(num_people,dim,num_reps, labels) {
+    : Classifier(num_people, dim, num_reps, labels) {
     this->num_people = num_people;
     this->dim = dim;
-    this->num_reps=num_reps;
-    this->labels=labels;
+    this->num_reps = num_reps;
+    this->labels = labels;
     this->k = int(sqrt(double(num_reps.size())));
 }
 
@@ -103,14 +103,14 @@ int KNN::classify(const cv::Mat &query) {
     this->query = query;
 
     // we check if the query is too far off from our data
-//    if (is_alienated(query)) {
-//        return -1;
-//    }
-//    std::cout<<"labels are: \n";
-//    for (auto i: labels){
-//        std:: cout<< i<<" ";
-//    }
-//    std::cout<<"\n";
+    //    if (is_alienated(query)) {
+    //        return -1;
+    //    }
+    //    std::cout<<"labels are: \n";
+    //    for (auto i: labels){
+    //        std:: cout<< i<<" ";
+    //    }
+    //    std::cout<<"\n";
     // now we want to sort the data in terms of the distance, O(nlogn),
 
     std::vector<int> permutation_numerical_faces =
@@ -139,8 +139,8 @@ int KNN::classify(const cv::Mat &query) {
         }
     }
 
-    //Now we check if we have a false positive
-    if (is_alienated_id_linear(query, max_id)){
+    // Now we check if we have a false positive
+    if (is_alienated_id_normal(query, max_id)) {
         return -1;
     }
     return max_id;
