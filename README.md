@@ -7,7 +7,7 @@ The project is about developping an app that will use facial recognition securel
     - Paula Gonzalez Alvarez, gonzalezpaula, paula_gonzalez
     - Alexandru Serban, alexserban2002, alexandruserban19
     - Bach Khoa Do, DoBachKhoa, bachkhoado1
-    - Bogdan Budura, ___, bogdanbudura, compilation leader
+    - Bogdan Budura, JohnnyVenturas, bogdanbudura, compilation leader
     - Cezara Petrui, cezarapetrui19, cezarapetrui
     - Francisco Moreira Machado Neto, fcomoreira1, franciscomoreiramachadoneto, project leader
     - Jasmine Watissee, jasminewatissee, jasminewatissee1
@@ -48,3 +48,24 @@ The project is about developping an app that will use facial recognition securel
     
     - Paula Gonzalez Alvarez
     - Victor Lasocki
+
+### Running the code
+    
+    -For Linux and MacOS operating systems
+    mkdir build 
+    cd build 
+    cmake .. 
+    cmake --build .  
+    ./AuthentificationSystem 
+
+    Instead of using cmake --build . one can use:
+    make -j 8 (or 12 16 32 i.e number of cores you have on your machine)
+    This is to speed up compilation on the first build. Use only on the first 
+    build!
+    
+    Keep in mind that for the program to work properly you need to register
+    at least three faces. Not doing so can result in bugs. 
+    After each register it is recommended to close and reopen the program to prevent 
+    any bugs.
+
+    Enjoy :) 
