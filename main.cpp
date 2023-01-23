@@ -87,25 +87,35 @@ int main()
 }
 
 #elif test == 0
-//void testlocalizer()
-//{
-//
-//    std::string folder ="C:\\Authentification-System\\images\\Testing\\agathaopen.jpg";
-//
-//    cv::Mat image;
-//    image = cv::imread(folder);
-//
-//    Localizer loc = Localizer();
-//
-//    std::vector<cv::Mat> arr = loc.localize(image);
-//
-//    while (true){
-//        cv::imshow("img",arr[0]);
-//    }
-//
-//}
+int testtransform() { //Tests Transform
+    DIR* dir;
+    struct dirent* ent;
+    std::string folder ="..\\images\\Testing";
+    dir = opendir(folder.c_str());
+    while ((ent = readdir(dir)) != nullptr) {
+        std::string fileName = ent->d_name;
+        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
+            Cascade_Localizer loc = Cascade_Localizer("fancy");
+            cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
+            std::vector<cv::Mat> faces=loc.Transform(frameclosed);
+            if(faces.size()!=0){
+                std::cout<<fileName<<"  eyes detected";
+                for (int i = 0; i < faces.size(); i++)
+                {
+                    cv::Mat eyeROI = frameclosed(faces[i]);
+                    cv::imshow("eyeROI", eyeROI);
+                    cv::waitKey(0);
+                }
+            }
+            else{std::cout<<fileName<<"  eyes closed and not returned"<<std::endl;}
 
-//
+
+        }
+    }
+    closedir(dir);
+    return 0;
+}
+
 
 int testdetectmultiscale() { //Tests DetectMultiScale that filters the faces
     DIR* dir;
@@ -120,8 +130,6 @@ int testdetectmultiscale() { //Tests DetectMultiScale that filters the faces
             std::vector<cv::Rect> eyes;
             loc.Rescale(frameclosed);
             loc.cascade->detectMultiScale(frameclosed,eyes, 1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-//            bool eyeOpen0=loc.cascade->EyedetectMultiScale(frameclosed,eyes, 1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-//std::cout
 if(eyes.size()!=0){
     std::cout<<fileName<<"  eyes detected";
     for (int i = 0; i < eyes.size(); i++)
@@ -264,71 +272,18 @@ int testeyedetection() { //Tests isEyeOpen function on the folder "Testing"
 //    return 0;
 //}
 //
-//int test_conformity(){
-//
-//    DIR* dir;
-//    struct dirent* ent;
-//    std::string folder ="C:\\Authentification-System\\images\\Testing";
-//    dir = opendir(folder.c_str());
-//    while ((ent = readdir(dir)) != nullptr) {
-//        std::string fileName = ent->d_name;
-//        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
-//            Cascade_conformity Conform_faces=Cascade_conformity();
-//            cv::Mat frameclosed = cv::imread(folder+"//"+fileName);
-//            Conform_faces.Transform(frameclosed);
-//            cv::imshow(fileName,frameclosed);
-//            cv::waitKey(0);
-//            std::cout<< "Detected eyes:  "<<Conform_faces.isEye(frameclosed)<<std::endl;
-//            double angle;
-//            angle=Conform_faces.get_angle_from_eyes(frameclosed);
-//            Conform_faces.rotate_face(frameclosed,angle);
-//            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
-//            cv::imshow(fileName+" modified",frameclosed);
-//            cv::waitKey(0);
-//        }
-//    }
-//    closedir(dir);
-//    return 0;
-//
-//}
 
 
 
 
 int main(){
+    testtransform();
 //     testdetectmultiscale();
 //    test_angle_single_image();
 //    test_angle();
-testeyedetection();
-   //  test_angle();
-//    cv::Mat image = cv::imread("C:\\Users\\USER\\CLionProjects\\Authentification-System\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
-//    Localizer loc = Localizer();
-//    std::vector<cv::Mat> crops = loc.localize(image);
-//    cv::Mat out = crops[0];
-//    cv::Mat rotate =rotate_face(out);
-//    cv::imshow("img",rotate);
-//    cv::waitKey(0);
-
-//    std::string image_path = "Authentification_System/images/Team/yassine.jpg";
-//    std::string path2 = "/Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team/yassine.jpg";
-//    cv::Mat image = cv::imread(image_path);
-//    while (true){
-//           cv::imshow("img",image);
-//    }
+//testeyedetection();
     return 0;
 }
-
-//
-//void test_open_eye(std::string image_path)
-//{
-//    cv::Mat image = cv::imread(image_path);
-//    if (conform(image)){
-//        std::cout << image_path.substr(0,13)<< ": is conform";
-//    }else{
-//        std::cout << "Image not conform";
-//    }
-//}
-//
 
 
 ///Users/florencepoggi/Documents/Romain/Education/Bachelor X/Courses/Semester 3/CSE 201 - CPP/Project/Authentification-System/images/Team
