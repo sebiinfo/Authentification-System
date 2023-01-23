@@ -9,9 +9,9 @@ const double pi = 3.14159265358979323846;
 #define test 0 // To load correct haarcascade
 
 #if test == 0
-std::string path_face = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_frontalface_default.xml";
-std::string path_left_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_lefteye_2splits.xml";
-std::string path_right_eye = "C:\\Authentification-System\\sources\\Cascade\\haarcascades\\haarcascade_eye.xml";
+std::string path_face = "..\\sources\\Cascade\\haarcascades\\haarcascade_frontalface_default.xml";
+std::string path_left_eye = "..\\sources\\Cascade\\haarcascades\\haarcascade_righteye_2splits.xml";
+std::string path_right_eye = "..\\sources\\Cascade\\haarcascades\\haarcascade_eye.xml";
 
 #elif test == 1
 
@@ -57,27 +57,34 @@ void Cascade_conformity::isEye(cv::Mat image, std::vector<cv::Rect> &faces)
 }
 
 void Cascade_conformity::detectMultiScale(cv::Mat image, std::vector<cv::Rect> &faces, double scaleFactor, double minNeighbors, double flags, cv::Size minSize) {
-std::vector<cv::Rect> eyes;
-    EyedetectMultiScale(image, eyes,  scaleFactor,  minNeighbors,  flags, minSize);
-    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
-    cv::equalizeHist(image, image);
+//    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+//    cv::equalizeHist(image, image);
     cascade_face.detectMultiScale(image, faces, scaleFactor, minNeighbors, flags, minSize);
-    for (int i = 0; i < faces.size(); i++) {
-        bool hasEyes = false;
-        for (int j = 0; j < eyes.size(); j++) {
-            if  (eyes[j].x >= faces[i].x && eyes[j].x + eyes[j].width <= faces[i].x + faces[i].width &&
-                 eyes[j].y >= faces[i].y && eyes[j].y + eyes[j].height <= faces[i].y + faces[i].height) {
-                hasEyes = true;
-                break;
-            }
-        }
-        if (!hasEyes) {
-            faces.erase(faces.begin() + i);
-            i--; // Decrement i to account for the deleted face
-        }
+    std::vector<cv::Rect> eyes;
+    bool iseye = EyedetectMultiScale(image, eyes, scaleFactor, minNeighbors, flags, minSize);
+    if (iseye == 0) {
+        faces.clear();
     }
-//    isEye(image, faces);
 }
+//    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+//    cv::equalizeHist(image, image);
+//    cascade_face.detectMultiScale(image, faces, scaleFactor, minNeighbors, flags, minSize);
+//    for (int i = 0; i < faces.size(); i++) {
+//        bool hasEyes = false;
+//        for (int j = 0; j < eyes.size(); j++) {
+//            if  (eyes[j].x >= faces[i].x && eyes[j].x + eyes[j].width <= faces[i].x + faces[i].width &&
+//                 eyes[j].y >= faces[i].y && eyes[j].y + eyes[j].height <= faces[i].y + faces[i].height) {
+//                hasEyes = true;
+//                break;
+//            }
+//        }
+//        if (!hasEyes) {
+//            faces.erase(faces.begin() + i);
+//            i--; // Decrement i to account for the deleted face
+//        }
+//    }
+////    isEye(image, faces);
+//}
 
 bool Cascade_conformity::EyedetectMultiScale(cv::Mat &image, std::vector<cv::Rect> &eyes, double scaleFactor, double minNeighbors, double flags, cv::Size minSize) {
     std::vector<cv::Rect>templeft;
