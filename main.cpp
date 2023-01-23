@@ -175,10 +175,6 @@ int testeyedetection() { //Tests isEyeOpen function on the folder "Testing"
                 cv::imshow("eyeROI", eyeROI);
                 cv::waitKey(0);
             }
-//            std::vector<cv::Mat> vectmats= loc.Transform(frameclosed);
-            //normalizeIntensities(frameclosed);
-//            frameclosed=rescaleImage(frameclosed, 224,224);
-//            bool eyeOpen0 = ;
             if (fileName.find("closed") != std::string::npos) {
                 if(eyeOpen0==0){
                     trueclosed+=1;
@@ -209,26 +205,19 @@ int testeyedetection() { //Tests isEyeOpen function on the folder "Testing"
     return 0;
 }
 
-//int test_angle_single_image(){
-//    cv::Mat image = cv::imread("C:\\Authentification-System\\images\\Testing\\yassinetiltedopen.jpg");
-//    Cascade_Localizer loc = Cascade_Localizer("fancy");
-//    std::vector<cv::Rect> eyes;
-//    loc.cascade->EyedetectMultiScale(image, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));if (eyes.size() > 0) { // check if there are any detected eyes
-////        for (int i=0; i<eyes.size(); i++){
-////        cv::Rect eyeRect = eyes[i]; // get the first detected eye
-////        cv::Mat eyeMat = image(eyeRect); // extract the area of the image corresponding to the eyeRect
-////        cv::imshow("Eye", eyeMat); // display the eye
-////        cv::waitKey(0);
-////        }
-//        std::vector<cv::Mat> mats =loc.Transform(image);
-//
-//        for(int i=0; i<mats.size();i++){// check if there are any detected eyes
-//        cv::imshow("img", mats[i]);
-//        cv::waitKey(0);
-//    }
-//        return eyes.size();
-//    }}
+int test_angle_single_image() {
+    cv::Mat image = cv::imread("..\\images\\Testing\\yassinetiltedopen2.jpg");
+    Cascade_Localizer loc = Cascade_Localizer("fancy");
+    loc.Rescale(image);
+    cv::imshow("tilted",image);
+    cv::waitKey(0);
 
+    std::vector<cv::Rect> eyes;
+    loc.cascade->EyedetectMultiScale(image, eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+    double angle = loc.get_angle_from_eyes(eyes);
+    loc.rotate_face(image, angle);
+    cv::imshow("img", image);
+    cv::waitKey(0);
 //    std::vector<cv::Mat> mats =loc.Transform(image);
 //    std::cout<<mats.size();
 //    for (int i=0; i<mats.size();i++){
@@ -246,19 +235,11 @@ int testeyedetection() { //Tests isEyeOpen function on the folder "Testing"
 //        if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".jpg") {
 //            cv::Mat image_open = cv::imread(folder + "//" + fileName);
 //            Cascade_Localizer loc= Cascade_Localizer("fancy");
-//          std::vector<cv::Mat> images = loc.Transform(image_open);
-//          for (int i=0;i<images.size();i++)
-//          {
-////              std::vector<cv::Rect> eyes;
-////              std::vector<cv::Rect> faces;
-////              loc.cascade->detectMultiScale(images[i], faces, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-////              loc.cascade->EyedetectMultiScale(images[i], eyes, 1.06, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
-////              double angle=loc.Transform(eyes);
-////              loc.rotate_face(images[i],angle);
-//              cv::imshow(fileName, images[i]);
-////            std::cout<<fileName<<"    angle: "<<angle<<std::endl;
-//            cv::waitKey(0);
-//          }
+//            std::vector<cv::Rect> eyes;
+//            loc.cascade->detectMultiScale(image_open,eyes, 1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+//            double angle = loc.get_angle_from_eyes(eyes);
+//            loc.rotate_face(image_open,angle);
+//            cv::imshow(fileName,image_open);
 //
 ////            std::cout<<"file: "<<fileName<< "   status: " << angle <<std::endl;
 ////for(int i=0; i<images.size();i++){
@@ -271,17 +252,15 @@ int testeyedetection() { //Tests isEyeOpen function on the folder "Testing"
 //    closedir(dir);
 //    return 0;
 //}
-//
-
-
-
+}
 
 int main(){
-    testtransform();
-//     testdetectmultiscale();
-//    test_angle_single_image();
-//    test_angle();
+//    testtransform();
 //testeyedetection();
+//     testdetectmultiscale();
+    test_angle_single_image();
+//    test_angle();
+
     return 0;
 }
 

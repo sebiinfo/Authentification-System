@@ -24,6 +24,8 @@ public:
   void localize_rect(cv::Mat &image, std::vector<cv::Rect> &faces);
 
   std::vector<cv::Mat> Transform(cv::Mat image);
+    double get_angle_from_eyes(std::vector<cv::Rect> eyes);
+    void rotate_face(cv::Mat &image, double angle);
     void Rescale(cv::Mat &image);
 
   // Attribute //
@@ -41,8 +43,7 @@ private:
 
   void Rescale(std::vector<cv::Mat> &images);
 
-  double get_angle_from_eyes(std::vector<cv::Rect> eyes);
-  void rotate_face(cv::Mat &image, double angle);
+
 
   void recheck(std::vector<cv::Mat> &images);
 };

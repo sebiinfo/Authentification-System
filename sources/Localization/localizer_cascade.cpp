@@ -293,9 +293,6 @@ std::vector<cv::Mat> Cascade_Localizer::Transform(cv::Mat image)
 
 	std::vector<cv::Rect> faces = std::vector<cv::Rect>();
 	cascade->detectMultiScale(image, faces,  1.06, 4, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(20, 20));
-
-
-
     std::vector<cv::Mat> images = Crop(image,faces);
     
 
